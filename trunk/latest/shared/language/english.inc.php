@@ -4,7 +4,7 @@
   This is an ARSC language file. If you translate it, please send me
   a copy to <manuel@kiessling.net>, I will add it to ARSC then. Thanks.
 
-  This file is for version: <1.0beta3>
+  This file is for version: 1.0
 */
 
 
@@ -12,11 +12,10 @@
 
 $arsc_lang["entername"]         = "Please enter your nickname:";
 $arsc_lang["enterpassword"]     = "Please enter your password:";
-$arsc_lang["namelength"]        = "A maximum of 10 characters can be used.";
 $arsc_lang["whichversion"]      = "Which version do you want to use?";
 $arsc_lang["version_dontknow"]  = "Choose this version if you don't know which browser you use.";
 $arsc_lang["version_sockets"]   = "Recommended version for modern browsers. Uses JavaScript and Frames.";
-// If you installed the socket server, version_push_js will not be shown.
+// If you installed the socket server, version_push_js will not be shown, and vice versa, this is why they are same.
 $arsc_lang["version_push_js"]   = "Recommended version for modern browsers. Uses JavaScript and Frames.";
 $arsc_lang["version_header_js"] = "An alternative version for modern browsers if the one above did not work. Uses JavaScript and Frames.";
 $arsc_lang["version_header"]    = "A version that only uses Frames, but no JavaScript.";
@@ -46,9 +45,9 @@ $arsc_lang["register_emailtemplate_subject"] = "Your ARSC registration.";
 $arsc_lang["register_emailtemplate"]         = "
 Hello,
 
-You registered for ARSC.
+You registered for ARSC Chat.
 
-You chose the nickname '{username}'
+You chose the nickname '{username}'.
 It is now protected with this password:
 
             '{password}'
@@ -75,6 +74,7 @@ $arsc_lang["roomlist"]        = "Roomliste";
 $arsc_lang["refresh"]         = "Refresh";
 $arsc_lang["otherfunctions"]  = "Additional functions";
 $arsc_lang["smilielist"]      = "List of all smilies";
+$arsc_lang["scroll_active"]   = "Autoscroll";
 $arsc_lang["drawboard"]       = "Drawboard";
 
 
@@ -84,6 +84,7 @@ $arsc_lang["error_register_double_user"] = "This nickname is already in use. Ple
 $arsc_lang["error_waitformail"]          = "When the eMail with your credentials arrived, you can log in the chat.";
 $arsc_lang["error_double_user"]          = "A user with this name is already logged in!";
 $arsc_lang["error_no_name"]              = "You must enter an username!";
+$arsc_lang["error_bad_name"]             = "This name is not allowed!";
 $arsc_lang["error_wrong_credentials"]    = "Access denies!<br>Are your credentials correct?";
 $arsc_lang["error_banned"]               = "Access is temporarily denied.";
 
@@ -103,38 +104,39 @@ $arsc_lang["whispersops"]   = "whispers to all operators";
 $arsc_lang["gotmsg"]        = "You whisper to </i>{user}<i>: {message}";
 
 $arsc_lang["help"]          = "
-</i><br><br>&nbsp;<b><i>Sorry, not yet translated!</i> Allgemeine Hilfe:</b>
-<br>&nbsp;&nbsp;&nbsp;Im rechten Frame sehen Sie alle Benutzer,
-<br>&nbsp;&nbsp;&nbsp;die sich in diesem Raum aufhalten.
+</i><br><br>&nbsp;<b>General Help:</b>
+<br>&nbsp;&nbsp;&nbsp;In the right frame you see all users
+<br>&nbsp;&nbsp;&nbsp;who are currently in the room.
 <br>
-<br>&nbsp;&nbsp;&nbsp;Benutzer mit einem @ Symbol vor ihrem Namen
-<br>&nbsp;&nbsp;&nbsp;sind Operatoren und k&ouml;nnen Benutzer des Raumes
-<br>&nbsp;&nbsp;&nbsp;verweisen sowie Benutzern Operatorstatus geben und
-<br>&nbsp;&nbsp;&nbsp;nehmen.
+<br>&nbsp;&nbsp;&nbsp;Users with an @ in front of their name
+<br>&nbsp;&nbsp;&nbsp;are operators and can kick users out of
+<br>&nbsp;&nbsp;&nbsp;the room, give operator status to other
+<br>&nbsp;&nbsp;&nbsp;users, and take away their operator status.
 <br>
-<br>&nbsp;&nbsp;&nbsp;Indem Sie auf einen Namen klicken, wird das
-<br>&nbsp;&nbsp;&nbsp;Texteingabefeld automatisch mit dem Befehl gef&uuml;llt
-<br>&nbsp;&nbsp;&nbsp;der ben&ouml;tigt wird, um diesem Benutzer eine
-<br>&nbsp;&nbsp;&nbsp;Nachricht zu senden - Sie m&uuml;ssen nur ihre Nachricht
-<br>&nbsp;&nbsp;&nbsp;an das Ende des Befehls anf&uuml;gen.
+<br>&nbsp;&nbsp;&nbsp;If you click on a name on the right, the input
+<br>&nbsp;&nbsp;&nbsp;field will be filled with the command that is
+<br>&nbsp;&nbsp;&nbsp;neccessary to send a private message to this user.
+<br>&nbsp;&nbsp;&nbsp;You must only append your message to the end
+<br>&nbsp;&nbsp;&nbsp;of the command line.
 <br>
-<br>&nbsp;<b>Allgemeine Befehle:</b>
-<br>&nbsp;&nbsp;&nbsp;/me <i>Nachricht</i> -- Symbolisiert eine Handlung, z.B. <i>/me macht Kaffee</i> schreibt <i>* Benutzer macht Kaffee</i>
-<br>&nbsp;&nbsp;&nbsp;/msg <i>Benutzer</i> <i>Nachricht</i> -- Sendet eine private <i>Nachricht</i> an einen <i>Benutzer</i>
-<br>&nbsp;&nbsp;&nbsp;/j <i>Raumname</i> -- Verl&auml;sst den aktuellen Raum und betritt <i>Raumname</i>
-<br>&nbsp;&nbsp;&nbsp;/room <i>Raumname</i> -- Selbe Funktion wie /j
+<br>&nbsp;<b>General Commands:</b>
+<br>&nbsp;&nbsp;&nbsp;/me <i>message</i> -- Symbolizes an action, e.g. <i>/me feels fine</i> writes <i>* User feels fine</i>
+<br>&nbsp;&nbsp;&nbsp;/msg <i>user</i> <i>message</i> -- Sends a private <i>message</i> to an <i>user</i>
+<br>&nbsp;&nbsp;&nbsp;/j <i>room</i> -- Leaves the room and enters <i>room</i>
+<br>&nbsp;&nbsp;&nbsp;/room <i>room</i> -- An alias to /j
 <br><br><i>";
 
 $arsc_lang["helpop"]        = "
 </i>&nbsp;<b>Operatorenbefehle:</b>
-<br>&nbsp;&nbsp;&nbsp;/msgops <i>Nachricht</i> -- Fl&uuml;stert eine <i>Nachricht</i> an alle Operatoren
-<br>&nbsp;&nbsp;&nbsp;/op <i>Benutzer</i> -- Gibt <i>Benutzer</i> Operatorstatus
-<br>&nbsp;&nbsp;&nbsp;/deop <i>Benutzer</i> -- Nimmt <i>Benutzer</i> Operatorenstatus weg
-<br>&nbsp;&nbsp;&nbsp;/kick <i>Benutzer</i> -- Verweist <i>Benutzer</i> des Chats
-<br>&nbsp;&nbsp;&nbsp;/bann <i>Benutzer XX</i> -- Sperrt IP des <i>Benutzer</i>s <i>XX</i> vom Chat aus
-<br>&nbsp;&nbsp;&nbsp;/lock <i>Benutzer</i> -- Sperrt den Account des (registrierten!) <i>Benutzer</i>s dauerhaft
-<br>&nbsp;&nbsp;&nbsp;/rip <i>Benutzer</i> -- Was <i>Benutzer</i> sagt, wird nicht mehr angezeigt
-<br>&nbsp;&nbsp;&nbsp;/unrip <i>Benutzer</i> -- Was <i>Benutzer</i> sagt wird wieder angezeigt
-<br>&nbsp;&nbsp;&nbsp;/move <i>Benutzer Raum</i> -- &acute;Verschiebt&acute; <i>Benutzer</i> in <i>Raum</i>
+<br>&nbsp;&nbsp;&nbsp;/msgops <i>message</i> -- Whispers a <i>message</i> to all operators
+<br>&nbsp;&nbsp;&nbsp;/whois <i>user</i> -- Shows information about <i>user</i>
+<br>&nbsp;&nbsp;&nbsp;/op <i>user</i> -- Gives operator status to <i>user</i>
+<br>&nbsp;&nbsp;&nbsp;/deop <i>user</i> -- Takes operator status from <i>user</i>
+<br>&nbsp;&nbsp;&nbsp;/kick <i>user</i> -- Kicks <i>user</i> out of the chat
+<br>&nbsp;&nbsp;&nbsp;/bann <i>user X</i> -- Blocks IP of <i>user</i> for <i>X</i> seconds
+<br>&nbsp;&nbsp;&nbsp;/lock <i>user</i> -- Lock account of (registered!) <i>user</i> permanently
+<br>&nbsp;&nbsp;&nbsp;/rip <i>user</i> -- What <i>user</i> says is not shown
+<br>&nbsp;&nbsp;&nbsp;/unrip <i>user</i> -- What <i>user</i> says is shown again
+<br>&nbsp;&nbsp;&nbsp;/move <i>user room</i> -- &acute;Moves&acute; <i>user</i> into <i>room</i>
 <br><br><i>";
 ?>

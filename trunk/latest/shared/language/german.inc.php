@@ -12,7 +12,6 @@
 
 $arsc_lang["entername"]         = "Geben Sie hier Ihren Chatnamen ein:";
 $arsc_lang["enterpassword"]     = "Geben Sie hier Ihr Passwort ein:";
-$arsc_lang["namelength"]        = "Sie k&ouml;nnen maximal 10 Zeichen verwenden.";
 $arsc_lang["whichversion"]      = "Welche Version m&ouml;chten Sie benutzen?";
 $arsc_lang["version_dontknow"]  = "W&auml;hlen Sie diese Version, wenn Sie nicht wissen was ein Browser ist oder welchen Browser Sie verwenden.";
 $arsc_lang["version_sockets"]   = "Empfohlene Version f&uuml;r moderne Browser. Verwendet JavaScript und Frames.";
