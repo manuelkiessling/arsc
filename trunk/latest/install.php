@@ -77,11 +77,10 @@ if (mysql_query("CREATE TABLE arsc_bannlist
                  )
                  TYPE=MyISAM")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_use','no')")
-    && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_adress','195.261.40.144')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_adress','".getenv("SERVER_NAME")."')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_port','8080')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_maximumusers','200')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('selfop_password','password')")
-    && mysql_query("INSERT INTO arsc_parameters VALUES ('activate_counter_pic','yes')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('drawboard','no')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('drawboard_width','400')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('drawboard_height','350')")
@@ -131,7 +130,15 @@ if (mysql_query("CREATE TABLE arsc_bannlist
     && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('16','/gift/')")
    )
 {
- echo "ARSC is installed. Please delete this file (install.php) from your webserver now!";
+ <?php
+ ARSC is installed. Please delete this file (install.php) from your webserver!
+ <br>
+ <br>
+ The ARSC team would like to ask you if you want to get this installation of ARSC counted on the ARSC homepage.
+ If you want to, then please <a href="counter.php"><b>click here</b></a>, your installation will then be counted and
+ listed on our <a href="http://manuel.kiessling.net/projects/software/arsc/refererlist.php">Where is ARSC used?</a> page.
+ Only your URL will be submitted.
+ ?>
 }
 else
 {
