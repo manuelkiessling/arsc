@@ -93,6 +93,11 @@ do
      $arsc_my = getdatafromsid($arsc_sid);
      echo date("[Y-m-d H:i:s]")." New ARSC connection: SID $arsc_sid, nickname {$arsc_my["user"]}, room {$arsc_my["room"]}\n";
      socket_write($accepted, $htmlheader, strlen($htmlheader));
+     $arsc_sendtime = date("H:i:s");
+     $arsc_timeid = my_microtime();
+     $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang_welcome;
+     $arsc_message = filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room);
+     socket_write($accepted, $arsc_message, strlen($arsc_message));
      while(true)
      {
       $newmessages = arsc_getmessages($arsc_sid);

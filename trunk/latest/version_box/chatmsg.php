@@ -38,6 +38,15 @@ if ($arsc_my = getdatafromsid($arsc_sid))
  }
  else
  {
+  if ($arsc_enter == "true")
+  {
+   $arsc_sendtime = date("H:i:s");
+   $arsc_timeid = my_microtime();
+   $arsc_message = "arsc_user_enter~~".$arsc_my["user"]."~~".nice_room($arsc_room);
+   mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
+   $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang_welcome;
+   mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
+  }
   /*
   header("Expires: Sun, 28 Dec 1997 09:32:45 GMT");
   header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
@@ -50,6 +59,10 @@ if ($arsc_my = getdatafromsid($arsc_sid))
   <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
   <html>
    <head>
+    <META HTTP-EQUIV="Expires" CONTENT="Sun, 28 Dec 1997 09:32:45 GMT">
+    <META HTTP-EQUIV="Last-Modified" CONTENT="<?php echo gmdate("D, d M Y H:i:s"); ?> GMT">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="Refresh" CONTENT="4; URL=<?php echo "chatmsg.php?arsc_sid=".$arsc_sid."&arsc_lastid=".$arsc_lastid."#end"; ?>">
    </head>
    <body bgcolor="#FFFFFF">

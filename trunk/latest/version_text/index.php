@@ -44,8 +44,6 @@ if ($arsc_my = getdatafromsid($arsc_sid))
    $arsc_timeid = my_microtime();
    $arsc_message = "arsc_user_enter~~".$arsc_my["user"]."~~".nice_room($arsc_room);
    mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
-   $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang_welcome;
-   mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
   }
   header("Expires: Sun, 28 Dec 1997 09:32:45 GMT");
   header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
@@ -101,6 +99,10 @@ if ($arsc_my = getdatafromsid($arsc_sid))
      {
       echo filter_posting($arsc_a["user"], $arsc_a["sendtime"], $arsc_a["message"], $arsc_room)."\n";
      }
+     $arsc_sendtime = date("H:i:s");
+     $arsc_timeid = my_microtime();
+     $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang_welcome;
+     echo filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room);
      $arsc_ping = time();
      $arsc_ip = getenv("REMOTE_ADDR");
      mysql_query("UPDATE arsc_users SET lastping = '$arsc_ping', ip = '$arsc_ip' WHERE user = '$arsc_user'");

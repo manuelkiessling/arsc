@@ -42,6 +42,13 @@ if ($arsc_my = getdatafromsid($arsc_sid))
  }
  else
  {
+  if ($arsc_enter == "true")
+  {
+   $arsc_sendtime = date("H:i:s");
+   $arsc_timeid = my_microtime();
+   $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang_welcome;
+   $arsc_enter_text = filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room);
+  }
   header("Expires: Sun, 28 Dec 1997 09:32:45 GMT");
   header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
   header("Cache-Control: no-cache, must-revalidate");
@@ -59,7 +66,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
      if ($arsc_enter == "true")
      {
       ?>
-      parent.msg.document.write('<html><head><title></title></head><body bgcolor="#FFFFFF">\n');
+      parent.msg.document.write('<html><head><title></title></head><body bgcolor="#FFFFFF">\n<?php echo $arsc_enter_text; ?>\n');
       <?php
      }
      if ($arsc_result = mysql_query("SELECT * from arsc_room_$arsc_room WHERE timeid > '$arsc_lastid' ORDER BY timeid ASC"))

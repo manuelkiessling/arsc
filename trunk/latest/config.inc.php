@@ -5,11 +5,15 @@
 $arsc_dbhost   = "localhost";
 $arsc_dbuser   = "user";
 $arsc_dbpasswd = "password";
-$arsc_dbdb     = "db";         // This db must already exist!
+$arsc_dbdb     = "arscdev";         // This db must already exist!
 
-// If you want to use the ARSC server, you must give the adress (IP or Host) and port to use
+// If you want to use the ARSC server (TRUE or FALSE)?
 
-$arsc_server_adress = "192.168.0.1"; // On which IP will the arscserver be reachable from 'outside'?
+$arsc_server = FALSE;
+
+// If true, then you must give the adress (IP or Host) and port to use
+
+$arsc_server_adress = "194.231.30.146";
 $arsc_server_port = 4444; // Four is my lucky number ;-)
 $arsc_server_maximumusers = 99;
 
@@ -102,8 +106,8 @@ function find_language($arsc_user)
 // This function returns a human readable translation of the room name
 function nice_room($arsc_room)
 {
- $arsc_room = ereg_replace("__", " / ", $arsc_room);
- $arsc_room = ereg_replace("_", " ", $arsc_room);
+ $arsc_room = str_replace("__", " / ", $arsc_room);
+ $arsc_room = str_replace("_", " ", $arsc_room);
  $arsc_room = ucwords($arsc_room);
  return $arsc_room;
 }
@@ -111,8 +115,8 @@ function nice_room($arsc_room)
 // This function returns the "real" roomname
 function denice_room($arsc_room)
 {
- $arsc_room = ereg_replace(" / ", "__", $arsc_room);
- $arsc_room = ereg_replace(" ", "_", $arsc_room);
+ $arsc_room = str_replace(" / ", "__", $arsc_room);
+ $arsc_room = str_replace(" ", "_", $arsc_room);
  $arsc_room = strtolower($arsc_room);
  return $arsc_room;
 }
@@ -131,6 +135,7 @@ function filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room)
         $arsc_lang_deop,
         $arsc_lang_whispers,
         $arsc_lang_whispersops,
+        $arsc_lang_gotmsg,
         $arsc_lang_help,
         $arsc_lang_roomchange,
         $selfoppassword,
@@ -142,39 +147,39 @@ function filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room)
   {
    case "arsc_user_enter":
                           $arsc_posting = $arsc_lang_enter;
-                          $arsc_posting = ereg_replace("\{user\}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
-                          $arsc_posting = ereg_replace("\{room\}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{user}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{room}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
                           $arsc_posting = "<font face=\"Arial\" size=\"2\" color=\"#666666\"><i>".$arsc_posting."</i></font><br>";
                           break;
    case "arsc_user_quit":
                           $arsc_posting = $arsc_lang_quit;
-                          $arsc_posting = ereg_replace("\{user\}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
-                          $arsc_posting = ereg_replace("\{room\}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{user}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{room}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
                           $arsc_posting = "<font face=\"Arial\" size=\"2\" color=\"#666666\"><i>".$arsc_posting."</i></font><br>";
                           break;
    case "arsc_user_kicked":
                           $arsc_posting = $arsc_lang_kicked;
-                          $arsc_posting = ereg_replace("\{useractive\}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
-                          $arsc_posting = ereg_replace("\{userpassive\}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{useractive}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{userpassive}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
                           $arsc_posting = "<font face=\"Arial\" size=\"2\" color=\"#666666\"><i>".$arsc_posting."</i></font><br>";
                           break;
    case "arsc_user_op":
                           $arsc_posting = $arsc_lang_op;
-                          $arsc_posting = ereg_replace("\{useractive\}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
-                          $arsc_posting = ereg_replace("\{userpassive\}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{useractive}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{userpassive}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
                           $arsc_posting = "<font face=\"Arial\" size=\"2\" color=\"#666666\"><i>".$arsc_posting."</i></font><br>";
                           break;
    case "arsc_user_deop":
                           $arsc_posting = $arsc_lang_deop;
-                          $arsc_posting = ereg_replace("\{useractive\}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
-                          $arsc_posting = ereg_replace("\{userpassive\}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{useractive}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{userpassive}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
                           $arsc_posting = "<font face=\"Arial\" size=\"2\" color=\"#666666\"><i>".$arsc_posting."</i></font><br>";
                           break;
    case "arsc_user_roomchange":
                           $arsc_posting = $arsc_lang_roomchange;
-                          $arsc_posting = ereg_replace("\{user\}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
-                          $arsc_posting = ereg_replace("\{room1\}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
-                          $arsc_posting = ereg_replace("\{room2\}", "</i>".$arsc_sysmsg[3]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{user}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{room1}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
+                          $arsc_posting = str_replace("{room2}", "</i>".$arsc_sysmsg[3]."<i>", $arsc_posting);
                           $arsc_posting = "<font face=\"Arial\" size=\"2\" color=\"#666666\"><i>".$arsc_posting."</i></font><br>";
                           break;
   }
@@ -186,10 +191,10 @@ function filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room)
    if (substr($arsc_message, 0, 4) == "/me ")
    {
     $arsc_posting = $arsc_template_me;
-    $arsc_posting = ereg_replace("\{user\}", $arsc_user, $arsc_posting);
-    $arsc_posting = ereg_replace("\{message\}", $arsc_message, $arsc_posting);
-    $arsc_posting = ereg_replace("\{sendtime\}", substr($arsc_sendtime, 0, 5), $arsc_posting);
-    $arsc_posting = eregi_replace("/me ", "", $arsc_posting);
+    $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
+    $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
+    $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
+    $arsc_posting = str_replace("/me ", "", $arsc_posting);
    }
    if (substr($arsc_message, 0, 6) == "/kick ")
    {
@@ -263,10 +268,14 @@ function filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room)
     if ($userpassive == $arsc_my["user"])
     {
      $arsc_posting = $arsc_template_msg;
-     $arsc_posting = ereg_replace("\{sendtime\}", substr($arsc_sendtime, 0, 5), $arsc_posting);
-     $arsc_posting = ereg_replace("\{user\}", $arsc_user, $arsc_posting);
-     $arsc_posting = ereg_replace("\{whispers\}", $arsc_lang_whispers, $arsc_posting);
-     $arsc_posting = ereg_replace("\{message\}", $arsc_message, $arsc_posting);
+     $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
+     $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
+     $arsc_posting = str_replace("{whispers}", $arsc_lang_whispers, $arsc_posting);
+     $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
+     $arsc_sendtime = date("H:i:s");
+     $arsc_timeid = my_microtime();
+     $arsc_message = "/msg ".$arsc_user." ".str_replace("{user}", $userpassive, $arsc_lang_gotmsg);
+     mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
     }
    }
    if (substr($arsc_message, 0, 8) == "/msgops ")
@@ -275,10 +284,10 @@ function filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room)
     if ($arsc_my["level"] > '0')
     {
      $arsc_posting = $arsc_template_msgops;
-     $arsc_posting = ereg_replace("\{sendtime\}", substr($arsc_sendtime, 0, 5), $arsc_posting);
-     $arsc_posting = ereg_replace("\{user\}", $arsc_user, $arsc_posting);
-     $arsc_posting = ereg_replace("\{whispersops\}", $arsc_lang_whispersops, $arsc_posting);
-     $arsc_posting = ereg_replace("\{message\}", $arsc_message, $arsc_posting);
+     $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
+     $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
+     $arsc_posting = str_replace("{whispersops}", $arsc_lang_whispersops, $arsc_posting);
+     $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
     }
    }
    if (substr($arsc_message, 0, 5) == "/help" OR substr($arsc_message, 0, 2) == "/?")
@@ -287,6 +296,31 @@ function filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room)
     $arsc_timeid = my_microtime();
     mysql_query("DELETE from arsc_room_$arsc_room WHERE message LIKE '/help%' OR message LIKE '/?%' AND user = '$arsc_user'");
     mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
+   }
+   if (substr($arsc_message, 0, 3) == "/j ")
+   {
+    $arsc_new_room = denice_room(str_replace("/j ", "", $arsc_message));
+    $arsc_result = mysql_query("SHOW tables LIKE 'arsc_room_%'");
+    while ($arsc_a = mysql_fetch_array($arsc_result))
+    {
+     if (substr($arsc_a[0], 10) == $arsc_new_room)
+     {
+      mysql_query("DELETE from arsc_room_$arsc_room WHERE message = '$arsc_message' AND user = '$arsc_user'");
+      mysql_query("UPDATE arsc_users SET room = '$arsc_new_room' WHERE user = '$arsc_user'");
+      $arsc_sendtime = date("H:i:s");
+      $arsc_timeid = my_microtime();
+      $arsc_message = "arsc_user_quit~~".$arsc_user."~~".nice_room($arsc_room);
+      mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
+      $arsc_message = "arsc_user_enter~~".$arsc_user."~~".nice_room($arsc_new_room);
+      mysql_query("INSERT into arsc_room_$arsc_new_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
+      $arsc_message = $arsc_lang_roomchange;
+      $arsc_message = str_replace("{user}", $arsc_user, $arsc_message);
+      $arsc_message = str_replace("{room1}", nice_room($arsc_room), $arsc_message);
+      $arsc_message = str_replace("{room2}", nice_room($arsc_new_room), $arsc_message);
+      $arsc_message = "/msgops ".$arsc_message;
+      mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
+     }
+    }
    }
    if (substr($arsc_message, 0, 6) == "/room ")
    {
@@ -304,6 +338,12 @@ function filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room)
       mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
       $arsc_message = "arsc_user_enter~~".$arsc_user."~~".nice_room($arsc_new_room);
       mysql_query("INSERT into arsc_room_$arsc_new_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
+      $arsc_message = $arsc_lang_roomchange;
+      $arsc_message = str_replace("{user}", $arsc_user, $arsc_message);
+      $arsc_message = str_replace("{room1}", nice_room($arsc_room), $arsc_message);
+      $arsc_message = str_replace("{room2}", nice_room($arsc_new_room), $arsc_message);
+      $arsc_message = "/msgops ".$arsc_message;
+      mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
      }
     }
    }
@@ -311,9 +351,9 @@ function filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room)
   else
   {
    $arsc_posting = $arsc_template_normal;
-   $arsc_posting = ereg_replace("\{sendtime\}", substr($arsc_sendtime, 0, 5), $arsc_posting);
-   $arsc_posting = ereg_replace("\{user\}", $arsc_user, $arsc_posting);
-   $arsc_posting = ereg_replace("\{message\}", $arsc_message, $arsc_posting);
+   $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
+   $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
+   $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
   }
  }
  return $arsc_posting;

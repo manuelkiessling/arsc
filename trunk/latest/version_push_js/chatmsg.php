@@ -68,6 +68,10 @@ if ($arsc_my = getdatafromsid($arsc_sid))
  
  set_magic_quotes_runtime(0);
  set_time_limit(0);
+ $arsc_sendtime = date("H:i:s");
+ $arsc_timeid = my_microtime();
+ $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang_welcome;
+ echo filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room);
  $i = 0;
  while(!connection_aborted())
  {

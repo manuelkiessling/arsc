@@ -55,7 +55,7 @@ $arsc_result = mysql_query("SELECT user from arsc_users");
    <table border="0">
     <tr>
      <td valign="top">
-      <input type="radio" name="arsc_chatversion" value="push_js" checked>
+      <input type="radio" name="arsc_chatversion" value="sockets" checked>
      </td>
      <td valign="top">
       <font face="Arial" size="2">
@@ -100,6 +100,16 @@ $arsc_result = mysql_query("SELECT user from arsc_users");
      <td valign="top">
       <font face="Arial" size="2">
        <?php echo $arsc_lang_version_header; ?>
+      </font>
+     </td>
+    </tr>
+    <tr>
+     <td valign="top">
+      <input type="radio" name="arsc_chatversion" value="box">
+     </td>
+     <td valign="top">
+      <font face="Arial" size="2">
+       <?php echo $arsc_lang_version_box; ?>
       </font>
      </td>
     </tr>

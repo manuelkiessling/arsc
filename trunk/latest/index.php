@@ -12,6 +12,16 @@
     English
    </font>
    <br>
+   <input type="radio" name="arsc_language" value="spanish">
+   <font face="Arial" size="2">
+    Spanish
+   </font>
+   <br>
+   <input type="radio" name="arsc_language" value="swedish">
+   <font face="Arial" size="2">
+    Swedish
+   </font>
+   <br>
    <br>
    <input type="submit" value="OK">
   </form>

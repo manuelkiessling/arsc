@@ -36,7 +36,7 @@ $arsc_lang_error_no_name = "You must enter a username!";
 $arsc_lang_enter = "User {user} enters the room {room}.";
 $arsc_lang_welcome = "Welcome! Type </i>/?<i> into the textfield to see the available functions.";
 $arsc_lang_quit = "User {user} leaves the room {room}.";
-$arsc_lang_roomchange = "User {user} leaves room {room1} and enters room {room2}.";
+$arsc_lang_roomchange = "User </i>{user}<i> leaves room </i>{room1}<i> and enters room {room2}.";
 
 $arsc_lang_kicked = "User {userpassive} was kicked by {useractive}.";
 $arsc_lang_youwerekicked = "You were kicked from the chat!";
@@ -46,6 +46,7 @@ $arsc_lang_deop = "User {useractive} took the operator status from {userpassive}
 
 $arsc_lang_whispers = "whispers";
 $arsc_lang_whispersops = "whispers to all operators";
+$arsc_lang_gotmsg = "User </i>{user}<i> got your message.";
 
 $arsc_lang_help = "</i><br><br>&nbsp;<b>General help:</b><br>&nbsp;&nbsp;&nbsp;In the right frame you see all users that<br>&nbsp;&nbsp;&nbsp;are currently in the room.<br><br>&nbsp;&nbsp;&nbsp;Users with the symbol @ in front of their<br>&nbsp;&nbsp;&nbsp;name are operators and can kick users out<br>&nbsp;&nbsp;&nbsp;of the chat and can give and take operator<br>&nbsp;&nbsp;&nbsp;status to and from users.<br><br>&nbsp;&nbsp;&nbsp;By clicking on one of these names, your<br>&nbsp;&nbsp;&nbsp;message field will be filled with the command<br>&nbsp;&nbsp;&nbsp;that is necessary to send a private message to<br>&nbsp;&nbsp;&nbsp;this user - just add your message at the end.<br><br>&nbsp;<b>General commands:</b><br>&nbsp;&nbsp;&nbsp;/me <i>message</i> -- Symbolize an action, e.g. <i>/me feels fine</i> will print <i>* username feels fine</i><br>&nbsp;&nbsp;&nbsp;/msg <i>user</i> <i>message</i> -- Send a private <i>message</i> to <i>user</i><br><br>&nbsp;<b>Operator commands:</b><br>&nbsp;&nbsp;&nbsp;/op <i>user</i> -- Give operator status to <i>user</i><br>&nbsp;&nbsp;&nbsp;/deop <i>user</i> -- Take operator status from <i>user</i><br>&nbsp;&nbsp;&nbsp;/kick <i>user</i> -- Kick <i>user</i> out of the current room<br><br><i>";
 ?>
