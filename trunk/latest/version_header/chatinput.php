@@ -5,7 +5,7 @@ include("../functions.inc.php");
 
 if ($arsc_my = arsc_getdatafromsid($arsc_sid))
 {
- include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
+ include("../shared/language/".$arsc_my["language"].".inc.php");
  
  if ($arsc_my["level"] >= 0)
  {
