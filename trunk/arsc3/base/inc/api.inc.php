@@ -30,7 +30,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
 
  function getUserValuesByName($name)
  {
-  if ($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, layout, level, flag_ripped, sid, lastmessageping, showsince FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
+  if ($result = mysql_query("SELECT id, user, lastping, ip, room, language, version, template, layout, color, level, flag_ripped, sid, lastmessageping, showsince, flood_count, flood_lastmessage FROM arsc_users WHERE user = '".mysql_escape_string($name)."'", ARSC_PARAMETER_DB_LINK))
   {
    return mysql_fetch_array($result);
   }
@@ -71,6 +71,18 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   if ($result = mysql_query("UPDATE arsc_users SET $value_name = '$value' WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
   {
    return TRUE;
+  }
+  else
+  {
+   return FALSE;
+  }
+ }
+ 
+ function getRegisteredUserValuesByName($name)
+ {
+  if ($result = mysql_query("SELECT id, user, password, admin_sessionid, language, level, color, template, layout, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users WHERE user = '".mysql_escape_string($name)."'", ARSC_PARAMETER_DB_LINK))
+  {
+   return mysql_fetch_array($result);
   }
   else
   {
