@@ -76,6 +76,13 @@ if(mysql_error() <> "")
  echo '<font face="Arial" color="#FF0000">A MySQL error occured: </font><font face="Arial">'.mysql_error().'</font><br>';
 }
 echo '<font face="Arial"><i>Moderator:</i> '.$arsc_password.'</font><br>';
+$arsc_password = substr(sha1(mt_rand(0, mt_getrandmax())), 0, 8);
+mysql_query("UPDATE arsc_registered_users SET password = '".sha1($arsc_password)."' WHERE user = 'VIP'", ARSC_PARAMETER_DB_LINK);
+if(mysql_error() <> "")
+{
+ echo '<font face="Arial" color="#FF0000">A MySQL error occured: </font><font face="Arial">'.mysql_error().'</font><br>';
+}
+echo '<font face="Arial"><i>VIP:</i> '.$arsc_password.'</font><br>';
 echo '<font face="Arial"><b>...done.</b></font><br><br>';
 
 echo '<font face="Arial"><b>ARSC Installation finished.</b><br><font color="#FF0000"><b>Please completely delete the folder <i>install</i> from your ARSC installation NOW!</b></font></font><br><br>';
