@@ -34,7 +34,7 @@ if (!function_exists("sha1"))
 {
  function sha1($input)
  {
-  return(md5($input).substr(md5($input), 8));
+  return(md5($input).substr(md5($input), 0, 8));
  }
 }
 
