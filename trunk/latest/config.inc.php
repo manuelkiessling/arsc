@@ -39,7 +39,7 @@
 //  This database must exist before you use the 'install.php' script,
 //  but of course you know this because you read the README file...
 
-    $arsc_param["db_db"] = "arscdev2";
+    $arsc_param["db_db"] = "arsc";
 
 
 //  Are you able to start a socket server on your Linux or Unix server
