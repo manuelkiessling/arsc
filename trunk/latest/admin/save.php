@@ -36,13 +36,13 @@ while (list($key, $val) = each($arsc_save_parameters))
 reset($arsc_save_parameters_smilies);
 while (list($key, $val) = each($arsc_save_parameters_smilies))
 {
- if (mysql_query("SELECT value FROM arsc_parameters WHERE id = '$key'"))
+ if (mysql_query("SELECT value FROM arsc_parameters_smilies WHERE id = '$key'"))
  {
   mysql_query("UPDATE arsc_parameters_smilies SET value = '".stripslashes($val)."' WHERE id = '$key'");
  }
  else
  {
-  mysql_query("INSERT INTO arsc_parameters (id, value) VALUES ('$key', '".stripslashes($val)."')");
+  mysql_query("INSERT INTO arsc_parameters_smilies (id, value) VALUES ('$key', '".stripslashes($val)."')");
  }
 }
 
