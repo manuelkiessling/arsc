@@ -1,0 +1,37 @@
+ARSC - ARSC Really Simple Chat
+=======================================================================
+Version 3.0 Beta 1 - 2004-08-20 - Thank you for using ARSC!
+Copyright (C) 2001, 2002, 2003, 2004 Manuel Kiessling
+=======================================================================
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
+USA.
+
+=======================================================================
+Due to the fact that my native language is not english, it is possible
+or better very probably that there are several mistakes - I hope they
+are at least funny... if you find one, then please send me an eMail to
+manuel@kiessling.net. Thank you very much!
+=======================================================================
+
+Ok, quick and dirty, here is the deal: Copy the files onto the server,
+change 'base/inc/config.inc.php' to fit your needs. Then get the content
+of 'base/install/install.sql' and import it into your database. Afterwards,
+take a look at the table 'arsc_parameters'. Change all the fields that
+contain "www.example.com" stuff to fit your server layout.
+Then pray. Then it should work.
+
+Manuel Kiessling
+manuel@kiessling.net
