@@ -4,6 +4,8 @@
 	 This is an ARSC language file. If you translate it, please send me
   a copy to <manuel@kiessling.net>, I will add it to ARSC then. Thanks.
 
+  This file is for versions: 1.0, 1.0.1, 1.0.1p1, 1.0.2
+
 	 Language file by KR@§h <webmaster@gratisringtones.nl>
 	 <www.gratisringtones.nl>
 
