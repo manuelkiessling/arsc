@@ -46,6 +46,7 @@ set_magic_quotes_runtime(1);
     ?>
    </tr>
    <?php
+   $arsc_result = mysql_query("SELECT * FROM arsc_levels ORDER BY command", ARSC_PARAMETER_DB_LINK);
    while ($arsc_a = mysql_fetch_array($arsc_result))
    {
     if ($arsc_bgcolor == "#EEEEEE") $arsc_bgcolor = "#FFFFFF"; else $arsc_bgcolor = "#EEEEEE";
