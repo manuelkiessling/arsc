@@ -1,77 +1,140 @@
 <?php
 
-// This is an ARSC language file. If you translate it, please send me a copy to <manuel@kiessling.net>, I will add it to ARSC then. Thanks.
+/*
+  This is an ARSC language file. If you translate it, please send me
+  a copy to <manuel@kiessling.net>, I will add it to ARSC then. Thanks.
 
-$arsc_lang_entername = "Enter your name here";
-$arsc_lang_namelength = "You can use a maximum of 10 characters";
-$arsc_lang_whichversion = "Which version do you want to use?";
-$arsc_lang_version_dontknow = "Select this if you have absolutely no idea what a browser is or which browser you are currently using.";
-$arsc_lang_version_sockets = "Recommended version for modern browsers. Uses JavaScript, Frames and an additional port.";
-$arsc_lang_version_sockets_browsers = array("Microsoft Internet Explorer 4.x - 6.x", "Netscape Navigator 3.x - 6.x", "Mozilla 0.9.x", "Opera 5.x");
-$arsc_lang_version_push_js = "Alternative version for modern browsers. Uses JavaScript, Frames and server push.";
-$arsc_lang_version_push_js_browsers = array("Microsoft Internet Explorer 4.x - 6.x", "Netscape Navigator 3.x - 6.x", "Mozilla 0.9.x", "Opera 5.x");
-$arsc_lang_version_header_js = "Another version for modern browsers, if those above did not work. Uses JavaScript and Frames.";
-$arsc_lang_version_header_js_browsers = array("All of the above except Opera 5.x");
-$arsc_lang_version_header = "Basic version. Uses Frames.";
-$arsc_lang_version_header_browsers = array("All of the above", "Konqueror");
-$arsc_lang_version_box = "A version for the Zuum WebTV box.";
-$arsc_lang_version_box_browsers = array("All of the above", "Zuum Browser");
-$arsc_lang_version_text = "Plain version for text browsers.";
-$arsc_lang_version_text_browsers = array("All of the above", "Konqueror", "Lynx", "w3b");
-$arsc_lang_yes = "Yes";
-$arsc_lang_no = "No";
-$arsc_lang_browser_identify = "I identified your Browser as {browser}, so you should select version {version}.";
-$arsc_lang_browser_identify_js = "But be sure that you enable the JavaScript support in your browser if you choose this version.";
-$arsc_lang_selectroom = "Select a room";
-$arsc_lang_startbutton = "Start the Chat!";
-$arsc_lang_usersinchat = "These users are currently in the chat";
-$arsc_lang_usersinroom = "Users in room";
-$arsc_lang_sendmessage = "Send";
-$arsc_lang_refreshmessages = "Refresh messages";
-$arsc_lang_leave = "Leave";
+  This file is for version: <1.0beta3>
+*/
 
-$arsc_lang_error_double_user = "A user with this name already exists!";
-$arsc_lang_error_no_name = "You must enter a username!";
+
+// Homepage
+
+$arsc_lang["entername"]         = "Please enter your nickname:";
+$arsc_lang["enterpassword"]     = "Please enter your password:";
+$arsc_lang["namelength"]        = "A maximum of 10 characters can be used.";
+$arsc_lang["whichversion"]      = "Which version do you want to use?";
+$arsc_lang["version_dontknow"]  = "Choose this version if you don't know which browser you use.";
+$arsc_lang["version_sockets"]   = "Recommended version for modern browsers. Uses JavaScript and Frames.";
+// If you installed the socket server, version_push_js will not be shown.
+$arsc_lang["version_push_js"]   = "Recommended version for modern browsers. Uses JavaScript and Frames.";
+$arsc_lang["version_header_js"] = "An alternative version for modern browsers if the one above did not work. Uses JavaScript and Frames.";
+$arsc_lang["version_header"]    = "A version that only uses Frames, but no JavaScript.";
+$arsc_lang["version_box"]       = "A version for the Zuum WebTV box.";
+$arsc_lang["version_text"]      = "Simple version for text based browsers.";
+$arsc_lang["yes"]               = "Yes";
+$arsc_lang["no"]                = "No";
+$arsc_lang["selectroom"]        = "Choose a room:";
+$arsc_lang["startbutton"]       = "Start the chat!";
+$arsc_lang["usersinchat"]       = "These users are currently logged in:";
+$arsc_lang["usersinchat_room"]  = "Room";
+$arsc_lang["usersinchat_name"]  = "User";
+$arsc_lang["clicktoregister"]   = "Register your nickname!";
+
+
+// Register page and eMail
+
+$arsc_lang["register_intro"]                 = "To register your nickname fill in the fields below.";
+$arsc_lang["register_intro_force"]           = "A password will then be sended to the given eMail adress.";
+$arsc_lang["register_entername"]             = "Nickname:";
+$arsc_lang["register_enteremail"]            = "eMail adress:";
+$arsc_lang["register_enterpassword"]         = "Password:";
+$arsc_lang["register_send"]                  = "Submit registration";
+$arsc_lang["register_yougetmail"]            = "Thanks, you will now get an eMail with your password.";
+$arsc_lang["register_emailtemplate_subject"] = "Your ARSC registration.";
+
+$arsc_lang["register_emailtemplate"]         = "
+Hello,
+
+You registered for ARSC.
+
+You chose the nickname '{username}'
+It is now protected with this password:
+
+            '{password}'
+
+You can now log into the chat on this page:
+{homepage}
+
+
+Have a lot of fun!
+
+--
+ {chatowner}
+
+";
+
+
+// Chat interface
+
+$arsc_lang["usersinroom"]     = "Users in room";
+$arsc_lang["sendmessage"]     = "Send";
+$arsc_lang["refreshmessages"] = "Refresh Messages";
+$arsc_lang["leave"]           = "Leave";
+$arsc_lang["roomlist"]        = "Roomliste";
+$arsc_lang["refresh"]         = "Refresh";
+$arsc_lang["otherfunctions"]  = "Additional functions";
+$arsc_lang["smilielist"]      = "List of all smilies";
+$arsc_lang["drawboard"]       = "Drawboard";
+
+
+// Errors
+
+$arsc_lang["error_register_double_user"] = "This nickname is already in use. Please choose another one.";
+$arsc_lang["error_waitformail"]          = "When the eMail with your credentials arrived, you can log in the chat.";
+$arsc_lang["error_double_user"]          = "A user with this name is already logged in!";
+$arsc_lang["error_no_name"]              = "You must enter an username!";
+$arsc_lang["error_wrong_credentials"]    = "Access denies!<br>Are your credentials correct?";
+$arsc_lang["error_banned"]               = "Access is temporarily denied.";
+
 
 // Chat System Messages
-$arsc_lang_enter = "User {user} enters the room {room}.";
-$arsc_lang_welcome = "Welcome! Type </i>/?<i> into the textfield to see the available functions.";
-$arsc_lang_quit = "User {user} leaves the room {room}.";
-$arsc_lang_roomchange = "User </i>{user}<i> leaves room </i>{room1}<i> and enters room {room2}.";
 
-$arsc_lang_kicked = "User {userpassive} was kicked by {useractive}.";
-$arsc_lang_youwerekicked = "You were kicked from the chat!";
+$arsc_lang["enter"]         = "User {user} enters the room {room}.";
+$arsc_lang["welcome"]       = "Welcome! Enter /? into the textfield to see the available commands.";
+$arsc_lang["quit"]          = "User {user} leaves the room {room}.";
+$arsc_lang["roomchange"]    = "User {user} leaves the room {room1} and enters room {room2}.";
+$arsc_lang["kicked"]        = "User {userpassive} was kicked out of the chat by {useractive}.";
+$arsc_lang["youwerekicked"] = "You were kicked out of the chat!";
+$arsc_lang["op"]            = "User {userpassive} got operator status from {useractive}.";
+$arsc_lang["deop"]          = "User {useractive} removed the operator status of {userpassive}.";
+$arsc_lang["whispers"]      = "whispers";
+$arsc_lang["whispersops"]   = "whispers to all operators";
+$arsc_lang["gotmsg"]        = "You whisper to </i>{user}<i>: {message}";
 
-$arsc_lang_op = "User {userpassive} got operator status from {useractive}.";
-$arsc_lang_deop = "User {useractive} took the operator status from {userpassive}.";
+$arsc_lang["help"]          = "
+</i><br><br>&nbsp;<b><i>Sorry, not yet translated!</i> Allgemeine Hilfe:</b>
+<br>&nbsp;&nbsp;&nbsp;Im rechten Frame sehen Sie alle Benutzer,
+<br>&nbsp;&nbsp;&nbsp;die sich in diesem Raum aufhalten.
+<br>
+<br>&nbsp;&nbsp;&nbsp;Benutzer mit einem @ Symbol vor ihrem Namen
+<br>&nbsp;&nbsp;&nbsp;sind Operatoren und k&ouml;nnen Benutzer des Raumes
+<br>&nbsp;&nbsp;&nbsp;verweisen sowie Benutzern Operatorstatus geben und
+<br>&nbsp;&nbsp;&nbsp;nehmen.
+<br>
+<br>&nbsp;&nbsp;&nbsp;Indem Sie auf einen Namen klicken, wird das
+<br>&nbsp;&nbsp;&nbsp;Texteingabefeld automatisch mit dem Befehl gef&uuml;llt
+<br>&nbsp;&nbsp;&nbsp;der ben&ouml;tigt wird, um diesem Benutzer eine
+<br>&nbsp;&nbsp;&nbsp;Nachricht zu senden - Sie m&uuml;ssen nur ihre Nachricht
+<br>&nbsp;&nbsp;&nbsp;an das Ende des Befehls anf&uuml;gen.
+<br>
+<br>&nbsp;<b>Allgemeine Befehle:</b>
+<br>&nbsp;&nbsp;&nbsp;/me <i>Nachricht</i> -- Symbolisiert eine Handlung, z.B. <i>/me macht Kaffee</i> schreibt <i>* Benutzer macht Kaffee</i>
+<br>&nbsp;&nbsp;&nbsp;/msg <i>Benutzer</i> <i>Nachricht</i> -- Sendet eine private <i>Nachricht</i> an einen <i>Benutzer</i>
+<br>&nbsp;&nbsp;&nbsp;/j <i>Raumname</i> -- Verl&auml;sst den aktuellen Raum und betritt <i>Raumname</i>
+<br>&nbsp;&nbsp;&nbsp;/room <i>Raumname</i> -- Selbe Funktion wie /j
+<br><br><i>";
 
-$arsc_lang_whispers = "whispers";
-$arsc_lang_whispersops = "whispers to all operators";
-$arsc_lang_gotmsg = "User </i>{user}<i> got your message.";
-
-$arsc_lang_help = "</i><br><br>&nbsp;<b>General help:</b>
-                   <br>&nbsp;&nbsp;&nbsp;In the right frame you see all users that
-		   <br>&nbsp;&nbsp;&nbsp;are currently in the room.
-		   <br>
-		   <br>&nbsp;&nbsp;&nbsp;Users with the symbol @ in front of their
-		   <br>&nbsp;&nbsp;&nbsp;name are operators and can kick users out
-		   <br>&nbsp;&nbsp;&nbsp;of the chat and can give and take operator
-		   <br>&nbsp;&nbsp;&nbsp;status to and from users.
-		   <br>
-		   <br>&nbsp;&nbsp;&nbsp;By clicking on one of these names, your
-		   <br>&nbsp;&nbsp;&nbsp;message field will be filled with the command
-		   <br>&nbsp;&nbsp;&nbsp;that is necessary to send a private message to
-		   <br>&nbsp;&nbsp;&nbsp;this user - just add your message at the end.
-		   <br>
-		   <br>&nbsp;<b>General commands:</b>
-		   <br>&nbsp;&nbsp;&nbsp;/me <i>message</i> -- Symbolize an action, e.g. <i>/me feels fine</i> will print <i>* username feels fine</i>
-		   <br>&nbsp;&nbsp;&nbsp;/msg <i>user</i> <i>message</i> -- Send a private <i>message</i> to <i>user</i>
-                   <br>&nbsp;&nbsp;&nbsp;/j <i>roomname</i> -- Leave the current room and enter <i>roomname</i>
-                   <br>&nbsp;&nbsp;&nbsp;/room <i>room</i> -- Same like /j
-		   <br>
-		   <br>&nbsp;<b>Operator commands:</b>
-		   <br>&nbsp;&nbsp;&nbsp;/msgops <i>message</i> -- Whisper a <i>message</i> to all operators
-		   <br>&nbsp;&nbsp;&nbsp;/op <i>user</i> -- Give operator status to <i>user</i>
-		   <br>&nbsp;&nbsp;&nbsp;/deop <i>user</i> -- Take operator status from <i>user</i>
-		   <br>&nbsp;&nbsp;&nbsp;/kick <i>user</i> -- Kick <i>user</i> out of the current room<br><br><i>";
+$arsc_lang["helpop"]        = "
+</i>&nbsp;<b>Operatorenbefehle:</b>
+<br>&nbsp;&nbsp;&nbsp;/msgops <i>Nachricht</i> -- Fl&uuml;stert eine <i>Nachricht</i> an alle Operatoren
+<br>&nbsp;&nbsp;&nbsp;/op <i>Benutzer</i> -- Gibt <i>Benutzer</i> Operatorstatus
+<br>&nbsp;&nbsp;&nbsp;/deop <i>Benutzer</i> -- Nimmt <i>Benutzer</i> Operatorenstatus weg
+<br>&nbsp;&nbsp;&nbsp;/kick <i>Benutzer</i> -- Verweist <i>Benutzer</i> des Chats
+<br>&nbsp;&nbsp;&nbsp;/bann <i>Benutzer XX</i> -- Sperrt IP des <i>Benutzer</i>s <i>XX</i> vom Chat aus
+<br>&nbsp;&nbsp;&nbsp;/lock <i>Benutzer</i> -- Sperrt den Account des (registrierten!) <i>Benutzer</i>s dauerhaft
+<br>&nbsp;&nbsp;&nbsp;/rip <i>Benutzer</i> -- Was <i>Benutzer</i> sagt, wird nicht mehr angezeigt
+<br>&nbsp;&nbsp;&nbsp;/unrip <i>Benutzer</i> -- Was <i>Benutzer</i> sagt wird wieder angezeigt
+<br>&nbsp;&nbsp;&nbsp;/move <i>Benutzer Raum</i> -- &acute;Verschiebt&acute; <i>Benutzer</i> in <i>Raum</i>
+<br><br><i>";
 ?>
