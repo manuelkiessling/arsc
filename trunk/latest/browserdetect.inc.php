@@ -119,7 +119,7 @@ function arsc_browser_detect($HTTP_USER_AGENT)
 
 function arsc_display_version($version, $browser)
 {
- GLOBAL $arsc_param, $arsc_lang;
+ GLOBAL $arsc_parameters, $arsc_lang;
  $checked = "";
  if (($version == "sockets") OR ($version == "push_js"))
  {
@@ -161,7 +161,7 @@ function arsc_display_version($version, $browser)
  {
   $checked = "checked";
  }
- if ($arsc_param["show_version_selection"] == "yes")
+ if ($arsc_parameters["show_version_selection"] == "yes")
  {
   ?>
   <tr>
@@ -176,7 +176,7 @@ function arsc_display_version($version, $browser)
   </tr>
   <?php
  }
- if ($arsc_param["show_version_selection"] == "no" AND $checked <> "")
+ if ($arsc_parameters["show_version_selection"] == "no" AND $checked <> "")
  {
   ?>
   <input type="hidden" name="arsc_chatversion" value="<?php echo $version; ?>">

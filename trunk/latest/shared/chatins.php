@@ -10,9 +10,9 @@ if ($arsc_my["level"] >= 0)
  $arsc_user = $arsc_my["user"];
  $arsc_result = mysql_query("SELECT COUNT(*) as howmany from arsc_room_$arsc_room");
  $arsc_a = mysql_fetch_array($arsc_result);
- if ($arsc_a["howmany"] > $arsc_param["rowlimit"])
+ if ($arsc_a["howmany"] > $arsc_parameters["rowlimit"])
  {
-  $arsc_row_difference = $arsc_a["howmany"] - $arsc_param["rowlimit"] - 1;
+  $arsc_row_difference = $arsc_a["howmany"] - $arsc_parameters["rowlimit"] - 1;
   $arsc_result = mysql_query("SELECT timeid from arsc_room_$arsc_room ORDER BY timeid ASC LIMIT $arsc_row_difference, 1");
   $arsc_result_array = mysql_fetch_array($arsc_result);
   $arsc_delete_id = $arsc_result_array["timeid"];
@@ -29,7 +29,7 @@ if ($arsc_my["level"] >= 0)
   $arsc_a = mysql_fetch_array($arsc_result);
   if ($arsc_a["flood_lastmessage"] == $arsc_message)
   {
-   if ($arsc_a["flood_count"] > $arsc_param["flood_max"])
+   if ($arsc_a["flood_count"] > $arsc_parameters["flood_max"])
    {
     $arsc_room = $arsc_a["room"];
     $arsc_message = "arsc_user_kicked~~System~~".$arsc_a["user"];

@@ -16,8 +16,8 @@ if ($arsc_a["anzahl"] == 1)
    </title>
   </head>
   <body bgcolor="#000000" topmargin="0" leftmargin="0" marginleft="0" margintop="0">
-   <APPLET CODE="drawboard/Main.class" WIDTH="<?php echo $arsc_param["drawboard_width"]; ?>" HEIGHT="<?php echo $arsc_param["drawboard_height"]; ?>">
-    <param name="port" value="<?php echo $arsc_param["drawboard_port"]; ?>">
+   <APPLET CODE="drawboard/Main.class" WIDTH="<?php echo $arsc_parameters["drawboard_width"]; ?>" HEIGHT="<?php echo $arsc_parameters["drawboard_height"]; ?>">
+    <param name="port" value="<?php echo $arsc_parameters["drawboard_port"]; ?>">
     <param name="bgcolor" value="FFFFFF">
     <PARAM NAME="menubgcolor" VALUE="FAE6A6">
     <PARAM NAME="emptythumbnailcolor" VALUE="FDF0C6">

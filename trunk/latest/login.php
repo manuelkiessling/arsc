@@ -33,7 +33,7 @@ if ($arsc_a["howmany"] > 0)
   die();
  }
 }
-elseif ($arsc_param["register_force"] == "yes")
+elseif ($arsc_parameters["register_force"] == "yes")
 {
  header ("Location: home.php?arsc_error=wrong_credentials&arsc_language=".$arsc_language);
  die();
@@ -49,7 +49,7 @@ else
 {
  $arsc_result = mysql_query("SELECT COUNT(*) as howmany from arsc_users WHERE room = '$arsc_room'");
  $arsc_a = mysql_fetch_array($arsc_result);
- if ($arsc_a["howmany"] == 0 AND $arsc_param["first_user_gets_op"] == "yes")
+ if ($arsc_a["howmany"] == 0 AND $arsc_parameters["first_user_gets_op"] == "yes")
  {
   $arsc_level = 1;
  }

@@ -11,7 +11,7 @@ if ($arsc_send == "")
  <html>
   <head>
    <title>
-    <?php echo $arsc_param["title"]; ?>
+    <?php echo $arsc_parameters["title"]; ?>
    </title>
   </head>
   <body bgcolor="#FFFFFF">
@@ -34,7 +34,7 @@ if ($arsc_send == "")
        <font face="Arial" size="2">
         <?php
         echo $arsc_lang["register_intro"]."\n";
-        if ($arsc_param["register_force"] == "yes")
+        if ($arsc_parameters["register_force"] == "yes")
         {
          echo $arsc_lang["register_intro_force"];
         }
@@ -56,7 +56,7 @@ if ($arsc_send == "")
          </td>
         </tr>
         <?php
-        if ($arsc_param["register_force"] <> "yes")
+        if ($arsc_parameters["register_force"] <> "yes")
         {
          ?>
          <tr>
@@ -103,12 +103,12 @@ else
  if ($arsc_a["howmany"] == 0)
  {
   $arsc_location = "Location: home.php?arsc_language=".$arsc_language."&arsc_user=".$arsc_user;
-  if ($arsc_param["register_force"] == "yes")
+  if ($arsc_parameters["register_force"] == "yes")
   {
    $arsc_password = substr(md5(time()), 0,5);
    $arsc_location = "Location: home.php?arsc_language=".$arsc_language."&arsc_error=waitformail&arsc_user=".$arsc_user;
   }
-  mail($arsc_email, $arsc_lang["register_emailtemplate_subject"], str_replace("{chatowner}", $arsc_param["register_owner"], str_replace("{homepage}", $arsc_param["register_homepage"], str_replace("{password}", $arsc_password, str_replace("{username}", $arsc_user, $arsc_lang["register_emailtemplate"])))), "From: ".$arsc_param["register_owner_email"]);
+  mail($arsc_email, $arsc_lang["register_emailtemplate_subject"], str_replace("{chatowner}", $arsc_parameters["register_owner"], str_replace("{homepage}", $arsc_parameters["register_homepage"], str_replace("{password}", $arsc_password, str_replace("{username}", $arsc_user, $arsc_lang["register_emailtemplate"])))), "From: ".$arsc_parameters["register_owner_email"]);
   mysql_query("INSERT INTO arsc_registered_users (user, password, email) VALUES ('$arsc_user', '$arsc_password', '$arsc_email')");
   header($arsc_location);
   die();

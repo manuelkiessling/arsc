@@ -5,7 +5,7 @@
 
 function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room, $arsc_flag_ripped)
 {
- GLOBAL $arsc_param,
+ GLOBAL $arsc_parameters,
         $arsc_lang,
         $arsc_color,
         $arsc_smilie,
@@ -21,31 +21,31 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
                           $arsc_posting = $arsc_lang["enter"];
                           $arsc_posting = str_replace("{user}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
                           $arsc_posting = str_replace("{room}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
-                          $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_param["template_system"]));
+                          $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_parameters["template_system"]));
                           break;
    case "arsc_user_quit":
                           $arsc_posting = $arsc_lang["quit"];
                           $arsc_posting = str_replace("{user}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
                           $arsc_posting = str_replace("{room}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
-                          $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_param["template_system"]));
+                          $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_parameters["template_system"]));
                           break;
    case "arsc_user_kicked":
                           $arsc_posting = $arsc_lang["kicked"];
                           $arsc_posting = str_replace("{useractive}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
                           $arsc_posting = str_replace("{userpassive}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
-                          $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_param["template_system"]));
+                          $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_parameters["template_system"]));
                           break;
    case "arsc_user_op":
                           $arsc_posting = $arsc_lang["op"];
                           $arsc_posting = str_replace("{useractive}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
                           $arsc_posting = str_replace("{userpassive}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
-                          $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_param["template_system"]));
+                          $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_parameters["template_system"]));
                           break;
    case "arsc_user_deop":
                           $arsc_posting = $arsc_lang["deop"];
                           $arsc_posting = str_replace("{useractive}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
                           $arsc_posting = str_replace("{userpassive}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
-                          $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_param["template_system"]));
+                          $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_parameters["template_system"]));
                           break;
    case "arsc_user_roomchange":
                           if ($arsc_my["level"] > 0)
@@ -54,7 +54,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
                            $arsc_posting = str_replace("{user}", "</i>".$arsc_sysmsg[1]."<i>", $arsc_posting);
                            $arsc_posting = str_replace("{room1}", "</i>".$arsc_sysmsg[2]."<i>", $arsc_posting);
                            $arsc_posting = str_replace("{room2}", "</i>".$arsc_sysmsg[3]."<i>", $arsc_posting);
-                           $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_param["template_system"]));
+                           $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_parameters["template_system"]));
                           }
                           break;
   }
@@ -67,7 +67,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
    // We have a command
    if (substr($arsc_message, 0, 4) == "/me ")
    {
-    $arsc_posting = $arsc_param["template_me"];
+    $arsc_posting = $arsc_parameters["template_me"];
     $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
     $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
     $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
@@ -279,7 +279,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
    if (substr($arsc_message, 0, 8) == "/selfop ")
    {
     $password = str_replace("/selfop ", "", $arsc_message);
-    if ($password == $arsc_param["selfop_password"])
+    if ($password == $arsc_parameters["selfop_password"])
     {
      mysql_query("UPDATE arsc_users SET level = 2 WHERE user = '$arsc_user'");
      mysql_query("DELETE from arsc_room_$arsc_room WHERE message LIKE '/selfop%' AND user = '$arsc_user'");
@@ -296,7 +296,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     $arsc_message = str_replace("/msg ".$userpassive." ", "", $arsc_message);
     if ($userpassive == $arsc_my["user"])
     {
-     $arsc_posting = $arsc_param["template_msg"];
+     $arsc_posting = $arsc_parameters["template_msg"];
      $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
      $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
      $arsc_posting = str_replace("{whispers}", $arsc_lang["whispers"], $arsc_posting);
@@ -316,7 +316,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
      $a = mysql_fetch_array($result);
      if ($a["level"] > 0)
      {
-      $arsc_posting = $arsc_param["template_msgops"];
+      $arsc_posting = $arsc_parameters["template_msgops"];
       $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
       $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
       $arsc_posting = str_replace("{whispersops}", $arsc_lang["whispersops"], $arsc_posting);
@@ -433,7 +433,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
   {
    if ($arsc_flag_ripped <> 1)
    {
-    if ($arsc_param["allow_textformatting"] == "yes")
+    if ($arsc_parameters["allow_textformatting"] == "yes")
     {
      if (substr($arsc_message, 0, 1) == "*")
      {
@@ -444,17 +444,17 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
       $arsc_message = "<b>".substr($arsc_message, 1)."</b>";
      }
     }
-    $arsc_posting = $arsc_param["template_normal"];
+    $arsc_posting = $arsc_parameters["template_normal"];
     $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
     $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
     $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
    }
   }
  }
- if ($arsc_param["smilies"] == "yes")
+ if ($arsc_parameters["smilies"] == "yes")
  {
   reset($arsc_smilie);
-  $arsc_posting = arsc_smilies_replace($arsc_posting, $arsc_smilie, $arsc_param["smilies_path"]);
+  $arsc_posting = arsc_smilies_replace($arsc_posting, $arsc_smilie, $arsc_parameters["smilies_path"]);
  }
  return $arsc_posting;
 }

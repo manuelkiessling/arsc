@@ -59,7 +59,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
   <html>
    <head>
     <title>
-     <?php echo $arsc_param["title"]; ?>
+     <?php echo $arsc_parameters["title"]; ?>
     </title>
    </head>
    <body>
@@ -68,7 +68,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
      <input type="hidden" name="arsc_sid" value="<?php echo $arsc_sid; ?>">
      <input type="hidden" name="arsc_lastid" value="<?php echo $arsc_lastid; ?>">
      <input type="hidden" name="arsc_chatversion" value="text">
-     <input type="text" name="arsc_message" size="30" maxlength="<?php echo $arsc_param["input_maxsize"]; ?>" value="<?php echo $arsc_pretext; ?>">
+     <input type="text" name="arsc_message" size="30" maxlength="<?php echo $arsc_parameters["input_maxsize"]; ?>" value="<?php echo $arsc_pretext; ?>">
      <input type="submit" value="<?php echo $arsc_lang["sendmessage"]; ?>">
      &nbsp;&nbsp;&nbsp;<a href="../logout.php?arsc_sid=<?php echo $arsc_sid; ?>"><?php echo $arsc_lang["leave"]; ?></a>
     </form>

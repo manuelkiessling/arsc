@@ -14,13 +14,13 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
   header("Cache-Control: no-cache, must-revalidate");
   header("Pragma: no-cache");
   header("Content-Type: text/html");
-  header("Refresh: ".$arsc_param["roomlist_refresh"]."; URL=roomlist.php?arsc_sid=".$arsc_sid);
+  header("Refresh: ".$arsc_parameters["roomlist_refresh"]."; URL=roomlist.php?arsc_sid=".$arsc_sid);
   ?>
   <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
   <html>
    <head>
     <title>
-     <php echo $arsc_param["title"]; ?>
+     <php echo $arsc_parameters["title"]; ?>
     </title>
     <?php
     if ($arsc_my["version"] == "sockets" OR $arsc_my["version"] == "push_js" OR $arsc_my["version"] == "header_js")
@@ -45,14 +45,14 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
     }
     ?>
     <?php
-    if ($arsc_param["drawboard"] == "yes")
+    if ($arsc_parameters["drawboard"] == "yes")
     {
      ?>
      <script language="JavaScript">
       <!--
        function popup()
        {
-        window.open('../drawboard/drawboard.php?arsc_sid=<?php echo $arsc_sid; ?>', 'drawboard', 'toolbar=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=<?php echo $arsc_param["drawboard_width"]; ?>,height=<?php echo $arsc_param["drawboard_height"]; ?>');
+        window.open('../drawboard/drawboard.php?arsc_sid=<?php echo $arsc_sid; ?>', 'drawboard', 'toolbar=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=<?php echo $arsc_parameters["drawboard_width"]; ?>,height=<?php echo $arsc_parameters["drawboard_height"]; ?>');
        }
       //-->
      </script>
@@ -61,7 +61,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
     ?>
    </head>
    <body bgcolor="<?php echo $arsc_color["roomlist_window_background"]; ?>" topmargin="0" leftmargin="0" marginleft="0" margintop="0">
-    <img src="../pic/<?php echo $arsc_param["logo_path"]; ?>" alt="Logo" border="0"><br>
+    <img src="../pic/<?php echo $arsc_parameters["logo_path"]; ?>" alt="Logo" border="0"><br>
     <table width="95%" bgcolor="<?php echo $arsc_color["roomlist_window_foreground"]; ?>" align="center">
      <tr>
       <td>
@@ -112,13 +112,13 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
          </form>
          <?php
         }
-        if ($arsc_param["smilies"] == "yes")
+        if ($arsc_parameters["smilies"] == "yes")
         {
          echo "<li><a href=\"../version_".$arsc_my["version"]."/chatinput.php?arsc_sid=".$arsc_my["sid"]."&arsc_pretext=/smilies\" target=\"input\">".$arsc_lang["smilielist"]."</a></li>\n";
         }
         ?>
         <?php
-        if ($arsc_param["drawboard"] == "yes")
+        if ($arsc_parameters["drawboard"] == "yes")
         {
          ?>
          <li><a href="javascript:popup();"><?php echo $arsc_lang["drawboard"]; ?></a></li>

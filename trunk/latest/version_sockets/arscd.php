@@ -10,7 +10,7 @@ include("../filter.inc.php");
 function arsc_getmessages($arsc_sid)
 {
  GLOBAL $arsc_my,
-        $arsc_param,
+        $arsc_parameters,
         $arsc_lang,
         $argv,
         $arsc_num;
@@ -64,7 +64,7 @@ function arsc_getmessages($arsc_sid)
 
 if ($argv[1] == "--help" OR $argv[1] == "-h" OR $argv[1] == "/?")
 {
- echo "Starts the ARSC socket server on port {$arsc_param["socketserver_port"]}\n";
+ echo "Starts the ARSC socket server on port {$arsc_parameters["socketserver_port"]}\n";
  echo "(as defined in ../config.inc.php).\n\n";
  echo "If you give the option -v ARSC will be verbose, i.e. it will\n";
  echo "print all messages an user receives. This will be quite much!\n\n";
@@ -72,8 +72,8 @@ if ($argv[1] == "--help" OR $argv[1] == "-h" OR $argv[1] == "/?")
  die();
 }
 
-if( false === ( $arsc_listen_socket = socket_create_listen( (string)$arsc_param["socketserver_port"], $arsc_param["socketserver_maximumusers"])))
- die( "Couldn't create listening socket on port {$arsc_param["socketserver_port"]}.\n");
+if( false === ( $arsc_listen_socket = socket_create_listen( (string)$arsc_parameters["socketserver_port"], $arsc_parameters["socketserver_maximumusers"])))
+ die( "Couldn't create listening socket on port {$arsc_parameters["socketserver_port"]}.\n");
 if( false === socket_setopt( $arsc_listen_socket, SOL_SOCKET, SO_REUSEADDR, 1))
  die( "Couldn't set socket option\n");
 
@@ -84,7 +84,7 @@ $arsc_connections = array();
 $arsc_connection_info = array();
 $arsc_sid = array();
 
-echo date("[Y-m-d H:i:s]")." {SOCK} Started ARSC server listening on port ".$arsc_param["socketserver_port"].".\n";
+echo date("[Y-m-d H:i:s]")." {SOCK} Started ARSC server listening on port ".$arsc_parameters["socketserver_port"].".\n";
 
 while(1) // A Neverending Story
 {
@@ -107,7 +107,7 @@ while(1) // A Neverending Story
      {
       $arsc_my = arsc_getdatafromsid($arsc_sid[$arsc_num]);
       echo date("[Y-m-d H:i:s]")." {ARSC} #$arsc_num | Connection is an ARSC client (SID $arsc_sid[$arsc_num], nickname {$arsc_my["user"]}, room {$arsc_my["room"]})\n";
-      socket_write($connection, $arsc_param["htmlhead_js"], strlen($arsc_param["htmlhead_js"]));
+      socket_write($connection, $arsc_parameters["htmlhead_js"], strlen($arsc_parameters["htmlhead_js"]));
       $arsc_sendtime = date("H:i:s");
       $arsc_timeid = arsc_microtime();
       @include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
@@ -165,7 +165,7 @@ while(1) // A Neverending Story
    $arsc_connected_clients++;
   } 
  } 
- usleep($arsc_param["socketserver_refresh"]); 
+ usleep($arsc_parameters["socketserver_refresh"]); 
 }
 
 ?>

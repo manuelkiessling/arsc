@@ -18,9 +18,9 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
    mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
   }
  
-  $arsc_timebuffer = time() - $arsc_param["ping"];
+  $arsc_timebuffer = time() - $arsc_parameters["ping"];
   mysql_query("DELETE from arsc_users WHERE (lastping < '$arsc_timebuffer' AND version <> 'text')");
-  $arsc_timebuffer = time() - $arsc_param["ping_text"];
+  $arsc_timebuffer = time() - $arsc_parameters["ping_text"];
   mysql_query("DELETE from arsc_users WHERE lastping < '$arsc_timebuffer' AND version = 'text'");
   $arsc_result = mysql_query("SELECT user, level from arsc_users WHERE room = '$arsc_room' ORDER BY level DESC, user ASC");
  
@@ -29,7 +29,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
   header("Cache-Control: no-cache, must-revalidate");
   header("Pragma: no-cache");
   header("Content-Type: text/html");
-  header("Refresh: ".$arsc_param["userlist_refresh"]."; URL=userlist.php?arsc_sid=".$arsc_sid);
+  header("Refresh: ".$arsc_parameters["userlist_refresh"]."; URL=userlist.php?arsc_sid=".$arsc_sid);
   ?>
   <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
   <html>

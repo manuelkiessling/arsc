@@ -164,7 +164,7 @@ Of course you already made this decision, so answer "yes" or "no"
 here according to your decision.
 
 The next 3 points are only important if you use the socket server.
-If not, then ignore them and go on to $arsc_param["selfop_password"].
+If not, then ignore them and go on to $arsc_parameters["selfop_password"].
 
 If you use it, then first we need the IP adress of the machine where
 you will start the socket server. Hostname is also possible, but the
@@ -182,7 +182,7 @@ This could be because the socket extension of PHP has still errors
 regarding this issue, or it has something to do with the platform.
 Whatever, set this to a reasonable value, just to be sure.
 
-Next parameter is $arsc_param["selfop_password"]. The value of this
+Next parameter is $arsc_parameters["selfop_password"]. The value of this
 variable is really important! Read in the configfile why. And please:
 change it.
 

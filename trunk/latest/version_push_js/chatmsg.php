@@ -34,7 +34,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
   $arsc_lastid = $arsc_b["timeid"];
  }
  
- echo $arsc_param["htmlhead_js"];
+ echo $arsc_parameters["htmlhead_js"];
  
  set_magic_quotes_runtime(0);
  set_time_limit(0);
@@ -79,7 +79,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
   mysql_query("UPDATE arsc_users SET lastping = '$arsc_ping', ip = '$arsc_ip' WHERE sid = '$arsc_sid'");
   echo " ";
   flush();
-  usleep($arsc_param["socketserver_refresh"]);
+  usleep($arsc_parameters["socketserver_refresh"]);
   flush();
   flush();
   flush();
@@ -90,6 +90,6 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
 }
 else
 {
- echo $arsc_param["htmlhead_out"];
+ echo $arsc_parameters["htmlhead_out"];
 }
 ?>

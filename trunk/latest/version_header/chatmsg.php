@@ -30,7 +30,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
   header("Cache-Control: no-cache, must-revalidate");
   header("Pragma: no-cache");
   header("Content-Type: text/html");
-  echo $arsc_param["htmlhead"];
+  echo $arsc_parameters["htmlhead"];
   echo arsc_filter_posting("System", date("H:i:s"), "<font size=4><b>".$arsc_message."</b></font>", $arsc_room, 0);
   ?>
    </body>
@@ -45,7 +45,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
   header("Pragma: no-cache");
   header("Content-Type: text/html");
   header("Refresh: 4; URL=chatmsg.php?arsc_sid=".$arsc_sid."&arsc_lastid=".$arsc_lastid."&dummy=".time()."#end");
-  echo $arsc_param["htmlhead"];
+  echo $arsc_parameters["htmlhead"];
   
   set_magic_quotes_runtime(0);
   $arsc_sendtime = date("H:i:s");
@@ -69,6 +69,6 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
 }
 else
 {
- echo $arsc_param["htmlhead_out"];
+ echo $arsc_parameters["htmlhead_out"];
 }
 ?>

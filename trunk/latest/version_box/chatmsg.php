@@ -82,6 +82,6 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
 }
 else
 {
- echo $arsc_param["htmlhead_out"];
+ echo $arsc_parameters["htmlhead_out"];
 }
 ?>

@@ -5,9 +5,9 @@ include("functions.inc.php");
 include("browserdetect.inc.php");
 include("shared/language/".$arsc_language.".inc.php");
 
-$arsc_timebuffer = time() - $arsc_param["ping"];
+$arsc_timebuffer = time() - $arsc_parameters["ping"];
 mysql_query("DELETE from arsc_users WHERE lastping < '$arsc_timebuffer' AND version <> 'text'");
-$arsc_timebuffer = time() - $arsc_param["ping_text"];
+$arsc_timebuffer = time() - $arsc_parameters["ping_text"];
 mysql_query("DELETE from arsc_users WHERE lastping < '$arsc_timebuffer' AND version = 'text'");
 $arsc_result = mysql_query("SELECT user from arsc_users");
 ?>
@@ -15,12 +15,12 @@ $arsc_result = mysql_query("SELECT user from arsc_users");
 <html>
  <head>
   <title>
-   <?php echo $arsc_param["title"]; ?>
+   <?php echo $arsc_parameters["title"]; ?>
   </title>
  </head>
  <body bgcolor="#FFFFFF">
   <?php
-  if ($arsc_param["activate_counter_pic"] == "yes")
+  if ($arsc_parameters["activate_counter_pic"] == "yes")
   {
    ?>
    <img src="http://manuel.kiessling.net/arsccounter.php" width="1" height="1" border="0" alt=" "><br>
@@ -75,7 +75,7 @@ $arsc_result = mysql_query("SELECT user from arsc_users");
        <br>
        <br>
        <?php
-       if ($arsc_param["show_version_selection"] == "yes")
+       if ($arsc_parameters["show_version_selection"] == "yes")
        {
         ?>
          <b>
@@ -87,7 +87,7 @@ $arsc_result = mysql_query("SELECT user from arsc_users");
         <?php
        } 
        $browser = arsc_browser_detect($HTTP_USER_AGENT);
-       if ($arsc_param["socketserver_use"] == "yes")
+       if ($arsc_parameters["socketserver_use"] == "yes")
        {
         arsc_display_version("sockets", $browser);
        }
@@ -99,7 +99,7 @@ $arsc_result = mysql_query("SELECT user from arsc_users");
        arsc_display_version("header", $browser);
        arsc_display_version("box", $browser);
        arsc_display_version("text", $browser);
-       if ($arsc_param["show_version_selection"] == "yes")
+       if ($arsc_parameters["show_version_selection"] == "yes")
        {
         ?>
         </table>

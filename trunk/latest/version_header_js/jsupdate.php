@@ -66,7 +66,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
       $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang["welcome"];
       $arsc_enter_text = arsc_filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room, 0);
       ?>
-      parent.msg.document.write('<?php echo str_replace("\n", "\\n", $arsc_param["htmlhead"]); ?>\n');
+      parent.msg.document.write('<?php echo str_replace("\n", "\\n", $arsc_parameters["htmlhead"]); ?>\n');
       parent.msg.document.write('<?php echo $arsc_enter_text; ?>\n');
       <?php
      }
@@ -95,6 +95,6 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
 }
 else
 {
- echo $arsc_param["htmlhead_out"];
+ echo $arsc_parameters["htmlhead_out"];
 }
 ?>

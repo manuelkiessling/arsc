@@ -3,7 +3,7 @@
 <html>
  <head>
   <title>
-   <?php echo $arsc_param["title"]; ?>
+   <?php echo $arsc_parameters["title"]; ?>
   </title>
  </head>
  <body bgcolor="#FFFFFF">
