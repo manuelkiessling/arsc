@@ -4,9 +4,9 @@
   This is an ARSC language file. If you translate it, please send me
   a copy to <manuel@kiessling.net>, I will add it to ARSC then. Thanks.
 
-  This file is for version: 1.0 and 1.0.1
-  Tradotto in italiano da De Luca Claudio: dlc2000@libero.it
+  This file is for versions: 1.0, 1.0.1, 1.0.1p1, 1.0.2
   
+  Tradotto in italiano da De Luca Claudio: dlc2000@libero.it
 */
 
 
