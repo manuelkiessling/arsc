@@ -238,7 +238,7 @@
 
     $arsc_param["register_owner"]       = "Manuel Kiessling";
     $arsc_param["register_owner_email"] = "manuel@kiessling.net";
-    $arsc_param["register_homepage"]    = "http://manuel.kiessling.net/arscdev/index.php";
+    $arsc_param["register_homepage"]    = "http://manuel.kiessling.net/arsc/index.php";
 
 
 //  How long do we wait for a users 'ping'?
