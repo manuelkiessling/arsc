@@ -1,5 +1,18 @@
 ARSC Changelog
 
+- Version 2.2
+  2003-02-24
+  
+  - fixed bug #642257 (closed connections not removed
+                       from connection pool)
+  - fixed a bug that caused all users to get kicked out of the chat
+    when running the socket server version and someone pointed
+    his browser to the port of the ARSC daemon
+  - fixed: Changes in smilie configuration are not saved
+  - updated: italian translation is now complete
+  - updated: INSTALL file had some errors, now fixed
+
+
 - Version 2.1
   2002-11-05
   
