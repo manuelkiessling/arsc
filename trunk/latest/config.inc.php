@@ -3,13 +3,13 @@
 // Change these values to your needs
 
 $arsc_dbhost   = "localhost";
-$arsc_dbuser   = "root";
-$arsc_dbpasswd = "gs62h27";
-$arsc_dbdb     = "arscdev";         // This db must already exist!
+$arsc_dbuser   = "user";
+$arsc_dbpasswd = "password";
+$arsc_dbdb     = "db";         // This db must already exist!
 
 // If you want to use the ARSC server, you must give the adress (IP or Host) and port to use
 
-$arsc_server_adress = "194.231.30.146";
+$arsc_server_adress = "192.168.0.1"; // On which IP will the arscserver be reachable from 'outside'?
 $arsc_server_port = 4444; // Four is my lucky number ;-)
 $arsc_server_maximumusers = 99;
 
