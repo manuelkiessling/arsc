@@ -51,7 +51,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
   <html>
    <head>
     <title>
-     I am out!
+     You are out!
     </title>
    </head>
    <body bgcolor="#DDDDDD">
