@@ -430,11 +430,21 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
   {
    if ($arsc_flag_ripped <> 1)
    {
+    if ($arsc_param["allow_textformatting"] == "yes")
+    {
+     if (substr($arsc_message, 0, 1) == "*")
+     {
+      $arsc_message = "<i>".substr($arsc_message, 1)."</i>";
+     }
+     elseif (substr($arsc_message, 0, 1) == "_")
+     {
+      $arsc_message = "<b>".substr($arsc_message, 1)."</b>";
+     }
+    }
     $arsc_posting = $arsc_param["template_normal"];
     $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
     $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
     $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
-    $arsc_posting = ereg_replace("\*(.*)\*", "<i>\\1</i>", $arsc_posting);
    }
   }
  }

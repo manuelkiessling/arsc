@@ -27,19 +27,19 @@
 
 //  What is the name of the user who has access to the ARSC database?
 
-    $arsc_param["db_user"] = "root";
+    $arsc_param["db_user"] = "user";
 
 
 //  And what is his password?
 
-    $arsc_param["db_passwd"] = "d23iokn78";
+    $arsc_param["db_passwd"] = "password";
 
 
 //  Finally, in which database will you store the ARSC tables?
 //  This database must exist before you use the 'install.php' script,
 //  but of course you know this because you read the README file...
 
-    $arsc_param["db_db"] = "arsc";
+    $arsc_param["db_db"] = "arscdev2";
 
 
 //  Are you able to start a socket server on your Linux or Unix server
@@ -53,7 +53,7 @@
 //  What is the DNS or IP adress of the machine running this socket
 //  server as seen from 'outside', from the real, big, bad internet?
 
-    $arsc_param["socketserver_adress"] = "192.168.1.88";
+    $arsc_param["socketserver_adress"] = "194.231.30.146";
 
 
 //  Which port do you want that socket server listen at?
@@ -63,7 +63,7 @@
 
 
 //  This value should tell the server how many connections he handles
-//  max, but, err, he doesn't listen to that...
+//  max, but, err, he doesn't listen to it :) Just don't care then...
 
     $arsc_param["socketserver_maximumusers"] = 5;
 
@@ -84,9 +84,10 @@
 //  Do you want to use the Drawboard? Please refer to the README file
 //  for details. This option only specifies wether to show the
 //  Drawboard link in the roomlist frame or not - you still have to
-//  install Drawboard on your own!
+//  install Drawboard on your own! Say no if you don't know what
+//  Drawboard is.
 
-    $arsc_param["drawboard"] = "yes";
+    $arsc_param["drawboard"] = "no";
     $arsc_param["drawboard_width"] = "400";
     $arsc_param["drawboard_height"] = "350";
     $arsc_param["drawboard_port"] = "8081";
@@ -97,19 +98,25 @@
 
 //  What is the name of your chat? This appears in the document title.
 
-    $arsc_param["title"] = "Abacho - Chat";
+    $arsc_param["title"] = "ARSC - Really Simple Chat";
 
 
 //  If no language is choosen, which language should be standard?
 
-    $arsc_param["standard_language"] = "german";
+    $arsc_param["standard_language"] = "english";
+
+
+//  If you allow it, a posting starting with an * will be italic, and
+//  a posting starting with an _ will be bold.
+
+    $arsc_param["allow_textformatting"] = "yes";
 
 
 //  What is the name of your logo file? The easiest way would be to
 //  place the image in pic/logo.gif/jpg/png and then enter
 //  'logo.gif/jpg/png' here
 
-    $arsc_param["logo_path"] = "logo.jpg";
+    $arsc_param["logo_path"] = "logo.png";
 
 
 //  Colors - choose your flavor
@@ -145,7 +152,7 @@
 
 //  Where are your smilie images located? Full path please.
 
-    $arsc_param["smilies_path"] = "http://192.168.1.88/arsc/pic/smilies/";
+    $arsc_param["smilies_path"] = "http://manuel.kiessling.net/arscdev/pic/smilies/";
 
 
 //  The smilie images must be named after numbers
@@ -229,32 +236,47 @@
 
 //  This appears in the eMail send for registration
 
-    $arsc_param["register_owner"]       = "Abacho Chat Team";
-    $arsc_param["register_owner_email"] = "kiessling@abacho.net";
-    $arsc_param["register_homepage"]    = "http://192.168.1.88/arsc/index.php";
+    $arsc_param["register_owner"]       = "Manuel Kiessling";
+    $arsc_param["register_owner_email"] = "manuel@kiessling.net";
+    $arsc_param["register_homepage"]    = "http://manuel.kiessling.net/arscdev/index.php";
 
 
-// How long do we wait for a users 'ping'?
-$arsc_param["ping"] = 10;
+//  How long do we wait for a users 'ping'?
 
-// After howmany seconds do you want the userlist window to refresh? This MUST be smaller than the ping value above!
-$arsc_param["userlist_refresh"] = 8;
+    $arsc_param["ping"] = 10;
 
-// How long do we wait for the 'ping' of a lynxuser? Not too small, because they must reload 'by hand'
-$arsc_param["ping_text"] = 600;
 
-// After how many seconds do you want the roomlist to be refreshed? can be quite high...
-$arsc_param["roomlist_refresh"] = 240;
+//  After howmany seconds do you want the userlist window to refresh?
+//  This MUST be smaller than the ping value above!
 
-// After how many entrys will the db be emptied? Dunno if this is a good value... find out under your conditions
-$arsc_param["rowlimit"] = 100;
+    $arsc_param["userlist_refresh"] = 8;
 
-// Templates for the messages
-$arsc_param["template_normal"] = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["msg_window_text"]."\"><font color=\"".$arsc_color["msg_window_system_text"]."\" size=\"1\">[{sendtime}]</font> &lt;{user}&gt; {message}</font><br>";
-$arsc_param["template_msg"]    = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["msg_window_msg_text"]."\"><font color=\"".$arsc_color["msg_window_system_text"]."\" size=\"1\">[{sendtime}]</font> &lt;{user}&gt; {whispers}: <i>{message}</i></font><br>";
-$arsc_param["template_msgops"] = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["msg_window_msgops_text"]."\"><font color=\"".$arsc_color["msg_window_system_text"]."\" size=\"1\">[{sendtime}]</font> &lt;{user}&gt; {whispersops}: <i>{message}</i></font><br>";
-$arsc_param["template_me"]     = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["msg_window_me_text"]."\"><font color=\"".$arsc_color["msg_window_system_text"]."\" size=\"1\">[{sendtime}]</font> * {user} {message}</font><br>";
-$arsc_param["template_system"] = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["msg_window_system_text"]."\"><font size=\"1\">[{sendtime}]</font> <i>{message}</i></font><br>";
+
+//  How long do we wait for the 'ping' of a lynxuser?
+//  Not too small, because they must reload 'by hand'
+
+    $arsc_param["ping_text"] = 600;
+
+
+//  After how many seconds do you want the roomlist to be refreshed?
+//  Can be quite high...
+
+    $arsc_param["roomlist_refresh"] = 240;
+
+
+//  Maximum rows allowed in the room tables? If your chat is visited well
+//  and you find messages missing, set this higher.
+
+    $arsc_param["rowlimit"] = 100;
+
+
+//  Templates for the messages
+
+    $arsc_param["template_normal"] = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["msg_window_text"]."\"><font color=\"".$arsc_color["msg_window_system_text"]."\" size=\"1\">[{sendtime}]</font> &lt;{user}&gt; {message}</font><br>";
+    $arsc_param["template_msg"]    = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["msg_window_msg_text"]."\"><font color=\"".$arsc_color["msg_window_system_text"]."\" size=\"1\">[{sendtime}]</font> &lt;{user}&gt; {whispers}: <i>{message}</i></font><br>";
+    $arsc_param["template_msgops"] = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["msg_window_msgops_text"]."\"><font color=\"".$arsc_color["msg_window_system_text"]."\" size=\"1\">[{sendtime}]</font> &lt;{user}&gt; {whispersops}: <i>{message}</i></font><br>";
+    $arsc_param["template_me"]     = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["msg_window_me_text"]."\"><font color=\"".$arsc_color["msg_window_system_text"]."\" size=\"1\">[{sendtime}]</font> * {user} {message}</font><br>";
+    $arsc_param["template_system"] = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["msg_window_system_text"]."\"><font size=\"1\">[{sendtime}]</font> <i>{message}</i></font><br>";
 
 
 //  END OF CONFIGURATION
