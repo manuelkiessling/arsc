@@ -85,13 +85,18 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
  include("../../languages/".$arsc_my["language"].".inc.php");
  if ($arsc_api->userIsValid($arsc_my["user"]))
  {
+  $arsc_compatibility_hack = "";
+  if(eregi("Safari", getenv("HTTP_USER_AGENT")))
+  {
+   $arsc_compatibility_hack = str_repeat(" ", 1000);
+  }
   echo ARSC_PARAMETER_HTMLHEAD_JS;
   $arsc_template_varname = "arsc_template_".$arsc_my["template"];
   echo arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".str_replace("{title}", ARSC_PARAMETER_TITLE, $arsc_lang["welcome"]), $arsc_my["room"], 0, $$arsc_template_varname);
   flush();
   while (!connection_aborted())
   {
-   echo arsc_getmessages($arsc_my["sid"]);
+   echo arsc_getmessages($arsc_my["sid"]).$arsc_compatibility_hack;
    usleep(ARSC_PARAMETER_SOCKETSERVER_REFRESH);
    flush();
   }
