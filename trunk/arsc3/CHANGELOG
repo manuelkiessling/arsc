@@ -1,7 +1,7 @@
 ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 3.0
-  XXXX-XX-XX
+  2005-01-17
 
   - Fixed bug #1100688 (string returned by the sha1() wrapper
     function for pre-4.3.0 PHP installations is too long)
