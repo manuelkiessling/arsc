@@ -161,7 +161,7 @@ $arsc_lang["whispersops"]         = "tüm operatörlere fisliyor";
 $arsc_lang["gotmsg"]              = "{user}'a fisliyorsun: {message}";
 $arsc_lang["croom"]               = "{user} {room} özel odasini kapatiyor.";
 $arsc_lang["room_exists"]         = "Pardon {room} odasi kullaniliyor.";
-$arsc_lang["room_badname"]        = "Sorry, this roomname is not acceptable.";
+$arsc_lang["room_badname"]        = "Pardon, bu geçerli bir oda ad&#305; de&#287;il.";
 $arsc_lang["room_created"]        = "{room} özel odaniz açildi! Artik /invite komutunu kullanarak dostlarinizi davet edebilirsiniz.";
 $arsc_lang["invite"]              = "{user} seni {room} özel odasina davet etti. \"/room {room} {password}\" yazarak girebilirsin.";
 $arsc_lang["invite_notexist"]     = "Pardon, {user} diye bir kullanici yok.";
@@ -185,7 +185,7 @@ onlara gizli mesaj yollayabilirbilirsiniz.
 Tikladiktan sonra sadece mesajinizi yazmaniz yeterli.
 
 General Commands:
-/me mesaj -- Symbolizes an action, e.g. /me feels fine writes * User feels fine
+/me mesaj -- Bir hareketi sembolize eder, örnek: /me kendini iyi hissediyor * Kullan&#305;c&#305; kendini iyi hissediyor yazd&#305;r&#305;r
 /msg kullanici mesaj -- 'kullanici' ya gizli mesaj çeker
 /j odaadi -- Bulunulan odadan 'odaadi' adli odaya geçer
 /room room --  /j odaadi komutunun aynisi";
