@@ -92,7 +92,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
       }
       else
       {
-       echo "<a href=\"../version_".$arsc_my["version"]."/index.php?arsc_sid=".$arsc_my["sid"]."&arsc_pretext=".urlencode("/msg ".$arsc_a["user"]." ")."\" target=\"input\">".$arsc_opstring.$arsc_a["user"]."</a>\n";
+       echo "<a href=\"../version_".$arsc_my["version"]."/index.php?arsc_sid=".$arsc_my["sid"]."&arsc_lastid=".$arsc_lastid."&arsc_pretext=".urlencode("/msg ".$arsc_a["user"]." ")."\" target=\"input\">".$arsc_opstring.$arsc_a["user"]."</a>\n";
       }
      }
      echo "<br>";
