@@ -221,10 +221,14 @@ the required database. Start searching for errors there.
 You should delete the file 'install.php' from your webserver if
 installation was successful.
 
+
+
 Ok, now if you do not use the socket server, just point your browser
 to http://www.myserver.com/arsc/ and have fun chatting.
 
-
+Verify if the configuration file of PHP (php.ini) don't have
+the output_buffering or output_compression turned On, if so the
+the sockets and push_js don't work.
 
 Adding rooms
 ------------
