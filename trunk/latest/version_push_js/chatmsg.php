@@ -12,7 +12,7 @@ function arsc_shutdown()
   $arsc_timeid = arsc_microtime();
   $arsc_sendtime = date("H:i:s");
   mysql_query("DELETE from arsc_users WHERE sid = '$arsc_sid'");
-  mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('arsc_user_quit~~$arsc_user~~$arsc_arsc_nice_room', 'System', '$arsc_sendtime', '$arsc_timeid')");
+  mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('arsc_user_quit~~$arsc_user~~$arsc_nice_room', 'System', '$arsc_sendtime', '$arsc_timeid')");
  }
 }
 
@@ -24,7 +24,7 @@ include("../filter.inc.php");
 
 if ($arsc_my = arsc_getdatafromsid($arsc_sid))
 {
- include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
+ include("../shared/language/".$arsc_my["language"].".inc.php");
 
  $arsc_room = $arsc_my["room"];
  if ($arsc_lastid == "")
@@ -54,12 +54,11 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
    $arsc_lastid = $arsc_b["timeid"];
   }
   $arsc_lastid_save = $arsc_b["timeid"];
-  $arsc_my = arsc_getdatafromsid($arsc_sid);
   if ($arsc_my["level"] < 0)
   {
    switch($arsc_my["level"])
    {
-    case "-1": echo arsc_filter_posting("System", date("H:i:s"), "<font size=4><b>".$arsc_lang["youwerekicked"]."</b></font>", $arsc_room, 0);
+    case "-1": echo arsc_filter_posting("System", date("H:i:s"), "<font size=\"4\"><b>".$arsc_lang["youwerekicked"]."</b></font>", $arsc_room, 0);
                mysql_query("DELETE from arsc_users WHERE sid = '$arsc_sid'");
                break;
    }
