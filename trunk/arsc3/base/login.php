@@ -36,8 +36,18 @@ $arsc_result = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_users WHERE user =
 $arsc_a = mysql_fetch_array($arsc_result);
 if ($arsc_a["cnt"] > 0 OR $arsc_user == "System" OR $arsc_user == "system" OR $arsc_user == "-1")
 {
- header ("Location: home.php?arsc_error=double_user&arsc_language=".$arsc_language);
- die();
+ // Kick if registered user and password is the same
+ $arsc_result = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_registered_users WHERE user = '".mysql_escape_string($arsc_user)."' AND password = '".mysql_escape_string(sha1($arsc_password))."'", ARSC_PARAMETER_DB_LINK);
+ $arsc_a = mysql_fetch_array($arsc_result);
+ if ($arsc_a["cnt"] > 0)
+ {
+  mysql_query("DELETE FROM arsc_users WHERE user = '".mysql_escape_string($arsc_user)."'", ARSC_PARAMETER_DB_LINK);
+ }
+ else
+ {
+  header ("Location: home.php?arsc_error=double_user&arsc_language=".$arsc_language);
+  die();
+ }
 }
 $arsc_result = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_registered_users WHERE user = '".mysql_escape_string($arsc_user)."'", ARSC_PARAMETER_DB_LINK);
 $arsc_a = mysql_fetch_array($arsc_result);
