@@ -9,7 +9,9 @@ if (!($arsc_admin_password == $arsc_parameters["selfop_password"]))
 {
  ?>
   <form method="POST">
-   Admin password:
+   <font face="Arial" size="2">
+    Admin password:
+   </font>
    <input type="password" name="arsc_admin_password">
    <input type="submit" value="Login">
   </form>
@@ -42,7 +44,7 @@ if (($arsc_admin_password == "password") AND ($arsc_goto <> "yes"))
      <b>
       Any questions?
      </b>
-     <a href="http://sourceforge.net/forum/forum.php?forum_id=102858">Visit our forum</a>.
+     <a href="http://sourceforge.net/forum/forum.php?forum_id=102858" target="_blank">Visit our forum</a>.
     </font>
    </div>
    <input type="hidden" name="arsc_admin_password" value="<?php echo $arsc_admin_password; ?>">
