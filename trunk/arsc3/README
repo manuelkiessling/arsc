@@ -26,9 +26,12 @@ If you find one, then please send me an eMail to manuel@kiessling.net.
 Thank you very much!
 =======================================================================
 
-THIS IS ALPHA SOFTWARE! It basically works, but there is no guarantee
-whatsoever that it will work for you at all. You will find a lot of
-bugs, please report them using the bugtracker on SourceForge:
+!!! PLEASE NOTE: The 'base/admin/' directory is not protected in any
+way! You have to protect it yourself with .htaccess or other measures!
+
+THIS IS ALPHA SOFTWARE! It basically works for me, but there is no
+guarantee whatsoever that it will work for you at all. You will find
+a lot of bugs, please report them using the bugtracker on SourceForge:
 
 http://sourceforge.net/tracker/?func=add&group_id=32699&atid=406296
 
