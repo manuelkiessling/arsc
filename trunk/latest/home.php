@@ -55,7 +55,7 @@ $arsc_result = mysql_query("SELECT user from arsc_users");
    <table border="0">
     <tr>
      <td valign="top">
-      <input type="radio" name="arsc_chatversion" value="dontknow" checked>
+      <input type="radio" name="arsc_chatversion" value="push_js" checked>
      </td>
      <td valign="top">
       <font face="Arial" size="2">
