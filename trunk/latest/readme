@@ -1,6 +1,6 @@
 ARSC - ARSC Really Simple Chat
 =======================================================================
-Version 1.0.2 - 2002-10-24 - Thank you for using ARSC!
+Version 1.0.2 - 2002-10-25 - Thank you for using ARSC!
 Copyright (C) 2001, 2002 Manuel Kiessling
 =======================================================================
 
@@ -111,6 +111,21 @@ then please email me.
 
 Installation
 ------------
+
+Abstract:
+
+ - Decide: Socket server or not?
+ - Extract archive
+ - Edit config file
+ - Copy to webserver
+ - Run install script
+ - Go to admin page
+ - Change password
+ - If you use the socket server: Install socket server
+ - Start to chat
+
+
+Detail:
 
 First, you must make some decisions. Life is full of them, isn't it?
 
@@ -294,6 +309,16 @@ see more commands!
 Installing the socket server
 ----------------------------
 
+Abstract:
+
+ - Install CGI version of PHP (if necessary)
+ - Edit php path in arscd.php
+ - chmod arscd.php
+ - Start arscd.php
+
+
+Detail:
+
 Well, if you want to use the socket server, there is one step left.
 
 Let us make one thing clear again: if you _can_ use the socket server,
@@ -368,7 +393,7 @@ Send an eMail to arsc-help@lists.sourceforge.net if you
 have any questions.
 
 If you are a PHP programmer then give us feedback about the code
-by sending eMail to arsc-developers@lists.sourceforge.net.
+or send bugs by sending eMail to arsc-developers@lists.sourceforge.net.
 
 
 Manuel Kiessling
