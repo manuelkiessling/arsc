@@ -81,6 +81,12 @@
     $arsc_param["selfop_password"] = "password";
 
 
+//  If you say "yes" here, a small invisible image on the home page
+//  is activated that allows me to see on which site ARSC is installed.
+
+    $arsc_param["activate_counter_pic"] = "yes";
+
+
 //  Do you want to use the Drawboard? Please refer to the README file
 //  for details. This option only specifies wether to show the
 //  Drawboard link in the roomlist frame or not - you still have to
