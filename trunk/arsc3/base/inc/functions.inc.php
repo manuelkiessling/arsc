@@ -7,9 +7,9 @@ function arsc_error_log($level, $text, $file, $line)
  $date = date("Y-m-d H:i:s"); 
  if ($level > ARSC_PARAMETER_LOGERRORSABOVE)
  {
-  $fp = fopen("/tmp/arsc_error.".ARSC_INSTALLATIONID.".log", "a");
-  fputs($fp, $date." ".$arsc_errorlevels[$level]." ".$text." (File ".$file.", Line ".$line.")\n");
-  fclose($fp);
+  $fp = @fopen("/tmp/arsc_error.".ARSC_INSTALLATIONID.".log", "a");
+  @fputs($fp, $date." ".$arsc_errorlevels[$level]." ".$text." (File ".$file.", Line ".$line.")\n");
+  @fclose($fp);
  }
  if ($level > ARSC_PARAMETER_SHOWERRORSABOVE)
  {
@@ -29,7 +29,16 @@ function arsc_microtime()
  return str_replace("0.", "", $mta[1].$mta[0]);
 }
 
-// Replace smilies with image tag
+// Use own sha1() function if it is not available - You wouldn't believe how old some PHP installations are...
+if (!function_exists("sha1"))
+{
+ function sha1($input)
+ {
+  return(md5($input).substr(md5($input), 8));
+ }
+}
+
+// Replace smilies with image tag //FIXME: Move into API
 function arsc_smilies_replace($text, $smilies, $smilies_pfad)
 {
  while (list($key, $val) = each($smilies))
@@ -68,19 +77,6 @@ function arsc_getVirtualServer($ip)
   $return = "";
  }
  return $return;
-}
-
-function arsc_cleanUserName($arsc_user)
-{
- $arsc_user = ereg_replace("\\\\\'", "", $arsc_user);
- $arsc_user = ereg_replace("\\\\\"", "", $arsc_user);
- $arsc_user = ereg_replace("\\\\", "", $arsc_user);
- $arsc_user = ereg_replace("&", "", $arsc_user);
- $arsc_user = ereg_replace("\?", "", $arsc_user);
- $arsc_user = ereg_replace("~", "", $arsc_user);
- $arsc_user = ereg_replace("#", "", $arsc_user);
- $arsc_user = ereg_replace(" ", "_", $arsc_user);
- return $arsc_user;
 }
 
 ?>
