@@ -1,2 +1,47 @@
+ARSC - ARSC Really Simple Chat
+=======================================================================
+Version 3.0 Alpha 2 - 2004-08-29 - Thank you for using ARSC!
+Copyright (C) 2001, 2002, 2003, 2004 Manuel Kiessling
+=======================================================================
 
-See INSTALL file.
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
+USA.
+
+=======================================================================
+Due to the fact that my native language is not english, it is possible
+that there are several mistakes - I hope they are at least funny...
+If you find one, then please send me an eMail to manuel@kiessling.net.
+Thank you very much!
+=======================================================================
+
+THIS IS ALPHA SOFTWARE! It basically works, but there is no guarantee
+whatsoever that it will work for you at all. You will find a lot of
+bugs, please report them using the bugtracker on SourceForge:
+
+http://sourceforge.net/tracker/?func=add&group_id=32699&atid=406296
+
+Before you post a bug, please make sure nobody else already reported
+the same bug, by browsing the bug database:
+
+http://sourceforge.net/tracker/?func=browse&group_id=32699&atid=406296
+
+For installation instructions, please see the INSTALL file.
+
+If you need help, please visit the the Help Forum:
+
+http://sourceforge.net/forum/forum.php?forum_id=102858
+
+Manuel Kiessling
+manuel@kiessling.net
