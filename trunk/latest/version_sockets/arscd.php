@@ -19,10 +19,11 @@ if ($argv[1] == "--help" OR $argv[1] == "-h" OR $argv[1] == "/?")
  echo "  arscd.php -l=/var/log/arsc\n\n";
  echo "Options:\n";
  echo "  -v           Verbose mode, print every message every user receives to STDOUT\n";
- echo "  -l=DIR       Write message logfiles for every room into DIR\n";
+ echo "  -l=DIR       Write message logfiles for every room into DIR (creates file for every room)\n";
  echo "  -h, --help   Show this help\n";
  echo "\n";
- echo "Send bugs to <arsc-developers@lists.sourceforge.net>.\n";
+ echo "For bug reporting, please visit:";
+ echo "<URL:http://manuel.kiessling.net/projects/software/arsc/bugs/>.\n";
  die();
 }
 $arsc_logdir = false;
