@@ -243,64 +243,7 @@ if ($this->checkCommandAllowed($arsc_my["level"], "color"))
  $arsc_layout["colorselection_table"] = '
 <table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="'.$arsc_my["color"].'">
  <tr>
-  <td width="17%">
-   <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%">
-    <tr>
-     <td bgcolor="#ffffff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=FFFFFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#ffccff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=FFCCFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#ff99ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=FF99FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#ff66ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=FF66FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#ff33ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=FF33FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#ff00ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=FF00FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-    </tr>
-
-    <tr>
-     <td bgcolor="#ccffff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=CCFFFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#ccccff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=CCCCFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#cc99ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=CC99FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#cc66ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=CC66FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#cc33ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=CC33FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#cc00ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=CC00FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-    </tr>
-
-    <tr>
-     <td bgcolor="#99ffff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=99FFFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#99ccff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=99CCFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#9999ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=9999FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#9966ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=9966FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#9933ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=9933FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#9900ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=9900FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-    </tr>
-
-    <tr>
-     <td bgcolor="#66ffff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=66FFFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#66ccff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=66CCFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#6699ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=6699FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#6666ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=6666FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#6633ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=6633FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#6600ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=6600FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-    </tr>
-    
-    <tr>
-     <td bgcolor="#33ffff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=33FFFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#33ccff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=33CCFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#3399ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=3399FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#3366ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=3366FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#3333ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=3333FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#3300ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=3300FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-    </tr>
-    
-    <tr>
-     <td bgcolor="#00ffff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=00FFFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#00ccff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=00CCFF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#0099ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=0099FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#0066ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=0066FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#0033ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=0033FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-     <td bgcolor="#0000ff" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=0000FF"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
-    </tr>
-   </table>
-  </td>
-  <td width="17%">
+  <td width="20%">
    <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%">
     <tr>
      <td bgcolor="#ffffcc" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=FFFFCC"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
@@ -357,7 +300,7 @@ if ($this->checkCommandAllowed($arsc_my["level"], "color"))
     </tr>
    </table>
   </td>
-  <td width="16%">
+  <td width="20%">
    <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%">
     <tr>
      <td bgcolor="#ffff99" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=FFFF99"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
@@ -414,7 +357,7 @@ if ($this->checkCommandAllowed($arsc_my["level"], "color"))
     </tr>
    </table>
   </td>
-  <td width="17%">
+  <td width="20%">
    <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%">
      <tr>
       <td bgcolor="#ffff66" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=FFFF66"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
@@ -471,7 +414,7 @@ if ($this->checkCommandAllowed($arsc_my["level"], "color"))
      </tr>
    </table>
   </td>
-  <td width="16%">
+  <td width="20%">
    <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%">
     <tr>
      <td bgcolor="#ffff33" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=FFFF33"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
@@ -528,7 +471,7 @@ if ($this->checkCommandAllowed($arsc_my["level"], "color"))
     </tr>
    </table>
   </td>
-  <td width="17%">
+  <td width="20%">
    <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%">
     <tr>
      <td bgcolor="#ffff00" width="16%"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color=FFFF00"><img src="../../../base/pic/x.gif" border="0" width="100%" height="4" alt=""></a></td>
