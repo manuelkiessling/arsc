@@ -215,6 +215,7 @@ CREATE TABLE arsc_registered_users (
   language varchar(32) NOT NULL default '',
   level tinyint(4) NOT NULL default '0',
   color varchar(6) NOT NULL default '000000',
+  template int(11) NOT NULL default '0',
   email text NOT NULL,
   sex tinyint(4) NOT NULL default '0',
   location varchar(255) NOT NULL default '',
