@@ -55,7 +55,7 @@ http://www.mysql.com
 
 You need a running MySQL server where you may add tables.
 Chatting is only really comfortable if the client (the browser)
-supports frames and JavaScript, but with ARSC, chatting is possible
+supports  frames and JavaScript, but with ARSC, chatting is possible
 with _every_ browser on the surface of this planet, even text based
 ones like Lynx.
 
