@@ -10,7 +10,7 @@ define("ARSC_PARAMETER_HTMLHEAD", "<html><head></head>\n<body bgcolor=\"#FFFFFF\
 define("ARSC_PARAMETER_HTMLHEAD_JS", "<html><head><script language=\"JavaScript\">\n<!--\nfunction move()\n{\nif (scroll_active) window.scroll(1,400000);\nwindow.setTimeout(\"move()\",100);\n}\nscroll_active = true;\nmove();\n//-->\n</script>\n</head>\n<body bgcolor=\"#FFFFFF\" onBlur=\"scroll_active = true\" onFocus=\"scroll_active = false\">\n\n\n".str_repeat("<!-- This is dummy content to get some browsers running... -->\n", 100));
 define("ARSC_PARAMETER_HTMLHEAD_OUT", "<html><head><title></title></head><body bgcolor=\"#FFFFFF\"></body></html>");
 define("ARSC_PARAMETER_USERINPUTMAXLENGTH", 500);
-define("ARSC_PARAMETER_DEFAULT_TEMPLATE", "html");
+define("ARSC_PARAMETER_DEFAULT_TEMPLATE_NAME", "html");
 
 // Available languages
 $arsc_available_languages = array("english",
