@@ -28,19 +28,19 @@
 
 // What is the name of the user who has access to the ARSC database?
 
-   define("ARSC_PARAMETER_DB_USER", "arsc3-beta1");
+   define("ARSC_PARAMETER_DB_USER", "user");
 
 
 // And what is his password?
 
-   define("ARSC_PARAMETER_DB_PASSWORD", "arsc3-beta1");
+   define("ARSC_PARAMETER_DB_PASSWORD", "password");
 
 
 // Finally, in which database will you store the ARSC tables?
 // This database MUST exist before you use the 'install.php' script,
 // and it MUST be accessible by the user you just supplied.
 
-   define("ARSC_PARAMETER_DB_DATABASE", "arsc3-beta1");
+   define("ARSC_PARAMETER_DB_DATABASE", "database");
 
 
 // END OF CONFIGURATION
