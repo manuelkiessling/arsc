@@ -17,7 +17,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
  if ($arsc_api->userIsValid($arsc_my["user"]))
  {
   $arsc_room = $arsc_my["room"];
-  if (isset($arsc_enter))
+  if (isset($_GET["arsc_enter"]))
   {
    $arsc_api->postMessage($arsc_my["room"], "arsc_user_enter~~".$arsc_my["user"]."~~".$arsc_api->getReadableRoomname($arsc_my["room"]), "System", date("H:i:s"), arsc_microtime(), 0);
   }
