@@ -27,7 +27,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
     // -->
     </script>
    </head>
-   <body OnLoad="document.f.arsc_message.focus()" bgcolor="#DDDDDD">
+   <body OnLoad="document.f.arsc_message.focus();document.f.arsc_message.select();" bgcolor="#DDDDDD">
     <form action="../shared/chatins.php" method="GET" target="empty" name="f" OnSubmit="return empty_field_and_submit()">
      <input type="text" name="arsc_message" size="50" maxlength="1000" value="<?php echo $arsc_pretext; ?>">
      <font face="Arial" size="2">
@@ -51,7 +51,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
   <html>
    <head>
     <title>
-     I am out!
+     You are out!
     </title>
    </head>
    <body bgcolor="#DDDDDD">
