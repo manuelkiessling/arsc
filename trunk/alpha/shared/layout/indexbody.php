@@ -6,7 +6,7 @@
 >
 <center>
 <div align=center>
-<form method=post action=home.php onSubmit="<?php echo (($arsc_s == 1) ? 'parent.' : '') . 'doSubmit(' . $arsc_s; ?>)">
+<form method=post action=home.php onSubmit="<?php echo (($arsc_s == 1) ? 'parent.' : '') . 'arsc_JsSubmit(' . $arsc_s; ?>)">
 <input type=hidden name=arsc_js value=0>
 <input type=hidden name=arsc_fr value=<?php echo $arsc_s; ?>>
 <table align=center cellpadding=6 bgcolor="<?php echo $arsc_params['userlistBGcolor']; ?>">
