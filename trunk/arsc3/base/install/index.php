@@ -3,6 +3,9 @@
 include("../inc/config.inc.php");
 include("../inc/init.inc.php");
 include("../inc/functions.inc.php");
+include("../inc/api.inc.php");
+
+$arsc_api = new arsc_api_Class;
 
 function arsc_mysql_query($query)
 {
@@ -47,21 +50,42 @@ arsc_mysql_query("UPDATE arsc_parameters SET value = 'http://".$_SERVER["SERVER_
 arsc_mysql_query("UPDATE arsc_parameters SET value = 'http://".$_SERVER["SERVER_NAME"].$arsc_basedir."' WHERE name = 'baseurl'");
 echo '<font face="Arial"><b>...done.</b></font><br><br>';
 
-echo '<font face="Arial"><b>Step 3: Setting account passwords...</b></font><br>';
-mt_srand((double)microtime()*1000000);
-$arsc_password = substr(sha1(mt_rand(0, mt_getrandmax())), 0, 8);
-arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1($arsc_password)."' WHERE user = 'Administrator'");
-echo '<font face="Arial"><i>Administrator:</i> '.$arsc_password.'</font><br>';
-$arsc_password = substr(sha1(mt_rand(0, mt_getrandmax())), 0, 8);
-arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1($arsc_password)."' WHERE user = 'Display'");
-echo '<font face="Arial"><i>Display:</i> '.$arsc_password.'</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font face="Arial" color="#FF0000">Please write these down!</font><br>';
-$arsc_password = substr(sha1(mt_rand(0, mt_getrandmax())), 0, 8);
-arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1($arsc_password)."' WHERE user = 'Moderator'");
-echo '<font face="Arial"><i>Moderator:</i> '.$arsc_password.'</font><br>';
-$arsc_password = substr(sha1(mt_rand(0, mt_getrandmax())), 0, 8);
-arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1($arsc_password)."' WHERE user = 'VIP'");
-echo '<font face="Arial"><i>VIP:</i> '.$arsc_password.'</font><br>';
-echo '<font face="Arial"><b>...done.</b></font><br><br>';
+if($_POST["arsc_automatedinstall"] <> 1)
+{
+ echo '<font face="Arial"><b>Step 4: Setting account passwords...</b></font><br>';
+ mt_srand((double)microtime()*1000000);
+ $arsc_password = substr(sha1(mt_rand(0, mt_getrandmax())), 0, 8);
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1($arsc_password)."' WHERE user = 'Administrator'");
+ echo '<font face="Arial"><i>Administrator:</i> '.$arsc_password.'</font><br>';
+ $arsc_password = substr(sha1(mt_rand(0, mt_getrandmax())), 0, 8);
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1($arsc_password)."' WHERE user = 'Display'");
+ echo '<font face="Arial"><i>Display:</i> '.$arsc_password.'</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font face="Arial" color="#FF0000">Please write these down!</font><br>';
+ $arsc_password = substr(sha1(mt_rand(0, mt_getrandmax())), 0, 8);
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1($arsc_password)."' WHERE user = 'Moderator'");
+ echo '<font face="Arial"><i>Moderator:</i> '.$arsc_password.'</font><br>';
+ $arsc_password = substr(sha1(mt_rand(0, mt_getrandmax())), 0, 8);
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1($arsc_password)."' WHERE user = 'VIP'");
+ echo '<font face="Arial"><i>VIP:</i> '.$arsc_password.'</font><br>';
+ echo '<font face="Arial"><b>...done.</b></font><br><br>';
+}
+else
+{
+ echo '<font face="Arial"><b>Step 4: [AUTOMATED INSTALL] Setting accounts and parameters...</b></font><br>';
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_POST["arsc_automatedinstallusers"]["administrator_password"]))."' WHERE user = 'Administrator'");
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_POST["arsc_automatedinstallusers"]["display_password"]))."' WHERE user = 'Display'");
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_POST["arsc_automatedinstallusers"]["moderator_password"]))."' WHERE user = 'Moderator'");
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_POST["arsc_automatedinstallusers"]["vip_password"]))."' WHERE user = 'VIP'");
+ while(list($arsc_key, $arsc_val) = each($_POST["arsc_automatedinstallparameters"]))
+ {
+  arsc_mysql_query("UPDATE arsc_parameters SET value = '".mysql_escape_string($arsc_val)."' WHERE name = '".mysql_escape_string($arsc_key)."'");
+ }
+ while(list($arsc_key, $arsc_val) = each($_POST["arsc_automatedinstalldeleterooms"]))
+ {
+  $arsc_api->deleteRoom($arsc_val);
+ }
+ echo '<font face="Arial"><b>...done.</b></font><br><br>';
+}
+
 ?>
 
 <font face="Arial">
