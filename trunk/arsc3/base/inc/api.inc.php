@@ -209,6 +209,8 @@ class arsc_api_Class
 
  function postMessage($room, $message, $user, $sendtime, $timeid, $flag_ripped)
  {
+  include("message_postprocessing.inc.php");
+  arsc_message_postprocessing($user, $room, $message);
   mysql_query("INSERT INTO arsc_room_".mysql_escape_string($room)." (message, user, sendtime, timeid, flag_ripped) VALUES ('".mysql_escape_string($message)."', '".mysql_escape_string($user)."', '$sendtime', '$timeid', '$flag_ripped')", ARSC_PARAMETER_DB_LINK);
  }
  
