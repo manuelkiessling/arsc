@@ -35,7 +35,7 @@ function arsc_getmessages($arsc_sid)
   $arsc_room = $arsc_my["room"];
   if ($arsc_my["level"] > -1)
   {
-   $arsc_posting = "\n";
+   $arsc_posting = " \n ";
    include("../shared/language/".find_language($arsc_my["user"]).".inc.php");
    
    set_magic_quotes_runtime(0);
