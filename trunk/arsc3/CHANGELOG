@@ -1,4 +1,15 @@
-ARSC Changelog
+ARSC - ARSC Really Simple Chat - Changelog
+
+- Version 3.0-beta1
+  2004-12-02
+  
+  - Fixed bug #1073804 (Register page errors)
+  - Wrote installation instructions and installation script
+  - Added user-specific layouts
+  - Added admin interface for rooms
+  - Added language selection
+  - Fixed a lot of smaller bugs
+
 
 - Version 3.0-alpha2
   2004-08-29
