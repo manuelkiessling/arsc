@@ -45,6 +45,8 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
  $i = 0;
  while(!connection_aborted())
  {
+  $arsc_my = arsc_getdatafromsid($arsc_sid);
+  $arsc_room = $arsc_my["room"];
   $arsc_result = mysql_query("SELECT * from arsc_room_$arsc_room ORDER BY timeid DESC");
   $arsc_b = mysql_fetch_array($arsc_result);
   if ($arsc_lastid == "")
