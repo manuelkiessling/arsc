@@ -2,7 +2,7 @@
 
 // Login and cookie handling
 
-if(!isset($arsc_cookie_user) OR !isset($arsc_cookie_admin_sessionid))
+if((!isset($arsc_cookie_user) OR !isset($arsc_cookie_admin_sessionid)) OR ($arsc_cookie_user == "" OR $arsc_cookie_admin_sessionid == ""))
 {
  header("Location: login.php");
  die();
