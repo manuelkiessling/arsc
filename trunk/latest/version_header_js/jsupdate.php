@@ -42,13 +42,6 @@ if ($arsc_my = getdatafromsid($arsc_sid))
  }
  else
  {
-  if ($arsc_enter == "true")
-  {
-   $arsc_sendtime = date("H:i:s");
-   $arsc_timeid = my_microtime();
-   $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang_welcome;
-   $arsc_enter_text = filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room);
-  }
   header("Expires: Sun, 28 Dec 1997 09:32:45 GMT");
   header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
   header("Cache-Control: no-cache, must-revalidate");
@@ -65,8 +58,13 @@ if ($arsc_my = getdatafromsid($arsc_sid))
      set_magic_quotes_runtime(0);
      if ($arsc_enter == "true")
      {
+      $arsc_sendtime = date("H:i:s");
+      $arsc_timeid = my_microtime();
+      $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang_welcome;
+      $arsc_enter_text = filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room);
       ?>
-      parent.msg.document.write('<html><head><title></title></head><body bgcolor="#FFFFFF">\n<?php echo $arsc_enter_text; ?>\n');
+      parent.msg.document.write('<?php echo str_replace("\n", "\\n", $arsc_htmlhead); ?>\n');
+      parent.msg.document.write('<?php echo $arsc_enter_text; ?>\n');
       <?php
      }
      if ($arsc_result = mysql_query("SELECT * from arsc_room_$arsc_room WHERE timeid > '$arsc_lastid' ORDER BY timeid ASC"))
@@ -74,7 +72,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
       while ($arsc_a = mysql_fetch_array($arsc_result))
       {
        ?>
-       parent.msg.document.write('<?php echo filter_posting($arsc_a["user"], $arsc_a["sendtime"], $arsc_a["message"], $arsc_room); ?>\n');
+       parent.msg.document.write('<?php echo str_replace("\n", "\\n", filter_posting($arsc_a["user"], $arsc_a["sendtime"], $arsc_a["message"], $arsc_room)); ?>\n');
        <?php
       }
      }
@@ -82,10 +80,12 @@ if ($arsc_my = getdatafromsid($arsc_sid))
      $arsc_ip = getenv ("REMOTE_ADDR");
      mysql_query("UPDATE arsc_users SET lastping = '$arsc_ping', ip = '$arsc_ip' WHERE sid = '$arsc_sid'");
      ?>
-     parent.msg.scroll(0,5000000);
+     parent.msg.scroll(1,5000000);
     // -->
     </script>
    </head>
+   <body bgcolor="#FFFFFF">
+   </body>
   </html>
   <?php
  }
