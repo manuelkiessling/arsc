@@ -15,7 +15,10 @@ if (!($arsc_admin_password == $arsc_parameters["selfop_password"]))
     {
      ?>
      <font color="#FF0000">
-      Your password is invalid!
+      Your password is <b>invalid</b>!
+      <br>
+      If you just changed your password, you have to log in again with the <b>new</b> password.
+      <br>
       <br>
      </font>
      <?php
@@ -24,7 +27,7 @@ if (!($arsc_admin_password == $arsc_parameters["selfop_password"]))
     Admin password:
    </font>
    <input type="password" name="arsc_admin_password">
-   <input type="submit" value="Login">
+   <input type="submit" value="Login &gt;">
   </form>
  <?php
  die();
