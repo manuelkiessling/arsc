@@ -6,7 +6,7 @@ include("inc/functions.inc.php");
 include("inc/api.inc.php");
 include("inc/inputvalidation.inc.php");
 
-$arsc_language = arsc_validateinput($_POST["arsc_language"], $arsc_available_languages, NULL, 0, 64, __FILE__, __LINE__);
+$arsc_language = arsc_validateinput($_POST["arsc_language"], NULL, "/[^a-z\-]/", 0, 64, __FILE__, __LINE__);
 if ($arsc_language == "") $arsc_language = ARSC_PARAMETER_DEFAULT_LANGUAGE;
 if (!is_file("../languages/".$arsc_language.".inc.php")) arsc_error_log(ARSC_ERRORLEVEL_FATAL, "Could not open language file. Something is really messed up!", __FILE__, __LINE__);
 
@@ -110,7 +110,7 @@ else
  {
   $arsc_layout = ARSC_PARAMETER_DEFAULT_LAYOUT_ID;
  }
- mysql_query("INSERT INTO arsc_users (user, color, lastping, ip, room, language, level, sid, version, template, layout) VALUES ('$arsc_user', '$arsc_color', '$arsc_ping', '$arsc_ip', '$arsc_room', '$arsc_language', '$arsc_level', '$arsc_sid', '$arsc_chatversion', '$arsc_template', '$arsc_layout')", ARSC_PARAMETER_DB_LINK);
+ mysql_query("INSERT INTO arsc_users (user, color, lastping, ip, room, language, level, sid, version, template, layout, showsince) VALUES ('$arsc_user', '$arsc_color', '$arsc_ping', '$arsc_ip', '$arsc_room', '$arsc_language', '$arsc_level', '$arsc_sid', '$arsc_chatversion', '$arsc_template', '$arsc_layout', '".arsc_microtime()."')", ARSC_PARAMETER_DB_LINK);
  header ("Location: ../clients/".$arsc_chatversion."/index.php?arsc_sid=".$arsc_sid."&arsc_enter=true");
  die();
 }
