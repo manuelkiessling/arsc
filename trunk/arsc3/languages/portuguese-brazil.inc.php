@@ -1,6 +1,14 @@
 <?php
 
-//	Translateded by RODRIGO LOPES <rvl@ufrj.br>
+/*
+ This is an ARSC language file. If you translate it, please send me
+ a copy to <manuel@kiessling.net>, I will add it to ARSC then.
+ Thanks.
+
+ This file is for versions 3.0-beta1, 3.0-beta2, 3.0-rc1, 3.0, 3.0.1
+  
+ Translation by Rodrigo Lopes <rvl@ufrj.br>.
+*/
 
 // Include the english file, in order to provide english text if the current file has some sentences missing.
 include("english.inc.php");
@@ -9,6 +17,12 @@ include("english.inc.php");
 $arsc_lang_regions["portuguese-brazil"] = array("pt-br", "pt");
 $arsc_lang_name["portuguese-brazil"] = "Portuguese (Brazil)";
 $arsc_lang["charset"] = "iso-8859-1";
+
+
+// Language selection
+
+$arsc_lang["chooseyourlanguage"] = "W&auml;hlen Sie Ihre Sprache:";
+$arsc_lang["next"] = "Weiter";
 
 
 // Login Page

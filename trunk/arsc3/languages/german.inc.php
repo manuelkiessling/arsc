@@ -5,7 +5,7 @@
  a copy to <manuel@kiessling.net>, I will add it to ARSC then.
  Thanks.
 
- This file is for versions 3.0-beta1, 3.0-beta2, 3.0-rc1, 3.0
+ This file is for versions 3.0-beta1, 3.0-beta2, 3.0-rc1, 3.0, 3.0.1
   
  Translation by Manuel Kiessling <manuel@kiessling.net>.
 */

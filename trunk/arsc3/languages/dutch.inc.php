@@ -1,6 +1,14 @@
 <?php
 
-//	Translateded by <peter@vanvoorn.com>
+/*
+ This is an ARSC language file. If you translate it, please send me
+ a copy to <manuel@kiessling.net>, I will add it to ARSC then.
+ Thanks.
+
+ This file is for versions 3.0-beta1, 3.0-beta2, 3.0-rc1, 3.0, 3.0.1
+  
+ Translation by Peter Van Voorn <peter@vanvoorn.com>.
+*/
 
 // Include the english file, in order to provide english text if the current file has some sentences missing.
 include("english.inc.php");
@@ -9,6 +17,12 @@ include("english.inc.php");
 $arsc_lang_regions["dutch"] = array("nl");
 $arsc_lang_name["dutch"] = "Nederlands";
 $arsc_lang["charset"] = "iso-8859-1";
+
+
+// Language selection
+
+$arsc_lang["chooseyourlanguage"] = "";
+$arsc_lang["next"] = "";
 
 
 // Login Page
