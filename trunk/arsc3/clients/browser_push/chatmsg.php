@@ -83,8 +83,21 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
   flush();
   while (!connection_aborted())
   {
-   echo arsc_getmessages($arsc_my["sid"]).$arsc_compatibility_hack;
-   flush();
+   $arsc_messages = arsc_getmessages($arsc_my["sid"]).$arsc_compatibility_hack;
+   if (trim($arsc_messages) == "")
+   {
+    srand((double)microtime()*1000000);
+    if(rand(0, 10) == 0)
+    {
+     echo $arsc_messages;
+     flush();
+    }
+   }
+   else
+   {
+    echo $arsc_messages;
+    flush();
+   }
    usleep(ARSC_PARAMETER_SOCKETSERVER_REFRESH);
   }
  }
