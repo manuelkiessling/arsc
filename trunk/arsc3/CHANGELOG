@@ -1,5 +1,15 @@
 ARSC - ARSC Really Simple Chat - Changelog
 
+- Version 3.0-beta3
+  2005-01-08
+
+  - Added refresh link to queue frame
+  - Added auto-install feature to install script
+  - Install script now detects if ARSC is already installed
+  - Fixed double-posting of user enter note in browser_socket version
+  - Added GNU GPL license
+
+
 - Version 3.0-beta2
   2004-12-29
 
@@ -25,7 +35,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 3.0-beta1
   2004-12-02
-  
+
   - Fixed bug #1073804 (Register page errors)
   - Wrote installation instructions and installation script
   - Added user-specific layouts
@@ -36,7 +46,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 3.0-alpha2
   2004-08-29
-  
+
   - Fixed bug #741494 (/tree/ (or similar) at start of msg loses)
   - Fixed bug #716156 (Use own link identifier for mysql connects)
   - Fixed bug #741938 (Wrong sig separator)
@@ -63,13 +73,13 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 3.0-alpha1
   2004-07-19
-  
+
   - This version was not released to the public, see 3.0-alpha2
 
 
 - Version 2.3
   2003-02-28
-  
+
   - Fixed bug that stopped the server from respondig
     if connected by a client that sends no data.
     Kudos to Markus Fischer!
@@ -77,7 +87,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 2.2
   2003-02-24
-  
+
   - Fixed bug #642257 (closed connections not removed
                        from connection pool)
   - Fixed a bug that caused all users to get kicked out of the chat
@@ -90,7 +100,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 2.1
   2002-11-05
-  
+
   - Added '/rip *' and '/unrip *' (Feature request #630693)
   - Optimized admin page and parameter storage format
   - Added update script for switching from 2.0 to 2.1
@@ -99,7 +109,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 2.0
   2002-11-01
-  
+
   - Fixed bug #574458 (reload ends in mysql-errors)
   - Fixed bug #582946 (broken language support)
   - workaround for bug #631324 (' and " in title of chat cause
@@ -123,14 +133,14 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 1.0.1p1
   2002-03-19
-  
+
   - Fixed a path disclosure vulnerability as reported by
     Ahmet Sabri Alper (salper@olympos.org)
 
 
 - Version 1.0.1
   2001-12-30
-  
+
   - Fixed a bug that could display e.g. the english help for a french
     user
   - For the error "You must register!", a sentence in the language file
@@ -141,7 +151,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 1.0
   2001-12-08
-  
+
   - many changes, I hope I get them together...
   - Fixed many bugs
   - Rewrote the socket server, now it's non-forking
@@ -184,7 +194,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 1.0beta2
   2001-10-01
-  
+
   - Added a socket server
   - Added roomchange
   - Refined timing issues
@@ -199,7 +209,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 1.0beta1
   2001-08-09
-  
+
   - Finally, ARSC features "server push"
   - Added a lynx-friendly version
   - In the two chat versions that use JavaScript, posting
@@ -222,7 +232,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 0.4
   2001-05-11
-  
+
   - Rooms are available
   - Different languages are available and can easily be added.
     Thanks to Miguel Vitorino (mv@i9case.com) for the portuguese
@@ -234,7 +244,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 0.3.1
   2001-04-21
-  
+
   - Fixed a bug that caused a error for users chatting in
     the JavaScript versions while users in the header version
     send the ' character
@@ -248,7 +258,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 0.3
   2001-04-15
-  
+
   - Now JavaScript version runs fine on Opera 5.06b, Linux
   - Added a frame that shows the currently logged in users
   - Cleaned a bug that didn't show messages containing 
@@ -257,12 +267,12 @@ ARSC - ARSC Really Simple Chat - Changelog
 
 - Version 0.2
   2001-04-01
-  
+
   - Corrected a scroll bug
   - Added list of users at login
 
 
 - Version 0.1
   2001-03-18
-  
+
   - ARSC's first release
