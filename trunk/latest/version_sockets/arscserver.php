@@ -1,4 +1,4 @@
-#!/usr/local/php-cgi/4.0.7rc2/bin/php -q
+#!/usr/local/php-cgi/4.0.7RC3/bin/php -q
 <?php
 set_time_limit (0);
 
@@ -93,7 +93,7 @@ do
      socket_write($accepted, $arsc_htmlhead_js, strlen($arsc_htmlhead_js));
      $arsc_sendtime = date("H:i:s");
      $arsc_timeid = my_microtime();
-     include("../shared/language/".find_language($arsc_my["user"]).".inc.php");
+     @include("../shared/language/".find_language($arsc_my["user"]).".inc.php");
      $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang_welcome;
      $arsc_message = filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_my["room"]);
      socket_write($accepted, $arsc_message, strlen($arsc_message));

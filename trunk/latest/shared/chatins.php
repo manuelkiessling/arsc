@@ -36,22 +36,11 @@ if ($arsc_my["level"] >= 0)
  }
  else
  {
-  header("Location: empty.html");
+  header("Location: empty.php");
  }
 }
 else
 {
- ?>
- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
- <html>
-  <head>
-   <title>
-    You are out!
-   </title>
-  </head>
-  <body bgcolor="#DDDDDD">
-  </body>
- </html>
- <?php
+ echo $arsc_htmlhead_out;
 }
 ?>

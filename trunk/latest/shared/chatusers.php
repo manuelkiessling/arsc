@@ -36,16 +36,17 @@ if ($arsc_my = getdatafromsid($arsc_sid))
      <?php echo $arsc_lang_usersinroom." ".nice_room($arsc_room); ?>
     </title>
    </head>
-   <body bgcolor="#DDDDDD">
+   <body bgcolor="<?php echo $arsc_color["userlist_window_background"]; ?>" text="<?php echo $arsc_color["userlist_window_text"]; ?>" link="<?php echo $arsc_color["userlist_window_link"]; ?>" vlink="<?php echo $arsc_color["userlist_window_link"]; ?>" alink="<?php echo $arsc_color["userlist_window_link"]; ?>">
     <font face="Arial" size="2">
      <center>
+      <?php echo $arsc_lang_usersinroom; ?><br>
       <b>
-       <?php echo $arsc_lang_usersinroom; ?><br>
        <i>
         <?php echo nice_room($arsc_room); ?>
        </i>
       </b>
      </center>
+    </font>
      <br>
      <?php
       while ($arsc_a = mysql_fetch_array($arsc_result))
@@ -53,19 +54,23 @@ if ($arsc_my = getdatafromsid($arsc_sid))
        $arsc_opstring = "";
        if ($arsc_a["level"] == 1)
        {
-        $arsc_opstring = "@";
+        $arsc_opstring = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["userlist_window_level1"]."\">@";
        }
-       if ($arsc_a["level"] == 2)
+       elseif ($arsc_a["level"] == 2)
        {
-        $arsc_opstring = "<b>@</b>";
-       }
-       if ($arsc_a["user"] == $arsc_my["user"])
-       {
-        echo "<i>".$arsc_opstring.$arsc_a["user"]."</i><br>\n";
+        $arsc_opstring = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["userlist_window_level2"]."\"><b>@</b>";
        }
        else
        {
-        echo "<a href=\"../version_".$arsc_my["version"]."/chatinput.php?arsc_sid=".$arsc_my["sid"]."&arsc_pretext=".urlencode("/msg ".$arsc_a["user"]." ")."\" target=\"input\">".$arsc_opstring.$arsc_a["user"]."</a><br>\n";
+        $arsc_opstring = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["userlist_window_level0"]."\">";
+       }
+       if ($arsc_a["user"] == $arsc_my["user"])
+       {
+        echo "<i>".$arsc_opstring.$arsc_a["user"]."</i></font><br>\n";
+       }
+       else
+       {
+        echo "<a href=\"../version_".$arsc_my["version"]."/chatinput.php?arsc_sid=".$arsc_my["sid"]."&arsc_pretext=".urlencode("/msg ".$arsc_a["user"]." ")."\" target=\"input\">".$arsc_opstring.$arsc_a["user"]."</a></font><br>\n";
        }
       }
      ?>
@@ -75,33 +80,11 @@ if ($arsc_my = getdatafromsid($arsc_sid))
  }
  else
  {
-  ?>
-  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-  <html>
-   <head>
-    <title>
-     You are out!
-    </title>
-   </head>
-   <body bgcolor="#DDDDDD">
-   </body>
-  </html>
-  <?php
+  echo $arsc_htmlhead_out;
  }
 }
 else
 {
- ?>
-  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-  <html>
-   <head>
-    <title>
-     You are out!
-    </title>
-   </head>
-   <body bgcolor="#DDDDDD">
-   </body>
-  </html>
- <?php
+ echo $arsc_htmlhead_out;
 }
 ?>

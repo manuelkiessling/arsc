@@ -6,16 +6,9 @@ if ($arsc_my = getdatafromsid($arsc_sid))
  include("../shared/language/".find_language($arsc_my["user"]).".inc.php");
  
  if ($arsc_my["level"] >= 0)
-  {
+ {
+  echo $arsc_htmlhead_msginput;
   ?>
-  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-  <html>
-   <head>
-    <title>
-     Chat Input
-    </title>
-   </head>
-   <body bgcolor="#DDDDDD">
     <form action="../shared/chatins.php" METHOD="POST" name="f">
      <input type="hidden" name="arsc_sid" value="<?php echo $arsc_sid; ?>">
      <input type="hidden" name="arsc_chatversion" value="header">
@@ -32,33 +25,11 @@ if ($arsc_my = getdatafromsid($arsc_sid))
  }
  else
  {
-  ?>
-  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-  <html>
-   <head>
-    <title>
-     I am out!
-    </title>
-   </head>
-   <body bgcolor="#DDDDDD">
-   </body>
-  </html>
-  <?php
+  echo $arsc_htmlhead_out;
  }
 }
 else
 {
- ?>
-  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-  <html>
-   <head>
-    <title>
-     You are out!
-    </title>
-   </head>
-   <body bgcolor="#DDDDDD">
-   </body>
-  </html>
- <?php
+ echo $arsc_htmlhead_out;
 }
 ?>

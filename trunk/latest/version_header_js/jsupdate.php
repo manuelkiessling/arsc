@@ -84,7 +84,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
     // -->
     </script>
    </head>
-   <body bgcolor="#FFFFFF">
+   <body bgcolor="<?php echo $arsc_color["msg_window_background"]; ?>">
    </body>
   </html>
   <?php

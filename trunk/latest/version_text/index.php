@@ -114,17 +114,6 @@ if ($arsc_my = getdatafromsid($arsc_sid))
 }
 else
 {
- ?>
-  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-  <html>
-   <head>
-    <title>
-     You are out!
-    </title>
-   </head>
-   <body bgcolor="#DDDDDD">
-   </body>
-  </html>
- <?php
+ echo $arsc_htmlhead_out;
 }
 ?>
