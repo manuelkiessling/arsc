@@ -107,38 +107,35 @@ CREATE TABLE `arsc_parameters` (
   UNIQUE KEY `name` (`name`)
 ) TYPE=MyISAM;
 
-INSERT INTO `arsc_parameters` VALUES ('socketserver_use', 'no', '');
-INSERT INTO `arsc_parameters` VALUES ('socketserver_adress', '', '');
-INSERT INTO `arsc_parameters` VALUES ('socketserver_port', '8080', '');
-INSERT INTO `arsc_parameters` VALUES ('socketserver_maximumusers', '200', '');
-INSERT INTO `arsc_parameters` VALUES ('activate_counter_pic', 'no', '');
-INSERT INTO `arsc_parameters` VALUES ('title', 'ARSC 3.0', '');
-INSERT INTO `arsc_parameters` VALUES ('default_language', 'english', '');
-INSERT INTO `arsc_parameters` VALUES ('allow_textformatting', 'yes', '');
-INSERT INTO `arsc_parameters` VALUES ('smilies', 'yes', '');
-INSERT INTO `arsc_parameters` VALUES ('smilies_path', '', '');
-INSERT INTO `arsc_parameters` VALUES ('socketserver_refresh', '200000', '');
-INSERT INTO `arsc_parameters` VALUES ('register_force', 'no', '');
-INSERT INTO `arsc_parameters` VALUES ('show_version_selection', 'no', '');
-INSERT INTO `arsc_parameters` VALUES ('flood_max', '4', '');
-INSERT INTO `arsc_parameters` VALUES ('first_user_gets_op', 'no', '');
-INSERT INTO `arsc_parameters` VALUES ('keep_sended_message', 'no', '');
-INSERT INTO `arsc_parameters` VALUES ('input_maxsize', '400', '');
-INSERT INTO `arsc_parameters` VALUES ('register_owner', 'Chatadmin', '');
-INSERT INTO `arsc_parameters` VALUES ('register_owner_email', '', '');
-INSERT INTO `arsc_parameters` VALUES ('register_homepage', '', '');
-INSERT INTO `arsc_parameters` VALUES ('ping', '10', '');
-INSERT INTO `arsc_parameters` VALUES ('userlist_refresh', '8', '');
-INSERT INTO `arsc_parameters` VALUES ('ping_text', '600', '');
-INSERT INTO `arsc_parameters` VALUES ('roomlist_refresh', '240', '');
-INSERT INTO `arsc_parameters` VALUES ('rowlimit', '100', '');
-INSERT INTO `arsc_parameters` VALUES ('baseurl', '', '');
-INSERT INTO `arsc_parameters` VALUES ('default_layout_id', '1', '');
-INSERT INTO `arsc_parameters` VALUES ('virtualservers_name', 'srv%.', '');
-INSERT INTO `arsc_parameters` VALUES ('virtualservers_use', 'no', '');
-INSERT INTO `arsc_parameters` VALUES ('welcome_message', '', '');
-INSERT INTO `arsc_parameters` VALUES ('queue_refresh', '10', '');
-INSERT INTO `arsc_parameters` VALUES ('queue_listsize', '5', '');
+INSERT INTO `arsc_parameters` VALUES ('socketserver_use', 'no', 'Do you want to use the socket server? Say <b>yes</b> or <b>no</b>. Please note that the socket server must be running, or your visitors will not be able to log in.');
+INSERT INTO `arsc_parameters` VALUES ('socketserver_adress', '', 'What is the public IP adress or DNS name of the socket server?');
+INSERT INTO `arsc_parameters` VALUES ('socketserver_port', '8080', 'At which port do you want the socket server to listen?');
+INSERT INTO `arsc_parameters` VALUES ('socketserver_maximumusers', '200', 'How many user do you want to allow to connect to the socket server at the most?');
+INSERT INTO `arsc_parameters` VALUES ('refresh', '200000', 'The streaming versions of ARSC (socket_server and browser_push) wait this long before they check for new messages between every pass. This value is in microseconds (1000000 = 1 second). Set higher (300000 - 400000) in order to save system resources, and lower (50000 - 100000) to get faster respond times.');
+INSERT INTO `arsc_parameters` VALUES ('title', 'ARSC Really Simple Chat', 'What is the name of your ARSC installation? This text will be visible on the HTML pages of your installation.');
+INSERT INTO `arsc_parameters` VALUES ('default_language', 'english', 'Which language do you want to set as the default language?');
+INSERT INTO `arsc_parameters` VALUES ('smilies', 'yes', 'Do you want to allow the use of graphical smilies? Say <b>yes</b> or <b>no</b>.');
+INSERT INTO `arsc_parameters` VALUES ('smilies_path', '', 'What is the URL to your smilies directory?');
+INSERT INTO `arsc_parameters` VALUES ('register_force', 'no', 'Do you want to force your visitors to register before they can use your chat? Say <b>yes</b> or <b>no</b>.');
+INSERT INTO `arsc_parameters` VALUES ('flood_max', '4', 'ARSC has some kind of flood protection. This value defines how often a user may successively write the same text. He will then be asked to stop flooding, if he continues, he will get kicked.');
+INSERT INTO `arsc_parameters` VALUES ('first_user_gets_op', 'no', 'Do you want that the first user who enters the chat automatically becomes operator? Say <b>yes</b> or <b>no</b>.');
+INSERT INTO `arsc_parameters` VALUES ('keep_sended_message', 'no', 'Do you want that a message one types into the input field will remain in the input field after the message was sent? Say <b>yes</b> or <b>no</b>.');
+INSERT INTO `arsc_parameters` VALUES ('input_maxsize', '400', 'This value defines how many characters a user is allowed to send in one message.');
+INSERT INTO `arsc_parameters` VALUES ('register_owner', 'ARSC Chat Administrator', 'This name will be used in eMails sent by ARSC (e.g. upon registration).');
+INSERT INTO `arsc_parameters` VALUES ('register_owner_email', '', 'This is the eMail address from which eMails sent by ARSC will originate.');
+INSERT INTO `arsc_parameters` VALUES ('register_homepage', '', 'This is the URL which will be mentioned in eMails sent by ARSC.');
+INSERT INTO `arsc_parameters` VALUES ('ping', '10', 'This value defines after how many seconds a user will be logged out (because he closed his browser window without using the "Exit" link in the chat).');
+INSERT INTO `arsc_parameters` VALUES ('userlist_refresh', '8', 'This value defines after how many seconds the user list frame will be refreshed. Please make sure that this value is never higher as the value defined by "ping".');
+INSERT INTO `arsc_parameters` VALUES ('ping_text', '600', 'This value defines after how many seonds a text-browser user will be logged out if he does not refresh his chat page. Set reasonably high!');
+INSERT INTO `arsc_parameters` VALUES ('roomlist_refresh', '240', 'This value defines after how many seconds the room list frame will be refreshed.');
+INSERT INTO `arsc_parameters` VALUES ('rowlimit', '100', 'This value defines how many entries will be hold in the database table of each room at the most. This is used to void an unlimited grow of the database tables, which would slow things down. Set this higher if you have really many users chatting at the same time.');
+INSERT INTO `arsc_parameters` VALUES ('baseurl', '', 'This is the URL of your installation. Do not change unless you know what you are doing!');
+INSERT INTO `arsc_parameters` VALUES ('default_layout_id', '1', 'The ID of the layout which will be used as the default.');
+INSERT INTO `arsc_parameters` VALUES ('virtualservers_name', 'srv%.', 'The subdomain prefix for virtual servers.');
+INSERT INTO `arsc_parameters` VALUES ('virtualservers_use', 'no', 'Do you want to use virtual servers? Say <b>yes</b> or <b>no</b>. Read about virtual servers in the manual!');
+INSERT INTO `arsc_parameters` VALUES ('welcome_message', '', 'This message is shown to every user upon login.');
+INSERT INTO `arsc_parameters` VALUES ('queue_refresh', '10', 'This value is the time in seconds after which the Message Queue (in moderated rooms, visible only to Moderators and VIPs) will be refreshed.');
+INSERT INTO `arsc_parameters` VALUES ('queue_listsize', '5', 'The number of entries which are shown in the Message Queue frame at the most.');
 
 CREATE TABLE `arsc_registered_users` (
   `id` int(11) NOT NULL auto_increment,
