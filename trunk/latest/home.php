@@ -22,7 +22,7 @@ $arsc_result = mysql_query("SELECT user from arsc_users");
   <?php
   if ($arsc_param["activate_counter_pic"] == "yes")
   {
-   <?
+   ?>
    <img src="http://manuel.kiessling.net/arsccounter.php" width="1" height="1" border="0" alt=" "><br>
    <?php
   }
