@@ -11,5 +11,8 @@
    Thanks!
   </h2>
   You should now see your installation listed <a href="http://manuel.kiessling.net/projects/software/arsc/refererlist.php" title="Where is ARSC used?">here</a>.
+  <br>
+  <br>
+  To proceed installation, go to the <a href="admin/">Admin page</a>.
  </body>
 </html>
