@@ -1,5 +1,7 @@
 <?php
 
+/* Attention, bad coding style ahead... */
+
 include("../inc/config.inc.php");
 include("../inc/init.inc.php");
 
