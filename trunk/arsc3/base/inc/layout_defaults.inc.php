@@ -22,9 +22,10 @@ if (ARSC_PARAMETER_SOCKETSERVER_USE == "yes")
 ';
 }
 $arsc_selected = "";
-if(eregi("Lynx|w3m|links", $_SERVER["HTTP_USER_AGENT"])) $arsc_selected = " selected";
+if(eregi("Lynx|w3m|links", $_SERVER["HTTP_USER_AGENT"])) $arsc_textselected = " selected";
+if(eregi("Safari|Konquerer|OmniWeb", $_SERVER["HTTP_USER_AGENT"])) $arsc_pushselected = " selected";
 $arsc_layout["chatversion_selection"] .= '
- <option value="browser_push">'.$arsc_lang["version_browser_push"].'</option>
+ <option value="browser_push"'.$arsc_selected.'>'.$arsc_lang["version_browser_push"].'</option>
  <option value="browser_text"'.$arsc_selected.'>'.$arsc_lang["version_browser_text"].'</option>
 </select>
 ';
