@@ -51,6 +51,8 @@ if (mysql_query("CREATE TABLE arsc_bannlist
                   flag_ripped tinyint(4) NOT NULL default '0',
                   sid varchar(32) NOT NULL default '',
                   lastmessageping bigint(20) NOT NULL default '0',
+                  flood_count tinyint(4) NOT NULL default '0',
+                  flood_lastmessage text NOT NULL,
                   PRIMARY KEY  (id),
                   KEY lastping (lastping),
                   KEY user (user)
@@ -62,7 +64,7 @@ if (mysql_query("CREATE TABLE arsc_bannlist
 }
 else
 {
- echo "Something went wrong. You can mail me, maybe I can help you: <a href=\"mailto:manuel@kiessling.net\">manuel@kiessling.net</a>.";
+ echo "Something went wrong. Please check if MySQL is running and if the database '{$arsc_param["db_db"]}' exists!<br>You can mail me, maybe I can help you: <a href=\"mailto:manuel@kiessling.net\">manuel@kiessling.net</a>.";
 }
 
 ?>
