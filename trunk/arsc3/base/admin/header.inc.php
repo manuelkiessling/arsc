@@ -24,20 +24,17 @@
     <td width="10%" bgcolor="#FFFFFF"><font size="1">&nbsp;</font></td>
     <td width="90%">
      <font face="Verdana, Arial" size="1">
-      <?php
-      if (!strstr($PHP_SELF, "index.php"))
-      {
-       ?>
-       <a href="parameters.php"><font color="#EEEEEE">Parameters</font></a>
-       <a href="smilies.php"><font color="#EEEEEE">Smilies</font></a>
-       <a href="templates.php"><font color="#EEEEEE">Templates</font></a>
-       <a href="layouts.php"><font color="#EEEEEE">Layouts</font></a>
-       <a href="users.php"><font color="#EEEEEE">Users</font></a>
-       <a href="rooms.php"><font color="#EEEEEE">Rooms</font></a>
-       <a href="levels.php"><font color="#EEEEEE">Level Right Management</font></a>
-       <?php
-      }
-      ?>
+      <a href="parameters.php"><font color="#EEEEEE">Parameters</font></a>
+      <a href="smilies.php"><font color="#EEEEEE">Smilies</font></a>
+      <a href="templates.php"><font color="#EEEEEE">Templates</font></a>
+      <a href="layouts.php"><font color="#EEEEEE">Layouts</font></a>
+      <a href="users.php"><font color="#EEEEEE">Users</font></a>
+      <a href="rooms.php"><font color="#EEEEEE">Rooms</font></a>
+      <a href="levels.php"><font color="#EEEEEE">Level Right Management</font></a>
+      &nbsp;&nbsp;&nbsp;
+      <b>
+       <a href="http://sourceforge.net/forum/forum.php?forum_id=102858" target="_blank"><font color="#EEEEEE">ARSC help forum</font></a>
+      </b>
      </font>
     </td>
    </tr>
