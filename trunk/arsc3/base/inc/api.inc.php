@@ -18,7 +18,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
 
  function getUserValuesBySID($sid)
  {
-  if ($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, layout, level, flag_ripped, sid, lastmessageping FROM arsc_users WHERE sid = '$sid'", ARSC_PARAMETER_DB_LINK))
+  if ($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, layout, level, flag_ripped, sid, lastmessageping, showsince FROM arsc_users WHERE sid = '$sid'", ARSC_PARAMETER_DB_LINK))
   {
    return mysql_fetch_array($result);
   }
@@ -30,7 +30,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
 
  function getUserValuesByName($name)
  {
-  if ($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, level, flag_ripped, sid, lastmessageping FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
+  if ($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, layout, level, flag_ripped, sid, lastmessageping, showsince FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
   {
    return mysql_fetch_array($result);
   }
@@ -112,6 +112,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
                                                         message text NOT NULL,
                                                         user varchar(64) NOT NULL default '',
                                                         flag_ripped tinyint(4) NOT NULL default '0',
+							flag_gotmsg tinyint(4) NOT NULL default '0',
                                                         flag_moderated tinyint(4) NOT NULL default '0',
                                                         sendtime time NOT NULL default '00:00:00',
                                                         timeid bigint(20) NOT NULL default '0',
@@ -167,20 +168,21 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   $disallowed = "/[^a-zA-Z0-9_]/";
   $replacement = "";
   $room = preg_replace($disallowed, $replacement, $room);
-  if($room == "") $room = "";
+  if(trim($room) == "") $room = "";
   return(substr($room, 0, 32));
  }
 
  function getReadableRoomlist()
  {
-  $result = mysql_query("SELECT roomname_nice, owner FROM arsc_rooms ORDER BY owner", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_query("SELECT roomname, roomname_nice, owner FROM arsc_rooms ORDER BY owner", ARSC_PARAMETER_DB_LINK);
   while ($a = mysql_fetch_array($result))
   {
    if ($a["owner"] == -1)
    {
-    $return[] = $a["roomname_nice"];
+    $return[$a["roomname"]] = $a["roomname_nice"];
    }
   }
+  reset($return);
   return($return);
  }
 
@@ -295,7 +297,16 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   mysql_query("DELETE FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK);
   return TRUE;
  }
- 
+
+ function removeUserFromRoom($my)
+ {
+  if ($my["user"] <> "")
+  {
+   mysql_query("DELETE FROM arsc_users WHERE sid = '".mysql_escape_string($my["sid"])."'", ARSC_PARAMETER_DB_LINK);
+   mysql_query("INSERT INTO arsc_room_".mysql_escape_string($my["room"])." (message, user, sendtime, timeid) VALUES ('".mysql_escape_string("arsc_user_quit~~".$my["user"]."~~".$this->getReadableRoomname($my["room"]))."', 'System', '".mysql_escape_string(date("H:i:s"))."', '".mysql_escape_string(arsc_microtime())."')", ARSC_PARAMETER_DB_LINK);
+  }
+ }
+
  function getTemplate($template)
  {
   $result = mysql_query("SELECT name, value FROM arsc_templates WHERE template = '$template'", ARSC_PARAMETER_DB_LINK);
@@ -306,14 +317,14 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   return $return;
  }
 
- function getMessages($since, $room, $template)
+ function getMessages($since, $room, $template, $sort = "ASC")
  {
   $template_varname = "arsc_template_".$template;
   GLOBAL $$template_varname, $arsc_my;
-  $result = mysql_query("SELECT message, user, flag_ripped, flag_moderated, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." WHERE timeid > '$since' ORDER BY timeid ASC, id ASC", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_query("SELECT message, user, flag_ripped, flag_gotmsg, flag_moderated, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." WHERE timeid > '$since' ORDER BY timeid ".mysql_escape_string($sort).", id ".mysql_escape_string($sort), ARSC_PARAMETER_DB_LINK);
   while ($a = mysql_fetch_array($result))
   {
-   $message .= arsc_filter_posting($a["user"], $a["sendtime"], str_replace("\n", "#ret#", $a["message"]), $room, $a["flag_ripped"], $a["flag_moderated"], $$template_varname);
+   $message .= arsc_filter_posting($a["user"], $a["sendtime"], str_replace("\n", "#ret#", $a["message"]), $room, $a["flag_ripped"], $a["flag_gotmsg"], $a["flag_moderated"], $$template_varname);
    $return[1] = $a["timeid"];
   }
   $return[0] = $message;
@@ -421,9 +432,9 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  function deleteIdleUsers()
  {
   $timebuffer = time() - ARSC_PARAMETER_PING;
-  mysql_query("DELETE FROM arsc_users WHERE (lastping < '$timebuffer' AND version <> 'text')", ARSC_PARAMETER_DB_LINK);
+  mysql_query("DELETE FROM arsc_users WHERE (lastping < '$timebuffer' AND version <> 'browser_text')", ARSC_PARAMETER_DB_LINK);
   $timebuffer = time() - ARSC_PARAMETER_PING_TEXT;
-  mysql_query("DELETE FROM arsc_users WHERE lastping < '$timebuffer' AND version = 'text'", ARSC_PARAMETER_DB_LINK);
+  mysql_query("DELETE FROM arsc_users WHERE lastping < '$timebuffer' AND version = 'browser_text'", ARSC_PARAMETER_DB_LINK);
  }
  
  function addTraffic($direction, $bytes)
@@ -479,7 +490,19 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   $a = mysql_fetch_array($result);
   while (list($key, $val) = each($a))
   {
-   if (!is_numeric($key) && !strstr("template_", $key)) $arsc_layout[$key] = $val;
+   if (!is_numeric($key) && !strstr("template_", $key))
+   {
+    if($val == "<%use_default_layout%>")
+    {
+     $query2 = mysql_query("SELECT ".$key." FROM arsc_layouts WHERE id = ".ARSC_PARAMETER_DEFAULT_LAYOUT_ID, ARSC_PARAMETER_DB_LINK);
+     $result2 = mysql_fetch_array($query2);
+     $arsc_layout[$key] = $result2[$key];
+    }
+    else
+    {
+     $arsc_layout[$key] = $val;
+    }
+   }
   }
   return $arsc_layout;
  }
@@ -507,6 +530,12 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   $result = mysql_query("SELECT template_".$name." FROM arsc_layouts WHERE id = ".$layout_id, ARSC_PARAMETER_DB_LINK);
   $a = mysql_fetch_array($result);
   $template = $a["template_".$name];
+  if($template == "<%use_default_layout%>")
+  {
+   $query2 = mysql_query("SELECT template_".$name." FROM arsc_layouts WHERE id = ".ARSC_PARAMETER_DEFAULT_LAYOUT_ID, ARSC_PARAMETER_DB_LINK);
+   $result2 = mysql_fetch_array($query2);
+   $template = $result2["template_".$name];
+  }
   if (is_array($arsc_my))
   {
    while (list($key, $val) = each($arsc_my))
@@ -520,7 +549,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
    if (ereg("ARSC_PARAMETER_", $key))
    {
     $key = strtolower(str_replace("ARSC_PARAMETER_", "", $key));
-    $template = ereg_replace("<%parameters_".$key."%>", $val, $template);
+    $template = ereg_replace("<%parameter_".$key."%>", $val, $template);
    }
   }
   if (is_array($arsc_lang))
