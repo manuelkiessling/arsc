@@ -88,7 +88,7 @@ function arsc_nice_room($arsc_room)
  return $arsc_room;
 }
 
-// This function returns the "real" roomname
+// This function returns the internal roomname
 function arsc_denice_room($arsc_room)
 {
  $arsc_room = str_replace(" / ", "__", $arsc_room);
