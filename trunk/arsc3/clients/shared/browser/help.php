@@ -15,12 +15,12 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
  $arsc_layout = $arsc_api->getBasicLayoutValues();
  // FIXME: Use Layout, not hardcoded HTML
  ?>
- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
  <html>
   <head>
    <title>
     <?php echo $arsc_lang["helplink"]." - ".ARSC_PARAMETER_TITLE; ?>
    </title>
+   <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $arsc_lang["charset"]; ?>">
   </head>
   <body text="<?php echo $arsc_layout["default_font_color"]; ?>" link="<?php echo $arsc_layout["default_font_color"]; ?>" vlink="<?php echo $arsc_layout["default_font_color"]; ?>" bgcolor="<?php echo $arsc_layout["default_background_color"]; ?>">
    <div align="justify">
