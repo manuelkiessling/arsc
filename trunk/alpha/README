@@ -3,3 +3,8 @@ created by bigmweb
 I will be putting the new code I've written in this directory.
 I'm new to cvs, so I hope this works. I'm also new to working
 with others as well. Bear with me, please.
+
+Note that this is a rewrite of major functions, so it's not
+going to work until all code reflects these changes. You will
+not be able to plug this code into the current version and
+expect it to work.
