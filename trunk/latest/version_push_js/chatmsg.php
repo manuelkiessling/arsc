@@ -1,6 +1,6 @@
 <?php
 
-function shutdown()
+function arsc_shutdown()
 {
  GLOBAL $arsc_sid,
         $arsc_my;
@@ -16,7 +16,7 @@ function shutdown()
  }
 }
 
-register_shutdown_function("shutdown");
+register_shutdown_function("arsc_shutdown");
 
 include ("../config.inc.php");
 if ($arsc_my = getdatafromsid($arsc_sid))
