@@ -4,8 +4,8 @@ include("inc/config.inc.php");
 include("inc/init.inc.php");
 include("inc/functions.inc.php");
 include("inc/inputvalidation.inc.php");
-$arsc_link = arsc_validateinput($_GET["arsc_link"], NULL, NULL, 0, ARSC_PARAMETER_USERINPUTMAXLENGTH, __FILE__, __LINE__);
 
+$arsc_link = arsc_validateinput($_GET["arsc_link"], NULL, NULL, 0, ARSC_PARAMETER_USERINPUTMAXLENGTH, __FILE__, __LINE__);
 if($arsc_link == "") die();
 
 ?>
