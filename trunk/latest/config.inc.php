@@ -9,7 +9,7 @@
 
   Here are stored the parameters you definitely have to change to
   get things running so you can at least use the 'install.php' script
-  (you already read the README file, right?). A second part allows
+  (you already read the INSTALL file, right?). A second part allows
   fine tuning of your installation, this is done with a web interface.
 
 */
@@ -38,7 +38,7 @@
 
 //  Finally, in which database will you store the ARSC tables?
 //  This database must exist before you use the 'install.php' script,
-//  but of course you know this because you read the README file...
+//  but of course you know this because you read the INSTALL file...
 
     $arsc_parameters["db_db"] = "arsc";
 
@@ -49,7 +49,7 @@
 
 /*
 
-  Refer to the README file to see what to do next.
+  Refer to the INSTALL file to see what to do next.
 
 */
 
