@@ -54,7 +54,7 @@
 //  What is the DNS or IP adress of the machine running this socket
 //  server as seen from 'outside', from the real, big, bad internet?
 
-    $arsc_param["socketserver_adress"] = "194.231.30.146";
+    $arsc_param["socketserver_adress"] = "195.261.40.144";
 
 
 //  Which port do you want that socket server listen at?
@@ -236,9 +236,9 @@
 
 //  This appears in the eMail send for registration
 
-    $arsc_param["register_owner"]       = "Manuel Kiessling";
-    $arsc_param["register_owner_email"] = "manuel@kiessling.net";
-    $arsc_param["register_homepage"]    = "http://manuel.kiessling.net/arsc/index.php";
+    $arsc_param["register_owner"]       = "Your Name";
+    $arsc_param["register_owner_email"] = "your@email.dom";
+    $arsc_param["register_homepage"]    = "http://www.mydomain.com/arsc/";
 
 
 //  How long do we wait for a users 'ping'?
