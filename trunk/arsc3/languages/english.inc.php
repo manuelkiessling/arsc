@@ -185,7 +185,7 @@ users, and take away their operator status.
 If you click on a name on the right, the input
 field will be filled with the command that is
 neccessary to send a private message to this user.
-You must only append your message to the end
+You only have to append your message to the end
 of the command line.
 
 General Commands:
