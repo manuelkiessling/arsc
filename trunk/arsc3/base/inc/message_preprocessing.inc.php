@@ -9,7 +9,7 @@ function arsc_message_preprocessing($message, $roomname = "", $roomtype = 1)
   Don't forget to return the $message, or the whole chat will not work!
  */
  
- // Change URLs to HTML links, but not in moderated rooms:
+ // Change URLs to HTML links, but not in moderated rooms, and use the De-Referer:
  if($roomtype <> ARSC_ROOMTYPE_MODERATED)
  {
   $message = preg_replace("#(^|[^\"=]{1})(http://|https://|ftp://|mailto:|news:)([^\s<>]+)([\s\n<>]|$)#sm",
