@@ -11,7 +11,7 @@ function arsc_showgb($admin)
   ?>
    <tr bgcolor="<?php echo $arsc_layout["default_foreground_color"]; ?>">
     <td>
-     <font face="<?php echo $arsc_layout["default_font_face"]; ?>" size="<?php echo $arsc_layout["default_font_size"]; ?>" color="#<?php echo $arsc_layout["default_font_color"]; ?>">
+     <font face="<?php echo $arsc_layout["default_font_face"]; ?>" size="<?php echo $arsc_layout["default_font_size"]; ?>" color="<?php echo $arsc_layout["default_font_color"]; ?>">
       <?php
       if ($admin == TRUE)
       {

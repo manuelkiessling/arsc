@@ -32,10 +32,10 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
    //-->
    </script>
   </head>
-  <body text="#FFFFFF" link="#EEEEEE" vlink="#DDDDDD" bgcolor="<?php echo $arsc_layout["default_background_color"]; ?>">
+  <body text="<?php echo $arsc_layout["default_font_color"]; ?>" link="<?php echo $arsc_layout["default_font_color"]; ?>" vlink="<?php echo $arsc_layout["default_font_color"]; ?>" bgcolor="<?php echo $arsc_layout["default_background_color"]; ?>">
    <form action="save.php" method="POST">
     <input type="hidden" name="arsc_sid" value="<?php echo $arsc_my["sid"]; ?>">
-    <font face="<?php echo $arsc_layout["default_font_face"]; ?>" size="<?php echo $arsc_layout["default_font_size"]; ?>" color="#<?php echo $arsc_layout["default_font_color"]; ?>">
+    <font face="<?php echo $arsc_layout["default_font_face"]; ?>" size="<?php echo $arsc_layout["default_font_size"]; ?>" color="<?php echo $arsc_layout["default_font_color"]; ?>">
      <font color="#FF0000">
       <b>
        <?php echo $arsc_message; ?>
@@ -87,12 +87,12 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
       ?>
      </b>
      <input type="radio" name="arsc_save_flag_guestbook" value="1" <?php if ($arsc_a["flag_guestbook"] == 1) { ?>checked<?php } ?>>
-     <font face="<?php echo $arsc_layout["default_font_face"]; ?>" size="<?php echo $arsc_layout["default_font_size"]; ?>" color="#<?php echo $arsc_layout["default_font_color"]; ?>">
+     <font face="<?php echo $arsc_layout["default_font_face"]; ?>" size="<?php echo $arsc_layout["default_font_size"]; ?>" color="<?php echo $arsc_layout["default_font_color"]; ?>">
       <?php echo $arsc_lang["yes"]; ?>
      </font>
      &nbsp;
      <input type="radio" name="arsc_save_flag_guestbook" value="0" <?php if ($arsc_a["flag_guestbook"] == 0) { ?>checked<?php } ?>>
-     <font face="<?php echo $arsc_layout["default_font_face"]; ?>" size="<?php echo $arsc_layout["default_font_size"]; ?>" color="#<?php echo $arsc_layout["default_font_color"]; ?>">
+     <font face="<?php echo $arsc_layout["default_font_face"]; ?>" size="<?php echo $arsc_layout["default_font_size"]; ?>" color="<?php echo $arsc_layout["default_font_color"]; ?>">
       <?php echo $arsc_lang["no"]; ?>
      </font>
      <br>
