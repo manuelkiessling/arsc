@@ -3,8 +3,10 @@
 include("../../../base/inc/config.inc.php");
 include("../../../base/inc/init.inc.php");
 include("../../../base/inc/functions.inc.php");
-include("../../../base/inc/inputvalidation.inc.php");
 include("../../../base/inc/api.inc.php");
+include("../../../base/inc/inputvalidation.inc.php");
+
+include("../../../base/inc/message_preprocessing.inc.php");
 
 include("../../../base/inc/message_preprocessing.inc.php");
 

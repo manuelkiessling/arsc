@@ -4,12 +4,15 @@ include("../../../../base/inc/config.inc.php");
 include("../../../../base/inc/init.inc.php");
 include("../../../../base/inc/functions.inc.php");
 include("../../../../base/inc/api.inc.php");
+include("../../../../base/inc/inputvalidation.inc.php");
 include("functions.inc.php");
 
 $arsc_api = new arsc_api_Class;
+$arsc_message = arsc_validateinput(htmlentities($_POST["arsc_message"], ENT_NOQUOTES), NULL, "/[^a-zA-Z0-9_\/\&\.;,\- ]/", 0, ARSC_PARAMETER_INPUT_MAXSIZE);
 
-if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
+if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40)))
 {
+ $arsc_user = arsc_validateinput($_GET["arsc_user"], $arsc_api->getSimpleUserlist($arsc_my["room"]), NULL, 1, 64);
  $arsc_api->userIsValid($arsc_my["user"]);
  include("../../../../languages/".$arsc_my["language"].".inc.php");
  $arsc_layout = $arsc_api->getBasicLayoutValues();
@@ -106,7 +109,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
       if ($arsc_gbls > 0)
       {
        ?>
-       <a href="view.php?arsc_sid=<?php echo $arsc_sid; ?>&arsc_user=<?php echo $arsc_user; ?>&arsc_gbls=<?php echo $arsc_gbls - 5; ?>"><?php echo $arsc_lang["idcard_guestbook_prev"]; ?></a>&nbsp;
+       <a href="view.php?arsc_sid=<?php echo $arsc_my["sid"]; ?>&arsc_user=<?php echo $arsc_user; ?>&arsc_gbls=<?php echo $arsc_gbls - 5; ?>"><?php echo $arsc_lang["idcard_guestbook_prev"]; ?></a>&nbsp;
        <?php
       }
       $arsc_result = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_guestbooks WHERE link_user = '$arsc_id'", ARSC_PARAMETER_DB_LINK);
@@ -114,14 +117,14 @@ if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
       if ($arsc_a["cnt"] > $arsc_gbls + 5)
       {
        ?>
-       <a href="view.php?arsc_sid=<?php echo $arsc_sid; ?>&arsc_user=<?php echo $arsc_user; ?>&arsc_gbls=<?php echo $arsc_gbls + 5; ?>"><?php echo $arsc_lang["idcard_guestbook_next"]; ?></a>
+       <a href="view.php?arsc_sid=<?php echo $arsc_my["sid"]; ?>&arsc_user=<?php echo $arsc_user; ?>&arsc_gbls=<?php echo $arsc_gbls + 5; ?>"><?php echo $arsc_lang["idcard_guestbook_next"]; ?></a>
        <?php
       }
       ?>
       <br>
       <a name="arsc_add"></a>
       <form action="add.php" method="POST">
-       <input type="hidden" name="arsc_sid" value="<?php echo $arsc_sid; ?>">
+       <input type="hidden" name="arsc_sid" value="<?php echo $arsc_my["sid"]; ?>">
        <input type="hidden" name="arsc_user" value="<?php echo $arsc_user; ?>">
        <textarea name="arsc_text" rows="8" cols="18" wrap="virtual"></textarea>
        <br>

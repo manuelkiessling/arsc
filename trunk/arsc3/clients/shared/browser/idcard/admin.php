@@ -4,11 +4,13 @@ include("../../../../base/inc/config.inc.php");
 include("../../../../base/inc/init.inc.php");
 include("../../../../base/inc/functions.inc.php");
 include("../../../../base/inc/api.inc.php");
+include("../../../../base/inc/inputvalidation.inc.php");
 include("functions.inc.php");
 
 $arsc_api = new arsc_api_Class;
+$arsc_message = arsc_validateinput(htmlentities($_POST["arsc_message"], ENT_NOQUOTES), NULL, "/[^a-zA-Z0-9_\/\&\.;,\- ]/", 0, ARSC_PARAMETER_INPUT_MAXSIZE);
 
-if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
+if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40)))
 {
  $arsc_api->userIsValid($arsc_my["user"]);
  include("../../../../languages/".$arsc_my["language"].".inc.php");
@@ -25,14 +27,14 @@ if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
    <!--
     function idcard(arsc_user)
     {
-     window.open('index.php?arsc_sid=<?php echo $arsc_sid; ?>&arsc_user=' + arsc_user, '<?php echo rand(); ?>', 'toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=300,height=500');
+     window.open('index.php?arsc_sid=<?php echo $arsc_my["sid"]; ?>&arsc_user=' + arsc_user, '<?php echo rand(); ?>', 'toolbar=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=300,height=500');
     }
    //-->
    </script>
   </head>
   <body text="#FFFFFF" link="#EEEEEE" vlink="#DDDDDD" bgcolor="<?php echo $arsc_layout["default_background_color"]; ?>">
    <form action="save.php" method="POST">
-    <input type="hidden" name="arsc_sid" value="<?php echo $arsc_sid; ?>">
+    <input type="hidden" name="arsc_sid" value="<?php echo $arsc_my["sid"]; ?>">
     <font face="<?php echo $arsc_layout["default_font_face"]; ?>" size="<?php echo $arsc_layout["default_font_size"]; ?>" color="#<?php echo $arsc_layout["default_font_color"]; ?>">
      <font color="#FF0000">
       <b>
@@ -119,7 +121,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
        if ($arsc_gbls > 0)
        {
         ?>
-        <a href="admin.php?arsc_sid=<?php echo $arsc_sid; ?>&arsc_gbls=<?php echo $arsc_gbls - 5; ?>"><?php echo $arsc_lang["idcard_guestbook_prev"]; ?></a>&nbsp;
+        <a href="admin.php?arsc_sid=<?php echo $arsc_my["sid"]; ?>&arsc_gbls=<?php echo $arsc_gbls - 5; ?>"><?php echo $arsc_lang["idcard_guestbook_prev"]; ?></a>&nbsp;
         <?php
        }
        $arsc_result = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_guestbooks WHERE link_user = '$arsc_id'", ARSC_PARAMETER_DB_LINK);
@@ -127,7 +129,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
        if ($arsc_a["cnt"] > $arsc_gbls + 5)
        {
         ?>
-        <a href="admin.php?arsc_sid=<?php echo $arsc_sid; ?>&arsc_gbls=<?php echo $arsc_gbls + 5; ?>"><?php echo $arsc_lang["idcard_guestbook_next"]; ?></a>
+        <a href="admin.php?arsc_sid=<?php echo $arsc_my["sid"]; ?>&arsc_gbls=<?php echo $arsc_gbls + 5; ?>"><?php echo $arsc_lang["idcard_guestbook_next"]; ?></a>
         <?php
        }
        ?>

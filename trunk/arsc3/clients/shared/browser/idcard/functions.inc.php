@@ -2,7 +2,7 @@
 
 function arsc_showgb($admin)
 {
- GLOBAL $arsc_gbls, $arsc_id, $arsc_a, $arsc_smilies, $arsc_layout, $arsc_api, $arsc_lang, $arsc_sid;
+ GLOBAL $arsc_gbls, $arsc_id, $arsc_a, $arsc_smilies, $arsc_layout, $arsc_api, $arsc_lang, $arsc_my;
  if ($arsc_gbls == "") $arsc_gbls = 0;
  $arsc_id = $arsc_a["id"];
  $arsc_result = mysql_query("SELECT id, date, author, text FROM arsc_guestbooks WHERE link_user = '$arsc_id' ORDER BY date DESC, id DESC LIMIT $arsc_gbls, 5", ARSC_PARAMETER_DB_LINK);
@@ -16,7 +16,7 @@ function arsc_showgb($admin)
       if ($admin == TRUE)
       {
        ?>
-       <a href="delete.php?arsc_gbid=<?php echo $arsc_a["id"]; ?>&arsc_sid=<?php echo $arsc_sid; ?>"><?php echo $arsc_lang["idcard_guestbook_delete"]; ?></a>
+       <a href="delete.php?arsc_gbid=<?php echo $arsc_a["id"]; ?>&arsc_sid=<?php echo $arsc_my["sid"]; ?>"><?php echo $arsc_lang["idcard_guestbook_delete"]; ?></a>
        <?php
       }
       ?>
@@ -39,7 +39,6 @@ function arsc_showgb($admin)
       </font>
       <hr size="1" noshade>
       <?php
-      $arsc_a["text"] = stripslashes(htmlspecialchars($arsc_a["text"]));
       if (ARSC_PARAMETER_SMILIES == "yes" AND $arsc_api->checkCommandAllowed($arsc_my["level"], "smilies"))
       {
        reset($arsc_smilies);

@@ -16,7 +16,7 @@ $arsc_layout["room_selection"] = '
 $arsc_roomlist = $this->getInternalRoomlist();
 while (list($arsc_key, $arsc_val) = each($arsc_roomlist))
 {
- $arsc_userlist = $this->getSimpleUserlist($arsc_val);
+ $arsc_userlist = $this->getSimpleUserlistWithRights($arsc_val);
  if (is_array($arsc_userlist))
  {
   while (list($arsc_keyu, $arsc_valu) = each($arsc_userlist))
@@ -127,7 +127,7 @@ if ($arsc_current["user_got_kicked"] == 1)
  $arsc_layout["kickuser_script"] = '
 <script language="JavaScript">
 <!--
- top.location.href = "'.ARSC_PARAMETER_BASEURL.'base/why.php?arsc_language='.$arsc_language.'";
+ top.location.href = "'.ARSC_PARAMETER_BASEURL.'base/why.php?arsc_language='.arsc_validateinput($_GET["arsc_language"], $arsc_available_languages).'";
 //-->
 </script>
 ';
@@ -154,7 +154,7 @@ else $arsc_layout["idcard_script"] = '';
 if ($this->checkCommandAllowed($arsc_my["level"], "userlist"))
 {
  $arsc_layout["userlist"] = '<table width="100%">';
- $arsc_userlist = $this->getSimpleUserlist($arsc_my["room"]);
+ $arsc_userlist = $this->getSimpleUserlistWithRights($arsc_my["room"]);
  if (is_array($arsc_userlist))
  {
   reset($arsc_userlist);
@@ -216,6 +216,7 @@ if ($this->checkCommandAllowed($arsc_my["level"], "userlist"))
      // DeOP
      if ($this->checkCommandAllowed($arsc_my["level"], "deop")) $arsc_layout["userlist"] .= "<a href=\"chatins.php?arsc_sid=".$arsc_my["sid"]."&arsc_message=".urlencode("/deop ".$arsc_key."")."&arsc_chatversion=".$arsc_my["version"]."\" target=\"empty\" title=\"".$arsc_lang["opcmd_d"]."\">D</a> ";
      // Move
+     // FIXME: This doesn't work - results in 404.
      if ($this->checkCommandAllowed($arsc_my["level"], "move")) $arsc_layout["userlist"] .= "<a href=\"../../".$arsc_my["version"]."/chatinput.php?arsc_sid=".$arsc_my["sid"]."&arsc_pretext=".urlencode("/move ".$arsc_key."")." room\" target=\"input\" title=\"".$arsc_lang["opcmd_m"]."\">M</a>";
      $arsc_layout["userlist"] .= "</font> ";
     }

@@ -1,6 +1,6 @@
 <?php
 
-class arsc_api_Class
+class arsc_api_Class // FIXME: All SQL queries must come here one day.
 {
 
  function getUserValuesBySID($sid)
