@@ -123,7 +123,7 @@ $arsc_lang["idcard_close"]               = "Close";
 // Chat System Messages
 
 $arsc_lang["enter"]               = "User {user} enters the room {room}.";
-$arsc_lang["welcome"]             = "Welcome to our chatroom!";
+$arsc_lang["welcome"]             = "Welcome to {title}!";
 $arsc_lang["quit"]                = "User {user} leaves the room {room}.";
 $arsc_lang["roomchange"]          = "User {user} leaves the room {room1} and enters room {room2}.";
 $arsc_lang["kicked"]              = "User {userpassive} was kicked out of the chat by {useractive}.";
