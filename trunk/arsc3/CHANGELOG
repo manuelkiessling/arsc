@@ -1,5 +1,28 @@
 ARSC - ARSC Really Simple Chat - Changelog
 
+- Version 3.0-beta2
+  2004-12-27
+
+  - Added browser_socket version
+  - Added browser_text version
+  - Refined install script
+  - Added new moderation system with a two-leveled message queue
+  - Improved language selection page, which now auto-detects the
+    language preferred by the user (if provided by the browser)
+  - Added charset option to language files in order to provide the
+    correct encoding
+  - Refined the default layout
+  - Wrote sha1() wrapper function for pre 4.3.0 PHP installations
+  - Disabled log-to-file for safe_mode PHP installations
+  - Disabled set_time_limit() in browser_push version if safe_mode is on
+  - Added ARSC_INSTALLATIONID which provides unique logfile names for
+    multiple installations on the same server
+  - Ships now with additional room 'InRoomChat' and 'Display' user,
+    which allows for a fast and easy setup of a digital backchannel
+  - Added definable welcome message to parameters
+  - Added CREDITS file
+
+
 - Version 3.0-beta1
   2004-12-02
   
@@ -41,7 +64,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 - Version 3.0-alpha1
   2004-07-19
   
-  - This version was not released to the public, see 3.0-alpha2.
+  - This version was not released to the public, see 3.0-alpha2
 
 
 - Version 2.3
@@ -92,7 +115,7 @@ ARSC - ARSC Really Simple Chat - Changelog
     to install script
   - Switched from file based to MySQL-based configuration
   - Added administrator page
-  - Cleaned code, removed unnecessary function calls
+  - Cleaned up code, removed unnecessary function calls
   - New languages included: czech, dutch, greek, hungarian,
     italian, polski, slovak, turkish
   - Redesigned count mechanism
@@ -147,9 +170,9 @@ ARSC - ARSC Really Simple Chat - Changelog
   - Operators have a more comfortable userlist with links
     to functions like /kick, /bann etc.
   - New commands:
-    - /userlist (show a list of all users in the room)
-    - /roomlist (show a list of all rooms)
-    - /smilies show available smilies and how to create them
+    - /userlist (shows a list of all users in the room)
+    - /roomlist (shows a list of all rooms)
+    - /smilies shows available smilies and how to create them
   - New operator commands:
     - /whois (shows info about another user, only for ops)
     - /bann
