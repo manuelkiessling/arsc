@@ -22,7 +22,7 @@ if ($argv[1] == "--help" OR $argv[1] == "-h" OR $argv[1] == "/?")
  echo "  -l=DIR       Write message logfiles for every room into DIR\n";
  echo "  -h, --help   Show this help\n";
  echo "\n";
- echo "Send bugs to <manuel@kiessling.net>.\n";
+ echo "Send bugs to <arsc-developers@lists.sourceforge.net>.\n";
  die();
 }
 $arsc_logdir = false;
