@@ -7,9 +7,10 @@
   parameters here. Every parameter is explained with a comment,
   and you must ONLY change the values between the two " in every line!
 
-  Let's first take a look at the parameters you definitely
-  have to change to get things running so you can at least use
-  the 'install.php' script (you already read the README file, right?).
+  The first part are the parameters you definitely have to change to
+  get things running so you can at least use the 'install.php' script
+  (you already read the README file, right?). A seconds part allows
+  fine tuning of your installation.
 
 */
 
