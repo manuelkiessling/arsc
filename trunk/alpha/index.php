@@ -1,4 +1,8 @@
 <?php
+
+    // index.php does a pre-check for the existence of Javascript and frames.
+    // Neither are required for this to work.
+
 require_once ('shared/misc/config.php');
 require_once ('shared/misc/functions.php');
 ?>
@@ -7,9 +11,6 @@ require_once ('shared/misc/functions.php');
 <title><?php echo $arsc_params['title']; ?></title>
 <script language='Javascript'>
 <!-- 
-
-    // index.php does a pre-check for the existence of Javascript and frames.
-    // Neither are required for this to work.
 
 function arsc_JsSubmit(x)
 {
