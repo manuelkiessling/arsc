@@ -1,9 +1,12 @@
 <?php
 
-include ("../config.inc.php");
-if ($arsc_my = getdatafromsid($arsc_sid))
+include("../config.inc.php");
+include("../functions.inc.php");
+include("../filter.inc.php");
+
+if ($arsc_my = arsc_getdatafromsid($arsc_sid))
 {
- include("../shared/language/".find_language($arsc_my["user"]).".inc.php");
+ include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
  
  $arsc_room = $arsc_my["room"];
  $arsc_user = $arsc_my["user"];
@@ -18,7 +21,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
  {
   switch($arsc_my["level"])
   {
-   case "-1": $arsc_message = $arsc_lang_youwerekicked;
+   case "-1": $arsc_message = $arsc_lang["youwerekicked"];
               mysql_query("DELETE from arsc_users WHERE sid = '$arsc_sid'");
               break;
   }
@@ -33,7 +36,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
    <head>
     <script language="Javascript">
     <!--
-     parent.msg.document.write('<?php echo filter_posting("System", date("H:i:s"), "<font size=4><b>".$arsc_message."</b></font>", $arsc_room); ?>\n');
+     parent.msg.document.write('<?php echo arsc_filter_posting("System", date("H:i:s"), "<font size=4><b>".$arsc_message."</b></font>", $arsc_room, 0); ?>\n');
     // -->
     </script>
    </head>
@@ -59,11 +62,11 @@ if ($arsc_my = getdatafromsid($arsc_sid))
      if ($arsc_enter == "true")
      {
       $arsc_sendtime = date("H:i:s");
-      $arsc_timeid = my_microtime();
-      $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang_welcome;
-      $arsc_enter_text = filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room);
+      $arsc_timeid = arsc_microtime();
+      $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang["welcome"];
+      $arsc_enter_text = arsc_filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room, 0);
       ?>
-      parent.msg.document.write('<?php echo str_replace("\n", "\\n", $arsc_htmlhead); ?>\n');
+      parent.msg.document.write('<?php echo str_replace("\n", "\\n", $arsc_param["htmlhead"]); ?>\n');
       parent.msg.document.write('<?php echo $arsc_enter_text; ?>\n');
       <?php
      }
@@ -72,7 +75,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
       while ($arsc_a = mysql_fetch_array($arsc_result))
       {
        ?>
-       parent.msg.document.write('<?php echo str_replace("\n", "\\n", filter_posting($arsc_a["user"], $arsc_a["sendtime"], $arsc_a["message"], $arsc_room)); ?>\n');
+       parent.msg.document.write('<?php echo str_replace("\n", "\\n", arsc_filter_posting($arsc_a["user"], $arsc_a["sendtime"], $arsc_a["message"], $arsc_room, $arsc_a["flag_ripped"])); ?>\n');
        <?php
       }
      }
@@ -92,17 +95,6 @@ if ($arsc_my = getdatafromsid($arsc_sid))
 }
 else
 {
- ?>
-  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-  <html>
-   <head>
-    <title>
-     You are out!
-    </title>
-   </head>
-   <body bgcolor="#DDDDDD">
-   </body>
-  </html>
- <?php
+ echo $arsc_param["htmlhead_out"];
 }
 ?>

@@ -8,32 +8,24 @@ function arsc_shutdown()
  {
   $arsc_user = $arsc_my["user"];
   $arsc_room = $arsc_my["room"];
-  $arsc_nice_room = nice_room($arsc_room);
-  $arsc_timeid = my_microtime();
+  $arsc_nice_room = arsc_nice_room($arsc_room);
+  $arsc_timeid = arsc_microtime();
   $arsc_sendtime = date("H:i:s");
   mysql_query("DELETE from arsc_users WHERE sid = '$arsc_sid'");
-  mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('arsc_user_quit~~$arsc_user~~$arsc_nice_room', 'System', '$arsc_sendtime', '$arsc_timeid')");
+  mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('arsc_user_quit~~$arsc_user~~$arsc_arsc_nice_room', 'System', '$arsc_sendtime', '$arsc_timeid')");
  }
 }
 
 register_shutdown_function("arsc_shutdown");
 
-include ("../config.inc.php");
-if ($arsc_my = getdatafromsid($arsc_sid))
+include("../config.inc.php");
+include("../functions.inc.php");
+include("../filter.inc.php");
+
+if ($arsc_my = arsc_getdatafromsid($arsc_sid))
 {
- include("../shared/language/".find_language($arsc_my["user"]).".inc.php");
- 
- function strrepeat($input, $mult)
- {
-  $ret = "";
-  while ($mult > 0)
-  {
-   $ret .= $input;
-   $mult --;
-  }
-  return $ret;
- }
- 
+ include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
+
  $arsc_room = $arsc_my["room"];
  if ($arsc_lastid == "")
  {
@@ -42,14 +34,14 @@ if ($arsc_my = getdatafromsid($arsc_sid))
   $arsc_lastid = $arsc_b["timeid"];
  }
  
- echo $arsc_htmlhead_js;
+ echo $arsc_param["htmlhead_js"];
  
  set_magic_quotes_runtime(0);
  set_time_limit(0);
  $arsc_sendtime = date("H:i:s");
- $arsc_timeid = my_microtime();
- $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang_welcome;
- echo filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room);
+ $arsc_timeid = arsc_microtime();
+ $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang["welcome"];
+ echo arsc_filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room, 0);
  $i = 0;
  while(!connection_aborted())
  {
@@ -60,12 +52,12 @@ if ($arsc_my = getdatafromsid($arsc_sid))
    $arsc_lastid = $arsc_b["timeid"];
   }
   $arsc_lastid_save = $arsc_b["timeid"];
-  $arsc_my = getdatafromsid($arsc_sid);
+  $arsc_my = arsc_getdatafromsid($arsc_sid);
   if ($arsc_my["level"] < 0)
   {
    switch($arsc_my["level"])
    {
-    case "-1": echo filter_posting("System", date("H:i:s"), "<font size=4><b>".$arsc_lang_youwerekicked."</b></font>", $arsc_room);
+    case "-1": echo arsc_filter_posting("System", date("H:i:s"), "<font size=4><b>".$arsc_lang["youwerekicked"]."</b></font>", $arsc_room, 0);
                mysql_query("DELETE from arsc_users WHERE sid = '$arsc_sid'");
                break;
    }
@@ -76,7 +68,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
   $arsc_result = mysql_query("SELECT * from arsc_room_$arsc_room WHERE timeid > '$arsc_lastid' ORDER BY timeid ASC, id ASC");
   while ($arsc_a = mysql_fetch_array($arsc_result))
   {
-   $arsc_posting = filter_posting($arsc_a["user"], $arsc_a["sendtime"], $arsc_a["message"], $arsc_room);
+   $arsc_posting = arsc_filter_posting($arsc_a["user"], $arsc_a["sendtime"], $arsc_a["message"], $arsc_room, $arsc_a["flag_ripped"]);
    echo "$arsc_posting";
   }
   $arsc_lastid = $arsc_lastid_save;
@@ -85,7 +77,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
   mysql_query("UPDATE arsc_users SET lastping = '$arsc_ping', ip = '$arsc_ip' WHERE sid = '$arsc_sid'");
   echo " ";
   flush();
-  usleep(500000);
+  usleep($arsc_param["socketserver_refresh"]);
   flush();
   flush();
   flush();
@@ -96,6 +88,6 @@ if ($arsc_my = getdatafromsid($arsc_sid))
 }
 else
 {
- echo $arsc_htmlhead_out;
+ echo $arsc_param["htmlhead_out"];
 }
 ?>

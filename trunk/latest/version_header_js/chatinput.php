@@ -1,20 +1,18 @@
 <?php
 
 include("../config.inc.php");
-if ($arsc_my = getdatafromsid($arsc_sid))
+include("../functions.inc.php");
+
+if ($arsc_my = arsc_getdatafromsid($arsc_sid))
 {
- include("../shared/language/".find_language($arsc_my["user"]).".inc.php");
+ include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
  
  if ($arsc_my["level"] >= 0)
  {
-  echo $arsc_htmlhead_msginput_js;
+  echo $arsc_param["htmlhead_msginput_js"];
   ?>
     <form action="../shared/chatins.php" method="GET" target="empty" name="f" OnSubmit="return empty_field_and_submit()">
-     <input type="text" name="arsc_message" size="50" maxlength="1000" value="<?php echo $arsc_pretext; ?>">
-     <font face="Arial" size="2">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="../logout.php?arsc_sid=<?php echo $arsc_sid; ?>" target="_parent"><?php echo $arsc_lang_leave; ?></a>
-     </font>
+     <input type="text" name="arsc_message" size="50" maxlength="<?php echo $arsc_param["input_maxsize"]; ?>" value="<?php echo $arsc_pretext; ?>">
     </form>
     <form action="../shared/chatins.php" method="GET" target="empty" name="fdummy" OnSubmit="return empty_field_and_submit()">
      <input type="hidden" name="arsc_sid" value="<?php echo $arsc_sid; ?>">
@@ -27,11 +25,11 @@ if ($arsc_my = getdatafromsid($arsc_sid))
  }
  else
  {
-  echo $arsc_htmlhead_out;
+  echo $arsc_param["htmlhead_out"];
  }
 }
 else
 {
- echo $arsc_htmlhead_out;
+ echo $arsc_param["htmlhead_out"];
 }
 ?>

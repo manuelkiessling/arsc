@@ -3,7 +3,7 @@
 <html>
  <head>
   <title>
-   ARSC - ARSC Really Simple Chat
+   <?php echo $arsc_param["title"]; ?>
   </title>
  </head>
  <script language="JavaScript">
@@ -14,15 +14,18 @@
   }
  //-->
  </script>
- <frameset cols="*,120" border="0" framespacing="no" frameborder="0" marginwidth="2" marginheight="1">
-  <frameset rows="1,*,40" border="1" framespacing="no" frameborder="0" marginwidth="2" marginheight="1">
-   <frame src="../shared/empty.php" NAME="empty" scrolling="no" noresize marginwidth="0" marginheight="0">
-   <frame src="http://<?php echo $arsc_server_adress.":".$arsc_server_port; ?>/?arsc_sid=<?php echo $arsc_sid; ?>" NAME="msg" scrolling="auto" noresize marginwidth="2" marginheight="1">
-   <frame src="chatinput.php?arsc_sid=<?php echo $arsc_sid; ?>" name="input"  scrolling="no" noresize marginwidth="2" marginheight="1">
+ <frameset cols="193,*" border="0" framespacing="no" frameborder="0" marginwidth="2" marginheight="1">
+  <frame src="../shared/roomlist.php?arsc_sid=<?php echo $arsc_sid; ?>" name="roomlist" scrolling="auto" noresize marginwidth="0" marginheight="0">
+  <frameset cols="*,120" border="0" framespacing="no" frameborder="0" marginwidth="2" marginheight="1">
+   <frameset rows="1,*,40" border="1" framespacing="no" frameborder="0" marginwidth="2" marginheight="1">
+    <frame src="../shared/empty.php" NAME="empty" scrolling="no" noresize marginwidth="0" marginheight="0">
+    <frame src="http://<?php echo $arsc_param["socketserver_adress"].":".$arsc_param["socketserver_port"]; ?>/?arsc_sid=<?php echo $arsc_sid; ?>" NAME="msg" scrolling="auto" noresize marginwidth="2" marginheight="0">
+    <frame src="chatinput.php?arsc_sid=<?php echo $arsc_sid; ?>" name="input" scrolling="no" noresize marginwidth="2" marginheight="1">
+   </frameset>
+   <frame src="../shared/userlist.php?arsc_sid=<?php echo $arsc_sid; ?>&arsc_enter=true" name="users" scrolling="auto" noresize marginwidth="2" marginheight="2">
   </frameset>
-  <frame src="../shared/chatusers.php?arsc_sid=<?php echo $arsc_sid; ?>&arsc_enter=true" name="users" scrolling="auto" noresize marginwidth="5" marginheight="5">
  </frameset>
  <noframes>
-  Sorry, this version of ARSC needs a browser that understands framesets. We have a lynx-friendly version too.
+  Sorry, this version of ARSC needs a browser that understands framesets. But we have a lynx-friendly version too.
  </noframes>
 </html>

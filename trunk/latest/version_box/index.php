@@ -10,6 +10,6 @@
   <frame src="chatinput.php?arsc_sid=<?php echo $arsc_sid; ?>" name="input"  scrolling="no" noresize marginwidth="2" marginheight="1">
  </frameset>
  <noframes>
-  Sorry, ARSC needs a browser that understands framesets.
+  Sorry, ARSC needs a browser that understands framesets. We have a Lynx friendly version too.
  </noframes>
 </html>
