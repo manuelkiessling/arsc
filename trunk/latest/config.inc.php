@@ -5,7 +5,7 @@
 $arsc_dbhost   = "localhost";
 $arsc_dbuser   = "root";
 $arsc_dbpasswd = "password";
-$arsc_dbdb     = "ch"; //must already exist!
+$arsc_dbdb     = "arsc"; //must already exist!
 
 // This is the password that you need if you want give yourself operator status.
 // Choose something VERY secure here!
@@ -169,7 +169,7 @@ function filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room)
      mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
     }
    }
-   if (substr($arsc_message, 0, 3) == "/op ")
+   if (substr($arsc_message, 0, 4) == "/op ")
    {
     $userpassive = str_replace("/op ", "", $arsc_message);
     $result = mysql_query("SELECT room, level from arsc_users WHERE user = '$userpassive'");
