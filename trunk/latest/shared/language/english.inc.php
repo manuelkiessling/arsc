@@ -2,10 +2,9 @@
 
 // This is an ARSC language file. If you translate it, please send me a copy to <manuel@kiessling.net>, I will add it to ARSC then. Thanks.
 
-$arsc_lang_entername = "Enter your nickname here";
+$arsc_lang_entername = "Enter your name here";
 $arsc_lang_namelength = "You can use a maximum of 10 characters";
 $arsc_lang_whichversion = "Which version do you want to use?";
-$arsc_lang_whichversion = "Supported browsers:";
 $arsc_lang_version_dontknow = "Select this if you have absolutely no idea what a browser is or which browser you are currently using.";
 $arsc_lang_version_push_js = "The recommended version uses server push technology and JavaScript, and is by far the most comfortable. It should run with every modern browser that has enabled JavaScript.";
 $arsc_lang_version_push_js_browsers = array("Microsoft Internet Explorer 4.x - 6.x", "Netscape Navigator 2.x - 6.x", "Mozilla 0.9.x", "Opera 5.x");

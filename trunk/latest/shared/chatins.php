@@ -14,6 +14,11 @@ if ($arsc_my["level"] >= 0)
   $arsc_result = mysql_query("SELECT id from arsc_room_$arsc_room ORDER BY timeid ASC LIMIT 0,1");
   $arsc_anf = mysql_fetch_array($arsc_result);
   $arsc_delid = $arsc_anf["id"];
+  /*
+  $arsc_result = mysql_query("SELECT id from arsc_room_$arsc_room ORDER BY timeid ASC LIMIT 1,1");
+  $arsc_ende = mysql_fetch_array($arsc_result);
+  $arsc_tend = $arsc_ende["id"];
+  */
   mysql_query("DELETE from arsc_room_$arsc_room WHERE id = '$arsc_delid'");
  }
 
