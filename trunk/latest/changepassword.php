@@ -43,7 +43,7 @@ if ($arsc_send == "")
        </font>
        <br>
        <br>
-       <table>
+       <table bgcolor="<?php echo $arsc_parameters["color_roomlist_window_foreground"]; ?>" align="center">
         <tr>
          <td>
           <font face="Arial" size="2">
@@ -54,6 +54,9 @@ if ($arsc_send == "")
          </td>
          <td>
           <input type="text" name="arsc_user" size="12" maxlength="12" value="<?php echo $arsc_user; ?>">
+         </td>
+         <td>
+          &nbsp;
          </td>
         </tr>
         <tr>
@@ -67,6 +70,9 @@ if ($arsc_send == "")
          <td>
           <input type="password" name="arsc_password_old" size="12" maxlength="12">
          </td>
+         <td>
+          &nbsp;
+         </td>
         </tr>
         <tr>
          <td>
@@ -79,9 +85,11 @@ if ($arsc_send == "")
          <td>
           <input type="password" name="arsc_password_new" size="12" maxlength="12">
          </td>
+         <td>
+          <input type="submit" value="<?php echo $arsc_lang["changepassword_submit"]; ?>">
+         </td>
         </tr>
        </table>
-       <input type="submit" value="<?php echo $arsc_lang["changepassword_submit"]; ?>">
       </form>
      </td>
     </tr>
