@@ -1,7 +1,7 @@
 ARSC - ARSC Really Simple Chat
 =======================================================================
 Version 1.0.2 - 2001-12-30 - Thank you for using ARSC!
-Copyright (C) 2001, 2002 Manuel Kiessling and Marco Morais
+Copyright (C) 2001, 2002 Manuel Kiessling
 =======================================================================
 
 This program is free software; you can redistribute it and/or modify
@@ -111,7 +111,7 @@ then please email me.
 Installation
 ------------
 
-First, you must make some decisions. Life is full of them, right?
+First, you must make some decisions. Life is full of them, isn't it?
 
 You can run ARSC really fine on those widely available LAMP
 (Linux, Apache, MySQL, PHP) servers, where PHP is compiled into

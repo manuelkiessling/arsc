@@ -9,7 +9,7 @@
  <body bgcolor="#FFFFFF">
   <form action="home.php" METHOD="POST">
    <?php
-   $handle = opendir("./shared/language");
+   $handle = opendir("shared/language");
    while ($file = readdir($handle))
    { 
     if ($file != "." && $file != "..")
