@@ -110,11 +110,12 @@ then please email me.
 
 
 
-Installation
-------------
+Installation / Update
+---------------------
 
 Abstract:
 
+ - Update or installation?
  - Decide: Socket server or not?
  - Extract archive
  - Edit config file
@@ -127,6 +128,26 @@ Abstract:
 
 
 Detail:
+
+IMPORTANT! If you already have ARSC 2.0 installed, you don't have to
+do a complete reinstall in order to get ARSC 2.1 installed!
+
+Here is how to UPDATE your installation (skip this if you install ARSC
+for the first time or have an older version (< 2.0) installed):
+
+First, extract the archive. Open the file 'config.inc.php' in your
+favourite editor and change the MySQL settings to the same settings
+you are using for your current ARSC installation (i.e., your new
+config.inc.php and your old one must be the same).
+
+Copy all files onto your webserver, OVERWRITING your existing ARSC 2.0
+files. Then open your webserver and point it to:
+http://www.yourserver.com/arsc/update.php
+
+That's it, you have successfully updated your installation.
+
+
+Now to the 'normal' installation.
 
 First, you must make a decision. Life is full of them, isn't it?
 
@@ -186,7 +207,7 @@ then create the directory http://www.yourserver.com/arsc/, and copy all
 extracted files there.
 
 If everything is transfered, open your browser and point it to
-http://www.yourserver.com/arsc/install.php.
+http://www.yourserver.com/arsc/install.php
 
 If it says 'ARSC is installed', then everything is fine and you could
 already start to chat. But before you do so, please read the chapter
