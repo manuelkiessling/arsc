@@ -36,9 +36,12 @@ if ($arsc_my["level"] >= 0)
     $arsc_sendtime = date("H:i:s");
     $arsc_timeid = arsc_microtime();
     mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
-    mysql_query("DELETE from arsc_users WHERE sid = '$arsc_sid'");
-    header("Location: empty.php");
-    die();
+	mysql_query("UPDATE arsc_users SET level = -1 WHERE sid = '$arsc_sid'");
+	if ($arsc_chatversion != "text")
+	{
+     header("Location: empty.php");
+     die();
+	}
    }
    $arsc_a["flood_count"]++;
    mysql_query("UPDATE arsc_users SET flood_count = '{$arsc_a["flood_count"]}' WHERE sid = '$arsc_sid'");
