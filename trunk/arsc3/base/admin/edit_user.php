@@ -107,12 +107,32 @@ set_magic_quotes_runtime(1);
      <td valign="top">
       <select name="arsc_save_template">
        <?php
-       $arsc_levels = $arsc_api->getTemplatelist();
-       while(list($arsc_key, $arsc_val) = each($arsc_levels))
+       $arsc_templates = $arsc_api->getTemplatelist();
+       while(list($arsc_key, $arsc_val) = each($arsc_templates))
        {
         $arsc_selected = "";
         if($arsc_result["template"] == $arsc_val) $arsc_selected = " selected";
         echo "<option value=\"".$arsc_val."\"".$arsc_selected.">".$arsc_val."</option>\n";
+       }
+       ?>
+      </select>
+     </td>
+    </tr>
+    <tr>
+     <td valign="top">
+      <font face="Arial" size="2">
+       Layout:
+      </font>
+     </td>
+     <td valign="top">
+      <select name="arsc_save_layout">
+       <?php
+       $arsc_layouts = $arsc_api->getLayoutlist();
+       while(list($arsc_key, $arsc_val) = each($arsc_layouts))
+       {
+        $arsc_selected = "";
+        if($arsc_result["layout"] == $arsc_key) $arsc_selected = " selected";
+        echo "<option value=\"".$arsc_key."\"".$arsc_selected.">".$arsc_val."</option>\n";
        }
        ?>
       </select>

@@ -32,14 +32,14 @@ if (strstr($arsc_user, "<") OR strstr($arsc_user, ">"))
  header ("Location: home.php?arsc_error=bad_name&arsc_language=".$arsc_language);
  die();
 }
-$arsc_result = mysql_query("SELECT COUNT(*) AS cnt FROM arsc_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+$arsc_result = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
 $arsc_a = mysql_fetch_array($arsc_result);
 if ($arsc_a["cnt"] > 0 OR $arsc_user == "System" OR $arsc_user == "system" OR $arsc_user == "-1")
 {
  header ("Location: home.php?arsc_error=double_user&arsc_language=".$arsc_language);
  die();
 }
-$arsc_result = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_registered_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+$arsc_result = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_registered_users WHERE user = '".mysql_escape_string($arsc_user)."'", ARSC_PARAMETER_DB_LINK);
 $arsc_a = mysql_fetch_array($arsc_result);
 if ($arsc_a["cnt"] > 0)
 {
@@ -50,10 +50,18 @@ if ($arsc_a["cnt"] > 0)
   header ("Location: home.php?arsc_error=wrong_credentials&arsc_language=".$arsc_language);
   die();
  }
- $arsc_result = mysql_query("SELECT level, color FROM arsc_registered_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+ $arsc_result = mysql_query("SELECT level, color, template, layout FROM arsc_registered_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
  $arsc_a = mysql_fetch_array($arsc_result);
  $arsc_level = $arsc_a["level"];
  $arsc_color = $arsc_a["color"];
+ if($arsc_a["template"] <> "")
+ {
+  $arsc_template = $arsc_a["template"];
+ }
+ if($arsc_a["layout"] <> "")
+ {
+  $arsc_layout = $arsc_a["layout"];
+ }
 }
 elseif (ARSC_PARAMETER_REGISTER_FORCE == "yes")
 {
@@ -90,7 +98,15 @@ else
  {
   $arsc_template = "html_moderate";
  }
- mysql_query("INSERT INTO arsc_users (user, color, lastping, ip, room, language, level, sid, version, template) VALUES ('$arsc_user', '$arsc_color', '$arsc_ping', '$arsc_ip', '$arsc_room', '$arsc_language', '$arsc_level', '$arsc_sid', '$arsc_chatversion', '$arsc_template')", ARSC_PARAMETER_DB_LINK);
+ if($arsc_template == "")
+ {
+  $arsc_template = ARSC_PARAMETER_DEFAULT_TEMPLATE_NAME;
+ }
+ if($arsc_layout == "")
+ {
+  $arsc_layout = ARSC_PARAMETER_DEFAULT_LAYOUT_ID;
+ }
+ mysql_query("INSERT INTO arsc_users (user, color, lastping, ip, room, language, level, sid, version, template, layout) VALUES ('$arsc_user', '$arsc_color', '$arsc_ping', '$arsc_ip', '$arsc_room', '$arsc_language', '$arsc_level', '$arsc_sid', '$arsc_chatversion', '$arsc_template', '$arsc_layout')", ARSC_PARAMETER_DB_LINK);
  header ("Location: ../clients/".$arsc_chatversion."/index.php?arsc_sid=".$arsc_sid."&arsc_enter=true");
  die();
 }

@@ -8,9 +8,6 @@ contain "www.example.com" to fit your server layout.
 
 Then pray. Then it should work.
 
-!!! PLEASE NOTE: The 'base/admin/' directory is not protected in any
-way! You have to protect it yourself with .htaccess or other measures!
-
 If you need help, please visit the the Help Forum:
 
 http://sourceforge.net/forum/forum.php?forum_id=102858

@@ -26,6 +26,8 @@ if(mysql_query("UPDATE arsc_registered_users SET
                 language = '$arsc_save_language',
                 level = '$arsc_save_level',
                 color = '$arsc_save_color',
+                template = '$arsc_save_template',
+                layout = '$arsc_save_layout',
                 email = '$arsc_save_email',
                 sex = '$arsc_save_sex',
                 location = '$arsc_save_location',

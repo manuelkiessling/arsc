@@ -76,7 +76,7 @@ set_magic_quotes_runtime(1);
      </td>
      <td valign="top">
       <font face="Verdana, Arial" size="1">
-       <?php if($arsc_key == ARSC_PARAMETER_DEFAULT_LAYOUT) echo "yes"; ?>
+       <?php if($arsc_key == ARSC_PARAMETER_DEFAULT_LAYOUT_ID) echo "yes"; ?>
       </font>
      </td>
      <td bgcolor="#DDDDDD">

@@ -84,7 +84,7 @@ $arsc_rgle = 25;
   </td>
  </tr>
  <?php
- $arsc_query1 = mysql_query("SELECT roomname, roomname_nice, description, owner, password, type, layout_id FROM arsc_rooms", ARSC_PARAMETER_DB_LINK);
+ $arsc_query1 = mysql_query("SELECT id, roomname, roomname_nice, description, owner, password, type, layout_id FROM arsc_rooms", ARSC_PARAMETER_DB_LINK);
  while ($arsc_result1 = mysql_fetch_array($arsc_query1))
  {
   if ($arsc_bgcolor == "#EEEEEE") $arsc_bgcolor = "#FFFFFF"; else $arsc_bgcolor = "#EEEEEE";
@@ -109,7 +109,7 @@ $arsc_rgle = 25;
   ?>
   <td bgcolor="#DDDDDD">
    <font face="Verdana, Arial" size="1">
-    <a href="delete_room.php?arsc_room=<?php echo $arsc_result1["room"]; ?>">Delete</a>
+    <a href="delete_room.php?arsc_room_id=<?php echo $arsc_result1["id"]; ?>">Delete</a>
    </font>
   </td>
   <?php

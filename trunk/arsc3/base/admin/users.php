@@ -74,6 +74,11 @@ $arsc_rgle = 25;
   </td>
   <td>
    <font face="Arial" size="2">
+    Text template
+   </font>
+  </td>
+  <td>
+   <font face="Arial" size="2">
     eMail adress
    </font>
   </td>
@@ -114,11 +119,11 @@ $arsc_rgle = 25;
  if ($arsc_rgls == "") $arsc_rgls = 0;
  if ($arsc_search <> "")
  {
-  $arsc_result = mysql_query("SELECT user, level, language, color, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users WHERE user LIKE '$arsc_search'", ARSC_PARAMETER_DB_LINK);
+  $arsc_result = mysql_query("SELECT user, level, language, color, template, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users WHERE user LIKE '$arsc_search'", ARSC_PARAMETER_DB_LINK);
  }
  else
  {
-  $arsc_result = mysql_query("SELECT user, level, language, color, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users ORDER BY level DESC, user ASC LIMIT $arsc_rgls, $arsc_rgle", ARSC_PARAMETER_DB_LINK);
+  $arsc_result = mysql_query("SELECT user, level, language, color, template, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users ORDER BY level DESC, user ASC LIMIT $arsc_rgls, $arsc_rgle", ARSC_PARAMETER_DB_LINK);
  }
  while ($arsc_a = mysql_fetch_array($arsc_result))
  {

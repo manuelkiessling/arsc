@@ -30,33 +30,30 @@ set_magic_quotes_runtime(1);
    reset($arsc_layoutvalues);
    while (list($arsc_key, $arsc_val) = each($arsc_layoutvalues))
    {
-    if (!($arsc_layout_id <> ARSC_PARAMETER_DEFAULT_LAYOUT AND ereg("template_browser_", $arsc_key)))
+    if (!is_numeric($arsc_key) && $arsc_key <> "id")
     {
-     if (!is_numeric($arsc_key) && $arsc_key <> "id")
+     ?>
+     <font face="Arial" size="2">
+      <?php echo $arsc_key; ?>:
+     </font>
+     <br>
+     <?php
+     if (ereg("template_", $arsc_key))
      {
       ?>
-      <font face="Arial" size="2">
-       <?php echo $arsc_key; ?>:
-      </font>
-      <br>
-      <?php
-      if (ereg("template_", $arsc_key))
-      {
-       ?>
-       <textarea rows="30" cols="100" wrap="virtual" name="arsc_save[<?php echo $arsc_key; ?>]"><?php echo stripslashes(htmlspecialchars($arsc_val)); ?></textarea>
-       <?php
-      }
-      else
-      {
-       ?>
-       <input type="text" name="arsc_save[<?php echo $arsc_key; ?>]" value="<?php echo $arsc_val; ?>">
-       <?php
-      }
-      ?>
-      <br>
-      <br>
+      <textarea rows="30" cols="100" wrap="virtual" name="arsc_save[<?php echo $arsc_key; ?>]"><?php echo stripslashes(htmlspecialchars($arsc_val)); ?></textarea>
       <?php
      }
+     else
+     {
+      ?>
+      <input type="text" name="arsc_save[<?php echo $arsc_key; ?>]" value="<?php echo $arsc_val; ?>">
+      <?php
+     }
+     ?>
+     <br>
+     <br>
+     <?php
     }
    }
    ?>

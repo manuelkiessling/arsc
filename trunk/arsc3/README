@@ -1,6 +1,6 @@
 ARSC - ARSC Really Simple Chat
 =======================================================================
-Version 3.0 Alpha 2 - 2004-08-29 - Thank you for using ARSC!
+Version 3.0 Beta 1 - 2004-08-29 - Thank you for using ARSC!
 Copyright (C) 2001, 2002, 2003, 2004 Manuel Kiessling
 =======================================================================
 
@@ -26,12 +26,9 @@ If you find one, then please send me an eMail to manuel@kiessling.net.
 Thank you very much!
 =======================================================================
 
-!!! PLEASE NOTE: The 'base/admin/' directory is not protected in any
-way! You have to protect it yourself with .htaccess or other measures!
-
-THIS IS ALPHA SOFTWARE! It basically works for me, but there is no
-guarantee whatsoever that it will work for you at all. You will find
-a lot of bugs, please report them using the bugtracker on SourceForge:
+THIS IS BETA SOFTWARE! There are no know critical bugs, but there is no
+guarantee whatsoever that it will work for you AT ALL. If you find a
+bug, please report it using the bugtracker on SourceForge:
 
 http://sourceforge.net/tracker/?func=add&group_id=32699&atid=406296
 

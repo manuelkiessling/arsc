@@ -36,7 +36,7 @@ set_magic_quotes_runtime(1);
   echo $arsc_result["description"];
   echo '</font>';
   echo '<br>';
-  echo '<input type="text" name="arsc_save_parameters['.$arsc_result["name"].']" value="'.$arsc_result["value"].'">';
+  echo '<input type="text" size="100" name="arsc_save_parameters['.$arsc_result["name"].']" value="'.$arsc_result["value"].'">';
   echo '<br>';
   echo '<br>';
   echo '<br>';

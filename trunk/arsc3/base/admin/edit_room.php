@@ -5,7 +5,10 @@ include("../inc/config.inc.php");
 include("../inc/init.inc.php");
 include("cookie.inc.php");
 include("../inc/functions.inc.php");
+include("../inc/api.inc.php");
 include("header.inc.php");
+
+$arsc_api = new arsc_api_Class;
 
 set_magic_quotes_runtime(1);
 
@@ -99,12 +102,12 @@ set_magic_quotes_runtime(1);
      <td valign="top">
       <select name="arsc_save_layout_id">
        <?php
-       $arsc_query2 = mysql_query("SELECT id, name FROM arsc_layouts", ARSC_PARAMETER_DB_LINK);
-       while($arsc_result2 = mysql_fetch_array($arsc_query2))
+       $arsc_layouts = $arsc_api->getLayoutlist();
+       while(list($arsc_key, $arsc_val) = each($arsc_layouts))
        {
         $arsc_selected = "";
-        if($arsc_result1["layout_id"] == $arcs_key) $arsc_selected = " selected";
-        echo "<option value=\"".$arsc_result2["id"]."\"".$arsc_selected.">".$arsc_result2["name"]."</option>\n";
+        if($arsc_result1["layout_id"] == $arsc_key) $arsc_selected = " selected";
+        echo "<option value=\"".$arsc_key."\"".$arsc_selected.">".$arsc_val."</option>\n";
        }
        ?>
       </select>
