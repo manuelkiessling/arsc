@@ -42,29 +42,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
   $arsc_lastid = $arsc_b["timeid"];
  }
  
- ?>
- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
- <html>
-  <head>
-   <title>
-    ARSC - ARSC Really Simple Chat - Login
-   </title>
-   <script language="JavaScript">
-   <!--
-   function move()
-   {
-    window.scroll(1,5000000);
-    window.setTimeout("move()",100);
-   }
-   move();
-  //-->
-  </script>
-  </head>
-  <body bgcolor="#FFFFFF">
- 
- <?php
- 
- echo strrepeat("<!-- blafasel -->\n", "40");
+ echo $html_header_js;
  
  set_magic_quotes_runtime(0);
  set_time_limit(0);

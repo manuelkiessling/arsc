@@ -32,7 +32,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
      <input type="text" name="arsc_message" size="50" maxlength="1000" value="<?php echo $arsc_pretext; ?>">
      <font face="Arial" size="2">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="../logout.php?arsc_sid=<?php echo $arsc_sid; ?>" target="_parent"><?php echo $arsc_lang_leave; ?></a>
+      <a href="../logout.php?arsc_sid=<?php echo $arsc_sid; ?>&arsc_post_logout=false" target="_parent"><?php echo $arsc_lang_leave; ?></a>
      </font>
     </form>
     <form action="../shared/chatins.php" method="GET" target="empty" name="fdummy" OnSubmit="return empty_field_and_submit()">
