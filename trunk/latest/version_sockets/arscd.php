@@ -86,6 +86,16 @@ while(1) // Handling connections in a neverending loop
         $arsc_message = arsc_filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_my["room"], 0);
         socket_write($arsc_connection, $arsc_message, strlen($arsc_message));
        }
+       else
+       {
+        $arsc_sid[$arsc_num] = "-1";
+        echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_num | Connection is invalid\n";
+        $arsc_text = "You don't seem to be a valid ARSC client. Connection closed.";
+        socket_write($arsc_connection, $arsc_text, strlen($arsc_text));
+        unset($arsc_connections[$index]);
+        unset($arsc_connection_info[$arsc_num]);
+        flush();
+       }
       }
       else
       {
