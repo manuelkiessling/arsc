@@ -38,6 +38,6 @@ else
  $arsc_user = ereg_replace("#", "", $arsc_user);
  $arsc_user = ereg_replace(" ", "_", $arsc_user);
  mysql_query("INSERT into arsc_users (user, lastping, ip, room, language, level, sid, version) VALUES ('$arsc_user', '$arsc_ping', '$arsc_ip', '$arsc_room', '$arsc_language', '$arsc_level', '$arsc_sid', '$arsc_chatversion')");
- header ("Location: version_".$arsc_chatversion."/index.php?arsc_sid=".$arsc_sid);
+ header ("Location: version_".$arsc_chatversion."/index.php?arsc_sid=".$arsc_sid."&arsc_enter=true");
 }
 ?>
