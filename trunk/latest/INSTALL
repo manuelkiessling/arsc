@@ -1,7 +1,7 @@
 ARSC - ARSC Really Simple Chat
 =======================================================================
-Version 2.1 - 2002-11-05 - Thank you for using ARSC!
-Copyright (C) 2001, 2002 Manuel Kiessling
+Version 2.2 - 2003-02-24 - Thank you for using ARSC!
+Copyright (C) 2001, 2002, 2003 Manuel Kiessling
 =======================================================================
 
 This program is free software; you can redistribute it and/or modify
@@ -58,7 +58,7 @@ You need a running MySQL server where you may add tables.
 Chatting is only really comfortable if the client (the browser)
 supports frames and JavaScript, but with ARSC, chatting is possible
 with _every_ browser on the surface of this planet, even text based
-ones like Lynx.
+ones like Lynx!
 
 I've tested ARSC successfully with the following browsers:
 
@@ -129,24 +129,11 @@ Abstract:
 
 Detail:
 
-IMPORTANT! If you already have ARSC 2.0 installed, then you don't have
-to do a complete reinstall in order to get ARSC 2.1 installed!
+IMPORTANT! If you already have ARSC 2.1 installed, then you don't have
+to do a complete reinstall in order to get ARSC 2.2 installed!
 
-Here is how to UPDATE your installation (skip this if you install ARSC
-for the first time or have an older version (below 2.0) installed):
-
-First, extract the archive. Open the file 'config.inc.php' in your
-favourite editor and change the MySQL settings to the same settings
-you are using for your current ARSC installation (i.e., your new
-config.inc.php and your old one must be the same).
-
-If you use the socket server, open arsc/version_sockets/arscd.php
-in your favourite editor and change the first line to fit your PHP
-installation layout.
-
-Copy all files onto your webserver, OVERWRITING your existing ARSC 2.0
-files. Then open your webserver and point it to:
-http://www.yourserver.com/arsc/update.php
+Copy all files onto your webserver, OVERWRITING your existing ARSC 2.1
+files.
 
 That's it, you have successfully updated your installation.
 
@@ -247,7 +234,7 @@ You will be presented a simple password form, use 'password' to log in.
 The admin page you then see will directly jump to the section where you
 can change the admin password of ARSC. PLEASE DO SO! The dummy password
 'password' is the same on every fresh ARSC installation, and everyone
-who reads this README will know this password! So please change the
+who reads this INSTALL will know this password! So please change the
 password to something secure, and hit "return". You will then see the
 login page again, log in with the new password.
 
@@ -264,21 +251,23 @@ here according to your decision.
 The next 3 points are only important if you use the socket server.
 If not, you can safely ignore them and go on.
 
-If you use it, then first we need the IP adress of the machine where
-you will start the socket server. Hostname is also possible, but the
-IP adress is always the better choice!
+If you use it, then first we need the hostname of the machine where
+you will start the socket server. The important thing is that this
+hostname and the name of the host that serves the webpages are
+identical, because else Internet Explorer will spawn JavaScript
+errors!
 
 Next is the port of the socket server. You must choose a port that is
 not yet used by another socket server (e.g. the FTP daemon etc.).
-I find that 8080 is quite a good choice, but sometimes proxy servers
+I think that 8080 is quite a good choice, but sometimes proxy servers
 are listening on that port, then you must choose something other
 of course.
 
 The next value does decides how many people may connect to the socket
 server. This has nothing to do with the other chatversions.
 
-Next is the admin password. If you still did not change it, please do
-so now!
+Next is the admin password. If you still did not change it, PLEASE DO
+SO NOW!
 
 The next four parameters again require a decision. Do you want to use
 the Open Source tool 'DrawBoard' in your your ARSC installation? You find
@@ -323,8 +312,8 @@ If you want to find out the commands of the chat, then just type /?
 One feature that is undocumented there:
 if you type '/selfop password' then you will be the king-of-the-hill
 in the chat, meaning that you can op, deop and kick everybody and nobody
-can do this with you. The password for this command is set in the
-config.inc.php file. Change this password to something really secure,
+can do this with you. The password is the same that is used for access to
+the admin page. Change this password to something really secure,
 or you will loose control about your chat if someone finds out that
 password.
 
@@ -369,7 +358,7 @@ To get this script running, you must have a cgi version of PHP
 installed on your server, compiled with the option '--enable-sockets'
 and the options neccessary to connect the MySQL database.
 
-ARSC 1.0.2 needs at least PHP 4.2.3. The socket server will probably
+ARSC 2.2 needs at least PHP 4.2.3. The socket server will probably
 not run with an earlier version of PHP!
 
 A typical configure line for a CGI installation of PHP 4.2.3 that
