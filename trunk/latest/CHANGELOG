@@ -1,5 +1,26 @@
 ARSC Changelog
 
+- Version 1.0.2
+  2002-10-25
+  
+  - fixed bug #582946 (broken language support)
+  - Added 'change password' page (Feature request #626999)
+  - Added individual user colors (Feature request #500138)
+  - Added 'Lock chat' (Feature request #498390)
+  - Updated socket server to run with PHP 4.2.3
+    (Feature request #547581)
+  - Added log-to-file feature (Feature request #625425)
+  - Changed layout of index.php and home.php
+  - Added autodetection of hostname and installation path
+    to install script
+  - Switched from file based to MySQL-based configuration
+  - Added administrator page
+  - Cleaned code, removed unnecessary function calls
+  - New languages included: czech, dutch, greek, hungarian,
+    italian, polski, slovak, turkish
+  - Redesigned count mechanism
+
+
 - Version 1.0.1p1
   2002-03-19
   
