@@ -288,6 +288,12 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
      mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
     }
    }
+   if (substr($arsc_message, 0, 7) == "/color ")
+   {
+    $color = str_replace("/color ", "", $arsc_message);
+    mysql_query("UPDATE arsc_users SET color = '$color' WHERE user = '$arsc_user'");
+    mysql_query("DELETE from arsc_room_$arsc_room WHERE message = '$arsc_message' AND user = '$arsc_user'");
+   }
    if (substr($arsc_message, 0, 5) == "/msg " AND $arsc_flag_ripped <> 1)
    {
     $userpassive = str_replace("/msg ", "", $arsc_message);
@@ -345,8 +351,8 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
    }
    if (substr($arsc_message, 0, 8) == "/smilies")
    {
-    reset($arsc_smilie);
-    while(list($key, $val) = each($arsc_smilie))
+    reset($arsc_parameters_smilies);
+    while(list($key, $val) = each($arsc_parameters_smilies))
     {
      $smilielist .= "<br>".$val."&nbsp;&nbsp;&nbsp;</i>".substr($val, 0, 1)."<b></b>".substr($val, 1)."<i>";
     }
@@ -444,6 +450,9 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
      }
     }
     $arsc_posting = $arsc_parameters["template_normal"];
+    $arsc_result = mysql_query("SELECT color FROM arsc_users WHERE user = '$arsc_user'"); 
+    $arsc_a = mysql_fetch_array($arsc_result);
+    $arsc_posting = str_replace("{color}", $arsc_a["color"], $arsc_posting); 
     $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
     $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
     $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
