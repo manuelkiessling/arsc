@@ -1,6 +1,6 @@
 ARSC - ARSC Really Simple Chat
 =======================================================================
-Version 1.0beta1 - 2001-08-09 - Thank you for using ARSC!
+Version 1.0beta2 - 2001-10-01 - Thank you for using ARSC!
 Copyright (C) 2001 Manuel Kiessling
 =======================================================================
 
@@ -37,55 +37,65 @@ miss. You find the bug reporting tool here:
 Thank you!
 
 
+
 Requirements:
 -------------
 
-You need a webserver that supports at least PHP version 3.
+You need a webserver that supports at least PHP version 3, better 4.
+If you want to use the socket server (that means that you have telnet
+or ssh access to a Linux/Unix server and you may start server daemons
+listening on some port), then you need at least PHP 4.0.7RC2, and you
+must compile it with '--enable-sockets' and '--enable-pcntl'.
 <http://www.php.net>
 
 The PHP installation must support MySQL.
 <http://www.mysql.com>
 
 You need a running MySQL server where you may add tables.
-The client must be a web browser that understands framesets.
-It is much more comfortable if the browser also understands JavaScript.
+Chatting is only really comfortable if the client (the browser)
+supports frames and JavaScript.
 
 I tested ARSC successfully with the following browsers:
 
-Server push version:
+Socket server version:
 
 - Netscape 3.x - 6.x (Win/Linux)
 - Mozilla 0.9.x
 - Internet Explorer 4.x - 5.x
-- Opera 5.0 for Linux - 20010510 Build 024
+- Internet Explorer 5.x for Macintosh
+- Opera 5.x for Linux
 - Opera 5.x for Windows
 
-It should work with Netscape 2.x also, but my NN 2.2 crashes...
+It should work with Netscape 2.x also, but my NN 2.2 crashes... mh...
 
 
-JavaScript version:
+Server push version:
 
-- all of the above except Opera (it worked with the last release,
-  just don't ask me why not now...)
+- All of the above
+
+
+Header JavaScript version:
+
+- All of the above except Opera 5.x for Linux
 
 
 Header version:
 
 - all of the above
-- Netscape Navigator 2.02, Win32
+- Netscape Navigator 2.x for Windows
+- Konqueror
 
 
 Text version
 
 - all of the above of course
 - Lynx
+- w3b
 
-
-Konqueror causes real headache... dunno wether I do something wrong
-or the K team ;-)
 
 If you tested it with other (and more exotic) browsers,
 then please email me.
+
 
 
 Installation:
@@ -96,6 +106,9 @@ Extract the archive.
 Edit the file 'config.inc.php' to fit your MySQL server settings.
 The MySQL server must be running of course, and the database in
 which ARSC will create its tables must already exist.
+
+Change the settings for the socket server if you want to use it.
+I will explain later how to start the server.
 
 Put the extracted files somewhere on your web server beneath a
 directory called "chat" or whatever you like.
@@ -113,6 +126,53 @@ http://www.yourdomain.com/your_chat_directory/index.php
 If it doesn't tell you "ARSC is installed.", then you can email me and
 ask me what to do: <manuel@kiessling.net>
 
+
+Your ARSC chat is now ready to use, but if you want to use the
+socket server. there is one step left.
+
+First let us make one thing clear: if you _can_ use the socket server,
+then you _want_ use the socket server. Only this version will offer
+your users really fast and comfortable chatting while keeping your
+server load on a minimum.
+The 'server push' version offers the same speed and comfort, but it
+will use very very much of your memory and CPU ressources, making it
+a 'no-no' for chat sessions with many users.
+
+The ARSC socket server is a php script that is started from a
+Linux/Unix console and waits on a certain port for connections from
+ARSC clients.
+
+To get this script running (it is located at
+'version_sockets/arscserver.php'), you must have a cgi version of
+PHP 4.0.7RC2 installed on your server, compiled with the options
+'--enable-sockets' and '--enable-pcntl'.
+The socket server will not run with an earlier version of PHP.
+
+Now you must edit the file 'arscserver.php' and change the very first
+line. This line must points to the php executable you have installed,
+just like e.g. a shell script points to /bin/bash.
+
+Next, you must probably chmod this file, so it is executable for
+you.
+
+Then, simply start the script by typing './arscserver.php &'.
+
+You should then see something like this:
+[2001-10-01 06:17:47] Started ARSC server listening on port 5555.
+
+If you see something like this:
+Couldn't create listening socket on port 5555.
+
+then try to change the port number in the config file.
+
+If the socket server is running and working fine, then you should think
+about completely deactivating the server push version to save server
+load. The only reason for a chat user to choose the server push version
+and not the socket server version would be that he sits behind a
+firewall that does not allow connections on the port you chose for the
+socket server.
+
+
 The installation script creates a room called 'Lounge'.
 If you want to add rooms, then you must copy the table
 'arsc_room_standard' and then rename it. If you want to call the new
@@ -122,36 +182,49 @@ room 'Members only', then you must call the table
 More examples should make the pattern clear:
 
 Room name                       Table name
+----------------------------------------------------------------------
 I Like Chatting                 arsc_room_i_like_chatting
 Software / Hardware             arsc_room_software__hardware
 Games / Cheats And Tutorials    arsc_room_games__cheats_and_tutorials
 
+
 Some hints how things work inside the chat:
-(You will see this test if you type /? inside the chat)
+(You will see this if you type /? inside the chat)
 
-In the right frame you see all users that are currently in the room.
-Users with the symbol @ in front of their name are operators and can
-kick users out of the chat and can give and take operator status to
-and from users. By clicking on one of these names, your message field
-will be filled with the command that is necessary to send a private
-message to this user - just add your message at the end.
+ General help: 
+   In the right frame you see all users that 
+   are currently in the room. 
 
-General commands:
- /me message -- Symbolize an action, e.g. /me feels fine will print
-                * username feels fine
- /msg user message -- Send a private message to user
+   Users with the symbol @ in front of their 
+   name are operators and can kick users out 
+   of the chat and can give and take operator 
+   status to and from users. 
 
-Operator commands:
- /op user -- Give operator status to user
- /deop user -- Take operator status from user
- /kick user -- Kick user out of the current room
+   By clicking on one of these names, your 
+   message field will be filled with the command 
+   that is necessary to send a private message to 
+   this user - just add your message at the end. 
 
-One feature that is undocumented here: if you type
- /selfop <password>
-then you will be kick-ass-dude in the chat, meaning that
-you can op, deop and kick everybody and nobody can do this
-with you. The <password> for this command is set in the
-config.inc.php file.
+ General commands: 
+   /me message -- Symbolize an action, e.g. /me feels fine will print
+                  * username feels fine
+   /msg user message -- Send a private message to user 
+   /j roomname -- Leave the current room and enter roomname 
+   /room room -- Same like /j 
+
+ Operator commands: 
+   /msgops message -- Whisper a message to all operators 
+   /op user -- Give operator status to user 
+   /deop user -- Take operator status from user 
+   /kick user -- Kick user out of the current room
+   
+One feature that is undocumented here:
+if you type '/selfop <password>' then you will be the king-of-the-hill
+in the chat, meaning that you can op, deop and kick everybody and nobody
+can do this with you. The <password> for this command is set in the
+config.inc.php file. Change this password to something really secure,
+or you will loose control about your chat if someone finds out that
+password.
 
 
 The homepage of ARSC is:

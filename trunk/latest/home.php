@@ -16,7 +16,7 @@ $arsc_result = mysql_query("SELECT user from arsc_users");
    ARSC - ARSC Really Simple Chat - Login
   </title>
  </head>
- <body>
+ <body bgcolor="#FFFFFF">
   <p>
    <font face="Arial" size="2" color="#FF0000">
     <b>

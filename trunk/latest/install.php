@@ -14,7 +14,7 @@ if ($result = mysql_query("CREATE TABLE arsc_room_lounge (
               &&
               mysql_query("CREATE TABLE arsc_users (
                             id int(11) NOT NULL auto_increment,
-                            user varchar(64) NOT NULL,
+                            user varchar(10) NOT NULL,
                             lastping int(11) NOT NULL,
                             ip varchar(15) NOT NULL,
                             room varchar(32) NOT NULL,
@@ -22,12 +22,13 @@ if ($result = mysql_query("CREATE TABLE arsc_room_lounge (
                             version varchar(16) NOT NULL,
                             level int(11) NOT NULL,
                             sid varchar(32) NOT NULL,
+                            lastmessageping bigint(20) NOT NULL,
                             PRIMARY KEY (id),
                             KEY lastping (lastping),
                             KEY user (user)
                            )"))
 {
- echo "ARSC is installed.";
+ echo "ARSC is installed. Please delete this file (install.php) from your webserver now!";
 }
 else
 {
