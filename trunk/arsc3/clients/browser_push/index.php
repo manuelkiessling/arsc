@@ -11,7 +11,10 @@ $arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], N
 
 if ($arsc_api->userIsValid($arsc_my["user"]))
 {
+ include("../../languages/".$arsc_my["language"].".inc.php");
  define("ARSC_PARAMETER_VIRTUALSERVERS_CURRENT", arsc_getVirtualServer($arsc_my["ip"]));
+ $arsc_current["queueframeheight"] = "0";
+ if ($arsc_my["level"] >= "20") $arsc_current["queueframeheight"] = "50%";
  echo $arsc_api->parseLayoutTemplate("browser_push_index", FALSE);
 }
 
