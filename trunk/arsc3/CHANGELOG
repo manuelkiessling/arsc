@@ -1,5 +1,21 @@
 ARSC - ARSC Really Simple Chat - Changelog
 
+- Version 3.0.1
+  2005-02-21
+
+  - Added dereferer for URLs posted into the chat, in order to
+    avoid session theft (sent in by Henry Heintzmann)
+  - Added support for special chars in room names
+    (sent in by Henry Heintzmann)
+  - Added better color selection HTML
+    (sent in by Henry Heintzmann)
+  - Added bosnian language file (by Amel Hankic)
+  - browser_push version now uses less bandwith (sent in by
+    Zach Bates)
+  - Added support for quick re-login of registered users, if
+    a session did not time out correctly
+
+
 - Version 3.0
   2005-01-17
 
