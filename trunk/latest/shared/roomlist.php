@@ -60,9 +60,9 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
     }
     ?>
    </head>
-   <body bgcolor="<?php echo $arsc_color["roomlist_window_background"]; ?>" topmargin="0" leftmargin="0" marginleft="0" margintop="0">
+   <body bgcolor="<?php echo $arsc_parameters["color_roomlist_window_background"]; ?>" topmargin="0" leftmargin="0" marginleft="0" margintop="0">
     <img src="../pic/<?php echo $arsc_parameters["logo_path"]; ?>" alt="Logo" border="0"><br>
-    <table width="95%" bgcolor="<?php echo $arsc_color["roomlist_window_foreground"]; ?>" align="center">
+    <table width="95%" bgcolor="<?php echo $arsc_parameters["color_roomlist_window_foreground"]; ?>" align="center">
      <tr>
       <td>
        <font face="Arial" size="2">
@@ -92,7 +92,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
      </tr>
     </table>
     <br>
-    <table width="95%" bgcolor="<?php echo $arsc_color["roomlist_window_foreground"]; ?>" align="center">
+    <table width="95%" bgcolor="<?php echo $arsc_parameters["color_roomlist_window_foreground"]; ?>" align="center">
      <tr>
       <td>
        <font face="Arial" size="2">

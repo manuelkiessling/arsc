@@ -38,7 +38,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
      <?php echo $arsc_lang["usersinroom"]." ".arsc_nice_room($arsc_room); ?>
     </title>
    </head>
-   <body bgcolor="<?php echo $arsc_color["userlist_window_background"]; ?>" text="<?php echo $arsc_color["userlist_window_text"]; ?>" link="<?php echo $arsc_color["userlist_window_link"]; ?>" vlink="<?php echo $arsc_color["userlist_window_link"]; ?>" alink="<?php echo $arsc_color["userlist_window_link"]; ?>">
+   <body bgcolor="<?php echo $arsc_parameters["color_userlist_window_background"]; ?>" text="<?php echo $arsc_parameters["color_userlist_window_text"]; ?>" link="<?php echo $arsc_parameters["color_userlist_window_link"]; ?>" vlink="<?php echo $arsc_parameters["color_userlist_window_link"]; ?>" alink="<?php echo $arsc_parameters["color_userlist_window_link"]; ?>">
     <font face="Arial" size="2">
      <center>
       <?php echo $arsc_lang["usersinroom"]; ?><br>
@@ -57,15 +57,15 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
        $arsc_opstring = "";
        if ($arsc_a["level"] == 1)
        {
-        $arsc_opstring = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["userlist_window_level1"]."\">@";
+        $arsc_opstring = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_parameters["color_userlist_window_level1"]."\">@";
        }
        elseif ($arsc_a["level"] == 2)
        {
-        $arsc_opstring = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["userlist_window_level2"]."\"><b>@</b>";
+        $arsc_opstring = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_parameters["color_userlist_window_level2"]."\"><b>@</b>";
        }
        else
        {
-        $arsc_opstring = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_color["userlist_window_level0"]."\">";
+        $arsc_opstring = "<font face=\"Arial\" size=\"2\" color=\"".$arsc_parameters["color_userlist_window_level0"]."\">";
        }
        if ($arsc_a["user"] == $arsc_my["user"])
        {
