@@ -15,7 +15,7 @@ if ($arsc_send == "")
    </title>
   </head>
   <body bgcolor="#FFFFFF">
-   <table width="500" align="center" cellpadding="6" bgcolor="<?php echo $arsc_color["userlist_window_background"]; ?>">
+   <table width="500" align="center" cellpadding="6" bgcolor="<?php echo $arsc_parameters["color_userlist_window_background"]; ?>">
     <tr>
      <td>
       <font face="Arial" size="2" color="#FF0000">
