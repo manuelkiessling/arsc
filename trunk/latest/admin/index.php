@@ -58,7 +58,7 @@ if (($arsc_admin_password == "password") AND ($arsc_goto <> "yes"))
      <b>
       Any questions?
      </b>
-     <a href="http://sourceforge.net/forum/forum.php?forum_id=102858" target="_blank">Visit our forum</a>.
+     <a href="http://sourceforge.net/forum/forum.php?forum_id=102858" target="_blank">Visit our forum</a>!
     </font>
    </div>
    <input type="hidden" name="arsc_admin_password" value="<?php echo $arsc_admin_password; ?>">
