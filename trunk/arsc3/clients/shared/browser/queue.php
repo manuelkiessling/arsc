@@ -54,7 +54,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
   else
   {
    $arsc_current["answerqueueid"] = "";
-   $arsc_current["answerqueuemessage"] = "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+   $arsc_current["answerqueuemessage"] = "";
    header("Expires: Wed, 4 Oct 1978 10:32:45 GMT");
    header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
    header("Cache-Control: no-cache, must-revalidate");
