@@ -168,7 +168,7 @@ function arsc_display_version($version, $browser)
    <td valign="top">
     <input type="radio" name="arsc_chatversion" value="<?php echo $version; ?>"<?php echo $checked; ?>>
    </td>
-   <td valign="top">
+   <td valign="top" align="left">
     <font face="Arial" size="2">
      <?php echo $arsc_lang["version_".$version]; ?>
     </font>
