@@ -67,13 +67,13 @@ Pøejeme hodnì zábavy!
 
 // Password Change Page
 
-$arsc_lang["changepassword"]                 = "Change password";
-$arsc_lang["changepassword_intro"]           = "To change your password, enter your username, your current password, and your new password below.";
-$arsc_lang["changepassword_entername"]       = "Nickname:";
-$arsc_lang["changepassword_entercurrent"]    = "Current password:";
-$arsc_lang["changepassword_enternew"]        = "New password:";
-$arsc_lang["error_password_changed"]         = "Your password was successfully changed!";
-$arsc_lang["changepassword_submit"]          = "Change";
+$arsc_lang["changepassword"]                 = "Zmìnit heslo";
+$arsc_lang["changepassword_intro"]           = "Ke zmìnì hesla zadejte Váš nick, staré heslo, nové heslo a kliknìte na tlaèítko Zmìnit.";
+$arsc_lang["changepassword_entername"]       = "Nick:";
+$arsc_lang["changepassword_entercurrent"]    = "Staré heslo:";
+$arsc_lang["changepassword_enternew"]        = "Nové heslo:";
+$arsc_lang["error_password_changed"]         = "Heslo bylo úspìšnì zmìnìno!";
+$arsc_lang["changepassword_submit"]          = "Zmìnit";
 
 
 // Chat interface
