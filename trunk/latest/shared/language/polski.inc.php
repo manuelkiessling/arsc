@@ -8,6 +8,9 @@
   Poland language - Mariusz Jurczyk
   admin@cafe.netinfo.pl
 
+  Proszê o ewentualn¹ korektê :)  gdybym sie pomyli³ w t³umaczeniu
+  i przes³anie wiadomoœci na moj e-mail, dziêkuje.
+
 */
 
 
@@ -117,30 +120,28 @@ $arsc_lang["help"]          = "
 <br>&nbsp;&nbsp;&nbsp;z pokoju, operator mo¿e nadaæ innemu 
 <br>&nbsp;&nbsp;&nbsp;u¿ytkownikowi status operatora.
 <br>
-<br>&nbsp;&nbsp;&nbsp;If you click on a name on the right, the input
-<br>&nbsp;&nbsp;&nbsp;field will be filled with the command that is
-<br>&nbsp;&nbsp;&nbsp;neccessary to send a private message to this user.
-<br>&nbsp;&nbsp;&nbsp;You must only append your message to the end
-<br>&nbsp;&nbsp;&nbsp;of the command line.
-<br>
+<br>&nbsp;&nbsp;&nbsp;Klikaj¹c po prawej stronie na imieniu u¿ytkownika, 
+<br>&nbsp;&nbsp;&nbsp;w lini komend pojawi siê polecenie,
+<br>&nbsp;&nbsp;&nbsp;bedziesz móg³ teraz wys³ac prywatn¹ wiadomoœæ.
+<br>&nbsp;&nbsp;&nbsp;Musisz teraz tylko zacz¹æ wpisywaæ tekst po poleceniu.<br>
 <br>&nbsp;<b>G³ówne komendy czata:</b>
-<br>&nbsp;&nbsp;&nbsp;/me <i>message</i> -- Symbolizes an action, e.g. <i>/me feels fine</i> writes <i>* User feels fine</i>
-<br>&nbsp;&nbsp;&nbsp;/msg <i>user</i> <i>message</i> -- Sends a private <i>message</i> to an <i>user</i>
-<br>&nbsp;&nbsp;&nbsp;/j <i>room</i> -- Leaves the room and enters <i>room</i>
-<br>&nbsp;&nbsp;&nbsp;/room <i>room</i> -- An alias to /j
+<br>&nbsp;&nbsp;&nbsp;/me <i>wiadomoœæ</i> -- Symbolizes an action, e.g. <i>/me feels fine</i> writes <i>* User feels fine</i>
+<br>&nbsp;&nbsp;&nbsp;/msg <i>imiê</i> <i>wiadomoœæ</i> -- Wyœlij prywatn¹ <i>wiadomoœæ</i> do <i>imiê</i>
+<br>&nbsp;&nbsp;&nbsp;/j <i>pokój</i> -- przejœcie do innego pokoju <i>pokój</i>
+<br>&nbsp;&nbsp;&nbsp;/room <i>pokój</i> -- An alias to /j
 <br><br><i>";
 
 $arsc_lang["helpop"]        = "
 </i>&nbsp;<b>komendy operatora:</b>
-<br>&nbsp;&nbsp;&nbsp;/msgops <i>message</i> -- Whispers a <i>message</i> to all operators
-<br>&nbsp;&nbsp;&nbsp;/whois <i>user</i> -- Shows information about <i>user</i>
-<br>&nbsp;&nbsp;&nbsp;/op <i>user</i> -- Gives operator status to <i>user</i>
-<br>&nbsp;&nbsp;&nbsp;/deop <i>user</i> -- Takes operator status from <i>user</i>
-<br>&nbsp;&nbsp;&nbsp;/kick <i>user</i> -- Kicks <i>user</i> out of the chat
-<br>&nbsp;&nbsp;&nbsp;/bann <i>user X</i> -- Blocks IP of <i>user</i> for <i>X</i> seconds
-<br>&nbsp;&nbsp;&nbsp;/lock <i>user</i> -- Lock account of (registered!) <i>user</i> permanently
-<br>&nbsp;&nbsp;&nbsp;/rip <i>user</i> -- Co <i>user</i> mówi jest nie pokazywane
-<br>&nbsp;&nbsp;&nbsp;/unrip <i>user</i> -- Co <i>user</i> mówi jest pokazywane ponownie
-<br>&nbsp;&nbsp;&nbsp;/move <i>user room</i> -- &acute;Moves&acute; <i>user</i> into <i>room</i>
+<br>&nbsp;&nbsp;&nbsp;/msgops <i>wiadomoœæ</i> -- Przeka¿ <i>wiadomoœæ</i> do wszystkich operatorów
+<br>&nbsp;&nbsp;&nbsp;/whois <i>imiê</i> -- Wiêcej informacji o <i>imiê</i>
+<br>&nbsp;&nbsp;&nbsp;/op <i>imiê</i> -- Nadaj status operatora dla <i>imiê</i>
+<br>&nbsp;&nbsp;&nbsp;/deop <i>imiê</i> -- Odbierz status operatora dla <i>imiê</i>
+<br>&nbsp;&nbsp;&nbsp;/kick <i>imiê</i> -- Wywal <i>imiê</i> go z chata
+<br>&nbsp;&nbsp;&nbsp;/bann <i>imiê X</i> -- Blokuj IP od <i>imiê</i> na <i>X</i> sekund
+<br>&nbsp;&nbsp;&nbsp;/lock <i>imiê</i> -- Lock account of (registered!) <i>imiê</i> permanently
+<br>&nbsp;&nbsp;&nbsp;/rip <i>imiê</i> -- Co <i>imiê</i> mówi jest nie pokazywane
+<br>&nbsp;&nbsp;&nbsp;/unrip <i>imiê</i> -- Co <i>imiê</i> mówi jest pokazywane ponownie
+<br>&nbsp;&nbsp;&nbsp;/move <i>imiê pokój</i> -- &acute;Moves&acute; <i>imiê</i> into <i>pokój</i>
 <br><br><i>";
 ?>
