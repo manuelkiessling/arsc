@@ -5,8 +5,12 @@
 define("ARSC_VERSION", "3.0-alpha1");
 define("ARSC_PARAMETER_HOSTNAME", $_SERVER["HTTP_HOST"]);
 define("ARSC_PARAMETER_CURRENTDIR", dirname($_SERVER["PHP_SELF"]));
+define("ARSC_PARAMETER_HTMLHEAD", "<html><head></head>\n<body bgcolor=\"#FFFFFF\">\n\n\n".str_repeat("<!-- dummy -->\n", 100)); // The HTML head for the message window to start with (<!-- dummy --> is used to get some browsers starting with output)
+define("ARSC_PARAMETER_HTMLHEAD_JS", "<html><head><script language=\"JavaScript\">\n<!--\nfunction move()\n{\nif (scroll_active) window.scroll(1,400000);\nwindow.setTimeout(\"move()\",100);\n}\nscroll_active = true;\nmove();\n//-->\n</script>\n</head>\n<body bgcolor=\"#FFFFFF\" onBlur=\"scroll_active = true\" onFocus=\"scroll_active = false\">\n\n\n".str_repeat("<!-- dummy -->\n", 100)); // The HTML head for the message window to start with (with js scrolling)
+define("ARSC_PARAMETER_HTMLHEAD_OUT", "<html><head><title>ARSC</title></head><body bgcolor=\"#FFFFFF\"></body></html>"); // The HTML code for standard empty pages (e.g. if a user was kicked out)
 
-// Basic security checking, must be enhanced!
+
+// Basic security checking FIXME: Need regexp!
 
 function arsc_checkvar($var)
 {
@@ -100,14 +104,5 @@ if ($arsc_language <> "german" AND $arsc_language <> "english")
 {
  $arsc_language = ARSC_PARAMETER_STANDARD_LANGUAGE;
 }
-
-// The HTML head for the message window to start with (<!-- dummy --> is used to get some browsers starting with output)
-define("ARSC_PARAMETER_HTMLHEAD", "<html><head></head>\n<body bgcolor=\"#FFFFFF\">\n\n\n".str_repeat("<!-- dummy -->\n", 100));
-
-// The HTML head for the message window to start with (with js scrolling)
-define("ARSC_PARAMETER_HTMLHEAD_JS", "<html><head><script language=\"JavaScript\">\n<!--\nfunction move()\n{\nif (scroll_active) window.scroll(1,400000);\nwindow.setTimeout(\"move()\",100);\n}\nscroll_active = true;\nmove();\n//-->\n</script>\n</head>\n<body bgcolor=\"#FFFFFF\" onBlur=\"scroll_active = true\" onFocus=\"scroll_active = false\">\n\n\n".str_repeat("<!-- dummy -->\n", 100));
-
-// The HTML code for standard empty pages (e.g. if a user was kicked out)
-define("ARSC_PARAMETER_HTMLHEAD_OUT", "<html><head><title>ARSC</title></head><body bgcolor=\"#FFFFFF\"></body></html>");
 
 ?>
