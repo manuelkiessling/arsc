@@ -5,7 +5,7 @@
 $arsc_dbhost   = "localhost";
 $arsc_dbuser   = "root";
 $arsc_dbpasswd = "password";
-$arsc_dbdb     = "arsc"; //must already exist!
+$arsc_dbdb     = "ch"; //must already exist!
 
 // This is the password that you need if you want give yourself operator status.
 // Choose something VERY secure here!
