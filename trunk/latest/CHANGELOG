@@ -1,5 +1,12 @@
 ARSC Changelog
 
+- Version 1.0.1p1
+  2002-03-19
+  
+  - fixed a path disclosure vulnerability as reported by
+    Ahmet Sabri Alper <salper@olympos.org>
+
+
 - Version 1.0.1
   2001-12-30
   
