@@ -159,7 +159,6 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
    if (substr($arsc_message, 0, 7) == "/unrip ")
    {
     $userpassive = str_replace("/unrip ", "", $arsc_message);
-    echo "\n".$userpassive."\n";
     if ($userpassive == "*")
     {
      $result = mysql_query("SELECT level, room FROM arsc_users WHERE user = '$arsc_user'");
