@@ -8,7 +8,7 @@ include("../../../../base/inc/inputvalidation.inc.php");
 
 $arsc_save_sex = arsc_validateinput($_POST["arsc_save_sex"], array(0, 1), NULL, 1, 1, __FILE__, __LINE__);
 $arsc_save_location = arsc_validateinput(htmlentities($_POST["arsc_save_location"], ENT_NOQUOTES), NULL, "/[^a-zA-Z0-9_\/\&\.;,\- ]/", 0, ARSC_PARAMETER_INPUT_MAXSIZE, __FILE__, __LINE__);
-$arsc_save_color = arsc_validateinput($_POST["arsc_save_color"], NULL, "/[^0-9]/", 6, 6, __FILE__, __LINE__);
+$arsc_save_color = arsc_validateinput($_POST["arsc_save_color"], NULL, "/[^a-fA-F0-9]/", 6, 6, __FILE__, __LINE__);
 $arsc_save_hobbies = arsc_validateinput(htmlentities($_POST["arsc_save_hobbies"], ENT_NOQUOTES), NULL, NULL, 0, ARSC_PARAMETER_INPUT_MAXSIZE, __FILE__, __LINE__);
 $arsc_save_flag_guestbook = arsc_validateinput($_POST["arsc_save_flag_guestbook"], array(0, 1), NULL, 1, 1, __FILE__, __LINE__);
 
