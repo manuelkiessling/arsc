@@ -5,6 +5,8 @@
   a copy to <arsc-help@lists.sourceforge.net>, I will add it to ARSC then. Thanks.
 
   This file is for versions: 1.0, 1.0.1, 1.0.1p1, 1.0.2
+
+Translated by Demosthenes Koptsis <dkoptsis@otenet.gr>
 */
 
 
@@ -66,13 +68,13 @@ $arsc_lang["register_emailtemplate"]         = "
 
 // Password Change Page
 
-$arsc_lang["changepassword"]                 = "Change password";
-$arsc_lang["changepassword_intro"]           = "To change your password, enter your username, your current password, and your new password below.";
-$arsc_lang["changepassword_entername"]       = "Nickname:";
-$arsc_lang["changepassword_entercurrent"]    = "Current password:";
-$arsc_lang["changepassword_enternew"]        = "New password:";
-$arsc_lang["error_password_changed"]         = "Your password was successfully changed!";
-$arsc_lang["changepassword_submit"]          = "Change";
+$arsc_lang["changepassword"]                 = "Αλλαγή κωδικού";
+$arsc_lang["changepassword_intro"]           = "Για να αλλάξετε τον κωδικό σας, εισάγετε το όνομα χρήστη, τον ισχύοντα κωδικό, και τον νέο κωδικό παρακάτω.";
+$arsc_lang["changepassword_entername"]       = "Όνομα Χρήστη: (Nickname)";
+$arsc_lang["changepassword_entercurrent"]    = "Ισχύων κωδικός:";
+$arsc_lang["changepassword_enternew"]        = "Νέος κωδικός:";
+$arsc_lang["error_password_changed"]         = "Ο κωδικός σας άλλαξε επιτυχώς!";
+$arsc_lang["changepassword_submit"]          = "Αλλαγή";
 
 
 // Chat interface
