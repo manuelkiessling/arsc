@@ -1,0 +1,166 @@
+ARSC Changelog
+
+- Version 1.0.2
+  2002-10-25
+  
+  - fixed bug #582946 (broken language support)
+  - Added 'change password' page (Feature request #626999)
+  - Added individual user colors (Feature request #500138)
+  - Added 'Lock chat' (Feature request #498390)
+  - Updated socket server to run with PHP 4.2.3
+    (Feature request #547581)
+  - Added log-to-file feature (Feature request #625425)
+  - Changed layout of index.php and home.php
+  - Added autodetection of hostname and installation path
+    to install script
+  - Switched from file based to MySQL-based configuration
+  - Added administrator page
+  - Cleaned code, removed unnecessary function calls
+  - New languages included: czech, dutch, greek, hungarian,
+    italian, polski, slovak, turkish
+  - Redesigned count mechanism
+
+
+- Version 1.0.1p1
+  2002-03-19
+  
+  - fixed a path disclosure vulnerability as reported by
+    Ahmet Sabri Alper <salper@olympos.org>
+
+
+- Version 1.0.1
+  2001-12-30
+  
+  - fixed a bug that could display e.g. the english help for a french user
+  - For the error "You must register!", a sentence in the language file is
+    not present - people will now see the "Credentials correct?" error.
+  - added languages: Espanol, French, Portuguese-Brazil
+
+
+- Version 1.0
+  2001-12-08
+  
+  - many changes, I hope I get them together...
+  - fixed many bugs
+  - rewrote the socket server, now it's non-forking
+    (thanks to Markus Fischer <mfischer@php.net>) and
+    rock stable
+  - added a new frame that holds some links, a list
+    of available rooms, and a logo
+  - the autoscroll of the messagewindow can now be switched
+    off in versions that work with JavaScript (it does not
+    work really perfect with all browsers, though)
+  - userlist and roomlist can be refreshed manually
+  - the homepage is a bit nicer
+  - colors of several elements can be defined
+  - what was the config file is now split up into several
+    files to ease updating to new versions
+  - added smilies :-) (but they can be turned off)
+  - added optional or required nickname registration
+  - added flood protection
+  - added RIP mode: Ops can disable an users postings
+  - added banning based on the IP adress
+  - added locking, i.e. registered users can be locked out
+    permanently
+  - operators can move users from one room into another
+  - operators are informed where a user goes if he leaves
+    the room
+  - operators have a more comfortable userlist with links
+    to functions like /kick, /bann etc.
+  - new commands:
+    - /userlist (show a list of all users in the room)
+    - /roomlist (show a list of all rooms)
+    - /smilies show available smilies and how to create them
+  - new operator commands:
+    - /whois (shows info about another user, only for ops)
+    - /bann
+    - /lock
+    - /rip
+    - /unrip
+    - /move
+
+
+- Version 1.0beta2
+  2001-10-01
+
+  - added a socket server
+  - added roomchange
+  - refined timing issues
+  - added whispering to ops only
+  - added a first version for the Zuum
+    WebTV box
+  - increased compatibility
+  - increased speed
+  - fixed many minor and some major bugs
+  - available languages are listed automatically
+
+
+- Version 1.0beta1
+  2001-08-09
+
+  - finally, ARSC features "server push"
+  - added a lynx-friendly version
+  - in the two chat versions that use JavaScript, posting
+    is much more comfortable because the frame with the
+    message field is no longer refreshed
+  - implemented session handling
+  - timing is way more accuracte because microseconds are used
+    instead of seconds
+  - users can be operators
+  - operators can kick
+  - operators can give op
+  - operators can take op
+  - the chat admin can /op himself with /selfop
+  - added whispering
+  - users that leave the chat are logged out immediately,
+    even if they hit "stop" or close the browser
+  - clicking on a users name inserts the accurate /msg command
+    into the message field
+
+
+- Version 0.4
+  2001-05-11
+
+  - rooms are available
+  - different languages are available and can easily be added.
+    Thanks to Miguel Vitorino <mv@i9case.com> for the portuguese
+    translation.
+  - the /me command (known from IRC) is available
+  - <b>, <i> and <u> HTML tags are now allowed
+  - refined the timing issues
+
+
+- Version 0.3.1
+  2001-04-21
+
+  - cleaned a bug that caused a error for users chatting in
+    the JavaScript versions while users in the header version
+    send the ' character
+  - the ' character is now replaced with &acute; when it is
+    send, not when it is read from the database
+  - cleaned a bug in the installation script that didn't add
+    a required field to the user table
+  - the refresh timing in the JavaScript version was 2 seconds
+    and is now 4 seconds
+
+
+- Version 0.3
+  2001-04-15
+
+  - now JavaScript version runs fine on Opera 5.06b, Linux
+  - added a frame that shows the currently logged in users
+  - cleaned a bug that didn't show messages containing 
+    the ' character in the JavaScript version
+
+
+- Version 0.2
+  2001-04-01
+  
+  - corrected a scroll bug
+  - added list of users at login
+
+
+- Version 0.1
+  2001-03-18
+  
+  - ARSC's first release
