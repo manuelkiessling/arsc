@@ -4,7 +4,11 @@ include("inc/config.inc.php");
 include("inc/init.inc.php");
 include("inc/functions.inc.php");
 include("inc/api.inc.php");
-if (!is_file("../languages/".$arsc_language.".inc.php")) die("Invalid language");
+include("inc/inputvalidation.inc.php");
+
+$arsc_language = arsc_validateinput($_GET["arsc_language"], $arsc_available_languages, NULL, 0, 64, __FILE__, __LINE__);
+if ($arsc_language == "") $arsc_language = ARSC_PARAMETER_DEFAULT_LANGUAGE;
+if (!is_file("../languages/".$arsc_language.".inc.php")) arsc_error_log(ARSC_ERRORLEVEL_FATAL, "Could not open language file. Something is really messed up!", __FILE__, __LINE__);
 include("../languages/".$arsc_language.".inc.php");
 
 $arsc_api = new arsc_api_Class;

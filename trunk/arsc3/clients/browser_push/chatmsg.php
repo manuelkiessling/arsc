@@ -12,24 +12,21 @@ include("../../base/inc/api.inc.php");
 include("../../base/inc/filter.inc.php");
 
 $arsc_api = new arsc_api_Class;
+register_shutdown_function("arsc_shutdown");
 
-if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40)))
+function arsc_shutdown()
 {
- include("../../languages/".$arsc_my["language"].".inc.php");
-
- if ($arsc_api->userIsValid($arsc_my["user"]))
+ GLOBAL $arsc_sid,
+        $arsc_my;
+ if ($arsc_my["user"] <> "")
  {
-  echo ARSC_PARAMETER_HTMLHEAD_JS;
-  $arsc_template_varname = "arsc_template_".$arsc_my["template"];
-  echo arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".str_replace("{title}", ARSC_PARAMETER_TITLE, $arsc_lang["welcome"]), $arsc_my["room"], 0, $$arsc_template_varname);
-  flush();
-
-  while (!connection_aborted())
-  {
-   echo arsc_getmessages($arsc_my["sid"]);
-   usleep(ARSC_PARAMETER_SOCKETSERVER_REFRESH);
-   flush();
-  }
+  $arsc_user = $arsc_my["user"];
+  $arsc_room = $arsc_my["room"];
+  $arsc_nice_room = arsc_nice_room($arsc_room);
+  $arsc_timeid = arsc_microtime();
+  $arsc_sendtime = date("H:i:s");
+  mysql_query("DELETE FROM arsc_users WHERE sid = '".mysql_escape_string($arsc_sid)."'");
+  mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('".mysql_escape_string("arsc_user_quit~~".$arsc_user."~~".$arsc_nice_room)."', 'System', '".mysql_escape_string($arsc_sendtime)."', '".mysql_escape_string($arsc_timeid)."')");
  }
 }
 
@@ -82,4 +79,23 @@ function arsc_getmessages($arsc_sid)
   }
  }
 }
+
+if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__)))
+{
+ include("../../languages/".$arsc_my["language"].".inc.php");
+ if ($arsc_api->userIsValid($arsc_my["user"]))
+ {
+  echo ARSC_PARAMETER_HTMLHEAD_JS;
+  $arsc_template_varname = "arsc_template_".$arsc_my["template"];
+  echo arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".str_replace("{title}", ARSC_PARAMETER_TITLE, $arsc_lang["welcome"]), $arsc_my["room"], 0, $$arsc_template_varname);
+  flush();
+  while (!connection_aborted())
+  {
+   echo arsc_getmessages($arsc_my["sid"]);
+   usleep(ARSC_PARAMETER_SOCKETSERVER_REFRESH);
+   flush();
+  }
+ }
+}
+
 ?>

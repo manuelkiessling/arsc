@@ -24,7 +24,7 @@ $arsc_lang["usersinchat_name"]          = "User";
 $arsc_lang["clicktoregister"]           = "Register your nickname!";
 
 // Why kicked page
-$arsc_lang["why_kicked"] = "You were kicked.";
+$arsc_lang["why_kicked"] = "You were kicked out of the chat by an operator, probably due to behaviour that was not according with the rules of this chat.";
 
 // Register page and eMail
 
@@ -35,12 +35,11 @@ $arsc_lang["register_enteremail"]            = "eMail adress:";
 $arsc_lang["register_enterpassword"]         = "Password:";
 $arsc_lang["register_send"]                  = "Submit registration";
 $arsc_lang["register_yougetmail"]            = "Thanks, you will now get an eMail with your password.";
-$arsc_lang["register_emailtemplate_subject"] = "Your ARSC registration.";
-
-$arsc_lang["register_emailtemplate"]         = "
+$arsc_lang["register_emailtemplate_subject"] = "Your registration for {title}";
+$arsc_lang["register_emailtemplate_body"]    = "
 Hello,
 
-You registered for ARSC.
+You registered for {title}.
 
 You chose the nickname '{username}'.
 It is now protected with this password:
@@ -49,9 +48,6 @@ It is now protected with this password:
 
 You can now log into the chat on this page:
 {homepage}
-
-Follow the link 'Change profile' to change
-you password.
 
 Have a lot of fun!
 
@@ -138,8 +134,9 @@ $arsc_lang["whispersops"]         = "whispers to all operators";
 $arsc_lang["gotmsg"]              = "You whispered to {user}: {message}";
 $arsc_lang["croom"]               = "User {user} decides to withdraw in his private room {room}.";
 $arsc_lang["room_exists"]         = "Sorry, but the room {room} already exists.";
-$arsc_lang["room_created"]        = "Your private room {room} was succesfully created! Now you can invite someone using the /invite command.";
-$arsc_lang["invite"]              = "User {user} has invited you in his room {room}. Type \"/room {room} {password}\" to enter this room.";
+$arsc_lang["room_badname"]        = "Sorry, this roomname is not acceptable.";
+$arsc_lang["room_created"]        = "Your private room {room} was successfully created! Now you can invite someone using the /invite command.";
+$arsc_lang["invite"]              = "User {user} has invited you to his room {room}. Type \"/room {room} {password}\" to enter this room.";
 $arsc_lang["invite_notexist"]     = "Sorry, the user {user} does not exist.";
 $arsc_lang["invite_notownroom"]   = "Sorry, you must be in your own private room to invite other users.";
 $arsc_lang["room_not_exist"]      = "Sorry, but the room {room} does not exist";
@@ -167,7 +164,7 @@ of the command line.
 General Commands:
 /me message -- Symbolizes an action, e.g. /me feels fine writes * User feels fine
 /msg user message -- Sends a private message to an user
-/j room -- Leaves the room and enters room
+/j AnotherRoom -- Leaves the current room and enters room 'AnotherRoom'
 /room room -- An alias to /j";
 
 $arsc_lang["helpop"]        = "

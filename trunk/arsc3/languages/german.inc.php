@@ -5,9 +5,12 @@
 $arsc_lang["entername"]                 = "Ihr Nickname:";
 $arsc_lang["enterpassword"]             = "Ihr Passwort:";
 $arsc_lang["whichversion"]              = "Welche Version m&ouml;chten Sie verwenden?";
+$arsc_lang["version_dontknow"]          = "Choose this version if you don't know which browser you use.";
 $arsc_lang["version_browser_socket"]    = "Optimierte Version";
 $arsc_lang["version_browser_push"]      = "Alternative Version: F&uuml;r die Verwendung hinter einer Firewall";
+$arsc_lang["version_browser_header_js"] = "An alternative version for modern browsers if the one above did not work. Uses JavaScript and Frames.";
 $arsc_lang["version_browser_header"]    = "Alternative Version: Ohne JavaScript";
+$arsc_lang["version_browser_box"]       = "A version for the Zuum WebTV box.";
 $arsc_lang["version_browser_text"]      = "Alternative Version: F&uuml;r Textbrowser";
 $arsc_lang["version_applet"]            = "Alternative Version: Java Applet";
 $arsc_lang["yes"]                       = "Ja";
@@ -21,7 +24,7 @@ $arsc_lang["usersinchat_name"]          = "User";
 $arsc_lang["clicktoregister"]           = "Registrieren Sie Ihren Nickname!";
 
 // Why kicked page
-$arsc_lang["why_kicked"] = "Sie wurden des Chats verwiesen.";
+$arsc_lang["why_kicked"] = "Sie wurden des Chats verwiesen, dies ist sehr wahrscheinlich passiert, weil Sie die Nutzungsrichtlinien des Chats in irgendeiner Form verletzt haben.";
 
 // Register page and eMail
 
@@ -33,8 +36,7 @@ $arsc_lang["register_enterpassword"]         = "Passwort:";
 $arsc_lang["register_send"]                  = "Absenden";
 $arsc_lang["register_yougetmail"]            = "Danke, Sie erhalten nun eine eMail mit Ihrem Passwort.";
 $arsc_lang["register_emailtemplate_subject"] = "Ihre {title} Registrierung.";
-
-$arsc_lang["register_emailtemplate"]         = "
+$arsc_lang["register_emailtemplate_body"]    = "
 Hallo,
 
 Sie haben sich beim {title} registriert.
@@ -132,6 +134,7 @@ $arsc_lang["whispersops"]         = "fl&uuml;stert zu den Operatoren";
 $arsc_lang["gotmsg"]              = "Sie fl&uuml;sterten zu {user}: {message}";
 $arsc_lang["croom"]               = "User {user} zieht sich in seinen privaten Raum {room} zur&uuml;ck.";
 $arsc_lang["room_exists"]         = "Der Raum {room} existiert bereits!";
+$arsc_lang["room_badname"]        = "Dieser Raumname ist leider nicht akzeptabel.";
 $arsc_lang["room_created"]        = "Ihr privater Raum {room} wurde erfolgreich angelegt! Sie k&ouml;nnen nun mittels des /invite Befehls andere User in Ihren Raum einladen.";
 $arsc_lang["invite"]              = "User {user} hat Sie in seinen privaten Raum {room} eingeladen. Schreiben Sie \"/room {room} {password}\" um seinen Raum zu betreten.";
 $arsc_lang["invite_notexist"]     = "Der User {user} existiert nicht!";
@@ -150,33 +153,33 @@ Um eine Nachricht an alle im Raum befindlichen User zu schreiben, tippen Sie Ihr
 (Wenn Sie sich in einem moderierten Raum befinden, erscheint Ihre Nachricht zun&auml;chst nicht f&uuml;r alle Anwesenden sichtbar, sondern wird an den Moderator des Raumes &uuml;bermittelt, und nach Freigabe ggf. f&uuml;r alle sichtbar in den Raum geschrieben.)
 
 Im linken Bereich stehen Ihnen verschiedene Funktionen zur Verf&uuml;gung. Unterhalb des Logos sehen Sie ein Formular mit dem Sie in alle vorhandenen R&auml;ume des Chats wechseln k&ouml;nnen.
-Unterhalb dieses Formulars befindet sich ein Schalter mit dem Sie einstellen k&ouml;nnen, ob sich der Inhalt des Chatausgabebereichs immer automatisch mit neuen Nachrichten mitbewegt. Wenn Sie einmal vorhergehende Nachrichten lesen wollen, die schon aus dem sichtbaren Bereich der Chatausgabe verschwunden sind, m&uuml;ssen Sie lediglich das H&auml;kchen deaktivieren und k&ouml;nnen dann den Chatausgabeframe wie gewohnt nach oben scrollen.
-Beachten Sie bitte dass in den Browsern Mozilla und Netscape 7 das H&auml;kchen nicht extra deaktiviert werden muss, es reicht aus einmal in das Chatausgabefenster zu klicken und dann mittels der Scrollbalken des Frames zu scrollen. Wenn automatisches Scrollen wieder aktiviert werden soll, reicht ein einfacher Klick in das Textfeld der Chateingabe.
+Unterhalb dieses Formulars befindet sich ein Schalter mit dem Sie einstellen k&ouml;nnen, ob sich der Inhalt des Chatausgabebereichs immer automatisch mit neuen Nachrichten mitbewegt. Wenn Sie einmal vorhergehende Nachrichten lesen wollen, die schon aus dem sichtbaren Bereich der Chatausgabe verschwunden sind, m&uuml;ssen Sie lediglich das H&auml;kchen vor <i>Automatich scrollen</i> deaktivieren und k&ouml;nnen dann den Chatausgabeframe wie gewohnt nach oben scrollen.
+Beachten Sie bitte, dass in den Browsern <i>Mozilla</i>, <i>Firefox</i> und <i>Netscape 7</i> das H&auml;kchen nicht extra deaktiviert werden muss, es reicht aus, einmal in das Chatausgabefenster zu klicken und dann mittels der Scrollbalken des Frames zu scrollen. Wenn automatisches Scrollen wieder aktiviert werden soll, reicht ein einfacher Klick in das Textfeld der Chateingabe.
 
-Im rechten Bereich, der Anwesenheitsliste, sehen Sie die Namen aller User die sich mit Ihnen im selben Raum befinden. User, vor deren Namen sich das Zeichen @ befindet, sind sogenannte Operatoren - diese haben erweiterte Rechte im Chat, z.B. das Verweisen anderer User, und sorgen f&uuml;r Ordnung im Chat. An diese sollten Sie sich wenden wenn Sie Fragen oder Probleme haben. Der Befehl '/opcall' (einfach in die Texteingabe einzugeben) informiert alle Anwesenden Operatoren, dass Sie Hilfe ben&ouml;tigen.
+Im rechten Bereich, der Anwesenheitsliste, sehen Sie die Namen aller User, die sich mit Ihnen im selben Raum befinden. User, vor deren Namen sich das Zeichen @ befindet, sind sogenannte Operatoren - diese haben erweiterte Rechte im Chat, z.B. das Verweisen anderer User, und sorgen f&uuml;r Ordnung im Chat. An diese sollten Sie sich wenden, wenn Sie Fragen oder Probleme haben. Der Befehl '/opcall' (einfach in die Texteingabe eingeben) informiert alle anwesenden Operatoren, dass Sie Hilfe ben&ouml;tigen.
 
-Jeder Name in der Anwesenheitsliste (ausser Ihrem eigenen) ist gleichzeitig ein Link - wenn Sie auf diesen klicken, wird die Texteingabe mit dem Befehl '/msg Username' gef&uuml;llt. Sie m&uuml;ssen dann nur noch Ihre Nachricht an das Ende dieses Befehls anfügen, und wenn Sie diese dann absenden, erh&auml;hlt der entsprechende User eine private Nachricht von Ihnen, das bedeutet dass nur er diese Nachricht sieht. Diese Funktion wird auch Fl&uuml;stern genannt.
+Jeder Name in der Anwesenheitsliste (ausser Ihrem eigenen) ist gleichzeitig ein Link - wenn Sie auf diesen klicken, wird die Texteingabe mit dem Befehl '/msg NameDesUsers' gef&uuml;llt. Sie m&uuml;ssen dann nur noch Ihre Nachricht an das Ende dieses Befehls anfügen, und wenn Sie diese dann absenden, erh&auml;hlt der entsprechende User eine private Nachricht von Ihnen. Das bedeutet, dass nur er diese Nachricht sieht. Diese Funktion wird auch <i>Fl&uuml;stern</i> genannt.
 
 
 <b><i>Befehls&uuml;bersicht:</i></b>
-<b>/me message</b> -- Symbolisiert eine Aktion, z.B. '/me macht eine T&uuml;te Chips auf' schreibt in den Chat: '* macht eine T&uuml;te Chips auf'
-<b>/msg User Nachricht</b> -- Sendet eine private Nachricht an 'User'
+<b>/me message</b> -- Symbolisiert eine Aktion, z.B. <i>/me macht eine T&uuml;te Chips auf</i> schreibt in den Chat: <i>* macht eine T&uuml;te Chips auf</i>
+<b>/msg NameDesUsers Nachricht</b> -- Sendet eine private Nachricht an <i>NameDesUsers</i>
 <b>/opcall</b> -- Ruft die Operatoren zu Hilfe
-<b>/croom Raumname</b> -- Legt einen privaten Raum an
-<b>/invite User</b> -- L&auml;dt User in privaten Raum ein
-<b>/j Raumname</b> -- Wechselt in einen anderen Raum";
+<b>/croom NameDesRaums</b> -- Legt einen privaten Raum <i>NameDesRaums</i> an
+<b>/invite NameDesUsers</b> -- L&auml;dt <i>NameDesUsers</i> in privaten Raum ein
+<b>/j NameDesRaums</b> -- Wechselt in den Raum <i>NameDesRaums</i>";
 
 $arsc_lang["helpop"]        = "
 <b><i>Operatorenbefehle:</i></b>
-<b>/msgops Nachricht</b> -- Alle Operatoren anfl&uuml;stern
-<b>/whois User</b> -- Zeigt Informationen &uuml;ber einen User
-<b>/op User</b> -- User Operatorenstatus geben
-<b>/deop User</b> -- User Operatorenstatus entziehen
-<b>/kick User</b> -- User des Chats verweisen
-<b>/bann User X</b> -- IP des Users f&uuml;r X Sekunden sperren
-<b>/lock User</b> -- Account des (registrierten!) Users permanent sperren
-<b>/rip User</b> -- User stummschalten
-<b>/unrip User</b> -- Stummschaltung wieder aufheben
-<b>/move User Raum</b> -- User in Raum verschieben";
+<b>/msgops Nachricht</b> -- Alle anderen Operatoren anfl&uuml;stern
+<b>/whois User</b> -- Zeigt Informationen &uuml;ber User <i>NameDesUser</i>
+<b>/op NameDesUsers</b> -- User <i>NameDesUser</i> Operatorenstatus geben
+<b>/deop NameDesUsers</b> -- User <i>NameDesUser</i> Operatorenstatus entziehen
+<b>/kick NameDesUsers</b> -- User <i>NameDesUsers</i> des Chats verweisen
+<b>/bann NameDesUsers XYZ</b> -- IP des Users <i>NameDesUsers</i> f&uuml;r <i>XYZ</i> Sekunden sperren
+<b>/lock NameDesUsers</b> -- Account des (registrierten!) Users <i>NameDesUsers</i> permanent sperren
+<b>/rip NameDesUsers</b> -- User <i>NameDesUsers</i> stummschalten
+<b>/unrip NameDesUsers</b> -- Stummschaltung von User <i>NameDesUsers</i> wieder aufheben
+<b>/move NameDesUsers NameDesRaums</b> -- User <i>NameDesUsers</i> in <i>NameDesRaums</i> verschieben";
 
 ?>
