@@ -88,7 +88,7 @@ while (1) // Handling connections in a neverending loop
         }
        }
        $arsc_api->addTraffic("incoming", strlen($received_data));
-       // Check wether a browser (who sends only HTTP headers) is connecting or another client (who knows ARSC headers)
+       // Check whether a browser (who sends only HTTP headers) is connecting or another client (who knows ARSC headers)
        if (substr($received_data, 0, 3) == "GET") // Client is a browser, so we only have to get the sid since the user is already registered
        {
         ereg("arsc_sid=(.*) HTTP", $received_data, $a);
@@ -140,7 +140,6 @@ while (1) // Handling connections in a neverending loop
        {
         $arsc_my = $arsc_api->getUserValuesBySID($arsc_sid[$arsc_num]);
         writeLogMessage("ARSC", $arsc_sid[$arsc_num], $arsc_connection_info[$arsc_num]["address"], $arsc_connection_info[$arsc_num]["port"], $arsc_num, "Connection is an ARSC client (Type: ".$arsc_clienttype.", Nickname {$arsc_my["user"]}, Room {$arsc_my["room"]})");
-        $arsc_api->postMessage($arsc_my["room"], "arsc_user_enter~~".$arsc_my["user"]."~~".$arsc_api->getReadableRoomname($arsc_my["room"]), "System", date("H:i:s"), arsc_microtime(), 0);
         if ($arsc_my["version"] <> "external")
         {
          socket_write($arsc_connection, ARSC_PARAMETER_HTMLHEAD_JS, strlen(ARSC_PARAMETER_HTMLHEAD_JS));
@@ -202,7 +201,7 @@ while (1) // Handling connections in a neverending loop
         writeLogMessage("ARSC", $arsc_sid[$arsc_num], $arsc_connection_info[$arsc_num]["address"], $arsc_connection_info[$arsc_num]["port"], $arsc_num, "User not logged in (anymore) (Nickname {$arsc_my["user"]}, Room {$arsc_my["room"]})");
         unset($arsc_connections[$arsc_num]);
         unset($arsc_connection_info[$arsc_num]);
-        socket_shutdown($arsc_connection);
+        @socket_shutdown($arsc_connection);
         flush();
        }
       }
