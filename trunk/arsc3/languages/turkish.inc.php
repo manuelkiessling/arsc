@@ -10,6 +10,9 @@
  Translation by Ridvan Agar <ridvan.agar@web.de>.
 */
 
+// Include the english file, in order to provide english text if the current file has some sentences missing.
+include("english.inc.php");
+
 // Define some settings for this language
 $arsc_lang_regions["turkish"] = array("tr", "tr-TR");
 $arsc_lang_name["turkish"] = "Türkçe";
