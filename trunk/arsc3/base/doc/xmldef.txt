@@ -67,3 +67,4 @@ A typical session with an external client:
    b) on failure (sid not known to the system etc.)
 
 <arscrespond><type>userlist</type><status>error</status><error>This session is not known</error></arscrespond>
+

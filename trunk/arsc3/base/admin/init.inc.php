@@ -1,6 +1,6 @@
 <?php
 
-// FIXME: We register globals ourself. Yes, this is cheating. Yes, this has to be done cleanly soon.
+// FIXME: We register globals ourself. Yes, this is cheating. Yes, this has to be done cleanly. Soon.
 
 while (list($arsc_key, $arsc_val) = each($_GET))
 {

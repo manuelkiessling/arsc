@@ -1,14 +1,3 @@
-# phpMyAdmin MySQL-Dump
-# version 2.3.3pl1
-# http://www.phpmyadmin.net/ (download page)
-#
-# Host: localhost
-# Erstellungszeit: 29. August 2004 um 16:23
-# Server Version: 4.00.20
-# PHP-Version: 4.3.8
-# Datenbank: `arsc3-alpha2`
-# --------------------------------------------------------
-
 #
 # Tabellenstruktur für Tabelle `arsc_bannlist`
 #
