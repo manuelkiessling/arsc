@@ -298,21 +298,6 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
      $arsc_message = "";
     }
    }
-   /* Better: adding a registered user with level 4
-   if (substr($arsc_message, 0, 8) == "/selfop ")
-   {
-    $password = str_replace("/selfop ", "", $arsc_message);
-    if ($password == ARSC_PARAMETER_SELFOP_PASSWORD)
-    {
-     mysql_query("UPDATE arsc_users SET level = 3 WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
-     mysql_query("DELETE FROM arsc_room_$arsc_room WHERE message LIKE '/selfop%' AND user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
-     $arsc_message = "arsc_user_selfop~~".$arsc_user;
-     $arsc_sendtime = date("H:i:s");
-     $arsc_timeid = arsc_microtime();
-     mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
-    }
-   }
-   */
    if (substr($arsc_message, 0, 5) == "/msg " AND $arsc_flag_ripped <> 1)
    {
     $userpassive = str_replace("/msg ", "", $arsc_message);
