@@ -19,7 +19,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
   }
  
   $arsc_timebuffer = time() - $arsc_logoutbuffer;
-  mysql_query("DELETE from arsc_users WHERE lastping < '$arsc_timebuffer' AND version <> 'text'");
+  mysql_query("DELETE from arsc_users WHERE (lastping < '$arsc_timebuffer' AND version <> 'text')");
   $arsc_timebuffer = time() - $arsc_logoutbuffertext;
   mysql_query("DELETE from arsc_users WHERE lastping < '$arsc_timebuffer' AND version = 'text'");
   $arsc_result = mysql_query("SELECT user, level from arsc_users WHERE room = '$arsc_room' ORDER BY level DESC, user ASC");
@@ -29,7 +29,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
   header("Cache-Control: no-cache, must-revalidate");
   header("Pragma: no-cache");
   header("Content-Type: text/html");
-  header("Refresh: 9; URL=chatusers.php?arsc_sid=".$arsc_sid);
+  header("Refresh: ".$arsc_userlist_refresh."; URL=chatusers.php?arsc_sid=".$arsc_sid);
   ?>
   <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
   <html>
