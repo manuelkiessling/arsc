@@ -1,5 +1,7 @@
 <?php
 
+// just a test
+
 $mt = micromy_microtime();
 $mta = explode(" ",$mt);
 $mt = $mta[1].$mta[0];
