@@ -35,7 +35,7 @@ if ($arsc_a["howmany"] > 0)
 }
 elseif ($arsc_param["register_force"] == "yes")
 {
- header ("Location: home.php?arsc_error=must_register&arsc_language=".$arsc_language);
+ header ("Location: home.php?arsc_error=wrong_credentials&arsc_language=".$arsc_language);
  die();
 }
 $arsc_result = mysql_query("SELECT COUNT(*) as howmany from arsc_bannlist WHERE ip = '$arsc_ip' AND until > '".time()."'");

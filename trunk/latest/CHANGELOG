@@ -1,5 +1,14 @@
 ARSC Changelog
 
+- Version 1.0.1
+  2001-12-30
+  
+  - fixed a bug that could display e.g. the english help for a french user
+  - For the error "You must register!", a sentence in the language file is
+    not present - people will now see the "Credentials correct?" error.
+  - added languages: Espanol, French, Portuguese-Brazil
+
+
 - Version 1.0
   2001-12-08
   

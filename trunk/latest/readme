@@ -1,6 +1,6 @@
 ARSC - ARSC Really Simple Chat
 =======================================================================
-Version 1.0 - 2001-12-08 - Thank you for using ARSC!
+Version 1.0.1 - 2001-12-30 - Thank you for using ARSC!
 Copyright (C) 2001 Manuel Kiessling
 =======================================================================
 
@@ -44,7 +44,7 @@ You need a webserver that supports at least PHP version 3, better 4.
 If you want to use the socket server (that means that you have telnet
 or ssh access to a Linux/Unix server and you may start server daemons
 listening on some port on this server), then you need at least
-PHP 4.0.7RC2, and you must compile it with '--enable-sockets'. More on
+PHP 4.1.0, and you must compile it with '--enable-sockets'. More on
 this later.
 You always find the most actual version of PHP here:
 <http://www.php.net>

@@ -158,7 +158,7 @@
 
 //  Where are your smilie images located? Full path please.
 
-    $arsc_param["smilies_path"] = "http://manuel.kiessling.net/arscdev/pic/smilies/";
+    $arsc_param["smilies_path"] = "http://your.server.com/arsc_root/pic/smilies/";
 
 
 //  The smilie images must be named after numbers
