@@ -3,6 +3,7 @@ ARSC Changelog
 - Version 1.0.2
   2002-10-25
   
+  - fixed bug #574458 (reload ends in mysql-errors)
   - fixed bug #582946 (broken language support)
   - Added 'change password' page (Feature request #626999)
   - Added individual user colors (Feature request #500138)
