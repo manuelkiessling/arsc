@@ -1,6 +1,6 @@
 ARSC - ARSC Really Simple Chat
 =======================================================================
-Version 1.0beta2 - 2001-10-01 - Thank you for using ARSC!
+Version 1.0 - 2001-12-07 - Thank you for using ARSC!
 Copyright (C) 2001 Manuel Kiessling
 =======================================================================
 
@@ -21,39 +21,43 @@ USA.
 
 =======================================================================
 Due to the fact that my mother language is not english, it is possible
-or better very probably that there are several mistakes - i hope they
+or better very probably that there are several mistakes - I hope they
 are at least funny... if you find one, then please send me an eMail to
 manuel@kiessling.net. Thank you very much!
 =======================================================================
 
-ATTENTION! This is a beta version!
-
-It should run ok on most configurations, but it is not widely tested -
-this is why I released this version actually: I need feedback from
-betatesters. So please give me feedback on bugs you find or features you
-miss. You find the bug reporting tool here:
-<http://sourceforge.net/tracker/?group_id=32699&atid=406296>
-
-Thank you!
 
 
-
-Requirements:
+What is ARSC?
 -------------
+
+ARSC is a webchat program written in PHP. With ARSC, you can easily set
+up a chat on a website, so visitors of this site can talk to each other
+in realtime.
+
+
+
+Requirements
+------------
 
 You need a webserver that supports at least PHP version 3, better 4.
 If you want to use the socket server (that means that you have telnet
 or ssh access to a Linux/Unix server and you may start server daemons
-listening on some port), then you need at least PHP 4.0.7RC2, and you
-must compile it with '--enable-sockets' and '--enable-pcntl'.
+listening on some port on this server), then you need at least
+PHP 4.0.7RC2, and you must compile it with '--enable-sockets'. More on
+this later.
+You always find the most actual version of PHP here:
 <http://www.php.net>
 
 The PHP installation must support MySQL.
+The homepage of MySQL is:
 <http://www.mysql.com>
 
 You need a running MySQL server where you may add tables.
 Chatting is only really comfortable if the client (the browser)
-supports frames and JavaScript.
+supports frames and JavaScript, but with ARSC, chatting is possible
+with _every_ browser on the surface of this planet, even text based
+ones like Lynx.
 
 I tested ARSC successfully with the following browsers:
 
@@ -61,10 +65,10 @@ Socket server version:
 
 - Netscape 3.x - 6.x (Win/Linux)
 - Mozilla 0.9.x
-- Internet Explorer 4.x - 5.x
+- Internet Explorer 4.x - 6.x
 - Internet Explorer 5.x for Macintosh
 - Opera 5.x for Linux
-- Opera 5.x for Windows
+- Opera 5.x - 6.x for Windows
 
 It should work with Netscape 2.x also, but my NN 2.2 crashes... mh...
 
@@ -77,20 +81,26 @@ Server push version:
 Header JavaScript version:
 
 - All of the above except Opera 5.x for Linux
+- Netscape Navigator 2.x for Windows
 
 
 Header version:
 
 - all of the above
-- Netscape Navigator 2.x for Windows
 - Konqueror
+
+
+Zuum WebTV box:
+
+- all of the above
 
 
 Text version
 
-- all of the above of course
+- all of the above (of course)
 - Lynx
 - w3b
+- virtually everything else around
 
 
 If you tested it with other (and more exotic) browsers,
@@ -98,39 +108,162 @@ then please email me.
 
 
 
-Installation:
--------------
+Installation
+------------
 
-Extract the archive.
+First, you must make some decisions. Life is full of them, right?
 
-Edit the file 'config.inc.php' to fit your MySQL server settings.
-The MySQL server must be running of course, and the database in
-which ARSC will create its tables must already exist.
+You can run ARSC really fine on those widely available LAMP
+(Linux, Apache, MySQL, PHP) servers, where PHP is compiled into
+Apache as a shared module. For those who don't know what this stuff
+is: You can run ARSC on nowadays standard web servers without any
+special requirements.
 
-Change the settings for the socket server if you want to use it.
-I will explain later how to start the server.
+But if, AND ONLY IF, you are one of those lucky guys who run their
+own server, or have at least shell (telnet/ssh) access to a server,
+and are allowed to start so called socket servers (those are programs
+which listen to a specific port on the server, e.g. FTP listens to
+port 21, Apache to port 80 etc.), then ARSC has something really useful
+for you: its own socket server.
 
-Put the extracted files somewhere on your web server beneath a
-directory called "chat" or whatever you like.
+Let me say it this way: if you _can_ use the socket server, then _do_
+it! It offers by far the best performance in terms of CPU/RAM usage.
 
-In your browser, open this adress:
+If you cannot use a socket server, and/or you don't know what's
+this all about, then don't be afraid - you can still use ARSC, and
+there will be NOT ONE feature missing.
 
-http://www.yourdomain.com/your_chat_directory/install.php
+Well, now decide wether you will use the socket server or not.
+If you decided to use it, then read the next chapter AND the
+chapter 'Installing the socket server'.
+If you don't want to use the socket server, then just read on and
+skip the 'Installing the socket server' chapter.
 
-When it says "ARSC is installed.", then everything went fine, and you
-SHOULD(!) delete the file 'install.php' from your server!
+Let's go on.
 
-Now ARSC is ready to run. You can reach it via
-http://www.yourdomain.com/your_chat_directory/index.php
+Extract the archive. You probably just did this, if you are already
+reading this.
 
-If it doesn't tell you "ARSC is installed.", then you can email me and
-ask me what to do: <manuel@kiessling.net>
+Now you must edit a file. The name of this file is 'config.inc.php',
+and you find it in the root directory of the extracted archive.
+Open it with you favorite editor.
+
+First, you must tell ARSC how it can connect the MySQL database.
+Therefore, you must give the hostname, the username, and the
+password to your MySQL server. As mentioned in the configfile,
+you should know a bit about MySQL in order to get things running.
+
+ARSC parameter number 4 is the name of a database on your MySQL
+server. This database MUST exist! If you have access to only one
+database on the MySQL server, then enter its name here - if you may
+create databases, maybe you should create one for ARSC only, and
+enters its name here.
+
+Next point is the question wether to use the socket server or not.
+Of course you already made this decision, so answer "yes" or "no"
+here according to your decision.
+
+The next 3 points are only important if you use the socket server.
+If not, then ignore them and go on to $arsc_param["selfop_password"].
+
+If you use it, then first we need the IP adress of the machine where
+you will start the socket server. Hostname is also possible, but the
+IP adress is always the better choice!
+
+Next is the port of the socket server. You must choose a port that is
+not yet used by another socket server (e.g. the FTP daemon etc.).
+I find that 8080 is quite a good choice, but sometimes proxy servers
+are listening on that port, then you must choose something other
+of course.
+
+The next value does not seem to be important. As said in the configfile,
+I could not produce a situation where the server listened to that value.
+This could be because the socket extension of PHP has still errors
+regarding this issue, or it has something to do with the platform.
+Whatever, set this to a reasonable value, just to be sure.
+
+Next parameter is $arsc_param["selfop_password"]. The value of this
+variable is really important! Read in the configfile why. And please:
+change it.
+
+The next four parameters again require a decision. Do you want to add
+the Open Source tool 'Drawboard' to your ARSC installation? You find
+everything you need to know about drawboard here:
+<http://drawboard.sourceforge.net/>
+
+Again, if all this sounds weird to you, just skip those parameters.
+If not, then let me tell you that after you set up the Drawboard server,
+saying "yes" here will enable a link inside the chat that opens a popup
+with the Drawboard Java applet inside. The Java applet will use the
+parameters 'drawboard_width', 'drawboard_height' and 'drawboard_port',
+whose meanings will become clear when you know how Drawboard works.
+
+Ok, that was the important part. Everything that follows now is really
+finetuning, and explained well enough in the config file so we must not
+explain it here.
+
+The next step is to really install ARSC. To do so, you must first
+transfer all files to the webserver. It is a good idea if you create
+an own subdirectory for ARSC. Let's say you have http://www.myserver.com,
+then create the directory http://www.myserver.com/arsc/, and copy all
+extracted files there.
+
+If everything is transfered, open your browser and point it to
+http://www.myserver.com/arsc/install.php.
+
+If it says 'ARSC is installed', then everything is fine and you can start
+to chat! (But maybe you must still start the socket server, so read on,
+ok?)
+
+If not, it is most likely something wrong with the MySQL connection or
+the required database. Start searching for errors there.
+
+You should delete the file 'install.php' from your webserver if
+installation was successful.
+
+Ok, now if you do not use the socket server, just point your browser
+to http://www.myserver.com/arsc/ and have fun chatting.
 
 
-Your ARSC chat is now ready to use, but if you want to use the
-socket server. there is one step left.
 
-First let us make one thing clear: if you _can_ use the socket server,
+Adding rooms
+------------
+
+The installation script creates a room called 'Lounge'.
+If you want to add rooms, then you must copy the table
+'arsc_room_lounge' and then rename it. If you want to call the new
+room 'Members Only', then you must call the table
+'arsc_room_members_only'.
+
+More examples should make the pattern clear:
+
+Room name                       Table name
+----------------------------------------------------------------------
+I Like Chatting                 arsc_room_i_like_chatting
+Software / Hardware             arsc_room_software__hardware
+Games / Cheats And Tutorials    arsc_room_games__cheats_and_tutorials
+
+If you want to find out the commands of the chat, then just type /?
+   
+One feature that is undocumented there:
+if you type '/selfop <password>' then you will be the king-of-the-hill
+in the chat, meaning that you can op, deop and kick everybody and nobody
+can do this with you. The <password> for this command is set in the
+config.inc.php file. Change this password to something really secure,
+or you will loose control about your chat if someone finds out that
+password.
+
+Type again /? after you made yourself an operator, because then you will
+see more commands!
+
+
+
+Installing the socket server
+----------------------------
+
+Well, if you want to use the socket server, there is one step left.
+
+Let us make one thing clear again: if you _can_ use the socket server,
 then you _want_ use the socket server. Only this version will offer
 your users really fast and comfortable chatting while keeping your
 server load on a minimum.
@@ -142,90 +275,51 @@ The ARSC socket server is a php script that is started from a
 Linux/Unix console and waits on a certain port for connections from
 ARSC clients.
 
-To get this script running (it is located at
-'version_sockets/arscserver.php'), you must have a cgi version of
-PHP 4.0.7RC2 installed on your server, compiled with the options
-'--enable-sockets' and '--enable-pcntl'.
-The socket server will not run with an earlier version of PHP.
+The location of this script is:
+your_arsc_directory/version_sockets/arscd.php
 
-Now you must edit the file 'arscserver.php' and change the very first
-line. This line must points to the php executable you have installed,
-just like e.g. a shell script points to /bin/bash.
+To get this script running, you must have a cgi version of PHP
+installed on your server, compiled with the option '--enable-sockets'
+and the options neccessary to connect the MySQL database.
 
-Next, you must probably chmod this file, so it is executable for
-you.
+PHP 4.1.0 will be available soon, but as per this writing, only
+PHP 4.1.0RC5 is available. But it is a really stable release candidate,
+and I had no problems or instability with the socket server.
+You can download PHP 4.1.0RC5 here:
+<http://www.php.net/~zeev/>
 
-Then, simply start the script by typing './arscserver.php &'.
+The socket server will probably not run with an earlier version of PHP!
+
+After successfully compiling and installing the cgi version of PHP
+4.1.0RC5 or above, you must edit the file 'arscd.php' and change the
+very first line. This line must point to the php executable you have
+installed, just like e.g. a shell script points to /bin/bash.
+
+If you compiled PHP with '--prefix=/usr/local/php-cgi/4.1.0rc5',
+then the first line should read:
+#!/usr/local/php-cgi/4.1.0rc5/bin/php -q
+
+Next, you must probably chmod this file, so it is executable for you:
+prompt> chmod 700 ./arscd.php
+
+Then, simply start the script by typing:
+prompt> ./arscd.php &
 
 You should then see something like this:
-[2001-10-01 06:17:47] Started ARSC server listening on port 5555.
+[2001-10-01 06:17:47] {SOCK} Started ARSC server listening on port 8080.
 
 If you see something like this:
-Couldn't create listening socket on port 5555.
+[2001-10-01 06:17:47] {SOCK} Couldn't create listening socket...
 
-then try to change the port number in the config file.
+then try to change the port number in the configfile.
 
-If the socket server is running and working fine, then you should think
-about completely deactivating the server push version to save server
-load. The only reason for a chat user to choose the server push version
-and not the socket server version would be that he sits behind a
-firewall that does not allow connections on the port you chose for the
-socket server.
+Now your socket server is running and you can enjoy chatting at
+http://www.myserver.com/arsc/
 
 
-The installation script creates a room called 'Lounge'.
-If you want to add rooms, then you must copy the table
-'arsc_room_standard' and then rename it. If you want to call the new
-room 'Members only', then you must call the table
-'arsc_room_members_only'.
 
-More examples should make the pattern clear:
-
-Room name                       Table name
-----------------------------------------------------------------------
-I Like Chatting                 arsc_room_i_like_chatting
-Software / Hardware             arsc_room_software__hardware
-Games / Cheats And Tutorials    arsc_room_games__cheats_and_tutorials
-
-
-Some hints how things work inside the chat:
-(You will see this if you type /? inside the chat)
-
- General help: 
-   In the right frame you see all users that 
-   are currently in the room. 
-
-   Users with the symbol @ in front of their 
-   name are operators and can kick users out 
-   of the chat and can give and take operator 
-   status to and from users. 
-
-   By clicking on one of these names, your 
-   message field will be filled with the command 
-   that is necessary to send a private message to 
-   this user - just add your message at the end. 
-
- General commands: 
-   /me message -- Symbolize an action, e.g. /me feels fine will print
-                  * username feels fine
-   /msg user message -- Send a private message to user 
-   /j roomname -- Leave the current room and enter roomname 
-   /room room -- Same like /j 
-
- Operator commands: 
-   /msgops message -- Whisper a message to all operators 
-   /op user -- Give operator status to user 
-   /deop user -- Take operator status from user 
-   /kick user -- Kick user out of the current room
-   
-One feature that is undocumented here:
-if you type '/selfop <password>' then you will be the king-of-the-hill
-in the chat, meaning that you can op, deop and kick everybody and nobody
-can do this with you. The <password> for this command is set in the
-config.inc.php file. Change this password to something really secure,
-or you will loose control about your chat if someone finds out that
-password.
-
+Appendix
+--------
 
 The homepage of ARSC is:
 http://manuel.kiessling.net/projects/software/arsc/

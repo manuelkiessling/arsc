@@ -63,13 +63,12 @@
     $arsc_param["socketserver_port"] = 8080;
 
 
-//  This value should tell the server how many connections he handles
-//  max, but, err, he doesn't listen to it :) Just don't care then...
+//  This value _should_ tell the server how many connections he handles
 
-    $arsc_param["socketserver_maximumusers"] = 5;
+    $arsc_param["socketserver_maximumusers"] = 200;
 
 
-//  This is the password that you need if you want give yourself
+//  This is the password that you need if you want to give yourself
 //  operator status. This means that when you enter the chat and post
 //  '/selfop password', you will be the superuser who has control about
 //  every other user in the chat! As you can imagine, it is very easy to
@@ -95,7 +94,7 @@
 
 
 
-//  FINE TUNING PARAMETERS /////////////////////////////////////////////
+//  FINETUNING PARAMETERS /////////////////////////////////////////////
 
 //  What is the name of your chat? This appears in the document title.
 
@@ -114,8 +113,8 @@
 
 
 //  What is the name of your logo file? The easiest way would be to
-//  place the image in pic/logo.gif/jpg/png and then enter
-//  'logo.gif/jpg/png' here
+//  save the image as pic/logo.gif (or .jpg or .png) and then enter
+//  'logo.gif (or .jpg or .png)' here
 
     $arsc_param["logo_path"] = "logo.png";
 
