@@ -35,7 +35,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
  }
  else
  {
-  // Check for moderated message acknowledged by VIP or Moderator
+  // Check for moderated message acknowledged by VIP or Moderator FIXME: Do we still need this?
   $arsc_message_sid = $arsc_my["sid"];
   $arsc_flag_moderated = 0;
   $arsc_moderate_sid = arsc_validateinput($_GET["arsc_moderate_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__);
@@ -49,15 +49,15 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
   }
   if ($arsc_api->handleReceivedMessage($arsc_message_sid, $arsc_message, "../../../", $arsc_flag_moderated))
   {
-   $arsc_chatversion = arsc_validateinput($_GET["arsc_chatversion"], array("browser_push", "socket", "header_js", "header", "box", "text"), NULL, NULL, NULL, __FILE__, __LINE__);
-   if ($arsc_chatversion == "header" OR $arsc_chatversion == "box")
+   $arsc_chatversion = arsc_validateinput($_GET["arsc_chatversion"], array("browser_push", "browser_socket", "browser_header_js", "browser_header", "browser_box", "browser_text"), NULL, NULL, NULL, __FILE__, __LINE__);
+   if ($arsc_chatversion == "browser_header" OR $arsc_chatversion == "browser_box")
    {
     header("Location: ../../".$arsc_chatversion."/chatinput.php?arsc_sid=".$arsc_my["sid"]);
     die();
    }
-   elseif ($arsc_chatversion == "text")
+   elseif ($arsc_chatversion == "browser_text")
    {
-    header("Location: ../../".$arsc_chatversion."/index.php?arsc_sid=".$arsc_my["sid"]."&arsc_lastid=".$arsc_lastid);
+    header("Location: ../../".$arsc_chatversion."/index.php?arsc_sid=".$arsc_my["sid"]);
     die();
    }
    header("Location: empty.php");
