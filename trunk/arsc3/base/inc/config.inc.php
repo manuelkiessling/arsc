@@ -21,7 +21,7 @@
 
    define("ARSC_PARAMETER_DB_HOST", "localhost");
 
-// IMPORTANT: If you don't know what MySQL is or wether you have a
+// IMPORTANT: If you don't know what MySQL is or whether you have a
 // MySQL server or not, then you have a problem - contact you server
 // administrator.
 
@@ -37,7 +37,7 @@
 
 
 // Finally, in which database will you store the ARSC tables?
-// This database MUST exist before you use the 'install.php' script,
+// This database MUST exist before you use the install script,
 // and it MUST be accessible by the user you just supplied.
 
    define("ARSC_PARAMETER_DB_DATABASE", "database");

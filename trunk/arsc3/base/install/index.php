@@ -78,4 +78,9 @@ if(mysql_error() <> "")
 echo '<font face="Arial"><i>Moderator:</i> '.$arsc_password.'</font><br>';
 echo '<font face="Arial"><b>...done.</b></font><br><br>';
 
+echo '<font face="Arial"><b>ARSC Installation finished.</b><br><font color="#FF0000"><b>Please completely delete the folder <i>install</i> from your ARSC installation NOW!</b></font></font><br><br>';
+echo '<font face="Arial">If something went wrong, you could <a href="http://sourceforge.net/forum/forum.php?forum_id=102858" target="_blank">visit the ARSC help forum by clicking here</a>.</font><br><br>';
+
+echo '<font face="Arial">You can now:<br><li><a href="../../">Go to the chat homepage</a></li><br><li><a href="../admin/">Go to the chat admin interface</a> (log in with the <i>Administrator</i> Account listed above).</li></font><br>';
+
 ?>
