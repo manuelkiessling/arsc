@@ -1,6 +1,6 @@
 <?php
 
-// This is an ARSC language file.
+// This is an ARSC language file. If you translate it, please send me a copy to <manuel@kiessling.net>, I will add it to ARSC then. Thanks.
 
 $arsc_lang_entername = "Enter your name here";
 $arsc_lang_namelength = "You can use a maximum of 10 characters";
@@ -24,7 +24,7 @@ $arsc_lang_usersinchat = "These users are currently in the chat";
 $arsc_lang_usersinroom = "Users in room";
 $arsc_lang_sendmessage = "Send";
 $arsc_lang_refreshmessages = "Refresh messages";
-$arsc_lang_leave = "Leave the chat";
+$arsc_lang_leave = "Leave";
 
 $arsc_lang_error_double_user = "A user with this name already exists!";
 $arsc_lang_error_no_name = "You must enter a username!";
