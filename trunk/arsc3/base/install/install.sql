@@ -108,11 +108,11 @@ CREATE TABLE `arsc_parameters` (
 ) TYPE=MyISAM;
 
 INSERT INTO `arsc_parameters` VALUES ('socketserver_use', 'no', '');
-INSERT INTO `arsc_parameters` VALUES ('socketserver_adress', 'arsc.localhost', '');
+INSERT INTO `arsc_parameters` VALUES ('socketserver_adress', '', '');
 INSERT INTO `arsc_parameters` VALUES ('socketserver_port', '8080', '');
 INSERT INTO `arsc_parameters` VALUES ('socketserver_maximumusers', '200', '');
 INSERT INTO `arsc_parameters` VALUES ('activate_counter_pic', 'no', '');
-INSERT INTO `arsc_parameters` VALUES ('title', 'ARSC 3.0 Beta 2', '');
+INSERT INTO `arsc_parameters` VALUES ('title', 'ARSC 3.0 Beta 3', '');
 INSERT INTO `arsc_parameters` VALUES ('default_language', 'english', '');
 INSERT INTO `arsc_parameters` VALUES ('allow_textformatting', 'yes', '');
 INSERT INTO `arsc_parameters` VALUES ('smilies', 'yes', '');
