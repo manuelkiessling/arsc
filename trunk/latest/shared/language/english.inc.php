@@ -63,6 +63,15 @@ Have a lot of fun!
 
 ";
 
+// Password Change Page
+
+$arsc_lang["changepassword"]                 = "Change password";
+$arsc_lang["changepassword_intro"]           = "To change your password, enter your username, your current password, and your new password below.";
+$arsc_lang["changepassword_entername"]       = "Nickname:";
+$arsc_lang["changepassword_entercurrent"]    = "Current password:";
+$arsc_lang["changepassword_enternew"]        = "New password:";
+$arsc_lang["error_password_changed"]         = "Your password was successfully changed!";
+$arsc_lang["changepassword_submit"]          = "Change";
 
 // Chat interface
 
@@ -85,7 +94,7 @@ $arsc_lang["error_waitformail"]          = "When the eMail with your credentials
 $arsc_lang["error_double_user"]          = "A user with this name is already logged in!";
 $arsc_lang["error_no_name"]              = "You must enter an username!";
 $arsc_lang["error_bad_name"]             = "This name is not allowed!";
-$arsc_lang["error_wrong_credentials"]    = "Access denies!<br>Are your credentials correct?";
+$arsc_lang["error_wrong_credentials"]    = "Access denied!<br>Are your credentials correct?";
 $arsc_lang["error_banned"]               = "Access is temporarily denied.";
 
 
