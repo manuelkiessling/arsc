@@ -5,23 +5,26 @@
    ARSC - ARSC Really Simple Chat
   </title>
  </head>
- <body>
+ <body bgcolor="#FFFFFF">
   <form action="home.php" METHOD="POST">
-   <input type="radio" name="arsc_language" value="english" checked>
-   <font face="Arial" size="2">
-    English
-   </font>
-   <br>
-   <input type="radio" name="arsc_language" value="spanish">
-   <font face="Arial" size="2">
-    Spanish
-   </font>
-   <br>
-   <input type="radio" name="arsc_language" value="swedish">
-   <font face="Arial" size="2">
-    Swedish
-   </font>
-   <br>
+   <?php
+   $handle = opendir("./shared/language");
+   while ($file = readdir($handle))
+   { 
+    if ($file != "." && $file != "..")
+    { 
+     $arsc_language = str_replace(".inc.php", "", $file);
+     ?>
+     <input type="radio" name="arsc_language" value="<?php echo $arsc_language; ?>">
+     <font face="Arial" size="2">
+      <?php echo ucfirst($arsc_language); ?>
+     </font>
+     <br>
+     <?php
+    } 
+   }
+   closedir($handle);
+   ?>
    <br>
    <input type="submit" value="OK">
   </form>
