@@ -22,11 +22,11 @@ set_magic_quotes_runtime(1);
   <form action="save_user.php" method="POST">
    <?php
    if ($arsc_rgsl == "") $arsc_rgsl = 0;
-   $arsc_result = mysql_query("SELECT * FROM arsc_registered_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
-   $arsc_a = mysql_fetch_array($arsc_result);
+   $arsc_query = mysql_query("SELECT * FROM arsc_registered_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+   $arsc_result = mysql_fetch_array($arsc_query);
    ?>
-   <input type="hidden" name="arsc_save_id" value="<?php echo $arsc_a["id"]; ?>">
-   <input type="hidden" name="arsc_user" value="<?php echo $arsc_a["user"]; ?>">
+   <input type="hidden" name="arsc_save_id" value="<?php echo $arsc_result["id"]; ?>">
+   <input type="hidden" name="arsc_user" value="<?php echo $arsc_result["user"]; ?>">
    <table>
     <tr>
      <td valign="top">
@@ -35,7 +35,7 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <input type="text" size="30" maxlength="64" name="arsc_save_user" value="<?php echo $arsc_a["user"]; ?>">
+      <input type="text" size="30" maxlength="64" name="arsc_save_user" value="<?php echo $arsc_result["user"]; ?>">
      </td>
     </tr>
     <tr>
@@ -45,7 +45,7 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <input type="text" size="2" maxlength="2" name="arsc_save_level" value="<?php echo $arsc_a["level"]; ?>">
+      <input type="text" size="2" maxlength="2" name="arsc_save_level" value="<?php echo $arsc_result["level"]; ?>">
       <font face="Verdana, Arial" size="1">
        (0-99, 0=Guest, 10=Operator, 20=VIP, 30=Moderator, 99=Admin)
       </font>
@@ -58,7 +58,7 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <input type="text" size="30" maxlength="64" name="arsc_save_password" value="<?php echo $arsc_a["password"]; ?>">
+      <input type="text" size="30" maxlength="64" name="arsc_save_password" value="<?php echo $arsc_result["password"]; ?>">
      </td>
     </tr>
     <tr>
@@ -68,7 +68,7 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <input type="text" size="30" maxlength="64" name="arsc_save_language" value="<?php echo $arsc_a["language"]; ?>">
+      <input type="text" size="30" maxlength="64" name="arsc_save_language" value="<?php echo $arsc_result["language"]; ?>">
      </td>
     </tr>
     <tr>
@@ -78,7 +78,17 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <input type="text" size="6" maxlength="6" name="arsc_save_color" value="<?php echo $arsc_a["color"]; ?>">
+      <input type="text" size="6" maxlength="6" name="arsc_save_color" value="<?php echo $arsc_result["color"]; ?>">
+     </td>
+    </tr>
+    <tr>
+     <td valign="top">
+      <font face="Arial" size="2">
+       Text template: FIXME: Make dropdown of available text templates
+      </font>
+     </td>
+     <td valign="top">
+      <input type="text" size="1" maxlength="1" name="arsc_save_template" value="<?php echo $arsc_result["template"]; ?>">
      </td>
     </tr>
     <tr>
@@ -88,7 +98,7 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <input type="text" size="30" maxlength="255" name="arsc_save_email" value="<?php echo $arsc_a["email"]; ?>">
+      <input type="text" size="30" maxlength="255" name="arsc_save_email" value="<?php echo $arsc_result["email"]; ?>">
      </td>
     </tr>
     <tr>
@@ -98,7 +108,7 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <input type="text" size="1" maxlength="1" name="arsc_save_sex" value="<?php echo $arsc_a["sex"]; ?>">
+      <input type="text" size="1" maxlength="1" name="arsc_save_sex" value="<?php echo $arsc_result["sex"]; ?>">
      </td>
     </tr>
     <tr>
@@ -108,7 +118,7 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <input type="text" size="30" maxlength="255" name="arsc_save_location" value="<?php echo $arsc_a["location"]; ?>">
+      <input type="text" size="30" maxlength="255" name="arsc_save_location" value="<?php echo $arsc_result["location"]; ?>">
      </td>
     </tr>
     <tr>
@@ -118,7 +128,7 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <textarea rows="10" cols="30" wrap="virtual" name="arsc_save_hobbies"><?php echo $arsc_a["hobbies"]; ?></textarea>
+      <textarea rows="10" cols="30" wrap="virtual" name="arsc_save_hobbies"><?php echo $arsc_result["hobbies"]; ?></textarea>
      </td>
     </tr>
     <tr>
@@ -128,7 +138,7 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <input type="text" size="1" maxlength="1" name="arsc_save_flag_guestbook" value="<?php echo $arsc_a["flag_guestbook"]; ?>">
+      <input type="text" size="1" maxlength="1" name="arsc_save_flag_guestbook" value="<?php echo $arsc_result["flag_guestbook"]; ?>">
       <font face="Verdana, Arial" size="1">
        (0=no, 1=yes)
       </font>
@@ -141,7 +151,7 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <input type="text" size="1" maxlength="1" name="arsc_save_flag_locked" value="<?php echo $arsc_a["flag_locked"]; ?>">
+      <input type="text" size="1" maxlength="1" name="arsc_save_flag_locked" value="<?php echo $arsc_result["flag_locked"]; ?>">
       <font face="Verdana, Arial" size="1">
        (0=no, 1=yes)
       </font>
