@@ -98,7 +98,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
     echo $arsc_messages;
     flush();
    }
-   usleep(ARSC_PARAMETER_SOCKETSERVER_REFRESH);
+   usleep(ARSC_PARAMETER_REFRESH);
   }
  }
 }

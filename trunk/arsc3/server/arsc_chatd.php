@@ -218,7 +218,7 @@ while (1) // Handling connections in a neverending loop
    $arsc_connected_clients++;
   }
  }
- usleep(ARSC_PARAMETER_SOCKETSERVER_REFRESH);
+ usleep(ARSC_PARAMETER_REFRESH);
 }
 
 
