@@ -19,96 +19,143 @@ include("../functions.inc.php");
  (and do you want that)?
  If you don't know what's this, then answer "no" (or talk with your
  server administrator).
+ <br>
+ <input type="text" name="arsc_save_parameters[socketserver_use]" value="<?php echo $arsc_parameters["socketserver_use"]; ?>">
+ <br>
+ <br>
+ 
+ What is the DNS or IP adress of the machine running this socket
+ server as seen from 'outside', from the real, big, bad internet?
+ <br>
+ <input type="text" name="arsc_save_parameters[socketserver_address]" value="<?php echo $arsc_parameters["socketserver_adress"]; ?>">
+ <br>
+ <br>
 
-    $arsc_parameters["socketserver_use"] = "no";
+ Which port do you want that socket server listen at?
+ Remember that this must be > 1024 if not root starts the server.
+ <br>
+ <input type="text" name="arsc_save_parameters[socketserver_port]" value="<?php echo $arsc_parameters["socketserver_port"]; ?>">
+ <br>
+ <br>
 
+ This value _should_ tell the server how many connections he handles
+ <br>
+ <input type="text" name="arsc_save_parameters[socketserver_maximumusers]" value="<?php echo $arsc_parameters["socketserver_maximumusers"]; ?>">
+ <br>
+ <br>
 
-What is the DNS or IP adress of the machine running this socket
-server as seen from 'outside', from the real, big, bad internet?
+ This is the password that you need if you want to give yourself
+ operator status. This means that when you enter the chat and post
+ '/selfop password', you will be the superuser who has control about
+ every other user in the chat! As you can imagine, it is very easy to
+ cause some serious chaos in the chat with this password, so it
+ is HARDLY recommended to change this dummy password to something
+ VERY VERY secure.
+ Not your dogs name, not your girlfriends name, not your birthdate, ok?
+ <br>
+ <input type="text" name="arsc_save_parameters[selfop_password]" value="<?php echo $arsc_parameters["selfop_password"]; ?>">
+ <br>
+ <br>
 
-    $arsc_parameters["socketserver_adress"] = "195.261.40.144";
+ If you say "yes" here, a small invisible image on the home page
+ is activated that allows me to see on which site ARSC is installed.
+ <br>
+ <input type="text" name="arsc_save_parameters[activate_counter_pic]" value="<?php echo $arsc_parameters["activate_counter_pic"]; ?>">
+ <br>
+ <br>
 
+ Do you want to use the Drawboard? Please refer to the README file
+ for details. This option only specifies wether to show the
+ Drawboard link in the roomlist frame or not - you still have to
+ install Drawboard on your own! Say no if you don't know what
+ Drawboard is.
+ <br>
+ <input type="text" name="arsc_save_parameters[drawboard]" value="<?php echo $arsc_parameters["drawboard"]; ?>">
+ <br>
+ <br>
+ 
+ Width of the Drawboard applet
+ <br>
+ <input type="text" name="arsc_save_parameters[drawboard_width]" value="<?php echo $arsc_parameters["drawboard_width"]; ?>">
+ <br>
+ <br>
+ 
+ Height of the Drawboard applet
+ <br>
+ <input type="text" name="arsc_save_parameters[drawboard_height]" value="<?php echo $arsc_parameters["drawboard_height"]; ?>">
+ <br>
+ <br>
+ 
+ Port of the Drawboard server
+ <br>
+ <input type="text" name="arsc_save_parameters[drawboard_port]" value="<?php echo $arsc_parameters["drawboard_port"]; ?>">
+ <br>
+ <br>
 
-Which port do you want that socket server listen at?
-Remember that this must be > 1024 if not root starts the server.
+ What is the name of your chat? This appears in the document title of all pages.
+ <br>
+ <input type="text" name="arsc_save_parameters[title]" value="<?php echo $arsc_parameters["title"]; ?>">
+ <br>
+ <br>
 
-    $arsc_parameters["socketserver_port"] = 8080;
+ If no language is choosen, which language should be standard?
+ <br>
+ <input type="text" name="arsc_save_parameters[standard_language]" value="<?php echo $arsc_parameters["standard_language"]; ?>">
+ <br>
+ <br>
 
+ If you allow it, a posting starting with an * will be italic, and
+ a posting starting with an _ will be bold.
+ <br>
+ <input type="text" name="arsc_save_parameters[allow_textformatting]" value="<?php echo $arsc_parameters["allow_textformatting"]; ?>">
+ <br>
+ <br>
 
-This value _should_ tell the server how many connections he handles
+ What is the name of your logo file? The easiest way would be to
+ save the image as pic/logo.gif (or .jpg or .png) and then enter
+ 'logo.gif (or .jpg or .png)' here
+ <br>
+ <input type="text" name="arsc_save_parameters[logo_path]" value="<?php echo $arsc_parameters["logo_path"]; ?>">
+ <br>
+ <br>
 
-    $arsc_parameters["socketserver_maximumusers"] = 200;
+ <b>
+  Colors - choose your flavor
+ </b>
+ <br>
+ <br>
+ Standard window background
+ <input type="text" name="arsc_save_parameters[color_standard_window_background]" value="<?php echo $arsc_parameters["color_standard_window_background"]; ?>">
+ <br>
+ <br>
+ Message window background
+ <input type="text" name="arsc_save_parameters[color_msg_window_background]" value="<?php echo $arsc_parameters["color_msg_window_background"]; ?>">
+ <br>
+ <br>
+ Message window text
+ <input type="text" name="arsc_save_parameters[color_msg_window_text]" value="<?php echo $arsc_parameters["color_msg_window_text"]; ?>">
+ <br>
+ <br>
+ Message window system text
+ <input type="text" name="arsc_save_parameters[color_msg_window_system_text]" value="<?php echo $arsc_parameters["color_msg_window_system_text"]; ?>">
+ <br>
+ <br>
+ Message window /me text
+ <input type="text" name="arsc_save_parameters[color_msg_window_me_text]" value="<?php echo $arsc_parameters["color_msg_window_me_text"]; ?>">
+ <br>
+ <br>
+ Message window message text
+ <input type="text" name="arsc_save_parameters[color_msg_window_message_text]" value="<?php echo $arsc_parameters["color_msg_window_message_text"]; ?>">
+ <br>
+ <br>
+ Message window operator message text
+ <input type="text" name="arsc_save_parameters[color_msg_window_msgops_text]" value="<?php echo $arsc_parameters["color_msg_window_msgops_text"]; ?>">
+ <br>
+ <br>
+ Userlist window background
+ <input type="text" name="arsc_save_parameters[color_userlist_window_background]" value="<?php echo $arsc_parameters["color_userlist_window_background"]; ?>">
+ <br>
 
-
-This is the password that you need if you want to give yourself
-operator status. This means that when you enter the chat and post
-'/selfop password', you will be the superuser who has control about
-every other user in the chat! As you can imagine, it is very easy to
-cause some serious chaos in the chat with this password, so it
-is HARDLY recommended to change this dummy password to something
-VERY VERY secure.
-Not your dogs name, not your girlfriends name, not your birthdate,
-ok?
-
-    $arsc_parameters["selfop_password"] = "password";
-
-
-If you say "yes" here, a small invisible image on the home page
-is activated that allows me to see on which site ARSC is installed.
-
-    $arsc_parameters["activate_counter_pic"] = "yes";
-
-
-Do you want to use the Drawboard? Please refer to the README file
-for details. This option only specifies wether to show the
-Drawboard link in the roomlist frame or not - you still have to
-install Drawboard on your own! Say no if you don't know what
-Drawboard is.
-
-    $arsc_parameters["drawboard"] = "no";
-    $arsc_parameters["drawboard_width"] = "400";
-    $arsc_parameters["drawboard_height"] = "350";
-    $arsc_parameters["drawboard_port"] = "8081";
-
-
-
-FINETUNING PARAMETERS /////////////////////////////////////////////
-
-What is the name of your chat? This appears in the document title.
-
-    $arsc_parameters["title"] = "ARSC - Really Simple Chat";
-
-
-If no language is choosen, which language should be standard?
-
-    $arsc_parameters["standard_language"] = "english";
-
-
-If you allow it, a posting starting with an * will be italic, and
-a posting starting with an _ will be bold.
-
-    $arsc_parameters["allow_textformatting"] = "yes";
-
-
-What is the name of your logo file? The easiest way would be to
-save the image as pic/logo.gif (or .jpg or .png) and then enter
-'logo.gif (or .jpg or .png)' here
-
-    $arsc_parameters["logo_path"] = "logo.png";
-
-
-Colors - choose your flavor
-
-    $arsc_color["standard_window_background"] = "#FAE6A6";
-
-    $arsc_color["msg_window_background"]      = "#FFFFFF";
-    $arsc_color["msg_window_text"]            = "#000000";
-    $arsc_color["msg_window_system_text"]     = "#999999";
-    $arsc_color["msg_window_me_text"]         = "#9B368A";
-    $arsc_color["msg_window_msg_text"]        = "#000099";
-    $arsc_color["msg_window_msgops_text"]     = "#FF6C00";
-
-    $arsc_color["userlist_window_background"] = "#FAE6A6";
     $arsc_color["userlist_window_text"]       = "#000000";
     $arsc_color["userlist_window_link"]       = "#000000";
     $arsc_color["userlist_window_level0"]     = "#000099";
