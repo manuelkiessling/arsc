@@ -53,7 +53,7 @@ you password.
 
 Have a lot of fun!
 
---
+-- 
  {chatowner}
 
 ";

@@ -49,7 +49,7 @@ Sie können sich nun in den Chat einloggen:
 
 Viel Spass!
 
---
+-- 
  {chatowner}
 
 ";
