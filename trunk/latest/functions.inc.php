@@ -6,7 +6,7 @@ set_magic_quotes_runtime(0);
 
 // Some more constants
 
-define("ARSC_VERSION", "2.1");
+define("ARSC_VERSION", "2.2");
 
 // Connecting the db
 mysql_connect($arsc_parameters["db_host"], $arsc_parameters["db_user"], $arsc_parameters["db_passwd"]);
