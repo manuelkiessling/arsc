@@ -1,5 +1,20 @@
 ARSC Changelog
 
+- Version 1.0beta2
+  2001-10-01
+
+  - added a socket server
+  - added roomchange
+  - refined timing issues
+  - added whispering to ops only
+  - added a first vrsion for the Zuum
+    WebTV box
+  - increased compatibility
+  - increased speed
+  - fixed many minor and some major bugs
+  - available languages are listed automatically
+
+
 - Version 1.0beta1
   2001-08-09
 
