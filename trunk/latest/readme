@@ -1,6 +1,6 @@
 ARSC - ARSC Really Simple Chat
 =======================================================================
-Version 1.0.2 - 2002-10-25 - Thank you for using ARSC!
+Version 1.0.2 - 2002-10-26 - Thank you for using ARSC!
 Copyright (C) 2001, 2002 Manuel Kiessling
 =======================================================================
 
@@ -40,7 +40,7 @@ in realtime.
 Requirements
 ------------
 
-You need a webserver that supports at least PHP version 3, better 4.
+You need a webserver that supports PHP 4.
 If you want to use the socket server (that means that you have telnet
 or ssh access to a Linux/Unix server and you may start server daemons
 listening on some port of this server), then you need at least
