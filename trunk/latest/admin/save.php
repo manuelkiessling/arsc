@@ -23,7 +23,7 @@ while (list($key, $val) = each($arsc_save_parameters_smilies))
 {
  if (mysql_query("SELECT value FROM arsc_parameters WHERE id = '$key'"))
  {
-  mysql_query("UPDATE arsc_parameters_smilies SET value = '".stripslashes($val)."' WHERE id = '$key'")
+  mysql_query("UPDATE arsc_parameters_smilies SET value = '".stripslashes($val)."' WHERE id = '$key'");
  }
  else
  {
