@@ -176,11 +176,10 @@ function arsc_userPost($input, $siteID, $roomID, $sid, $user, $nick, $level, $bl
                             }
                             $whoisArray = array_merge($private, $public);
                             while (list($key, $val) = each($whoisArray))
+                            {
+                                if (strlen($val) > 0)
                                 {
-                                    if (strlen($val) > 0)
-                                    {
-                                        $whois .= "<nobr>$key:&nbsp;$val&nbsp;&nbsp;&nbsp;</nobr>";
-                                    }
+                                    $whois .= "<nobr>$key:&nbsp;$val&nbsp;&nbsp;&nbsp;</nobr>";
                                 }
                             }
                         }
@@ -289,7 +288,8 @@ function arsc_userPost($input, $siteID, $roomID, $sid, $user, $nick, $level, $bl
                         $scope[0] = $user;
                 }
         }
-    }else{ // regular message
+    }
+    else{ // regular message
         $msg[0]="%{arsc_frmt_normal1}$nick: $input%{arsc_frmt_normal1}";
     }
 
