@@ -47,6 +47,9 @@
      <td><a href="http://manuel.kiessling.net/projects/software/arsc/" target="_blank" title="The Homepage of ARSC"><img src="pic/arsc_poweredby102x47.jpg" width="102" height="47" border="0" alt="Powered by ARSC!"></a></td>
     </tr>
    </table>
+   <font face="Verdana, Arial, sans-serif" size="1" color="#BBBBBB">
+    [v<?php echo ARSC_VERSION; ?>]
+   </font>
   </center>
  </body>
 </html>
