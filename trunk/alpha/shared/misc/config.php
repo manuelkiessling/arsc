@@ -1,6 +1,6 @@
 <?php
 
-error_reporting (E_ALL);
+error_reporting (E_ALL); // let's be security-conscious without having to resort to using register globals off
 
 
 // +++ BEGIN USER PARAMETERS ++++++++++++++++++++++++++++++++++++++++++++++++++++++
