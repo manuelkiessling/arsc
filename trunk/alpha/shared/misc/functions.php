@@ -19,7 +19,7 @@ if ( ($arsc_params['locked'] == 1) && !(stristr ($HTTP_SERVER_VARS['PHP_SELF'], 
 	die ('<font face="' . $arsc_params['defaultFont'] . '">The chat system is currently down.</font>');
 }
 
-if ($arsc_result = mysql_query ('SELECT id, value FROM arsc_smileys') )
+if ($arsc_result = mysql_query ('SELECT smileyID, value FROM arsc_smileys') )
 {
 	while ($arsc_row = mysql_fetch_row ($arsc_result))
     {
