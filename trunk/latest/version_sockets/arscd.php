@@ -22,7 +22,7 @@ function arsc_getmessages($arsc_sid)
   $arsc_room = $arsc_my["room"];
   if ($arsc_my["level"] < 0)
   {
-   include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
+   include("../shared/language/".$arsc_my["language"].".inc.php");
    switch($arsc_my["level"])
    {
     case "-1": mysql_query("DELETE from arsc_users WHERE sid = '$arsc_sid'");
@@ -33,7 +33,7 @@ function arsc_getmessages($arsc_sid)
   else
   {
    $arsc_posting = " \n ";
-   include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
+   include("../shared/language/".$arsc_my["language"].".inc.php");
    $arsc_result = mysql_query("SELECT lastmessageping from arsc_users WHERE sid = '$arsc_sid'");
    $arsc_b = mysql_fetch_array($arsc_result);
    if ($arsc_b["lastmessageping"] == "0")
@@ -110,7 +110,7 @@ while(1) // A Neverending Story
       socket_write($connection, $arsc_parameters["htmlhead_js"], strlen($arsc_parameters["htmlhead_js"]));
       $arsc_sendtime = date("H:i:s");
       $arsc_timeid = arsc_microtime();
-      @include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
+      @include("../shared/language/".$arsc_my["language"].".inc.php");
       $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang["welcome"];
       $arsc_message = arsc_filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_my["room"], 0);
       socket_write($connection, $arsc_message, strlen($arsc_message));
