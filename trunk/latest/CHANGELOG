@@ -1,0 +1,71 @@
+ARSC Changelog
+
+- Version 1.0beta1
+  2001-08-09
+
+  - finally, ARSC features "server push"
+  - added a lynx-friendly version
+  - in the two chat versions that use JavaScript, posting
+    is much more comfortable because the frame with the
+    message field is no longer refreshed
+  - implemented session handling
+  - timing is way more accuracte because microseconds are used
+    instead of seconds
+  - users can be operators
+  - operators can kick
+  - operators can give op
+  - operators can take op
+  - the chat admin can /op himself with /selfop
+  - added whispering
+  - users that leave the chat are logged out immediately,
+    even if they hit "stop" or close the browser
+  - clicking on a users name inserts the accurate /msg command
+    into the message field
+
+
+- Version 0.4
+  2001-05-11
+
+  - rooms are available
+  - different languages are available and can easily be added.
+    Thanks to Miguel Vitorino <mv@i9case.com> for the portuguese
+    translation.
+  - the /me command (known from IRC) is available
+  - <b>, <i> and <u> HTML tags are now allowed
+  - refined the timing issues
+
+
+- Version 0.3.1
+  2001-04-21
+
+  - cleaned a bug that caused a error for users chatting in
+    the JavaScript versions while users in the header version
+    send the ' character
+  - the ' character is now replaced with &acute; when it is
+    send, not when it is read from the database
+  - cleaned a bug in the installation script that didn't add
+    a required field to the user table
+  - the refresh timing in the JavaScript version was 2 seconds
+    and is now 4 seconds
+
+
+- Version 0.3
+  2001-04-15
+
+  - now JavaScript version runs fine on Opera 5.06b, Linux
+  - added a frame that shows the currently logged in users
+  - cleaned a bug that didn't show messages containing 
+    the ' character in the JavaScript version
+
+
+- Version 0.2
+  2001-04-01
+  
+  - corrected a scroll bug
+  - added list of users at login
+
+
+- Version 0.1
+  2001-03-18
+  
+  - ARSC's first release

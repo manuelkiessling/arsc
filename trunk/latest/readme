@@ -1,0 +1,168 @@
+ARSC - ARSC Really Simple Chat
+=======================================================================
+Version 1.0beta1 - 2001-08-09 - Thank you for using ARSC!
+Copyright (C) 2001 Manuel Kiessling
+=======================================================================
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
+USA.
+
+=======================================================================
+Due to the fact that my mother language is not english, it is possible
+or better very probably that there are several mistakes - i hope they
+are at least funny... if you find one, then please send me an eMail to
+manuel@kiessling.net. Thank you very much!
+=======================================================================
+
+ATTENTION! This is a beta version!
+
+It should run ok on most configurations, but it is not widely tested -
+this is why I released this version actually: I need feedback from
+betatesters. So please give me feedback on bugs you find or features you
+miss. You find the bug reporting tool here:
+<http://sourceforge.net/tracker/?group_id=32699&atid=406296>
+
+Thank you!
+
+
+Requirements:
+-------------
+
+You need a webserver that supports at least PHP version 3.
+<http://www.php.net>
+
+The PHP installation must support MySQL.
+<http://www.mysql.com>
+
+You need a running MySQL server where you may add tables.
+The client must be a web browser that understands framesets.
+It is much more comfortable if the browser also understands JavaScript.
+
+I tested ARSC successfully with the following browsers:
+
+Server push version:
+
+- Netscape 3.x - 6.x (Win/Linux)
+- Mozilla 0.9.x
+- Internet Explorer 4.x - 5.x
+- Opera 5.0 for Linux - 20010510 Build 024
+- Opera 5.x for Windows
+
+It should work with Netscape 2.x also, but my NN 2.2 crashes...
+
+
+JavaScript version:
+
+- all of the above except Opera (it worked with the last release,
+  just don't ask me why not now...)
+
+
+Header version:
+
+- all of the above
+- Netscape Navigator 2.02, Win32
+
+
+Text version
+
+- all of the above of course
+- Lynx
+
+
+Konqueror causes real headache... dunno wether I do something wrong
+or the K team ;-)
+
+If you tested it with other (and more exotic) browsers,
+then please email me.
+
+
+Installation:
+-------------
+
+Extract the archive.
+
+Edit the file 'config.inc.php' to fit your MySQL server settings.
+The MySQL server must be running of course, and the database in
+which ARSC will create its tables must already exist.
+
+Put the extracted files somewhere on your web server beneath a
+directory called "chat" or whatever you like.
+
+In your browser, open this adress:
+
+http://www.yourdomain.com/your_chat_directory/install.php
+
+When it says "ARSC is installed.", then everything went fine, and you
+SHOULD(!) delete the file 'install.php' from your server!
+
+Now ARSC is ready to run. You can reach it via
+http://www.yourdomain.com/your_chat_directory/index.php
+
+If it doesn't tell you "ARSC is installed.", then you can email me and
+ask me what to do: <manuel@kiessling.net>
+
+The installation script creates a room called 'Lounge'.
+If you want to add rooms, then you must copy the table
+'arsc_room_standard' and then rename it. If you want to call the new
+room 'Members only', then you must call the table
+'arsc_room_members_only'.
+
+More examples should make the pattern clear:
+
+Room name                       Table name
+I Like Chatting                 arsc_room_i_like_chatting
+Software / Hardware             arsc_room_software__hardware
+Games / Cheats And Tutorials    arsc_room_games__cheats_and_tutorials
+
+Some hints how things work inside the chat:
+(You will see this test if you type /? inside the chat)
+
+In the right frame you see all users that are currently in the room.
+Users with the symbol @ in front of their name are operators and can
+kick users out of the chat and can give and take operator status to
+and from users. By clicking on one of these names, your message field
+will be filled with the command that is necessary to send a private
+message to this user - just add your message at the end.
+
+General commands:
+ /me message -- Symbolize an action, e.g. /me feels fine will print
+                * username feels fine
+ /msg user message -- Send a private message to user
+
+Operator commands:
+ /op user -- Give operator status to user
+ /deop user -- Take operator status from user
+ /kick user -- Kick user out of the current room
+
+One feature that is undocumented here: if you type
+ /selfop <password>
+then you will be kick-ass-dude in the chat, meaning that
+you can op, deop and kick everybody and nobody can do this
+with you. The <password> for this command is set in the
+config.inc.php file.
+
+
+The homepage of ARSC is:
+http://manuel.kiessling.net/projects/software/arsc/
+
+Development takes place on SourceForge:
+http://www.sourceforge.net/projects/arsc/
+
+Please send me an eMail with your opinion about ARSC.
+Send me an eMail if you have questions.
+If you are a PHP programmer then give me feedback about the code.
+
+Manuel Kiessling
+manuel@kiessling.net
