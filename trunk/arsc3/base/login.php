@@ -16,7 +16,7 @@ $arsc_user = arsc_validateinput($arsc_api->makeCleanUsername($_POST["arsc_user"]
 $arsc_password = arsc_validateinput($_POST["arsc_password"], NULL, "/[^a-zA-Z0-9]/", 0, 64, __FILE__, __LINE__);
 $arsc_room = arsc_validateinput($_POST["arsc_room"], NULL, "/[^a-z0-9_]/", 0, 32, __FILE__, __LINE__);
 $arsc_chatversion = arsc_validateinput($_POST["arsc_chatversion"], array("browser_push", "browser_socket"), 0, 64, __FILE__, __LINE__);
-$arsc_template = arsc_validateinput($_POST["arsc_template"], array("html", "html_moderate", "xml"), 0, 64, __FILE__, __LINE__); // FIXME: get available templates
+$arsc_template = arsc_validateinput($_POST["arsc_template"], array("html", "html_moderator", "xml"), 0, 64, __FILE__, __LINE__); // FIXME: get available templates
 
 $arsc_ip = getenv("REMOTE_ADDR");
 $arsc_level = 0;
@@ -94,9 +94,13 @@ else
  }
  $arsc_result = mysql_query("SELECT type FROM arsc_rooms WHERE roomname = '$arsc_room'", ARSC_PARAMETER_DB_LINK);
  $arsc_a = mysql_fetch_array($arsc_result);
+ if ($arsc_a["type"] == ARSC_ROOMTYPE_MODERATED)
+ {
+  $arsc_template = "html_moderated";
+ }
  if ($arsc_a["type"] == ARSC_ROOMTYPE_MODERATED AND $arsc_level >= 30)
  {
-  $arsc_template = "html_moderate";
+  $arsc_template = "html_moderator";
  }
  if($arsc_template == "")
  {
