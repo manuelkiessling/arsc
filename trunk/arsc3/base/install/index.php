@@ -79,7 +79,7 @@ if (mysql_query("CREATE TABLE arsc_bannlist
                  )
                  TYPE=MyISAM", ARSC_PARAMETER_DB_LINK)
     &&
-    mysql_query("CREATE TABLE arsc_parameters_smilies
+    mysql_query("CREATE TABLE arsc_smilies
                  (
                   id int(11) NOT NULL default '0',
                   value char(32) NOT NULL default '',
@@ -123,23 +123,23 @@ if (mysql_query("CREATE TABLE arsc_bannlist
     && mysql_query("INSERT INTO arsc_parameters VALUES ('template_msgops','<font face=\"Arial\" size=\"2\" color=\"#FF6C00\"><font color=\"#999999\" size=\"1\">[\{sendtime\}]</font> &lt;\{user\}&gt; \{whispersops\}: <i>\{message\}</i></font><br>')", ARSC_PARAMETER_DB_LINK)
     && mysql_query("INSERT INTO arsc_parameters VALUES ('template_me','<font face=\"Arial\" size=\"2\" color=\"#9B368A\"><font color=\"#999999\" size=\"1\">[\{sendtime\}]</font> * \{user\} \{message\}</font><br>')", ARSC_PARAMETER_DB_LINK)
     && mysql_query("INSERT INTO arsc_parameters VALUES ('template_system','<font face=\"Arial\" size=\"2\" color=\"#999999\"><font size=\"1\">[\{sendtime\}]</font> <i>\{message\}</i></font><br>')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('0',':-)')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('1',';-)')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('2',':-(')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('3',':-s')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('4',':-]')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('5',':-[')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('6','/love/')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('7','/smoke/')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('8','/greet/')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('9','/sleep/')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('10','/shy/')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('11','/tree/')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('12','/candle/')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('13','/rudolph/')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('14','/santa/')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('15','/snowman/')", ARSC_PARAMETER_DB_LINK)
-    && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('16','/gift/')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('0',':-)')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('1',';-)')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('2',':-(')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('3',':-s')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('4',':-]')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('5',':-[')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('6','/love/')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('7','/smoke/')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('8','/greet/')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('9','/sleep/')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('10','/shy/')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('11','/tree/')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('12','/candle/')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('13','/rudolph/')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('14','/santa/')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('15','/snowman/')", ARSC_PARAMETER_DB_LINK)
+    && mysql_query("INSERT INTO arsc_smilies VALUES ('16','/gift/')", ARSC_PARAMETER_DB_LINK)
    )
 {
  echo "ARSC is installed. Please delete this file (install.php) from your webserver now!";

@@ -132,10 +132,10 @@ INSERT INTO arsc_parameters (name, value) VALUES ('virtualservers_use', 'no');
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `arsc_parameters_levels`
+# Tabellenstruktur für Tabelle `arsc_levels`
 #
 
-CREATE TABLE arsc_parameters_levels (
+CREATE TABLE arsc_levels (
   command char(8) NOT NULL default '0',
   level0 tinyint(4) NOT NULL default '0',
   level10 tinyint(4) NOT NULL default '0',
@@ -146,34 +146,34 @@ CREATE TABLE arsc_parameters_levels (
 ) TYPE=MyISAM;
 
 #
-# Daten für Tabelle `arsc_parameters_levels`
+# Daten für Tabelle `arsc_levels`
 #
 
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('whois', 0, 1, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('kick', 0, 1, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('bann', 0, 0, 0, 0, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('rip', 0, 1, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('unrip', 0, 1, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('op', 0, 0, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('deop', 0, 0, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('move', 0, 1, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('color', 1, 1, 1, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('msg', 1, 1, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('msgops', 0, 1, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('opcall', 1, 1, 1, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('room', 1, 1, 1, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('invite', 1, 1, 0, 0, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('smilies', 1, 1, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('roomlist', 1, 1, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('userlist', 1, 1, 0, 1, 1);
-INSERT INTO arsc_parameters_levels (command, level0, level10, level20, level30, level99) VALUES ('croom', 1, 1, 0, 0, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('whois', 0, 1, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('kick', 0, 1, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('bann', 0, 0, 0, 0, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('rip', 0, 1, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('unrip', 0, 1, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('op', 0, 0, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('deop', 0, 0, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('move', 0, 1, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('color', 1, 1, 1, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('msg', 1, 1, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('msgops', 0, 1, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('opcall', 1, 1, 1, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('room', 1, 1, 1, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('invite', 1, 1, 0, 0, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('smilies', 1, 1, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('roomlist', 1, 1, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('userlist', 1, 1, 0, 1, 1);
+INSERT INTO arsc_levels (command, level0, level10, level20, level30, level99) VALUES ('croom', 1, 1, 0, 0, 1);
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `arsc_parameters_smilies`
+# Tabellenstruktur für Tabelle `arsc_smilies`
 #
 
-CREATE TABLE arsc_parameters_smilies (
+CREATE TABLE arsc_smilies (
   id int(11) NOT NULL default '0',
   value char(32) NOT NULL default '',
   UNIQUE KEY id (id),
@@ -181,27 +181,27 @@ CREATE TABLE arsc_parameters_smilies (
 ) TYPE=MyISAM;
 
 #
-# Daten für Tabelle `arsc_parameters_smilies`
+# Daten für Tabelle `arsc_smilies`
 #
 
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (0, ':-)');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (1, ';-)');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (2, ':-(');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (3, ':-s');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (4, ':-]');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (5, ':-[');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (6, '/love/');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (7, '/smoke/');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (8, '/greet/');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (9, '/sleep/');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (10, '/shy/');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (11, '/tree/');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (12, '/candle/');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (13, '/rudolph/');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (14, '/santa/');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (15, '/snowman/');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (16, '/gift/');
-INSERT INTO arsc_parameters_smilies (id, value) VALUES (17, '/roll/');
+INSERT INTO arsc_smilies (id, value) VALUES (0, ':-)');
+INSERT INTO arsc_smilies (id, value) VALUES (1, ';-)');
+INSERT INTO arsc_smilies (id, value) VALUES (2, ':-(');
+INSERT INTO arsc_smilies (id, value) VALUES (3, ':-s');
+INSERT INTO arsc_smilies (id, value) VALUES (4, ':-]');
+INSERT INTO arsc_smilies (id, value) VALUES (5, ':-[');
+INSERT INTO arsc_smilies (id, value) VALUES (6, '/love/');
+INSERT INTO arsc_smilies (id, value) VALUES (7, '/smoke/');
+INSERT INTO arsc_smilies (id, value) VALUES (8, '/greet/');
+INSERT INTO arsc_smilies (id, value) VALUES (9, '/sleep/');
+INSERT INTO arsc_smilies (id, value) VALUES (10, '/shy/');
+INSERT INTO arsc_smilies (id, value) VALUES (11, '/tree/');
+INSERT INTO arsc_smilies (id, value) VALUES (12, '/candle/');
+INSERT INTO arsc_smilies (id, value) VALUES (13, '/rudolph/');
+INSERT INTO arsc_smilies (id, value) VALUES (14, '/santa/');
+INSERT INTO arsc_smilies (id, value) VALUES (15, '/snowman/');
+INSERT INTO arsc_smilies (id, value) VALUES (16, '/gift/');
+INSERT INTO arsc_smilies (id, value) VALUES (17, '/roll/');
 # --------------------------------------------------------
 
 #

@@ -89,7 +89,7 @@ if($arsc_query1 = mysql_query("SELECT DISTINCT template FROM arsc_templates", AR
 }
 
 // Get smilies from db
-if($arsc_query = mysql_query("SELECT id, value FROM arsc_parameters_smilies", ARSC_PARAMETER_DB_LINK))
+if($arsc_query = mysql_query("SELECT id, value FROM arsc_smilies", ARSC_PARAMETER_DB_LINK))
 {
  while ($arsc_result = mysql_fetch_array($arsc_query))
  {

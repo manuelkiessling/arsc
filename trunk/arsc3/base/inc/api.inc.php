@@ -291,7 +291,7 @@ class arsc_api_Class
  function checkCommandAllowed($level, $command)
  {
   if ($level == "") $level = 0;
-  $result = mysql_query("SELECT level".$level." FROM arsc_parameters_levels WHERE command = '$command'", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_query("SELECT level".mysql_escape_string($level)." FROM arsc_levels WHERE command = '".mysql_escape_string($command)."'", ARSC_PARAMETER_DB_LINK);
   $a = @mysql_fetch_array($result);
   if ($a["level".$level] == 1)
   {
