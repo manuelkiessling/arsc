@@ -50,7 +50,7 @@ arsc_mysql_query("UPDATE arsc_parameters SET value = 'http://".$_SERVER["SERVER_
 arsc_mysql_query("UPDATE arsc_parameters SET value = 'http://".$_SERVER["SERVER_NAME"].$arsc_basedir."' WHERE name = 'baseurl'");
 echo '<font face="Arial"><b>...done.</b></font><br><br>';
 
-if($_POST["arsc_automatedinstall"] <> 1)
+if($_GET["arsc_automatedinstall"] <> 1)
 {
  echo '<font face="Arial"><b>Step 4: Setting account passwords...</b></font><br>';
  mt_srand((double)microtime()*1000000);
@@ -71,15 +71,15 @@ if($_POST["arsc_automatedinstall"] <> 1)
 else
 {
  echo '<font face="Arial"><b>Step 4: [AUTOMATED INSTALL] Setting accounts and parameters...</b></font><br>';
- arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_POST["arsc_automatedinstallusers"]["administrator_password"]))."' WHERE user = 'Administrator'");
- arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_POST["arsc_automatedinstallusers"]["display_password"]))."' WHERE user = 'Display'");
- arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_POST["arsc_automatedinstallusers"]["moderator_password"]))."' WHERE user = 'Moderator'");
- arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_POST["arsc_automatedinstallusers"]["vip_password"]))."' WHERE user = 'VIP'");
- while(list($arsc_key, $arsc_val) = each($_POST["arsc_automatedinstallparameters"]))
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_GET["arsc_automatedinstallusers"]["administrator_password"]))."' WHERE user = 'Administrator'");
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_GET["arsc_automatedinstallusers"]["display_password"]))."' WHERE user = 'Display'");
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_GET["arsc_automatedinstallusers"]["moderator_password"]))."' WHERE user = 'Moderator'");
+ arsc_mysql_query("UPDATE arsc_registered_users SET password = '".sha1(mysql_escape_string($_GET["arsc_automatedinstallusers"]["vip_password"]))."' WHERE user = 'VIP'");
+ while(list($arsc_key, $arsc_val) = each($_GET["arsc_automatedinstallparameters"]))
  {
   arsc_mysql_query("UPDATE arsc_parameters SET value = '".mysql_escape_string($arsc_val)."' WHERE name = '".mysql_escape_string($arsc_key)."'");
  }
- while(list($arsc_key, $arsc_val) = each($_POST["arsc_automatedinstalldeleterooms"]))
+ while(list($arsc_key, $arsc_val) = each($_GET["arsc_automatedinstalldeleterooms"]))
  {
   $arsc_api->deleteRoom($arsc_val);
  }
