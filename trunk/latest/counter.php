@@ -6,7 +6,7 @@
   </title>
  </head>
  <body>
-  <img src="http://manuel.kiessling.net/arsccounter.php" width="1" height="1" border="0" alt="ARSC Counter Pixel">
+  <img src="http://manuel.kiessling.net/arsccounter.php?version=2.2" width="1" height="1" border="0" alt="ARSC Counter Pixel">
   <h2>
    Thanks!
   </h2>
