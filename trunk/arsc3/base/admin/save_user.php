@@ -5,10 +5,13 @@ include("../inc/config.inc.php");
 include("../inc/init.inc.php");
 include("cookie.inc.php");
 include("../inc/functions.inc.php");
+include("../inc/api.inc.php");
 
 set_magic_quotes_runtime(1);
 
-$arsc_save_user = arsc_cleanUserName($arsc_save_user);
+$arsc_api = new arsc_api_Class;
+
+$arsc_save_user = $arsc_api->makeCleanUsername($arsc_save_user);
 if($arsc_save_language == "") $arsc_save_language = ARSC_PARAMETER_DEFAULT_LANGUAGE;
 
 if($arsc_save_password <> "")
