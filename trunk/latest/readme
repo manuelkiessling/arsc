@@ -1,6 +1,6 @@
 ARSC - ARSC Really Simple Chat
 =======================================================================
-Version 1.0.2 - 2002-10-26 - Thank you for using ARSC!
+Version 2.0 - 2002-11-01 - Thank you for using ARSC!
 Copyright (C) 2001, 2002 Manuel Kiessling
 =======================================================================
 
@@ -314,9 +314,10 @@ Installing the socket server
 Abstract:
 
  - Install CGI version of PHP (if necessary)
- - Edit php path in arscd.php
+ - Edit PHP binary path in arscd.php
  - chmod arscd.php
  - Start arscd.php
+ - Define path for logfiles (if desired)
 
 
 Detail:
@@ -329,7 +330,8 @@ your users really fast and comfortable chatting while keeping your
 server load on a minimum.
 The 'server push' version offers the same speed and comfort, but it
 will use very very much of your memory and CPU ressources, making it
-a 'no-no' for chat sessions with many users.
+a 'no-no' for chat sessions with many users (of course this depends
+a lot on your servers horsepower!).
 
 The ARSC socket server is a php script that is started from a
 Linux/Unix console and waits on a certain port for connections from
@@ -342,9 +344,17 @@ To get this script running, you must have a cgi version of PHP
 installed on your server, compiled with the option '--enable-sockets'
 and the options neccessary to connect the MySQL database.
 
-ARSC 1.0.2 needs at least PHP 4.2.3.
+ARSC 1.0.2 needs at least PHP 4.2.3. The socket server will probably
+not run with an earlier version of PHP!
 
-The socket server will probably not run with an earlier version of PHP!
+A typical configure line for a CGI installation of PHP 4.2.3 that
+works with the ARSC socket server might look like this:
+prompt# ./configure --prefix=/usr/local/php-cgi/4.2.3 \
+                    --with-mysql=/your/mysql/sources \
+                    --enable-sockets
+
+After this the usual 'make' and (as root) 'make install' stuff should
+do the rest.
 
 After successfully compiling and installing the cgi version of PHP
 4.2.3 or above, you must edit the file 'arscd.php' and change the
@@ -358,7 +368,7 @@ then the first line should read:
 Next, you must probably chmod this file, so it is executable for you:
 prompt# chmod 700 ./arscd.php
 
-Then, simply start the script by typing:
+Then, simply start the script by typing
 prompt# ./arscd.php &
 
 You should then see something like this:
@@ -373,12 +383,13 @@ If you want to run the ARSC socket server in the background, invoke
 it like this:
 prompt# ./arscd.php >/dev/null 2>/dev/null &
 
-To see other options of the server, run
-prompt# ./arscd.php --help
-
 Now your socket server is running and you can enjoy chatting with
 the socket version at
 http://www.yourserver.com/arsc/
+
+To see other options of the server, e.g. how to log all chatmessages
+into a file, run
+prompt# ./arscd.php --help
 
 
 
@@ -391,11 +402,15 @@ http://manuel.kiessling.net/projects/software/arsc/
 Development takes place on SourceForge:
 http://www.sourceforge.net/projects/arsc/
 
-Send an eMail to arsc-help@lists.sourceforge.net if you
-have any questions.
+Visit our forum if you have any questions:
+http://sourceforge.net/forum/forum.php?forum_id=102858
 
 If you are a PHP programmer then give us feedback about the code
-or send bugs by sending eMail to arsc-developers@lists.sourceforge.net.
+by sending mail to:
+<arsc-developers@lists.sourceforge.net>
+
+Report bugs by visiting:
+http://sourceforge.net/tracker/?group_id=32699&atid=406296
 
 
 Manuel Kiessling
