@@ -3,6 +3,19 @@
 class arsc_api_Class // FIXME: All SQL queries must come here one day.
 {
 
+ function makeCleanUsername($user)
+ {
+  $user = str_replace(" ", "_", $user);
+  $user = str_replace("ß", "ss", $user);
+  $user = preg_replace("/['´`^|°\.:;<>=\!\"\?§²³#\*+~\/\%&\{\[\]\}]/", "", $user);
+  $user = preg_replace("/[äÄáÁàÀâÂ]/", "a", $user);
+  $user = preg_replace("/[éÉèÈêÊ]/", "e", $user);
+  $user = preg_replace("/[íÍìÌîÎ]/", "i", $user);
+  $user = preg_replace("/[öÖóÓòÒôÔ]/", "o", $user);
+  $user = preg_replace("/[üÜúÚùÙûÛ]/", "u", $user);
+  return($user);
+ }
+
  function getUserValuesBySID($sid)
  {
   if ($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, level, flag_ripped, sid, lastmessageping FROM arsc_users WHERE sid = '$sid'", ARSC_PARAMETER_DB_LINK))
