@@ -115,7 +115,8 @@ if (($arsc_admin_password == "password") AND ($arsc_goto <> "yes"))
    <a name="changepassword">
    <font face="Arial" size="2">
     This is the password that you need if you want to give yourself
-    operator status. This means that when you enter the chat and post
+    <b>operator status in the chat</b>, and <b>the same password is used to access this page</b>!
+    This means that when you enter the chat and post
     '/selfop password', you will be the superuser who has control about
     every other user in the chat! As you can imagine, it is very easy to
     cause some serious chaos in the chat with this password, so it
