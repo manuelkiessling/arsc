@@ -36,7 +36,7 @@ ARSC Changelog
   2002-03-19
   
   - fixed a path disclosure vulnerability as reported by
-    Ahmet Sabri Alper <salper@olympos.org>
+    Ahmet Sabri Alper (salper@olympos.org)
 
 
 - Version 1.0.1
@@ -54,7 +54,7 @@ ARSC Changelog
   - many changes, I hope I get them together...
   - fixed many bugs
   - rewrote the socket server, now it's non-forking
-    (thanks to Markus Fischer <mfischer@php.net>) and
+    (thanks to Markus Fischer (mfischer@php.net)) and
     rock stable
   - added a new frame that holds some links, a list
     of available rooms, and a logo
@@ -134,10 +134,10 @@ ARSC Changelog
 
   - rooms are available
   - different languages are available and can easily be added.
-    Thanks to Miguel Vitorino <mv@i9case.com> for the portuguese
+    Thanks to Miguel Vitorino (mv@i9case.com) for the portuguese
     translation.
   - the /me command (known from IRC) is available
-  - <b>, <i> and <u> HTML tags are now allowed
+  - b, i and u HTML tags are now allowed
   - refined the timing issues
 
 

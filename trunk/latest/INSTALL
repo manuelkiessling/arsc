@@ -133,7 +133,7 @@ IMPORTANT! If you already have ARSC 2.0 installed, then you don't have
 to do a complete reinstall in order to get ARSC 2.1 installed!
 
 Here is how to UPDATE your installation (skip this if you install ARSC
-for the first time or have an older version (< 2.0) installed):
+for the first time or have an older version (below 2.0) installed):
 
 First, extract the archive. Open the file 'config.inc.php' in your
 favourite editor and change the MySQL settings to the same settings
@@ -428,7 +428,7 @@ http://sourceforge.net/forum/forum.php?forum_id=102858
 
 If you are a PHP programmer then give us feedback about the code
 by sending mail to:
-<arsc-developers@lists.sourceforge.net>
+arsc-developers@lists.sourceforge.net
 
 Report bugs by visiting:
 http://sourceforge.net/tracker/?group_id=32699&atid=406296
