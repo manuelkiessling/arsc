@@ -128,7 +128,8 @@ if (($arsc_admin_password == "password") AND ($arsc_goto <> "yes"))
    <input type="password" size="50" name="arsc_save_parameters[selfop_password]" value="<?php echo $arsc_parameters["selfop_password"]; ?>">
    <br>
    <br>
-  
+
+   <?php /*
    <font face="Arial" size="2">
     Do you want to use the Drawboard? Please refer to the README file
     for details. This option only specifies wether to show the
@@ -164,6 +165,7 @@ if (($arsc_admin_password == "password") AND ($arsc_goto <> "yes"))
    <input type="text" size="50" name="arsc_save_parameters[drawboard_port]" value="<?php echo $arsc_parameters["drawboard_port"]; ?>">
    <br>
    <br>
+   */ ?>
   
    <font face="Arial" size="2">
     What is the name of your chat? This appears in the document title of all pages.
