@@ -9,6 +9,8 @@ $arsc_dbdb     = "arscdev";         // This db must already exist!
 
 // If you want to use the ARSC socket server, fill out these:
 
+$arsc_param["use_socketserver"] = "yes";
+
 $arsc_server_adress = "192.168.0.1"; // Your real IP from 'outside'
 $arsc_server_port = 12345; // Choose something above 1024 if you are not root.
 $arsc_server_maximumusers = 99;
@@ -20,11 +22,12 @@ $arsc_server_maximumusers = 99;
 
 // I must not tell you that you should change this, no?
 
-$arsc_params["selfoppassword"] = "password";
+$arsc_param["selfop_password"] = "password";
 
 // If a chatroom is empty, the first user who enters that room
-// will get operator status(!) Change to "no" if you do not want
-// this:
+// will get operator status(!) Change to "no" if you do not want this.
+
+$arsc_param["first_user_gets_op"] = "no";
 
 // Colors - choose your flavor
 
@@ -177,8 +180,8 @@ function filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room)
         $arsc_lang_gotmsg,
         $arsc_lang_help,
         $arsc_lang_roomchange,
-        $selfoppassword,
         $arsc_my,
+        $arsc_param,
 	$arsc_color;
  if ($arsc_user == "System" AND strstr($arsc_message, "~~"))
  {
@@ -283,7 +286,7 @@ function filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room)
    if (substr($arsc_message, 0, 8) == "/selfop ")
    {
     $password = str_replace("/selfop ", "", $arsc_message);
-    if ($password == $arsc_params["selfoppassword"])
+    if ($password == $arsc_param["selfop_password"])
     {
      mysql_query("UPDATE arsc_users SET level = 2 WHERE user = '$arsc_user'");
      mysql_query("DELETE from arsc_room_$arsc_room WHERE message LIKE '/selfop%' AND user = '$arsc_user'");

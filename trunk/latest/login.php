@@ -16,7 +16,7 @@ else
 {
  $arsc_result = mysql_query("SELECT COUNT(*) as howmany from arsc_users WHERE room = '$arsc_room'");
  $arsc_a = mysql_fetch_array($arsc_result);
- if ($arsc_a["howmany"] == 0)
+ if ($arsc_a["howmany"] == 0 AND $arsc_param["first_user_gets_op"] == "yes")
  {
   $arsc_level = 1;
  }
@@ -27,7 +27,7 @@ else
  srand((double)microtime()*1000000);
  $arsc_sid = md5(rand(0,9999999));
  $arsc_ping = time();
- $arsc_ip = getenv("REMOTE_ADDR");
+ // $arsc_ip = getenv("REMOTE_ADDR");
  // Some chars must be stripped out or replaced
  $arsc_user = ereg_replace("\\\\\'", "", $arsc_user);
  $arsc_user = ereg_replace("\\\\\"", "", $arsc_user);
