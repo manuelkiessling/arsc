@@ -79,6 +79,7 @@ if (mysql_query("CREATE TABLE arsc_bannlist
                   KEY id_2 (id)
                  )
                  TYPE=MyISAM")
+
     && mysql_query("INSERT INTO arsc_parameters VALUES ('locked','no')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_use','no')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_adress','".getenv("SERVER_NAME")."')")
@@ -152,21 +153,23 @@ if (mysql_query("CREATE TABLE arsc_bannlist
    )
 {
  ?>
- ARSC is installed. Please delete this file (install.php) from your webserver!
- <br>
- <br>
- The ARSC team would like to ask you if you want to get this installation of ARSC counted on the ARSC homepage.
- If you want to, then please <a href="counter.php"><b>click here</b></a>, your installation will then be counted and
- listed on our <a href="http://manuel.kiessling.net/projects/software/arsc/refererlist.php">Where is ARSC used?</a> page.
- Only your URL will be submitted.
- <br>
- <br>
- To proceed installation, go to the <a href="admin/">Admin page</a>.
+ <font face="Arial" size="2">
+  <b>ARSC is installed.</b> Please delete this file (install.php) from your webserver!
+  <br>
+  <br>
+  The ARSC team would like to ask you if you want to get this installation of ARSC counted on the ARSC homepage.
+  If you want to, then please <a href="counter.php"><b>click here</b></a>, your installation will then be counted and
+  listed on our 'Where is ARSC used?' page.
+  Only your URL will be submitted.
+  <br>
+  <br>
+  To proceed installation, go to the <a href="admin/"><b>Admin page</b></a>.
+ </font>
  <?php
 }
 else
 {
- echo "Something went wrong. Please check if MySQL is running and if the database '{$arsc_parameters["db_db"]}' exists!<br>To get help, <a href=\"http://sourceforge.net/forum/forum.php?forum_id=102858\">visit our forum</a>.";
+ echo "<font face=\"Arial\" size=\"2\">\nSomething went wrong. Please check if MySQL is running and if the database '{$arsc_parameters["db_db"]}' exists!<br>To get help, <a href=\"http://sourceforge.net/forum/forum.php?forum_id=102858\">visit our forum</a>.</font>";
 }
 
 ?>
