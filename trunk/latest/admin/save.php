@@ -17,8 +17,8 @@ if (!$arsc_admin_password == $arsc_parameters["selfop_password"])
 
 set_magic_quotes_runtime(1);
 
-$arsc_save_parameters["title"] = str_replace("'", "&quot;", $arsc_save_parameters["title"]);
-$arsc_save_parameters["title"] = str_replace("\2", "&quot;", $arsc_save_parameters["title"]);
+$arsc_save_parameters["title"] = str_replace("'", "&acute;", $arsc_save_parameters["title"]);
+$arsc_save_parameters["title"] = str_replace("\2", "&acute;", $arsc_save_parameters["title"]);
 
 reset($arsc_save_parameters);
 while (list($key, $val) = each($arsc_save_parameters))
