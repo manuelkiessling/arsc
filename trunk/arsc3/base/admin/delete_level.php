@@ -17,7 +17,7 @@ if ($arsc_level == 0 OR
  die();
 }
 
-mysql_query("ALTER TABLE arsc_parameters_levels DROP level".$arsc_level, ARSC_PARAMETER_DB_LINK);
+mysql_query("ALTER TABLE arsc_levels DROP level".mysql_escape_string($arsc_level), ARSC_PARAMETER_DB_LINK);
 mysql_query("UPDATE arsc_registered_users SET level = 0 WHERE level = ".$arsc_level, ARSC_PARAMETER_DB_LINK);
 mysql_query("UPDATE arsc_users SET level = 0 WHERE level = ".$arsc_level, ARSC_PARAMETER_DB_LINK);
 header("Location: users.php?arsc_message=".urlencode("Level was deleted. Please note that all user with this level are set to level 0!"));

@@ -10,15 +10,15 @@ set_magic_quotes_runtime(1);
 reset($arsc_save_parameters_smilies);
 while (list($key, $val) = each($arsc_save_parameters_smilies))
 {
- $arsc_result = mysql_query("SELECT id FROM arsc_parameters_smilies WHERE id = '$key'", ARSC_PARAMETER_DB_LINK);
+ $arsc_result = mysql_query("SELECT id FROM arsc_smilies WHERE id = '$key'", ARSC_PARAMETER_DB_LINK);
  $arsc_a = mysql_fetch_array($arsc_result);
  if ($arsc_a["id"] == $key)
  {
-  mysql_query("UPDATE arsc_parameters_smilies SET value = '".stripslashes($val)."' WHERE id = '$key'", ARSC_PARAMETER_DB_LINK);
+  mysql_query("UPDATE arsc_smilies SET value = '".stripslashes($val)."' WHERE id = '$key'", ARSC_PARAMETER_DB_LINK);
  }
  else
  {
-  mysql_query("INSERT INTO arsc_parameters_smilies (id, value) VALUES ('$key', '".stripslashes($val)."')", ARSC_PARAMETER_DB_LINK);
+  mysql_query("INSERT INTO arsc_smilies (id, value) VALUES ('$key', '".stripslashes($val)."')", ARSC_PARAMETER_DB_LINK);
  }
 }
 

@@ -21,7 +21,7 @@ set_magic_quotes_runtime(1);
   </h2>
   <table cellspacing="0" cellpadding="6">
    <?php
-   $arsc_result = mysql_query("SELECT * FROM arsc_parameters_levels ORDER BY command", ARSC_PARAMETER_DB_LINK);
+   $arsc_result = mysql_query("SELECT * FROM arsc_levels ORDER BY command", ARSC_PARAMETER_DB_LINK);
    $arsc_bgcolor = "#EEEEEE";
    $arsc_b = mysql_fetch_array($arsc_result);
    ksort($arsc_b);
