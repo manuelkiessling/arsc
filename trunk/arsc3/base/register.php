@@ -4,7 +4,6 @@ include("inc/config.inc.php");
 include("inc/init.inc.php");
 include("inc/functions.inc.php");
 include("inc/api.inc.php");
-include("inc/browserdetect.inc.php");
 include("inc/inputvalidation.inc.php");
 
 $arsc_language = arsc_validateinput($_GET["arsc_language"], NULL, "/[^a-z\-]/", 0, 64, __FILE__, __LINE__);
