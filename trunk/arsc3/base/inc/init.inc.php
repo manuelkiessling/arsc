@@ -3,7 +3,7 @@
 set_magic_quotes_runtime(0);
 
 // More parameters
-define("ARSC_VERSION", "3.0-beta2");
+define("ARSC_VERSION", "3.0-beta3");
 define("ARSC_PARAMETER_HOSTNAME", $_SERVER["HTTP_HOST"]);
 define("ARSC_PARAMETER_CURRENTDIR", dirname($_SERVER["PHP_SELF"]));
 define("ARSC_PARAMETER_HTMLHEAD", "<html><head></head>\n<body bgcolor=\"#FFFFFF\">\n\n\n".str_repeat("<!-- This is dummy content to get some browsers running... -->\n", 100));
