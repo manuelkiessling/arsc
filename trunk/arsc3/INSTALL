@@ -1,21 +1,21 @@
 ARSC - ARSC Really Simple Chat - Installation instructions
 
-In order to install ARSC, you have to do these four steps:
+ARSC can be installed by following these four steps:
 
 - Create a MySQL database
-- Provide the username, password, and database name
-  to allow ARSC to connect to your MySQL Server
-- Copy the ARSC files onto your webserver
-- Open the install script url in your webbrowser
+- Provide the hostname, username, password, and database
+  name to allow ARSC to connect to your MySQL Server
+- Copy the ARSC files onto the webserver
+- Open the install script url in the webbrowser
 
 Let's look at these steps in detail:
 
 First of all, you need a database on a MySQL server to which ARSC will
-connect once it is installed.
+connect to once it is installed.
 
-Create this database if you don't already have one that you want to use,
-and create or use an existing MySQL user account that ARSC can use to
-connect to the MySQL server.
+Create this database if you don't already have one that you want to
+use, and create a new or use an existing MySQL user account that ARSC
+can use to connect to the MySQL server.
 
 Let's assume the name of the database is 'arsc', the username is
 'arsc', and the password is 'somethingreallysecret' (please do not
@@ -62,7 +62,8 @@ This script will do the necessary steps to finish the installation of
 ARSC. If an error occurs, it will point you at the right direction to
 get help. Please don't forget to write down the user accounts it will
 list, and make sure you delete the 'install' directory once the
-installation is finished!
+installation is finished, or other people can MESS UP YOUR INSTALLATION
+and CHANGE YOUR PASSWORDS!
 
 You can then visit your chat at this url (example domain only):
 
