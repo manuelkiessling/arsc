@@ -22,7 +22,9 @@ if (mysql_query("CREATE TABLE arsc_bannlist
                   sendtime time NOT NULL default '00:00:00',
                   timeid bigint(20) NOT NULL default '0',
                   PRIMARY KEY  (id),
-                  KEY timeid (timeid)
+                  KEY timeid (timeid),
+                  KEY flag_ripped (flag_ripped),
+                  KEY user (user)
                  )
                  TYPE=MyISAM")
     &&
@@ -48,6 +50,7 @@ if (mysql_query("CREATE TABLE arsc_bannlist
                   language varchar(32) NOT NULL default '',
                   version varchar(16) NOT NULL default '',
                   level int(11) NOT NULL default '0',
+                  color char(7) NOT NULL default '#000000',
                   flag_ripped tinyint(4) NOT NULL default '0',
                   sid varchar(32) NOT NULL default '',
                   lastmessageping bigint(20) NOT NULL default '0',
@@ -76,6 +79,7 @@ if (mysql_query("CREATE TABLE arsc_bannlist
                   KEY id_2 (id)
                  )
                  TYPE=MyISAM")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('locked','no')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_use','no')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_adress','".getenv("SERVER_NAME")."')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_port','8080')")
@@ -88,9 +92,9 @@ if (mysql_query("CREATE TABLE arsc_bannlist
     && mysql_query("INSERT INTO arsc_parameters VALUES ('title','ARSC - Really Simple Chat')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('standard_language','english')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('allow_textformatting','yes')")
-    && mysql_query("INSERT INTO arsc_parameters VALUES ('logo_path','logo.png')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('logo_path','logo.jpg')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('smilies','yes')")
-    && mysql_query("INSERT INTO arsc_parameters VALUES ('smilies_path','http://your.server.com/arsc_root/pic/smilies/')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('smilies_path','http://".getenv("SERVER_NAME").dirname($PHP_SELF)."/pic/smilies/')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_refresh','400000')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('register_force','no')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('show_version_selection','yes')")
@@ -99,18 +103,35 @@ if (mysql_query("CREATE TABLE arsc_bannlist
     && mysql_query("INSERT INTO arsc_parameters VALUES ('keep_sended_message','yes')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('input_maxsize','400')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('register_owner','Your Name')")
-    && mysql_query("INSERT INTO arsc_parameters VALUES ('register_owner_email','your@email.dom')")
-    && mysql_query("INSERT INTO arsc_parameters VALUES ('register_homepage','http://www.mydomain.com/arsc/')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('register_owner_email','you@yourdomain.com')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('register_homepage','http://".getenv("SERVER_NAME").dirname($PHP_SELF)."/')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('ping','10')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('userlist_refresh','8')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('ping_text','600')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('roomlist_refresh','240')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('rowlimit','100')")
-    && mysql_query("INSERT INTO arsc_parameters VALUES ('template_normal','<font face=\"Arial\" size=\"2\" color=\"#000000\"><font color=\"#999999\" size=\"1\">[\{sendtime\}]</font> &lt;\{user\}&gt; \{message\}</font><br>')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('template_normal','<font face=\"Arial\" size=\"2\" color=\"\{color\}\"><font color=\"#999999\" size=\"1\">[\{sendtime\}]</font> &lt;\{user\}&gt; \{message\}</font><br>')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('template_msg','<font face=\"Arial\" size=\"2\" color=\"#000099\"><font color=\"#999999\" size=\"1\">[\{sendtime\}]</font> &lt;\{user\}&gt; \{whispers\}: <i>\{message\}</i></font><br>')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('template_msgops','<font face=\"Arial\" size=\"2\" color=\"#FF6C00\"><font color=\"#999999\" size=\"1\">[\{sendtime\}]</font> &lt;\{user\}&gt; \{whispersops\}: <i>\{message\}</i></font><br>')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('template_me','<font face=\"Arial\" size=\"2\" color=\"#9B368A\"><font color=\"#999999\" size=\"1\">[\{sendtime\}]</font> * \{user\} \{message\}</font><br>')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('template_system','<font face=\"Arial\" size=\"2\" color=\"#999999\"><font size=\"1\">[\{sendtime\}]</font> <i>\{message\}</i></font><br>')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_standard_window_background','#FAE6A6')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_msg_window_background','#FFFFFF')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_msg_window_text','#000000')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_msg_window_system_text','#999999')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_msg_window_me_text','#9B368A')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_msg_window_msg_text','#000099')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_msg_window_msgops_text','#FF6C00')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_userlist_window_background','#FAE6A6')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_userlist_window_text','#000000')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_userlist_window_link','#000000')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_userlist_window_level0','#000099')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_userlist_window_level1','#000044')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_userlist_window_level2','#000000')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_msginput_window_background','#FAE6A6')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_msginput_window_link','#000000')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_roomlist_window_background','#FAE6A6')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('color_roomlist_window_foreground','#FDF0C6')")
     && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('0',':-)')")
     && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('1',';-)')")
     && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('2',':-(')")
@@ -130,7 +151,7 @@ if (mysql_query("CREATE TABLE arsc_bannlist
     && mysql_query("INSERT INTO arsc_parameters_smilies VALUES ('16','/gift/')")
    )
 {
- <?php
+ ?>
  ARSC is installed. Please delete this file (install.php) from your webserver!
  <br>
  <br>
@@ -138,7 +159,7 @@ if (mysql_query("CREATE TABLE arsc_bannlist
  If you want to, then please <a href="counter.php"><b>click here</b></a>, your installation will then be counted and
  listed on our <a href="http://manuel.kiessling.net/projects/software/arsc/refererlist.php">Where is ARSC used?</a> page.
  Only your URL will be submitted.
- ?>
+ <?php
 }
 else
 {
