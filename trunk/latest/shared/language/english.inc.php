@@ -127,7 +127,7 @@ $arsc_lang["help"]          = "
 <br><br><i>";
 
 $arsc_lang["helpop"]        = "
-</i>&nbsp;<b>Operatorenbefehle:</b>
+</i>&nbsp;<b>Operator Commands:</b>
 <br>&nbsp;&nbsp;&nbsp;/msgops <i>message</i> -- Whispers a <i>message</i> to all operators
 <br>&nbsp;&nbsp;&nbsp;/whois <i>user</i> -- Shows information about <i>user</i>
 <br>&nbsp;&nbsp;&nbsp;/op <i>user</i> -- Gives operator status to <i>user</i>
