@@ -9,7 +9,7 @@ define("ARSC_PARAMETER_CURRENTDIR", dirname($_SERVER["PHP_SELF"]));
 define("ARSC_PARAMETER_HTMLHEAD", "<html><head></head>\n<body bgcolor=\"#FFFFFF\">\n\n\n".str_repeat("<!-- This is dummy content to get some browsers running... -->\n", 100));
 define("ARSC_PARAMETER_HTMLHEAD_JS", "<html><head><script language=\"JavaScript\">\n<!--\nfunction move()\n{\nif (scroll_active) window.scroll(1,400000);\nwindow.setTimeout(\"move()\",100);\n}\nscroll_active = true;\nmove();\n//-->\n</script>\n</head>\n<body bgcolor=\"#FFFFFF\" onBlur=\"scroll_active = true\" onFocus=\"scroll_active = false\">\n\n\n".str_repeat("<!-- This is dummy content to get some browsers running... -->\n", 100));
 define("ARSC_PARAMETER_HTMLHEAD_OUT", "<html><head><title></title></head><body bgcolor=\"#FFFFFF\"></body></html>");
-define("ARSC_PARAMETER_CHATCOLORS, array("000000", "696969", "808080", "708090", "0000CD", "2A58FA", "6421F6", "1E90FF", "6A5ACD", "9370DB", "A503D3", "9400D3", "8B008B", "C71585", "556B2F", "008000", "228B22", "2E8B57", "46AA20", "32CD32", "9ACD32", "DAA520", "6B8E23", "8B4513", "A52A2A", "A0522D", "BC8F8F", "C71585", "FF0099", "003366", "191970", "000080", "00008B", "0000CD", "2F4F4F", "4B0082", "800000", "8B0000", "DC143C", "FF0000", "FF4500", "B22222"));
+define("ARSC_PARAMETER_CHATCOLORS", "000000,696969,808080,708090,0000CD,2A58FA,6421F6,1E90FF,6A5ACD,9370DB,A503D3,9400D3,8B008B,C71585,556B2F,008000,228B22,2E8B57,46AA20,32CD32,9ACD32,DAA520,6B8E23,8B4513,A52A2A,A0522D,BC8F8F,C71585,FF0099,003366,191970,000080,00008B,0000CD,2F4F4F,4B0082,800000,8B0000,DC143C,FF0000,FF4500,B22222");
 define("ARSC_PARAMETER_USERINPUTMAXLENGTH", 500);
 define("ARSC_PARAMETER_DEFAULT_TEMPLATE_NAME", "html");
 
