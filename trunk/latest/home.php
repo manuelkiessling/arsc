@@ -19,14 +19,6 @@ $arsc_result = mysql_query("SELECT user from arsc_users");
   </title>
  </head>
  <body bgcolor="#FFFFFF">
-  <?php
-  if ($arsc_parameters["activate_counter_pic"] == "yes")
-  {
-   ?>
-   <img src="http://manuel.kiessling.net/arsccounter.php" width="1" height="1" border="0" alt=" "><br>
-   <?php
-  }
-  ?>
   <table width="500" align="center" cellpadding="6" bgcolor="<?php echo $arsc_parameters["color_userlist_window_background"]; ?>">
    <tr>
     <td>
