@@ -6,7 +6,7 @@ include("../filter.inc.php");
 
 if ($arsc_my = arsc_getdatafromsid($arsc_sid))
 {
- include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
+ include("../shared/language/".$arsc_my["language"].".inc.php");
  
  $arsc_user = $arsc_my["user"];
  $arsc_room = $arsc_my["room"];
@@ -61,19 +61,17 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
     <META HTTP-EQUIV="Refresh" CONTENT="4; URL=<?php echo "chatmsg.php?arsc_sid=".$arsc_sid."&arsc_lastid=".$arsc_lastid."&dummy=".time()."#end"; ?>">
    </head>
    <body bgcolor="#FFFFFF">
-    <font face="Arial" size="2">
-     <?php
-     set_magic_quotes_runtime(0);
-     $arsc_result = mysql_query("SELECT * from arsc_room_$arsc_room WHERE timeid > '$arsc_lastid' ORDER BY timeid ASC");
-     while ($arsc_a = mysql_fetch_array($arsc_result))
-     {
-      echo arsc_filter_posting($arsc_a["user"], $arsc_a["sendtime"], $arsc_a["message"], $arsc_room, $arsc_a["flag_ripped"])."\n";
-     }
-     $arsc_ping = time();
-     $arsc_ip = getenv("REMOTE_ADDR");
-     mysql_query("UPDATE arsc_users SET lastping = '$arsc_ping', ip = '$arsc_ip' WHERE user = '$arsc_user'");
-     ?>
-    </font>
+    <?php
+    set_magic_quotes_runtime(0);
+    $arsc_result = mysql_query("SELECT * from arsc_room_$arsc_room WHERE timeid > '$arsc_lastid' ORDER BY timeid ASC");
+    while ($arsc_a = mysql_fetch_array($arsc_result))
+    {
+     echo arsc_filter_posting($arsc_a["user"], $arsc_a["sendtime"], $arsc_a["message"], $arsc_room, $arsc_a["flag_ripped"])."\n";
+    }
+    $arsc_ping = time();
+    $arsc_ip = getenv("REMOTE_ADDR");
+    mysql_query("UPDATE arsc_users SET lastping = '$arsc_ping', ip = '$arsc_ip' WHERE user = '$arsc_user'");
+    ?>
     <a name="end"></a>
    </body>
   </html>
