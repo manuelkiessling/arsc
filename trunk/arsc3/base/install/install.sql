@@ -109,7 +109,7 @@ INSERT INTO arsc_parameters (name, value) VALUES ('title', 'ARSC');
 INSERT INTO arsc_parameters (name, value) VALUES ('standard_language', 'german');
 INSERT INTO arsc_parameters (name, value) VALUES ('allow_textformatting', 'yes');
 INSERT INTO arsc_parameters (name, value) VALUES ('smilies', 'yes');
-INSERT INTO arsc_parameters (name, value) VALUES ('smilies_path', 'http://localhost/pic/smilies/');
+INSERT INTO arsc_parameters (name, value) VALUES ('smilies_path', 'http://www.example.com/arsc/pic/smilies/');
 INSERT INTO arsc_parameters (name, value) VALUES ('socketserver_refresh', '200000');
 INSERT INTO arsc_parameters (name, value) VALUES ('register_force', 'no');
 INSERT INTO arsc_parameters (name, value) VALUES ('show_version_selection', 'no');
@@ -118,17 +118,17 @@ INSERT INTO arsc_parameters (name, value) VALUES ('first_user_gets_op', 'no');
 INSERT INTO arsc_parameters (name, value) VALUES ('keep_sended_message', 'yes');
 INSERT INTO arsc_parameters (name, value) VALUES ('input_maxsize', '400');
 INSERT INTO arsc_parameters (name, value) VALUES ('register_owner', 'Chatadmin');
-INSERT INTO arsc_parameters (name, value) VALUES ('register_owner_email', 'chatadmin@server.de');
-INSERT INTO arsc_parameters (name, value) VALUES ('register_homepage', 'http://localhost/');
+INSERT INTO arsc_parameters (name, value) VALUES ('register_owner_email', 'arsc@example.com');
+INSERT INTO arsc_parameters (name, value) VALUES ('register_homepage', 'http://www.example.com/arsc/');
 INSERT INTO arsc_parameters (name, value) VALUES ('ping', '10');
 INSERT INTO arsc_parameters (name, value) VALUES ('userlist_refresh', '8');
 INSERT INTO arsc_parameters (name, value) VALUES ('ping_text', '600');
 INSERT INTO arsc_parameters (name, value) VALUES ('roomlist_refresh', '240');
 INSERT INTO arsc_parameters (name, value) VALUES ('rowlimit', '100');
-INSERT INTO arsc_parameters (name, value) VALUES ('baseurl', 'http://localhost/');
+INSERT INTO arsc_parameters (name, value) VALUES ('baseurl', 'http://www.example.com/arsc/');
 INSERT INTO arsc_parameters (name, value) VALUES ('default_layout', '1');
 INSERT INTO arsc_parameters (name, value) VALUES ('virtualservers_name', 'srv%.');
-INSERT INTO arsc_parameters (name, value) VALUES ('virtualservers_use', 'yes');
+INSERT INTO arsc_parameters (name, value) VALUES ('virtualservers_use', 'no');
 # --------------------------------------------------------
 
 #
