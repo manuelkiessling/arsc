@@ -1,5 +1,15 @@
 <?php
 
+/*
+ This is an ARSC language file. If you translate it, please send me
+ a copy to <manuel@kiessling.net>, I will add it to ARSC then.
+ Thanks.
+
+ This file is for versions 3.0-beta1, 3.0-beta2, 3.0-beta3
+  
+ Translation by Manuel Kiessling <manuel@kiessling.net>.
+*/
+
 // Define some settings for this language
 $arsc_lang_regions["english"] = array("en", "en-en", "en-us");
 $arsc_lang_name["english"] = "English";
