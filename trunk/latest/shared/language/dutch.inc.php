@@ -2,7 +2,7 @@
 
 /*
 	 This is an ARSC language file. If you translate it, please send me
-  a copy to <manuel@kiessling.net>, I will add it to ARSC then. Thanks.
+  a copy to <arsc-help@lists.sourceforge.net>, I will add it to ARSC then. Thanks.
 
   This file is for versions: 1.0, 1.0.1, 1.0.1p1, 1.0.2
 

@@ -9,7 +9,7 @@
 
   Here are stored the parameters you definitely have to change to
   get things running so you can at least use the 'install.php' script
-  (you already read the README file, right?). A seconds part allows
+  (you already read the README file, right?). A second part allows
   fine tuning of your installation, this is done with a web interface.
 
 */

@@ -1,6 +1,6 @@
 <?php
 
-// This is an ARSC language file. If you translate it, please send me a copy to <manuel@kiessling.net>, I will add it to ARSC then. Thanks.
+// This is an ARSC language file. If you translate it, please send me a copy to <arsc-help@lists.sourceforge.net>, I will add it to ARSC then. Thanks.
 
 $arsc_lang_entername = "Skriv ditt namn här";
 $arsc_lang_namelength = "Du kan använda maximalt 10 tecken";

@@ -2,7 +2,7 @@
 
 /*
   Toto je jazykový soubor pro ARSC chat. Pokud ho pøeložíte do jiného jazyka
-  pošlete prosím kopii na <manuel@kiessling.net> a oni ji nabídnou jiným uživatelùm. Dìkujeme.
+  pošlete prosím kopii na <arsc-help@lists.sourceforge.net> a oni ji nabídnou jiným uživatelùm. Dìkujeme.
 
   This file is for versions: 1.0, 1.0.1, 1.0.1p1, 1.0.2
 
