@@ -32,16 +32,16 @@ function arsc_JsSubmit(x)
 </script>
 </head>
 <frameset rows=100%,*>
-    <frame name='_' src='shared/misc/frametest.php'>
+    <frame name='_' src='shared/layout/frametest.php'>
 
     <!-- Only lynx-type users will see the frame name below - 
          they should not use frames, even though they can -->
-    <frame name='Please use the form below.' src='shared/misc/blank.html'>
+    <frame name='Please use the form below.' src='shared/layout/blank.html'>
 
 <noframes>
 <?php
 $arsc_s = 0;
-include ('shared/misc/indexbody.php');
+include ('shared/layout/indexbody.php');
 ?>
 </noframes>
 </frameset>
