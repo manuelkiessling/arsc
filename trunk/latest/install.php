@@ -66,7 +66,7 @@ if (mysql_query("CREATE TABLE arsc_bannlist
                  (
                   name varchar(255) NOT NULL default '',
                   value text NOT NULL,
-                  choices varchar(255) NOT NULL default 'free',
+                  choices varchar(255) NOT NULL default '',
                   description text NOT NULL,
                   UNIQUE KEY name (name),
                   KEY name_2 (name)
@@ -82,7 +82,7 @@ if (mysql_query("CREATE TABLE arsc_bannlist
                  TYPE=MyISAM")
 
     && mysql_query("INSERT INTO arsc_parameters VALUES ('locked','no','no|yes','Do you want to lock the chat? Nobody will be able to chat then, until you set it back to \'no\' here.')")
-    && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_use','yes','no|yes','Do you want to make use of ARSCs socket server? If you don\'t know what\'s this, then answer \"no\". (Note: If set to \"yes\", the socket server has to run, or else users will see an error when logging into the chat!)')")
+    && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_use','no','no|yes','Do you want to make use of ARSCs socket server? If you don\'t know what\'s this, then answer \"no\". (Note: If set to \"yes\", the socket server has to run, or else users will see an error when logging into the chat!)')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_adress','".getenv("SERVER_NAME")."','','What is the DNS or IP adress of the machine running this socket server as seen from \'outside\', from the real, big, bad Internet?')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_port','8080','','Which port do you want that socket server listen at? Remember that this must be > 1024 if not root starts the server.')")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('socketserver_maximumusers','200','','This value tells the server how many connections he is allowed to handle.')")
