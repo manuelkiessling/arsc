@@ -26,8 +26,8 @@ else
  }
  srand((double)microtime()*1000000);
  $arsc_sid = md5(rand(0,9999999));
- $arsc_ping = my_microtime();
- $arsc_ip = getenv("REMOTE_ADDR"); // This is not yet used
+ $arsc_ping = time();
+ $arsc_ip = getenv("REMOTE_ADDR");
  // Some chars must be stripped out or replaced
  $arsc_user = ereg_replace("\\\\\'", "", $arsc_user);
  $arsc_user = ereg_replace("\\\\\"", "", $arsc_user);
