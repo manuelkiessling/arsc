@@ -47,11 +47,11 @@ listening on some port on this server), then you need at least
 PHP 4.1.0, and you must compile it with '--enable-sockets'. More on
 this later.
 You always find the most actual version of PHP here:
-<http://www.php.net>
+http://www.php.net
 
 The PHP installation must support MySQL.
 The homepage of MySQL is:
-<http://www.mysql.com>
+http://www.mysql.com
 
 You need a running MySQL server where you may add tables.
 Chatting is only really comfortable if the client (the browser)
@@ -189,7 +189,7 @@ change it.
 The next four parameters again require a decision. Do you want to add
 the Open Source tool 'Drawboard' to your ARSC installation? You find
 everything you need to know about drawboard here:
-<http://drawboard.sourceforge.net/>
+http://drawboard.sourceforge.net/
 
 Again, if all this sounds weird to you, just skip those parameters.
 If not, then let me tell you that after you set up the Drawboard server,
@@ -252,9 +252,9 @@ Games / Cheats And Tutorials    arsc_room_games__cheats_and_tutorials
 If you want to find out the commands of the chat, then just type /?
    
 One feature that is undocumented there:
-if you type '/selfop <password>' then you will be the king-of-the-hill
+if you type '/selfop password' then you will be the king-of-the-hill
 in the chat, meaning that you can op, deop and kick everybody and nobody
-can do this with you. The <password> for this command is set in the
+can do this with you. The password for this command is set in the
 config.inc.php file. Change this password to something really secure,
 or you will loose control about your chat if someone finds out that
 password.
@@ -288,28 +288,24 @@ To get this script running, you must have a cgi version of PHP
 installed on your server, compiled with the option '--enable-sockets'
 and the options neccessary to connect the MySQL database.
 
-PHP 4.1.0 will be available soon, but as per this writing, only
-PHP 4.1.0RC5 is available. But it is a really stable release candidate,
-and I had no problems or instability with the socket server.
-You can download PHP 4.1.0RC5 here:
-<http://www.php.net/~zeev/>
+ARSC needs at least PHP 4.1.1.
 
 The socket server will probably not run with an earlier version of PHP!
 
 After successfully compiling and installing the cgi version of PHP
-4.1.0RC5 or above, you must edit the file 'arscd.php' and change the
+4.1.1 or above, you must edit the file 'arscd.php' and change the
 very first line. This line must point to the php executable you have
 installed, just like e.g. a shell script points to /bin/bash.
 
-If you compiled PHP with '--prefix=/usr/local/php-cgi/4.1.0rc5',
+If you compiled PHP with '--prefix=/usr/local/php-cgi/4.1.1',
 then the first line should read:
-#!/usr/local/php-cgi/4.1.0rc5/bin/php -q
+#!/usr/local/php-cgi/4.1.1/bin/php -q
 
 Next, you must probably chmod this file, so it is executable for you:
-prompt> chmod 700 ./arscd.php
+prompt# chmod 700 ./arscd.php
 
 Then, simply start the script by typing:
-prompt> ./arscd.php &
+prompt# ./arscd.php &
 
 You should then see something like this:
 [2001-10-01 06:17:47] {SOCK} Started ARSC server listening on port 8080.
