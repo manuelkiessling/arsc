@@ -4,7 +4,7 @@
   This is an ARSC language file. If you translate it, please send me
   a copy to <manuel@kiessling.net>, I will add it to ARSC then. Thanks.
 
-  This file is for version: <1.0beta3>
+  This file is for version: 1.0
 */
 
 
@@ -16,7 +16,7 @@ $arsc_lang["namelength"]        = "Sie k&ouml;nnen maximal 10 Zeichen verwenden.
 $arsc_lang["whichversion"]      = "Welche Version m&ouml;chten Sie benutzen?";
 $arsc_lang["version_dontknow"]  = "W&auml;hlen Sie diese Version, wenn Sie nicht wissen was ein Browser ist oder welchen Browser Sie verwenden.";
 $arsc_lang["version_sockets"]   = "Empfohlene Version f&uuml;r moderne Browser. Verwendet JavaScript und Frames.";
-// If you installed the socket server, version_push_js will not be shown.
+// If you installed the socket server, version_push_js will not be shown, and vice versa, this is why they are same.
 $arsc_lang["version_push_js"]   = "Empfohlene Version f&uuml;r moderne Browser. Verwendet JavaScript und Frames.";
 $arsc_lang["version_header_js"] = "Eine alternative Version f&uuml;r moderne Browser, falls die vorhergehende nicht funktionieren sollte. Verwendet JavaScript und Frames.";
 $arsc_lang["version_header"]    = "Eine Version die nur Frames, jedoch kein JavaScript ben&ouml;tigt.";
@@ -46,7 +46,7 @@ $arsc_lang["register_emailtemplate_subject"] = "Ihre Anmeldung im Abacho Chat";
 $arsc_lang["register_emailtemplate"]         = "
 Hallo,
 
-Sie haben sich im Abacho Chat angemeldet.
+Sie haben sich im ARSC Chat angemeldet.
 
 Der von Ihnen gewählte Chatname '{username}'
 ist ab sofort mit folgendem Passwort geschützt:
@@ -75,7 +75,7 @@ $arsc_lang["roomlist"]        = "Raumliste";
 $arsc_lang["refresh"]         = "Aktualisieren";
 $arsc_lang["otherfunctions"]  = "Weitere Funktionen";
 $arsc_lang["smilielist"]      = "Liste aller Smilies";
-$arsc_lang["scroll_active"]   = "Fenster scrollt";
+$arsc_lang["scroll_active"]   = "Autoscroll";
 $arsc_lang["drawboard"]       = "Zeichenbrett";
 
 
@@ -135,7 +135,7 @@ $arsc_lang["helpop"]        = "
 <br>&nbsp;&nbsp;&nbsp;/msgops <i>Nachricht</i> -- Fl&uuml;stert eine <i>Nachricht</i> an alle Operatoren
 <br>&nbsp;&nbsp;&nbsp;/whois <i>Benutzer</i> -- Zeigt Informationen &uuml;ber <i>Benutzer</i> an
 <br>&nbsp;&nbsp;&nbsp;/kick <i>Benutzer</i> -- Verweist <i>Benutzer</i> des Chats
-<br>&nbsp;&nbsp;&nbsp;/bann <i>Benutzer XX</i> -- Sperrt IP des <i>Benutzer</i>s <i>XX</i> vom Chat aus
+<br>&nbsp;&nbsp;&nbsp;/bann <i>Benutzer X</i> -- Sperrt IP des <i>Benutzer</i>s <i>X</i> Sekunden vom Chat aus
 <br>&nbsp;&nbsp;&nbsp;/lock <i>Benutzer</i> -- Sperrt den Account des (registrierten!) <i>Benutzer</i>s dauerhaft
 <br>&nbsp;&nbsp;&nbsp;/rip <i>Benutzer</i> -- Was <i>Benutzer</i> sagt, wird nicht mehr angezeigt
 <br>&nbsp;&nbsp;&nbsp;/unrip <i>Benutzer</i> -- Was <i>Benutzer</i> sagt wird wieder angezeigt
