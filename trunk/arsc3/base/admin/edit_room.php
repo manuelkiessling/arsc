@@ -25,7 +25,7 @@ set_magic_quotes_runtime(1);
   </h2>
   <form action="save_room.php" method="POST">
    <?php
-   $arsc_query1 = mysql_query("SELECT id, roomname, roomname_nice, description, owner, password, type, layout_id FROM arsc_rooms WHERE roomname = '$arsc_room'", ARSC_PARAMETER_DB_LINK);
+   $arsc_query1 = mysql_query("SELECT id, roomname, roomname_nice, description, owner, type, layout_id FROM arsc_rooms WHERE roomname = '$arsc_room'", ARSC_PARAMETER_DB_LINK);
    $arsc_result1 = mysql_fetch_array($arsc_query1);
    ?>
    <input type="hidden" name="arsc_save_id" value="<?php echo $arsc_result1["id"]; ?>">
@@ -62,16 +62,6 @@ set_magic_quotes_runtime(1);
       <font face="Verdana, Arial" size="1">
        (-1 for no owner)
       </font>
-     </td>
-    </tr>
-    <tr>
-     <td valign="top">
-      <font face="Arial" size="2">
-       Password:
-      </font>
-     </td>
-     <td valign="top">
-      <input type="text" size="30" maxlength="64" name="arsc_save_password" value="<?php echo $arsc_result1["password"]; ?>">
      </td>
     </tr>
     <tr>
