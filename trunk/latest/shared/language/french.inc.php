@@ -5,7 +5,7 @@
   a copy to <arsc-help@lists.sourceforge.net>, I will add it to ARSC then. Thanks.
 
   This file is for versions: 1.0, 1.0.1, 1.0.1p1, 1.0.2
-  
+
   Translated by Emmanuel Faivre <manu@manucorp.com>
 */
 
@@ -68,13 +68,13 @@ Amusez-vous bien!
 
 // Password Change Page
 
-$arsc_lang["changepassword"]                 = "Change password";
-$arsc_lang["changepassword_intro"]           = "To change your password, enter your username, your current password, and your new password below.";
-$arsc_lang["changepassword_entername"]       = "Nickname:";
-$arsc_lang["changepassword_entercurrent"]    = "Current password:";
-$arsc_lang["changepassword_enternew"]        = "New password:";
-$arsc_lang["error_password_changed"]         = "Your password was successfully changed!";
-$arsc_lang["changepassword_submit"]          = "Change";
+$arsc_lang["changepassword"]                 = "Remplacement du mot de passe";
+$arsc_lang["changepassword_intro"]           = "Pour effectuer le changement de votre mot de passe, entrez votre pseudo, votre mot de passe présent ainsi que votre nouveau mot de passe ci-dessous.";
+$arsc_lang["changepassword_entername"]       = "Pseudo:";
+$arsc_lang["changepassword_entercurrent"]    = "Mot de passe courant:";
+$arsc_lang["changepassword_enternew"]        = "Votre nouveau mot de passe:";
+$arsc_lang["error_password_changed"]         = "Nouveau mot de passe remplacé avec succès!";
+$arsc_lang["changepassword_submit"]          = "Remplacement";
 
 
 // Chat interface
