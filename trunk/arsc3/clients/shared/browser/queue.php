@@ -35,7 +35,12 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
     $arsc_api->handleReceivedMessage($arsc_user_sid, arsc_validateinput($arsc_answerqueueentry["message"], NULL, NULL, 0, ARSC_PARAMETER_INPUT_MAXSIZE, __FILE__, __LINE__), "../../../", 1);
     $arsc_api->deleteFromQueue($arsc_answerqueueid);
    }
-   $arsc_api->handleReceivedMessage($arsc_my["sid"], arsc_validateinput(htmlentities($_GET["arsc_answer"], ENT_NOQUOTES), NULL, NULL, 0, ARSC_PARAMETER_INPUT_MAXSIZE, __FILE__, __LINE__), "../../../", 0);
+   $arsc_answer = arsc_validateinput(htmlentities($_GET["arsc_answer"], ENT_NOQUOTES), NULL, NULL, 0, ARSC_PARAMETER_INPUT_MAXSIZE, __FILE__, __LINE__);
+   if (get_magic_quotes_gpc() == 1 OR get_magic_quotes_runtime() == 1)
+   {
+    $arsc_answer = stripslashes($arsc_answer);
+   }
+   $arsc_api->handleReceivedMessage($arsc_my["sid"], $arsc_answer, "../../../", 0);
    header("Location: queue.php?arsc_sid=".$arsc_my["sid"]);
    die();
   }
@@ -65,7 +70,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
     reset($arsc_queueentries);
     while(list($arsc_key, $arsc_val) = each($arsc_queueentries))
     {
-     $arsc_current["queueentries"] .= '<small>[<a href="queue.php?arsc_sid='.$arsc_my["sid"].'&arsc_delqueueid='.$arsc_val["id"].'">L&ouml;schen</a>]</small> '.$arsc_val["user"].': <a href="queue.php?arsc_sid='.$arsc_my["sid"].'&arsc_answerqueueid='.$arsc_val["id"].'">'.$arsc_val["message"].'</a><br>
+     $arsc_current["queueentries"] .= '<small>[<a href="queue.php?arsc_sid='.$arsc_my["sid"].'&arsc_delqueueid='.$arsc_val["id"].'">'.$arsc_lang["moderatorqueue_delete"].'</a>]</small> '.$arsc_val["user"].': <a href="queue.php?arsc_sid='.$arsc_my["sid"].'&arsc_answerqueueid='.$arsc_val["id"].'">'.$arsc_val["message"].'</a><br>
      
      ';
     }
