@@ -1,18 +1,25 @@
 <?php
 
+// Define some settings for this language
+$arsc_lang_regions["english"] = array("en", "en-en", "en-us");
+$arsc_lang_name["english"] = "English";
+$arsc_lang["charset"] = "iso-8859-1";
+
+
+// Language selection
+
+$arsc_lang["chooseyourlanguage"] = "Choose your language:";
+$arsc_lang["next"] = "Next";
+
+
 // Login Page
 
 $arsc_lang["entername"]                 = "Please enter your nickname:";
 $arsc_lang["enterpassword"]             = "Please enter your password:";
-$arsc_lang["whichversion"]              = "Which version do you want to use?";
-$arsc_lang["version_dontknow"]          = "Choose this version if you don't know which browser you use.";
-$arsc_lang["version_browser_socket"]    = "Recommended version for modern browsers. Uses JavaScript and Frames.";
-$arsc_lang["version_browser_push"]      = "Alternative version. Please use this one if you had problems with the recommended version.";
-$arsc_lang["version_browser_header_js"] = "An alternative version for modern browsers if the one above did not work. Uses JavaScript and Frames.";
-$arsc_lang["version_browser_header"]    = "A version that only uses Frames, but no JavaScript.";
-$arsc_lang["version_browser_box"]       = "A version for the Zuum WebTV box.";
-$arsc_lang["version_browser_text"]      = "Simple version for text based browsers.";
-$arsc_lang["version_applet"]            = "Java Applet.";
+$arsc_lang["selectchatversion"]         = "Choose a version:";
+$arsc_lang["version_browser_socket"]    = "Optimized";
+$arsc_lang["version_browser_push"]      = "Optimized (firewall compatible)";
+$arsc_lang["version_browser_text"]      = "For text browsers";
 $arsc_lang["yes"]                       = "Yes";
 $arsc_lang["no"]                        = "No";
 $arsc_lang["selectroom"]                = "Choose a room:";
@@ -23,15 +30,19 @@ $arsc_lang["usersinchat_room"]          = "Room";
 $arsc_lang["usersinchat_name"]          = "User";
 $arsc_lang["clicktoregister"]           = "Register your nickname!";
 
+
 // Why kicked page
-$arsc_lang["why_kicked"] = "You were kicked out of the chat by an operator, probably due to behaviour that was not according with the rules of this chat.";
+
+$arsc_lang["why_kicked"] = "You were kicked out of the chat by an operator, probably due to behaviour that was not according with the rules of this chat, or because your session has timed out.";
+$arsc_lang["returntologinpage"] = "Return to the login page";
+
 
 // Register page and eMail
 
 $arsc_lang["register_intro"]                 = "To register your nickname fill in the fields below.";
-$arsc_lang["register_intro_force"]           = "A password will then be sended to the given eMail adress.";
+$arsc_lang["register_intro_force"]           = "A password will then be sent to the given eMail adress.";
 $arsc_lang["register_entername"]             = "Nickname:";
-$arsc_lang["register_enteremail"]            = "eMail adress:";
+$arsc_lang["register_enteremail"]            = "eMail address:";
 $arsc_lang["register_enterpassword"]         = "Password:";
 $arsc_lang["register_send"]                  = "Submit registration";
 $arsc_lang["register_yougetmail"]            = "Thanks, you will now get an eMail with your password.";
@@ -88,6 +99,7 @@ $arsc_lang["opcmd_d"]         = "Take operator status from this user";
 $arsc_lang["opcmd_m"]         = "Move user from this room into another";
 $arsc_lang["opcmd_id"]        = "Show the ID card of this user";
 
+
 // Errors
 
 $arsc_lang["error_register_double_user"] = "This nickname is already in use. Please choose another one.";
@@ -96,6 +108,7 @@ $arsc_lang["error_no_name"]              = "You must enter an username!";
 $arsc_lang["error_bad_name"]             = "This name is not allowed!";
 $arsc_lang["error_wrong_credentials"]    = "Access denied!<br>Are your credentials correct?";
 $arsc_lang["error_banned"]               = "Access is temporarily denied.";
+
 
 // IDCard
 
