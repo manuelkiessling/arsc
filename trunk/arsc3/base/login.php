@@ -3,13 +3,16 @@
 include("inc/config.inc.php");
 include("inc/init.inc.php");
 include("inc/functions.inc.php");
+include("inc/api.inc.php");
 include("inc/inputvalidation.inc.php");
 
 $arsc_language = arsc_validateinput($_POST["arsc_language"], $arsc_available_languages, NULL, 0, 64, __FILE__, __LINE__);
 if ($arsc_language == "") $arsc_language = ARSC_PARAMETER_DEFAULT_LANGUAGE;
 if (!is_file("../languages/".$arsc_language.".inc.php")) arsc_error_log(ARSC_ERRORLEVEL_FATAL, "Could not open language file. Something is really messed up!", __FILE__, __LINE__);
 
-$arsc_user = arsc_validateinput($_POST["arsc_user"], NULL, "/[^a-zA-Z0-9_]/", 0, 64, __FILE__, __LINE__);
+$arsc_api = new arsc_api_Class;
+
+$arsc_user = arsc_validateinput($arsc_api->makeCleanUsername($_POST["arsc_user"]), NULL, "/[^a-zA-Z0-9_\-]/", 1, 64, __FILE__, __LINE__);
 $arsc_password = arsc_validateinput($_POST["arsc_password"], NULL, "/[^a-zA-Z0-9]/", 0, 64, __FILE__, __LINE__);
 $arsc_room = arsc_validateinput($_POST["arsc_room"], NULL, "/[^a-z0-9_]/", 0, 32, __FILE__, __LINE__);
 $arsc_chatversion = arsc_validateinput($_POST["arsc_chatversion"], array("browser_push", "browser_socket"), 0, 64, __FILE__, __LINE__);
