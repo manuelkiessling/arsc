@@ -262,11 +262,12 @@ if ($this->checkCommandAllowed($arsc_my["level"], "color"))
  $arsc_layout["colorselection_table"] = '
 <table width="100%" border="0" cellspacing="3" cellpadding="0" bgcolor="'.$arsc_layout["default_foreground_color"].'">
  <tr>
-  <td width="15" bgcolor="#'.$arsc_my["color"].'"><img src="../../../base/pic/x.gif" border="2" width="15" height="20" alt="aktuelle Farbe"></td>';
- for ($arsc_chatcolor_i = 0; $arsc_chatcolor_i < count(ARSC_PARAMETER_CHATCOLORS); $arsc_chatcolor_i++)
+  <td width="15" bgcolor="#'.$arsc_my["color"].'"><img src="../../../base/pic/x.gif" border="2" width="15" height="20" alt="#'.$arsc_my["color"].'"></td>';
+ $arsc_chatcolors = explode(",", ARSC_PARAMETER_CHATCOLORS);
+ for ($arsc_chatcolor_i = 0; $arsc_chatcolor_i < count($arsc_chatcolors); $arsc_chatcolor_i++)
  {
-  $arsc_layout["colorselection_table"] .='<td bgcolor="#'.ARSC_PARAMETER_CHATCOLORS[$arsc_chatcolor_i].'"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color='.ARSC_PARAMETER_CHATCOLORS[$arsc_chatcolor_i].'"><img src="../../../base/pic/x.gif" border="0" width="5" height="20" alt="#'.ARSC_PARAMETER_CHATCOLORS[$arsc_chatcolor_i].'"></a></td>';
-  if ($arsc_chatcolor_i == (round(count(ARSC_PARAMETER_CHATCOLORS)/2)-1)) $arsc_layout["colorselection_table"] .= '</tr><tr><td>&nbsp;</td>';
+  $arsc_layout["colorselection_table"] .='<td bgcolor="#'.$arsc_chatcolors[$arsc_chatcolor_i].'"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color='.$arsc_chatcolors[$arsc_chatcolor_i].'"><img src="../../../base/pic/x.gif" border="0" width="5" height="20" alt="#'.$arsc_chatcolors[$arsc_chatcolor_i].'"></a></td>';
+  if ($arsc_chatcolor_i == (round(count($arsc_chatcolors)/2)-1)) $arsc_layout["colorselection_table"] .= '</tr><tr><td>&nbsp;</td>';
  }
  $arsc_layout["colorselection_table"] .='</tr></table>';
 } else $arsc_layout["colorselection_table"] = '';
