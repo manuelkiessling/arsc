@@ -12,6 +12,24 @@ $arsc_layout["room_selection"] = '
 </select>
 ';
 
+$arsc_layout["chatversion_selection"] = '
+<select name="arsc_chatversion">
+';
+if (ARSC_PARAMETER_SOCKETSERVER_USE == "yes")
+{
+ $arsc_layout["chatversion_selection"] .= '
+ <option value="browser_socket">'.$arsc_lang["version_browser_socket"].'</option>
+';
+}
+$arsc_selected = "";
+if(eregi("Lynx|w3m|links", $_SERVER["HTTP_USER_AGENT"])) $arsc_selected = " selected";
+$arsc_layout["chatversion_selection"] .= '
+ <option value="browser_push">'.$arsc_lang["version_browser_push"].'</option>
+ <option value="browser_text"'.$arsc_selected.'>'.$arsc_lang["version_browser_text"].'</option>
+</select>
+';
+$arsc_selected = "";
+
 
 $arsc_roomlist = $this->getInternalRoomlist();
 while (list($arsc_key, $arsc_val) = each($arsc_roomlist))
@@ -127,7 +145,7 @@ if ($arsc_current["user_got_kicked"] == 1)
  $arsc_layout["kickuser_script"] = '
 <script language="JavaScript">
 <!--
- top.location.href = "'.ARSC_PARAMETER_BASEURL.'base/why.php?arsc_language='.arsc_validateinput($_GET["arsc_language"], $arsc_available_languages, NULL, 0, 64, __FILE__, __LINE__).'";
+ top.location.href = "'.ARSC_PARAMETER_BASEURL.'base/why.php?arsc_language='.arsc_validateinput($_GET["arsc_language"], NULL, "/[^a-z\-]/", 0, 64, __FILE__, __LINE__).'";
 //-->
 </script>
 ';
@@ -602,5 +620,5 @@ else
  $arsc_layout["msginput_onload"] = 'document.f.arsc_message.focus();';
 }
 
-$arsc_layout["pretext"] = $_GET["arsc_pretext"];
+$arsc_layout["pretext"] = $_GET["arsc_pretext"]; //FIXME Check, and maybe even better use arsc_current where it is needed!
 ?>
