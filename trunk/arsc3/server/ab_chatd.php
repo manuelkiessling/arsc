@@ -47,9 +47,9 @@ if (ereg("-l=", $argv[1]))
 
 // Creating socket
 
-if(false === ($arsc_listen_socket = socket_create_listen(ARSC_PARAMETER_SOCKETSERVER_PORT, ARSC_PARAMETER_SOCKETSERVER_MAXIMUMUSERS)))
+if (false === ($arsc_listen_socket = socket_create_listen(ARSC_PARAMETER_SOCKETSERVER_PORT, ARSC_PARAMETER_SOCKETSERVER_MAXIMUMUSERS)))
  die("Couldn't create listening socket on port ".ARSC_PARAMETER_SOCKETSERVER_PORT.".\n");
-if(false === socket_setopt($arsc_listen_socket, SOL_SOCKET, SO_REUSEADDR, 1))
+if (false === socket_setopt($arsc_listen_socket, SOL_SOCKET, SO_REUSEADDR, 1))
  die("Couldn't set socket option\n");
 
 
@@ -62,24 +62,24 @@ $arsc_sid = array();
 
 writeLogMessage("SOCK", "", "", "", "", "Started ARSC server listening on port ".ARSC_PARAMETER_SOCKETSERVER_PORT);
 
-while(1) // Handling connections in a neverending loop
+while (1) // Handling connections in a neverending loop
 {
  $arsc_socket_set = array_merge($arsc_listen_socket, $arsc_connections);
- if(socket_select($arsc_socket_set, $a = NULL, $b = NULL, 0, 0))
+ if (socket_select($arsc_socket_set, $a = NULL, $b = NULL, 0, 0))
  { 
   foreach($arsc_connections as $arsc_connection)
   {
-   if(!($arsc_connection == $arsc_listen_socket))
+   if (!($arsc_connection == $arsc_listen_socket))
    { 
     foreach($arsc_connection_info as $arsc_num => $arsc_info)
     {
-     if($arsc_connection == $arsc_info['handle'])
+     if ($arsc_connection == $arsc_info['handle'])
      { 
       if ($arsc_sid[$arsc_num] == "")
       {
        $received_data = "";
        $arsc_read_socket = array($arsc_connection);
-       while(socket_select($arsc_read_socket, $write = NULL, $except = NULL, 0, 0) > 0 AND strlen($received_data) < 100)
+       while (socket_select($arsc_read_socket, $write = NULL, $except = NULL, 0, 0) > 0 AND strlen($received_data) < 100)
        {
         if (($received_data .= @socket_read($arsc_connection, 1)) == false)
         {
@@ -142,7 +142,7 @@ while(1) // Handling connections in a neverending loop
         $arsc_my = $arsc_api->getUserValuesBySID($arsc_sid[$arsc_num]);
         writeLogMessage("ARSC", $arsc_sid[$arsc_num], $arsc_connection_info[$arsc_num]["address"], $arsc_connection_info[$arsc_num]["port"], $arsc_num, "Connection is an ARSC client (Type: ".$arsc_clienttype.", Nickname {$arsc_my["user"]}, Room {$arsc_my["room"]})");
         $arsc_api->postMessage($arsc_my["room"], "arsc_user_enter~~".$arsc_my["user"]."~~".$arsc_api->getReadableRoomname($arsc_my["room"]), "System", date("H:i:s"), arsc_microtime(), 0);
-        if($arsc_my["version"] <> "external")
+        if ($arsc_my["version"] <> "external")
         {
          socket_write($arsc_connection, ARSC_PARAMETER_HTMLHEAD_JS, strlen(ARSC_PARAMETER_HTMLHEAD_JS));
          $arsc_api->addTraffic("outgoing", strlen(ARSC_PARAMETER_HTMLHEAD_JS));
@@ -150,7 +150,7 @@ while(1) // Handling connections in a neverending loop
         else // tell the client which SID we gave his user
         {
          $arsc_message = "<arscrespond><type>connect</type><status>ok</status><sid>".$arsc_sid[$arsc_num]."</sid><version>0.1</version></arscrespond>\n";
-         if(!socket_write($arsc_connection, $arsc_message, strlen($arsc_message)))
+         if (!socket_write($arsc_connection, $arsc_message, strlen($arsc_message)))
          {
           unset($arsc_connections[$arsc_num]);
           unset($arsc_connection_info[$arsc_num]);
@@ -195,7 +195,7 @@ while(1) // Handling connections in a neverending loop
          $arsc_api->addTraffic("outgoing", strlen($arsc_newmessages));
         }
        }
-       elseif($arsc_newmessages == "")
+       elseif ($arsc_newmessages == "")
        {
         $arsc_api->deleteUser($arsc_my["user"]);
         $arsc_api->postMessage($arsc_my["room"], "arsc_user_quit~~".$arsc_my["user"]."~~".$arsc_api->getReadableRoomname($arsc_my["room"]), "System", date("H:i:s"), arsc_microtime(), 0);
@@ -211,7 +211,7 @@ while(1) // Handling connections in a neverending loop
     }
    }
   }
-  if($arsc_connection_info[$arsc_connected_clients]['handle'] = @socket_accept($arsc_listen_socket))
+  if ($arsc_connection_info[$arsc_connected_clients]['handle'] = @socket_accept($arsc_listen_socket))
   {
    $arsc_connections[] = $arsc_connection_info[ $arsc_connected_clients][ 'handle'];
    socket_getpeername( $arsc_connection_info[ $arsc_connected_clients][ 'handle'], &$arsc_connection_info[ $arsc_connected_clients]['address'], &$arsc_connection_info[ $arsc_connected_clients][ 'port']);
@@ -268,7 +268,7 @@ function arsc_getmessages($arsc_sid)
       writeLogMessage("MESG", $arsc_sid, "", "", $arsc_num, $arsc_messages[1]);
      }
     }
-    if($arsc_messages[1] <> "") $arsc_api->setUserValueByName("lastmessageping", $arsc_messages[1], $arsc_my["user"]);
+    if ($arsc_messages[1] <> "") $arsc_api->setUserValueByName("lastmessageping", $arsc_messages[1], $arsc_my["user"]);
     $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
    }
    if ($arsc_my["version"] <> "external")
