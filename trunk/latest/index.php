@@ -40,5 +40,13 @@
     </tr>
    </table>
   </form>
+  <br>
+  <center>
+   <table align="center" cellpadding="1" cellspacing="0" border="0" bgcolor="#EEEEEE">
+    <tr>
+     <td><a href="http://manuel.kiessling.net/projects/software/arsc/" title="The Homepage of ARSC"><img src="pic/arsc_poweredby102x47.jpg" width="102" height="47" border="0" alt="Powered by ARSC!"></a></td>
+    </tr>
+   </table>
+  </center>
  </body>
 </html>
