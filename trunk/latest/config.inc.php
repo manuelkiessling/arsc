@@ -48,7 +48,7 @@
 //  If you don't know what's this, then answer "no" (or talk with your
 //  server administrator).
 
-    $arsc_param["socketserver_use"] = "yes";
+    $arsc_param["socketserver_use"] = "no";
 
 
 //  What is the DNS or IP adress of the machine running this socket
