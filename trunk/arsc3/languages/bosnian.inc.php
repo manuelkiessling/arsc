@@ -72,7 +72,6 @@ sa sledeæom lozinkom:
 Ovdje se mo¾ete logirat u chat:
 {homepage}
 
-Puno zabave ¾eli vam FOTeam!
 
 -- 
  {chatowner}
