@@ -4,7 +4,7 @@
   This is an ARSC language file. If you translate it, please send me
   a copy to <manuel@kiessling.net>, I will add it to ARSC then. Thanks.
 
-  This file is for version: 1.0
+  This file is for version: 1.0 and 1.0.1
 */
 
 
