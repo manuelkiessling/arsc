@@ -69,13 +69,13 @@ Have a lot of fun!
 
 // Password Change Page
 
-$arsc_lang["changepassword"]                 = "Change password";
-$arsc_lang["changepassword_intro"]           = "To change your password, enter your username, your current password, and your new password below.";
-$arsc_lang["changepassword_entername"]       = "Nickname:";
-$arsc_lang["changepassword_entercurrent"]    = "Current password:";
-$arsc_lang["changepassword_enternew"]        = "New password:";
-$arsc_lang["error_password_changed"]         = "Your password was successfully changed!";
-$arsc_lang["changepassword_submit"]          = "Change";
+$arsc_lang["changepassword"]                 = "Vaihda salasana";
+$arsc_lang["changepassword_intro"]           = "Vaihtaaksesi salasanasi kirjoita nimimerkkisi, tämänhetkinen salasanasi ja uusi salasanasi alle.";
+$arsc_lang["changepassword_entername"]       = "Nimimerkki:";
+$arsc_lang["changepassword_entercurrent"]    = "Tämänhetkinen salasana:";
+$arsc_lang["changepassword_enternew"]        = "Uusi salasana:";
+$arsc_lang["error_password_changed"]         = "Salasanasi on vaihdettu!";
+$arsc_lang["changepassword_submit"]          = "Vaihda";
 
 
 // Chat interface
