@@ -4,7 +4,7 @@
   This is an ARSC language file. If you translate it, please send me
   a copy to <arsc-help@lists.sourceforge.net>, I will add it to ARSC then. Thanks.
 
-  This file is for versions: 1.0, 1.0.1, 1.0.1p1, 1.0.2
+  This file is for versions: 1.0, 1.0.1, 1.0.1p1, 1.0.2, 2.0, 2.1, 2.2
 
   Translated by Emmanuel Faivre <manu@manucorp.com>
 */

@@ -4,7 +4,7 @@
   Toto je jazykový soubor pro ARSC chat. Pokud ho pøeložíte do jiného jazyka
   pošlete prosím kopii na <arsc-help@lists.sourceforge.net> a oni ji nabídnou jiným uživatelùm. Dìkujeme.
 
-  This file is for versions: 1.0, 1.0.1, 1.0.1p1, 1.0.2
+  This file is for versions: 1.0, 1.0.1, 1.0.1p1, 1.0.2, 2.0, 2.1, 2.2
 
   Pøeložil:  Mario Hroš <megasoft.trinec@seznam.cz>
   Translate: Mario Hroš <megasoft.trinec@seznam.cz>
