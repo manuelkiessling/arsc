@@ -18,7 +18,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
 
  function getUserValuesBySID($sid)
  {
-  if ($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, level, flag_ripped, sid, lastmessageping FROM arsc_users WHERE sid = '$sid'", ARSC_PARAMETER_DB_LINK))
+  if ($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, layout, level, flag_ripped, sid, lastmessageping FROM arsc_users WHERE sid = '$sid'", ARSC_PARAMETER_DB_LINK))
   {
    return mysql_fetch_array($result);
   }
@@ -131,6 +131,14 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   }
  }
  
+ function deleteRoom($id)
+ {
+  $query = mysql_query("SELECT roomname FROM arsc_rooms WHERE id = '".mysql_escape_string($id)."'", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_fetch_array($query);
+  mysql_query("DELETE FROM arsc_rooms WHERE id = '".mysql_escape_string($id)."'", ARSC_PARAMETER_DB_LINK);
+  mysql_query("DROP TABLE arsc_room_".mysql_escape_string($result["roomname"]), ARSC_PARAMETER_DB_LINK);
+ }
+ 
  function getReadableRoomname($room)
  {
   $result = mysql_query("SELECT roomname_nice FROM arsc_rooms WHERE roomname = '$room'", ARSC_PARAMETER_DB_LINK);
@@ -152,7 +160,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   $replacement = "";
   $room = preg_replace($disallowed, $replacement, $room);
   if($room == "") $room = "";
-  return($room);
+  return(substr($room, 0, 32));
  }
 
  function getReadableRoomlist()
@@ -226,13 +234,12 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   {
    $query1 = mysql_query("SELECT id FROM arsc_layouts WHERE name = '".mysql_escape_string($name)."'", ARSC_PARAMETER_DB_LINK);
    $result1 = mysql_fetch_array($query1);
-   $query2 = mysql_query("SELECT * FROM arsc_layouts WHERE id = '".mysql_escape_string(ARSC_PARAMETER_DEFAULT_LAYOUT)."'", ARSC_PARAMETER_DB_LINK);
+   $query2 = mysql_query("SELECT * FROM arsc_layouts WHERE id = '".mysql_escape_string(ARSC_PARAMETER_DEFAULT_LAYOUT_ID)."'", ARSC_PARAMETER_DB_LINK);
    $result2 = mysql_fetch_array($query2);
    while (list($arsc_key, $arsc_val) = each($result2))
    {
     if ($arsc_key <> "id" && $arsc_key <> "name" && !is_numeric($arsc_key))
     {
-     if (ereg("template_browser_", $arsc_key)) $arsc_val = "";
      $query .= $arsc_key." = '".$arsc_val."', ";
     }
    }
@@ -295,7 +302,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  {
   $template_varname = "arsc_template_".$template;
   GLOBAL $$template_varname, $arsc_my;
-  $result = mysql_query("SELECT message, user, flag_ripped, sendtime, timeid FROM arsc_room_$room WHERE timeid > '$since' ORDER BY timeid ASC, id ASC", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_query("SELECT message, user, flag_ripped, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." WHERE timeid > '$since' ORDER BY timeid ASC, id ASC", ARSC_PARAMETER_DB_LINK);
   while ($a = mysql_fetch_array($result))
   {
    $message .= arsc_filter_posting($a["user"], $a["sendtime"], str_replace("\n", "#ret#", $a["message"]), $room, $a["flag_ripped"], $$template_varname);
@@ -418,10 +425,10 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   GLOBAL $arsc_my;
   if ($layout_id == -1)
   {
-   if ($checkroom == FALSE) $layout_id = ARSC_PARAMETER_DEFAULT_LAYOUT;
+   if ($checkroom == FALSE) $layout_id = ARSC_PARAMETER_DEFAULT_LAYOUT_ID;
    if ($checkroom && $arsc_my["room"] == "")
    {
-    $layout_id = ARSC_PARAMETER_DEFAULT_LAYOUT;
+    $layout_id = ARSC_PARAMETER_DEFAULT_LAYOUT_ID;
    }
    elseif ($checkroom)
    {
@@ -442,16 +449,20 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  function parseLayoutTemplate($name, $checkroom = TRUE)
  {
   GLOBAL $arsc_my, $arsc_lang, $arsc_layout, $arsc_current;
-  if ($checkroom == FALSE) $layout_id = ARSC_PARAMETER_DEFAULT_LAYOUT;
+  if ($checkroom == FALSE) $layout_id = ARSC_PARAMETER_DEFAULT_LAYOUT_ID;
   if ($checkroom && $arsc_my["room"] == "")
   {
-   $layout_id = ARSC_PARAMETER_DEFAULT_LAYOUT;
+   $layout_id = ARSC_PARAMETER_DEFAULT_LAYOUT_ID;
   }
   elseif ($checkroom)
   {
    $result = mysql_query("SELECT layout_id FROM arsc_rooms WHERE roomname = '".$arsc_my["room"]."'", ARSC_PARAMETER_DB_LINK);
    $a = mysql_fetch_array($result);
    $layout_id = $a["layout_id"];
+  }
+  if($arsc_my["layout"] <> "" AND $arsc_my["layout"] <> 0 AND $arsc_my["layout"] <> ARSC_PARAMETER_DEFAULT_LAYOUT_ID)
+  {
+   $layout_id = $arsc_my["layout"];
   }
   $arsc_layout = $this->getBasicLayoutValues($layout_id, $checkroom);
   include("layout_defaults.inc.php");
