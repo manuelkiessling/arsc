@@ -6,9 +6,8 @@
 function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room, $arsc_flag_ripped)
 {
  GLOBAL $arsc_parameters,
+        $arsc_parameters_smilies,
         $arsc_lang,
-        $arsc_color,
-        $arsc_smilie,
         $arsc_my;
 
  if ($arsc_user == "System" AND strstr($arsc_message, "~~"))
@@ -453,8 +452,8 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
  }
  if ($arsc_parameters["smilies"] == "yes")
  {
-  reset($arsc_smilie);
-  $arsc_posting = arsc_smilies_replace($arsc_posting, $arsc_smilie, $arsc_parameters["smilies_path"]);
+  reset($arsc_parameters_smilies);
+  $arsc_posting = arsc_smilies_replace($arsc_posting, $arsc_parameters_smilies, $arsc_parameters["smilies_path"]);
  }
  return $arsc_posting;
 }
