@@ -588,7 +588,7 @@ if ($this->checkCommandAllowed($arsc_my["level"], "color"))
  </tr>
 </table>
 ';
-} else $arsc_layout["colorselection"] = '';
+} else $arsc_layout["colorselection_table"] = '';
 
 
 if ($this->checkCommandAllowed($arsc_my["level"], "roomlist"))
