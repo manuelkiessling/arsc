@@ -59,18 +59,21 @@ Viel Spass!
 
 // Chat interface
 
-$arsc_lang["usersinroom"]     = "User in Raum";
-$arsc_lang["sendmessage"]     = "Senden";
-$arsc_lang["refreshmessages"] = "Nachrichten aktualisieren";
-$arsc_lang["leave"]           = "Chat verlassen";
-$arsc_lang["roomlist"]        = "Raumliste";
-$arsc_lang["go_room"]         = "Betreten";
-$arsc_lang["refresh"]         = "Aktualisieren";
-$arsc_lang["otherfunctions"]  = "Weitere Funktionen";
-$arsc_lang["smilielist"]      = "Liste verf&uuml;gbarer Smilies";
-$arsc_lang["scroll_active"]   = "Automatisch scrollen";
-$arsc_lang["select_color"]    = "W&auml;hlen Sie Ihre Textfarbe";
-$arsc_lang["drawboard"]       = "Drawboard";
+$arsc_lang["usersinroom"]               = "User in Raum";
+$arsc_lang["sendmessage"]               = "Senden";
+$arsc_lang["refreshmessages"]           = "Nachrichten aktualisieren";
+$arsc_lang["leave"]                     = "Chat verlassen";
+$arsc_lang["roomlist"]                  = "Raumliste";
+$arsc_lang["go_room"]                   = "Betreten";
+$arsc_lang["refresh"]                   = "Aktualisieren";
+$arsc_lang["otherfunctions"]            = "Weitere Funktionen";
+$arsc_lang["smilielist"]                = "Liste verf&uuml;gbarer Smilies";
+$arsc_lang["scroll_active"]             = "Automatisch scrollen";
+$arsc_lang["select_color"]              = "W&auml;hlen Sie Ihre Textfarbe";
+$arsc_lang["moderatorqueue_title"]      = "Unbeantwortete Fragen";
+$arsc_lang["moderatorqueue_youranswer"] = "Ihre Antwort";
+$arsc_lang["moderatorqueue_cancel"]     = "Abbrechen";
+$arsc_lang["drawboard"]                 = "Drawboard";
 
 $arsc_lang["cmd_m"]           = "Hier klicken um dem User eine Nachricht zu senden";
 $arsc_lang["opcmd_w"]         = "Erweiterte Informationen &uuml;ber diesen User anzeigen";

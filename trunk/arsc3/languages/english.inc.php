@@ -59,18 +59,21 @@ Have a lot of fun!
 
 // Chat interface
 
-$arsc_lang["usersinroom"]     = "Users in room";
-$arsc_lang["sendmessage"]     = "Send";
-$arsc_lang["refreshmessages"] = "Refresh Messages";
-$arsc_lang["leave"]           = "Leave";
-$arsc_lang["roomlist"]        = "Roomlist";
-$arsc_lang["go_room"]         = "Enter";
-$arsc_lang["refresh"]         = "Refresh";
-$arsc_lang["otherfunctions"]  = "Additional functions";
-$arsc_lang["smilielist"]      = "List of all smilies";
-$arsc_lang["scroll_active"]   = "Autoscroll";
-$arsc_lang["select_color"]    = "Select your color";
-$arsc_lang["drawboard"]       = "Drawboard";
+$arsc_lang["usersinroom"]               = "Users in room";
+$arsc_lang["sendmessage"]               = "Send";
+$arsc_lang["refreshmessages"]           = "Refresh Messages";
+$arsc_lang["leave"]                     = "Leave";
+$arsc_lang["roomlist"]                  = "Roomlist";
+$arsc_lang["go_room"]                   = "Enter";
+$arsc_lang["refresh"]                   = "Refresh";
+$arsc_lang["otherfunctions"]            = "Additional functions";
+$arsc_lang["smilielist"]                = "List of all smilies";
+$arsc_lang["scroll_active"]             = "Autoscroll";
+$arsc_lang["select_color"]              = "Select your color";
+$arsc_lang["moderatorqueue_title"]      = "Unanswered questions";
+$arsc_lang["moderatorqueue_youranswer"] = "Your answer";
+$arsc_lang["moderatorqueue_cancel"]     = "Cancel";
+$arsc_lang["drawboard"]                 = "Drawboard";
 
 $arsc_lang["cmd_m"]           = "Klick to send a message to this user";
 $arsc_lang["opcmd_w"]         = "Show extended information about this user";

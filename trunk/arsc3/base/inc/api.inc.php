@@ -112,6 +112,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
                                                         message text NOT NULL,
                                                         user varchar(64) NOT NULL default '',
                                                         flag_ripped tinyint(4) NOT NULL default '0',
+                                                        flag_moderated tinyint(4) NOT NULL default '0',
                                                         sendtime time NOT NULL default '00:00:00',
                                                         timeid bigint(20) NOT NULL default '0',
                                                         PRIMARY KEY (id),
@@ -151,6 +152,13 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   $query = mysql_query("SELECT roomname FROM arsc_rooms WHERE roomname_nice = '".mysql_escape_string($room)."'", ARSC_PARAMETER_DB_LINK);
   $result = mysql_fetch_array($query);
   return $result["roomname"];
+ }
+
+ function getRoomId($room)
+ {
+  $query = mysql_query("SELECT id FROM arsc_rooms WHERE roomname = '".mysql_escape_string($room)."'", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_fetch_array($query);
+  return $result["id"];
  }
 
  function makeInternalRoomname($room)
@@ -302,24 +310,54 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  {
   $template_varname = "arsc_template_".$template;
   GLOBAL $$template_varname, $arsc_my;
-  $result = mysql_query("SELECT message, user, flag_ripped, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." WHERE timeid > '$since' ORDER BY timeid ASC, id ASC", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_query("SELECT message, user, flag_ripped, flag_moderated, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." WHERE timeid > '$since' ORDER BY timeid ASC, id ASC", ARSC_PARAMETER_DB_LINK);
   while ($a = mysql_fetch_array($result))
   {
-   $message .= arsc_filter_posting($a["user"], $a["sendtime"], str_replace("\n", "#ret#", $a["message"]), $room, $a["flag_ripped"], $$template_varname);
+   $message .= arsc_filter_posting($a["user"], $a["sendtime"], str_replace("\n", "#ret#", $a["message"]), $room, $a["flag_ripped"], $a["flag_moderated"], $$template_varname);
    $return[1] = $a["timeid"];
   }
   $return[0] = $message;
   return($return);
  }
 
- function postMessage($room, $message, $user, $sendtime, $timeid, $flag_ripped)
+ function addToQueue($rooms_id, $user, $message)
  {
-  include("message_postprocessing.inc.php");
-  arsc_message_postprocessing($user, $room, $message);
-  mysql_query("INSERT INTO arsc_room_".mysql_escape_string($room)." (message, user, sendtime, timeid, flag_ripped) VALUES ('".mysql_escape_string($message)."', '".mysql_escape_string($user)."', '$sendtime', '$timeid', '$flag_ripped')", ARSC_PARAMETER_DB_LINK);
+  mysql_query("INSERT INTO arsc_moderation_queue (rooms_id, user, message) VALUES ('".mysql_escape_string($rooms_id)."', '".mysql_escape_string($user)."', '".mysql_escape_string($message)."')", ARSC_PARAMETER_DB_LINK);
+ }
+
+ function deleteFromQueue($id)
+ {
+  mysql_query("DELETE FROM arsc_moderation_queue WHERE id = '".mysql_escape_string($id)."'", ARSC_PARAMETER_DB_LINK);
+ }
+
+ function getQueueEntry($id)
+ {
+  $query = mysql_query("SELECT id, rooms_id, user, message FROM arsc_moderation_queue WHERE id = '".mysql_escape_string($id)."'", ARSC_PARAMETER_DB_LINK);
+  while($result = mysql_fetch_array($query))
+  {
+   $entry = array("id" => $result["id"], "rooms_id" => $result["rooms_id"], "user" => $result["user"], "message" => $result["message"]);
+  }
+  return($entry);
  }
  
- function handleReceivedMessage($sid, $message, $language_path)
+ function getQueueEntries($rooms_id)
+ {
+  $query = mysql_query("SELECT id, rooms_id, user, message FROM arsc_moderation_queue WHERE rooms_id = '".mysql_escape_string($rooms_id)."' ORDER BY id DESC LIMIT ".ARSC_PARAMETER_QUEUE_LISTSIZE, ARSC_PARAMETER_DB_LINK);
+  while($result = mysql_fetch_array($query))
+  {
+   $entries[] = array("id" => $result["id"], "rooms_id" => $result["rooms_id"], "user" => $result["user"], "message" => $result["message"]);
+  }
+  return($entries);
+ }
+
+ function postMessage($room, $message, $user, $sendtime, $timeid, $flag_ripped, $flag_moderated = 0)
+ {
+  include_once("message_postprocessing.inc.php");
+  arsc_message_postprocessing($user, $room, $message);
+  mysql_query("INSERT INTO arsc_room_".mysql_escape_string($room)." (message, user, sendtime, timeid, flag_ripped, flag_moderated) VALUES ('".mysql_escape_string($message)."', '".mysql_escape_string($user)."', '$sendtime', '$timeid', '$flag_ripped', '$flag_moderated')", ARSC_PARAMETER_DB_LINK);
+ }
+ 
+ function handleReceivedMessage($sid, $message, $language_path, $flag_moderated = 0)
  {
   //$message = htmlspecialchars($message);
   $my = $this->getUserValuesBySID($sid);
@@ -337,13 +375,13 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
     {
      if ($flood_count > ARSC_PARAMETER_FLOOD_MAX - 1)
      {
-      $this->postMessage($my["room"], "arsc_user_kicked~~System~~".$my["user"], "System", date("H:i:s"), arsc_microtime(), 0);
+      $this->postMessage($my["room"], "arsc_user_kicked~~System~~".$my["user"], "System", date("H:i:s"), arsc_microtime(), 0, $flag_moderated);
       $this->setUserValueByName("level", -1, $my["user"]);
       return FALSE;
      }
      elseif ($flood_count == ARSC_PARAMETER_FLOOD_MAX - 2)
      {
-      $this->postMessage($my["room"], "/msg ".$my["user"]." ".$arsc_lang["floodwarn"], "System", date("H:i:s"), arsc_microtime(), 0);
+      $this->postMessage($my["room"], "/msg ".$my["user"]." ".$arsc_lang["floodwarn"], "System", date("H:i:s"), arsc_microtime(), 0, $flag_moderated);
       $this->setUserValueByName("flood_count", $flood_count + 1, $my["user"]);
       return TRUE;
      }
@@ -354,7 +392,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
      $this->setUserValueByName("flood_lastmessage", $message, $my["user"]);
      $this->setUserValueByName("flood_count", 0, $my["user"]);
     }
-    $this->postMessage($my["room"], $message, $my["user"], $sendtime, $timeid, $my["flag_ripped"]);
+    $this->postMessage($my["room"], $message, $my["user"], $sendtime, $timeid, $my["flag_ripped"], $flag_moderated);
     return TRUE;
    }
   }

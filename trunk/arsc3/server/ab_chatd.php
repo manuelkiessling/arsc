@@ -162,7 +162,7 @@ while (1) // Handling connections in a neverending loop
         }
         @include("../languages/".$arsc_my["language"].".inc.php");
         $arsc_template_varname = "arsc_template_".$arsc_my["template"];
-        $arsc_message = arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".str_replace("{title}", ARSC_PARAMETER_TITLE, $arsc_lang["welcome"]), $arsc_my["room"], 0, $$arsc_template_varname);
+        $arsc_message = arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".str_replace("{title}", ARSC_PARAMETER_TITLE, $arsc_lang["welcome"]), $arsc_my["room"], 0, 0, $$arsc_template_varname);
         if (!socket_write($arsc_connection, $arsc_message, strlen($arsc_message)))
         {
          unset($arsc_connections[$arsc_num]);
@@ -245,7 +245,7 @@ function arsc_getmessages($arsc_sid)
   {
    include("../languages/".$arsc_my["language"].".inc.php");
    $arsc_api->deleteUser($arsc_my["user"]);
-   return arsc_filter_posting("System", date("H:i:s"), $arsc_lang["youwerekicked"], $arsc_my["room"], 0, $arsc_template_xml);
+   return arsc_filter_posting("System", date("H:i:s"), $arsc_lang["youwerekicked"], $arsc_my["room"], 0, 0, $arsc_template_xml);
   }
   else
   {

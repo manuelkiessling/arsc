@@ -2,7 +2,7 @@
 
 // This function returns the correct posting depending on wether it is a system message, a command is used etc.
 
-function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room, $arsc_flag_ripped, $arsc_template)
+function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room, $arsc_flag_ripped, $arsc_flag_moderated, $arsc_template)
 {
  GLOBAL $arsc_smilies,
         $arsc_lang,
@@ -419,9 +419,13 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
       }
       */
       $newtemplate = "html";
+      if($a["type"] == ARSC_ROOMTYPE_MODERATED)
+      {
+       $newtemplate = "html_moderated";
+      }
       if($arsc_user_level >= 30 AND $a["type"] == ARSC_ROOMTYPE_MODERATED)
       {
-       $newtemplate = "html_moderate";
+       $newtemplate = "html_moderator";
       }
       mysql_query("UPDATE arsc_users SET room = '$arsc_new_room', template = '".mysql_escape_string($newtemplate)."' WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
       $arsc_sendtime = date("H:i:s");
@@ -572,7 +576,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
    {
     $arsc_result = mysql_query("SELECT type FROM arsc_rooms WHERE roomname = '$arsc_room'", ARSC_PARAMETER_DB_LINK);
     $arsc_a = mysql_fetch_array($arsc_result);
-    if ($arsc_a["type"] <> 2)
+    if ($arsc_a["type"] <> 2 OR $arsc_flag_moderated == 1)
     {
      $arsc_posting = $arsc_template["normal"];
      $arsc_result = mysql_query("SELECT color FROM arsc_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
@@ -581,22 +585,27 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
      $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
      $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
      $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
+     $arsc_posting = str_replace("{sid}", $arsc_my["sid"], $arsc_posting);
+     $arsc_posting = str_replace("{path}", ARSC_PARAMETER_BASEURL."clients/shared/browser/", $arsc_posting);
+     $arsc_posting = str_replace("{moderate_message}", urlencode($arsc_message), $arsc_posting);
+     $arsc_posting = str_replace("{moderate_user}", $arsc_user, $arsc_posting);
     }
     else
     {
      if ($arsc_my["level"] >= 30)
      {
       $arsc_posting = $arsc_template["normal"];
-      $arsc_result = mysql_query("SELECT color FROM arsc_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+      $arsc_result = mysql_query("SELECT sid, color FROM arsc_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
       $arsc_a = mysql_fetch_array($arsc_result);
       $arsc_posting = str_replace("{color}", $arsc_a["color"], $arsc_posting);
       $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
       $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
       $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
+      $arsc_posting = str_replace("{moderate_sid}", $arsc_a["sid"], $arsc_posting);
       $arsc_posting = str_replace("{sid}", $arsc_my["sid"], $arsc_posting);
-      $arsc_posting = str_replace("{path}", ARSC_PARAMETER_REGISTER_HOMEPAGE."clients/shared/browser/", $arsc_posting);
+      $arsc_posting = str_replace("{path}", ARSC_PARAMETER_BASEURL."clients/shared/browser/", $arsc_posting);
       $arsc_posting = str_replace("{moderate_message}", urlencode($arsc_message), $arsc_posting);
-      $arsc_posting = str_replace("{moderate_user}", urlencode($arsc_user), $arsc_posting);
+      $arsc_posting = str_replace("{moderate_user}", $arsc_user, $arsc_posting);
      }
      else
      {
