@@ -40,7 +40,7 @@
 //  This database must exist before you use the 'install.php' script,
 //  but of course you know this because you read the README file...
 
-    $arsc_parameters["db_db"] = "arsc";
+    $arsc_parameters["db_db"] = "arscdev";
 
 
 //  END OF CONFIGURATION
