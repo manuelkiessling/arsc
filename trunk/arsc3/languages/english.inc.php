@@ -23,6 +23,8 @@ $arsc_lang["usersinchat_room"]          = "Room";
 $arsc_lang["usersinchat_name"]          = "User";
 $arsc_lang["clicktoregister"]           = "Register your nickname!";
 
+// Why kicked page
+$arsc_lang["why_kicked"] = "You were kicked.";
 
 // Register page and eMail
 

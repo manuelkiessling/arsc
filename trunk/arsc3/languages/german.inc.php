@@ -21,7 +21,7 @@ $arsc_lang["usersinchat_name"]          = "User";
 $arsc_lang["clicktoregister"]           = "Registrieren Sie Ihren Nickname!";
 
 // Why kicked page
-$arsc_lang["why_kicked"] = "Sie wurden des Chats verwiesen. Dies kann mehrere Gr&uuml;nde haben...";
+$arsc_lang["why_kicked"] = "Sie wurden des Chats verwiesen.";
 
 // Register page and eMail
 

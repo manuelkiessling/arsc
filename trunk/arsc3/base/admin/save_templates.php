@@ -12,7 +12,7 @@ set_magic_quotes_runtime(1);
 
 $arsc_templatelist = $arsc_api->getTemplatelist();
 reset($arsc_templatelist);
-while(list($arsc_key, $arsc_val) = each($arsc_templatelist))
+while (list($arsc_key, $arsc_val) = each($arsc_templatelist))
 {
  $arsc_varname = "arsc_save_templates_".$arsc_val;
  reset($$arsc_varname);

@@ -10,7 +10,7 @@ $arsc_api = new arsc_api_Class;
 
 set_magic_quotes_runtime(1);
 
-while(list($arsc_key, $arsc_val) = each($arsc_save))
+while (list($arsc_key, $arsc_val) = each($arsc_save))
 {
  if ($arsc_key <> "id")
  {

@@ -36,7 +36,7 @@ set_magic_quotes_runtime(1);
    
    $arsc_templatelist = $arsc_api->getTemplatelist();
    reset($arsc_templatelist);
-   while(list($arsc_key, $arsc_val) = each($arsc_templatelist))
+   while (list($arsc_key, $arsc_val) = each($arsc_templatelist))
    {
     ?>
     <font face="Arial" size="2">
@@ -48,7 +48,7 @@ set_magic_quotes_runtime(1);
     <?php
     $arsc_varname = "arsc_template_".$arsc_val;
     ksort($$arsc_varname);
-    while(list($arsc_key2, $arsc_val2) = each($$arsc_varname))
+    while (list($arsc_key2, $arsc_val2) = each($$arsc_varname))
     {
      ?>
      <font face="Arial" size="2">

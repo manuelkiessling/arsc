@@ -135,7 +135,7 @@ $arsc_rgle = 25;
    </font>
   </td>
   <?php
-  while(list($arsc_key, $arsc_val) = each($arsc_a))
+  while (list($arsc_key, $arsc_val) = each($arsc_a))
   {
    list($arsc_key, $arsc_val) = each($arsc_a);
    echo "<td valign=\"top\"><font face=\"Verdana, Arial\" size=\"1\">".$arsc_val."</font></td>\n";

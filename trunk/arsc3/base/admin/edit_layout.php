@@ -32,9 +32,9 @@ set_magic_quotes_runtime(1);
    $arsc_layout_id = $arsc_a["id"];
    $arsc_result = mysql_query("SELECT * FROM arsc_layouts WHERE id = 1", ARSC_PARAMETER_DB_LINK);
    $arsc_a = mysql_fetch_array($arsc_result);
-   while(list($arsc_key, $arsc_val) = each($arsc_a))
+   while (list($arsc_key, $arsc_val) = each($arsc_a))
    {
-    if($arsc_key <> "id" && $arsc_key <> "name" && !is_numeric($arsc_key))
+    if ($arsc_key <> "id" && $arsc_key <> "name" && !is_numeric($arsc_key))
     {
      if (ereg("template_browser_", $arsc_key)) $arsc_val = "<!-- DEFINING THIS ONE MAKE NO SENSE! -->";
      $arsc_query .= $arsc_key." = '".$arsc_val."', ";
@@ -51,9 +51,9 @@ set_magic_quotes_runtime(1);
 
    $arsc_layoutvalues = $arsc_api->getLayoutValues($arsc_layout_id);
    reset($arsc_layoutvalues);
-   while(list($arsc_key, $arsc_val) = each($arsc_layoutvalues))
+   while (list($arsc_key, $arsc_val) = each($arsc_layoutvalues))
    {
-    if(!is_numeric($arsc_key) && $arsc_key <> "id")
+    if (!is_numeric($arsc_key) && $arsc_key <> "id")
     {
      ?>
      <font face="Arial" size="2">

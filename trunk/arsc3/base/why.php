@@ -4,7 +4,7 @@ include("inc/config.inc.php");
 include("inc/init.inc.php");
 include("inc/functions.inc.php");
 include("inc/api.inc.php");
-if(!is_file("../languages/".$arsc_language.".inc.php")) die("Invalid language");
+if (!is_file("../languages/".$arsc_language.".inc.php")) die("Invalid language");
 include("../languages/".$arsc_language.".inc.php");
 
 $arsc_api = new arsc_api_Class;

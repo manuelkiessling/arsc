@@ -5,7 +5,7 @@ include("inc/init.inc.php");
 include("inc/functions.inc.php");
 include("inc/api.inc.php");
 include("inc/browserdetect.inc.php");
-if(!is_file("../languages/".$arsc_language.".inc.php")) die("Invalid language");
+if (!is_file("../languages/".$arsc_language.".inc.php")) die("Invalid language");
 include("../languages/".$arsc_language.".inc.php");
 
 $arsc_email = arsc_getvar("arsc_email");

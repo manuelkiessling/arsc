@@ -28,7 +28,7 @@ set_magic_quotes_runtime(1);
 
   $arsc_layoutlist = $arsc_api->getLayoutlist();
   reset($arsc_layoutlist);
-  while(list($arsc_key, $arsc_val) = each($arsc_layoutlist))
+  while (list($arsc_key, $arsc_val) = each($arsc_layoutlist))
   {
    ?>
    <a href="edit_layout.php?arsc_layout_id=<?php echo $arsc_key; ?>"><?php echo $arsc_val; ?></a>
