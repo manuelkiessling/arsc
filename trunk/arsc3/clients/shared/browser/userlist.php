@@ -3,13 +3,14 @@
 include("../../../base/inc/config.inc.php");
 include("../../../base/inc/init.inc.php");
 include("../../../base/inc/functions.inc.php");
+include("../../../base/inc/inputvalidation.inc.php");
 include("../../../base/inc/api.inc.php");
 
-$arsc_current_room = arsc_getvar("arsc_current_room");
+$arsc_current_room = arsc_validateinput($_GET["arsc_current_room"], NULL, "/[^a-z0-9_]/", 0, 32);
 
 $arsc_api = new arsc_api_Class;
 
-if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
+if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40)))
 {
  include("../../../languages/".$arsc_my["language"].".inc.php");
 
@@ -27,9 +28,9 @@ if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
   header("Cache-Control: no-cache, must-revalidate");
   header("Pragma: no-cache");
   header("Content-Type: text/html");
-  header("Refresh: ".ARSC_PARAMETER_USERLIST_REFRESH."; URL=userlist.php?arsc_sid=".$arsc_sid."&arsc_current_room=".$arsc_my["room"]."&arsc_language=".$arsc_my["language"]);
+  header("Refresh: ".ARSC_PARAMETER_USERLIST_REFRESH."; URL=userlist.php?arsc_sid=".$arsc_my["sid"]."&arsc_current_room=".$arsc_my["room"]."&arsc_language=".$arsc_my["language"]);
 
-  if($arsc_current_room <> "" AND $arsc_current_room <> $arsc_my["room"]) $arsc_current["reloadallframes"] = 1; else $arsc_current["reloadallframes"] = 0;
+  if ($arsc_current_room <> "" AND $arsc_current_room <> $arsc_my["room"]) $arsc_current["reloadallframes"] = 1; else $arsc_current["reloadallframes"] = 0;
 
   echo $arsc_api->parseLayoutTemplate("userlist");
  }

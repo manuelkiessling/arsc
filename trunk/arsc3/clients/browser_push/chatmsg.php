@@ -7,12 +7,13 @@ ob_end_flush();
 include("../../base/inc/config.inc.php");
 include("../../base/inc/init.inc.php");
 include("../../base/inc/functions.inc.php");
+include("../../base/inc/inputvalidation.inc.php");
 include("../../base/inc/api.inc.php");
 include("../../base/inc/filter.inc.php");
 
 $arsc_api = new arsc_api_Class;
 
-if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
+if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40)))
 {
  include("../../languages/".$arsc_my["language"].".inc.php");
 
@@ -23,9 +24,9 @@ if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
   echo arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".str_replace("{title}", ARSC_PARAMETER_TITLE, $arsc_lang["welcome"]), $arsc_my["room"], 0, $$arsc_template_varname);
   flush();
 
-  while(!connection_aborted())
+  while (!connection_aborted())
   {
-   echo arsc_getmessages($arsc_sid);
+   echo arsc_getmessages($arsc_my["sid"]);
    usleep(ARSC_PARAMETER_SOCKETSERVER_REFRESH);
    flush();
   }
@@ -62,7 +63,7 @@ function arsc_getmessages($arsc_sid)
     {
      $arsc_posting .= $arsc_messages[0];
     }
-    if($arsc_messages[1] <> "") $arsc_api->setUserValueByName("lastmessageping", $arsc_messages[1], $arsc_my["user"]);
+    if ($arsc_messages[1] <> "") $arsc_api->setUserValueByName("lastmessageping", $arsc_messages[1], $arsc_my["user"]);
     $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
    }
    if ($arsc_my["version"] <> "external")

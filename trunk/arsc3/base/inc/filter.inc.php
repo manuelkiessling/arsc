@@ -1,6 +1,5 @@
 <?php
 
-// Ah, the big thing.
 // This function returns the correct posting depending on wether it is a system message, a command is used etc.
 
 function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room, $arsc_flag_ripped, $arsc_template)
@@ -219,7 +218,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     {
      $a = mysql_fetch_array($result);
     }
-    if($b["level"] == 99) // Only the REAL admin may see passwords
+    if ($b["level"] == 99) // Only the REAL admin may see passwords
     {
      if ($result = mysql_query("SELECT password, email, color, sex, location FROM arsc_registered_users WHERE user = '$userpassive'", ARSC_PARAMETER_DB_LINK))
      {
@@ -381,7 +380,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
    {
     $result = mysql_query("SELECT level, language FROM arsc_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
     $a = mysql_fetch_array($result);
-    if($arsc_my["language"] == $a["language"])
+    if ($arsc_my["language"] == $a["language"])
     {
      $arsc_message = "/msg ".$arsc_user." ".$arsc_lang["help"];
      if ($a["level"] > 0)
@@ -401,7 +400,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     if ($arsc_api->checkCommandAllowed($a["level"], "smilies"))
     {
      reset($arsc_smilies);
-     while(list($key, $val) = each($arsc_smilies))
+     while (list($key, $val) = each($arsc_smilies))
      {
       $smilielist .= "\n".$val." ".substr($val, 0, 1)."#arsc_dummy_space#".substr($val, 1);
      }

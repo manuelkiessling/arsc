@@ -1,5 +1,26 @@
 <?php
 
+// Error handling
+function arsc_error_log($level, $text, $file, $line)
+{
+ GLOBAL $arsc_errorlevels;
+ $date = date("Y-m-d H:i:s"); 
+ if ($level > ARSC_PARAMETER_LOGERRORSABOVE)
+ {
+  $fp = fopen("/tmp/arsc.log", "a");
+  fputs($fp, $date." ".$arsc_errorlevels[$level]." ".$text." (File ".$file.", Line ".$line.")\n");
+  fclose($fp);
+ }
+ if ($level > ARSC_PARAMETER_SHOWERRORSABOVE)
+ {
+  echo("<p>\n<strong>Error: </strong> ".$date." ".$arsc_errorlevels[$level]." ".$text." <em>(File ".$file.", Line ".$line.")</em>\n</p>\n");
+ }
+ if ($level > ARSC_PARAMETER_DIEIFERRORLEVELABOVE)
+ {
+  die();
+ }
+}
+
 // return an usable microtime
 function arsc_microtime()
 {
@@ -11,7 +32,7 @@ function arsc_microtime()
 // Replace smilies with image tag
 function arsc_smilies_replace($text, $smilies, $smilies_pfad)
 {
- while(list($key, $val) = each($smilies))
+ while (list($key, $val) = each($smilies))
  {
   $text = str_replace($val, "<img src=\"".$smilies_pfad.$key.".gif\" border=\"0\" alt=\"".$val."\">", $text);
  }
@@ -21,7 +42,7 @@ function arsc_smilies_replace($text, $smilies, $smilies_pfad)
 function arsc_getdirarray($path)
 {
 	$handle = opendir($path);
-	while($file = readdir($handle)) $return[count($return)] = $file;
+	while ($file = readdir($handle)) $return[count($return)] = $file;
 	closedir($handle);
 	sort($return);
 	reset($return);

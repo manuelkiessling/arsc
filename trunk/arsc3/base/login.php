@@ -3,11 +3,21 @@
 include("inc/config.inc.php");
 include("inc/init.inc.php");
 include("inc/functions.inc.php");
+include("inc/inputvalidation.inc.php");
+
+$arsc_language = arsc_validateinput($_POST["arsc_language"], $arsc_available_languages);
+if ($arsc_language == "") $arsc_language = ARSC_PARAMETER_STANDARD_LANGUAGE;
+if (!is_file("../languages/".$arsc_language.".inc.php")) arsc_error_log(ARSC_ERRORLEVEL_FATAL, "Could not open language file. Something is really messed up!", __FILE__, __LINE__);
+$arsc_user = arsc_validateinput($_POST["arsc_user"], NULL, "/[^a-zA-Z0-9_]/", 0, 64);
+$arsc_password = arsc_validateinput($_POST["arsc_user"], NULL, "/[^a-zA-Z0-9_]/", 0, 64);
+$arsc_room = arsc_validateinput($_POST["arsc_room"], NULL, "/[^a-z0-9_]/", 0, 32);
+$arsc_chatversion = arsc_validateinput($_POST["arsc_chatversion"], array("browser_push", "browser_socket"));
+$arsc_template = arsc_validateinput($_POST["arsc_template"], array("html", "html_moderate", "xml")); // fixme: get available templates
 
 $arsc_ip = getenv("REMOTE_ADDR");
 $arsc_level = 0;
 $arsc_color = "000000";
-$arsc_user = arsc_cleanUserName($arsc_user);
+
 if ($arsc_user == "")
 {
  header ("Location: home.php?arsc_error=no_name&arsc_language=".$arsc_language);
@@ -62,7 +72,7 @@ else
   $arsc_level = 10;
  }
  mt_srand((double)microtime()*1000000);
- $arsc_sid = md5(mt_rand(0, mt_getrandmax()));
+ $arsc_sid = sha1(mt_rand(0, mt_getrandmax()));
  $arsc_ping = time();
  // Some chars must be stripped out or replaced
  if ($arsc_chatversion == "applet")

@@ -5,7 +5,7 @@ class arsc_api_Class
 
  function getUserValuesBySID($sid)
  {
-  if($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, level, flag_ripped, sid, lastmessageping FROM arsc_users WHERE sid = '$sid'", ARSC_PARAMETER_DB_LINK))
+  if ($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, level, flag_ripped, sid, lastmessageping FROM arsc_users WHERE sid = '$sid'", ARSC_PARAMETER_DB_LINK))
   {
    return mysql_fetch_array($result);
   }
@@ -17,7 +17,7 @@ class arsc_api_Class
 
  function getUserValuesByName($name)
  {
-  if($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, level, flag_ripped, sid, lastmessageping FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
+  if ($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, level, flag_ripped, sid, lastmessageping FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
   {
    return mysql_fetch_array($result);
   }
@@ -29,7 +29,7 @@ class arsc_api_Class
 
  function getUserValueByName($value_name, $name)
  {
-  if($result = mysql_query("SELECT $value_name FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
+  if ($result = mysql_query("SELECT $value_name FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
   {
    $a = mysql_fetch_array($result);
    return $a[$value_name];
@@ -42,7 +42,7 @@ class arsc_api_Class
  
  function getUserValueByValue($get_value_name, $find_value_name, $find_value_value)
  {
-  if($result = mysql_query("SELECT $get_value_name FROM arsc_users WHERE $find_value_name = '$find_value_value'", ARSC_PARAMETER_DB_LINK))
+  if ($result = mysql_query("SELECT $get_value_name FROM arsc_users WHERE $find_value_name = '$find_value_value'", ARSC_PARAMETER_DB_LINK))
   {
    $a = mysql_fetch_array($result);
    return $a[$get_value_name];
@@ -55,7 +55,7 @@ class arsc_api_Class
  
  function setUserValueByName($value_name, $value, $name)
  {
-  if($result = mysql_query("UPDATE arsc_users SET $value_name = '$value' WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
+  if ($result = mysql_query("UPDATE arsc_users SET $value_name = '$value' WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
   {
    return TRUE;
   }
@@ -67,7 +67,7 @@ class arsc_api_Class
  
  function userIsValid($name)
  {
-  if($result = mysql_query("SELECT level FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
+  if ($result = mysql_query("SELECT level FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
   {
    $a = mysql_fetch_array($result);
    if ($a["level"] >= 0)
@@ -102,7 +102,7 @@ class arsc_api_Class
  function getReadableRoomlist()
  {
   $result = mysql_query("SELECT roomname_nice, owner FROM arsc_rooms ORDER BY owner", ARSC_PARAMETER_DB_LINK);
-  while($a = mysql_fetch_array($result))
+  while ($a = mysql_fetch_array($result))
   {
    if ($a["owner"] == -1)
    {
@@ -115,9 +115,9 @@ class arsc_api_Class
  function getInternalRoomlist()
  {
   $result = mysql_query("SHOW tables LIKE 'arsc_room_%'", ARSC_PARAMETER_DB_LINK);
-  while($a = mysql_fetch_array($result))
+  while ($a = mysql_fetch_array($result))
   {
-   if($a[0] <> "")
+   if ($a[0] <> "")
    {
     $return[] = $this->getInternalRoomname(substr($a[0], 10));
    }
@@ -129,7 +129,7 @@ class arsc_api_Class
  function getSimpleUserlist($room)
  {
   $result = mysql_query("SELECT user, level FROM arsc_users WHERE room = '$room' ORDER BY level DESC, user ASC", ARSC_PARAMETER_DB_LINK);
-  while($a = mysql_fetch_array($result))
+  while ($a = mysql_fetch_array($result))
   {
    $return["{$a["user"]}"] = $a["level"];
   }
@@ -139,7 +139,7 @@ class arsc_api_Class
  function getTemplatelist()
  {
   $result = mysql_query("SELECT DISTINCT template FROM arsc_templates", ARSC_PARAMETER_DB_LINK);
-  while($a = mysql_fetch_array($result))
+  while ($a = mysql_fetch_array($result))
   {
    $return[] = $a["template"];
   }
@@ -150,7 +150,7 @@ class arsc_api_Class
  function getLayoutlist()
  {
   $result = mysql_query("SELECT id, name FROM arsc_layouts", ARSC_PARAMETER_DB_LINK);
-  while($a = mysql_fetch_array($result))
+  while ($a = mysql_fetch_array($result))
   {
    $return["{$a["id"]}"] = $a["name"];
   }
@@ -169,7 +169,7 @@ class arsc_api_Class
  {
   mt_srand((double)microtime()*1000000);
   $sid = md5(mt_rand(0, mt_getrandmax()));
-  if($user == "flash") $sid = 12345;
+  if ($user == "flash") $sid = 12345;
   mysql_query("INSERT INTO arsc_users
                (user, lastping, ip, room, language, version, template, sid)
                VALUES
@@ -198,7 +198,7 @@ class arsc_api_Class
   $template_varname = "arsc_template_".$template;
   GLOBAL $$template_varname, $arsc_my;
   $result = mysql_query("SELECT message, user, flag_ripped, sendtime, timeid FROM arsc_room_$room WHERE timeid > '$since' ORDER BY timeid ASC, id ASC", ARSC_PARAMETER_DB_LINK);
-  while($a = mysql_fetch_array($result))
+  while ($a = mysql_fetch_array($result))
   {
    $message .= arsc_filter_posting($a["user"], $a["sendtime"], str_replace("\n", "#ret#", $a["message"]), $room, $a["flag_ripped"], $$template_varname);
    $return[1] = $a["timeid"];
@@ -209,12 +209,12 @@ class arsc_api_Class
 
  function postMessage($room, $message, $user, $sendtime, $timeid, $flag_ripped)
  {
-  mysql_query("INSERT INTO arsc_room_$room (message, user, sendtime, timeid, flag_ripped) VALUES ('$message', '$user', '$sendtime', '$timeid', '$flag_ripped')", ARSC_PARAMETER_DB_LINK);
+  mysql_query("INSERT INTO arsc_room_".mysql_escape_string($room)." (message, user, sendtime, timeid, flag_ripped) VALUES ('".mysql_escape_string($message)."', '".mysql_escape_string($user)."', '$sendtime', '$timeid', '$flag_ripped')", ARSC_PARAMETER_DB_LINK);
  }
  
  function handleReceivedMessage($sid, $message, $language_path)
  {
-  $message = htmlspecialchars($message);
+  //$message = htmlspecialchars($message);
   $my = $this->getUserValuesBySID($sid);
   @include($language_path."languages/".$my["language"].".inc.php");
   if ($my["level"] >= 0)
@@ -222,8 +222,6 @@ class arsc_api_Class
    $this->deleteNeedlessMessages($my["room"]);
    $sendtime = date("H:i:s");
    $timeid = arsc_microtime();
-   $message = strip_tags($message);
-   $message = ereg_replace("'", "&acute;", $message);
    if ($message <> "")
    {
     $flood_count = $this->getUserValueByName("flood_count", $my["user"]);
@@ -261,7 +259,7 @@ class arsc_api_Class
  
  function deleteNeedlessMessages($room)
  {
-  if($result = mysql_query("SELECT COUNT(*) AS howmany FROM arsc_room_$room", ARSC_PARAMETER_DB_LINK))
+  if ($result = mysql_query("SELECT COUNT(*) AS howmany FROM arsc_room_$room", ARSC_PARAMETER_DB_LINK))
   {
    $a = mysql_fetch_array($result);
    if ($a["howmany"] > ARSC_PARAMETER_ROWLIMIT)
@@ -348,7 +346,7 @@ class arsc_api_Class
   $result = mysql_query("SELECT template_".$name." FROM arsc_layouts WHERE id = ".$layout_id, ARSC_PARAMETER_DB_LINK);
   $a = mysql_fetch_array($result);
   $template = $a["template_".$name];
-  if(is_array($arsc_my))
+  if (is_array($arsc_my))
   {
    while (list($key, $val) = each($arsc_my))
    {
@@ -358,7 +356,7 @@ class arsc_api_Class
   $arsc_parameters = get_defined_constants();
   while (list($key, $val) = each($arsc_parameters))
   {
-   if(ereg("ARSC_PARAMETER_", $key))
+   if (ereg("ARSC_PARAMETER_", $key))
    {
     $key = strtolower(str_replace("ARSC_PARAMETER_", "", $key));
     $template = ereg_replace("<%parameters_".$key."%>", $val, $template);

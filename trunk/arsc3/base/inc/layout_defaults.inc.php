@@ -17,7 +17,7 @@ $arsc_roomlist = $this->getInternalRoomlist();
 while (list($arsc_key, $arsc_val) = each($arsc_roomlist))
 {
  $arsc_userlist = $this->getSimpleUserlist($arsc_val);
- if(is_array($arsc_userlist))
+ if (is_array($arsc_userlist))
  {
   while (list($arsc_keyu, $arsc_valu) = each($arsc_userlist))
   {
@@ -53,7 +53,7 @@ if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_p
  <!--
   function scrolling()
   {
-   if(document.scrollform.scrollcheck.checked)
+   if (document.scrollform.scrollcheck.checked)
    {
     parent.msg.scroll_active=true;
    }
@@ -102,7 +102,7 @@ $arsc_layout["drawboard_link"] = '';
 $arsc_layout["currentroom"] = $this->getReadableRoomname($arsc_my["room"]);
 
 
-if($arsc_current["reloadallframes"] == 1)
+if ($arsc_current["reloadallframes"] == 1)
 {
  $arsc_layout["reloadallframes_script"] = '
 <script language="JavaScript">
@@ -122,7 +122,7 @@ if($arsc_current["reloadallframes"] == 1)
 else $arsc_layout["reloadallframes_script"] = '';
 
 
-if($arsc_current["user_got_kicked"] == 1)
+if ($arsc_current["user_got_kicked"] == 1)
 {
  $arsc_layout["kickuser_script"] = '
 <script language="JavaScript">
