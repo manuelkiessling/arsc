@@ -6,7 +6,7 @@ include("../filter.inc.php");
 
 if ($arsc_my = arsc_getdatafromsid($arsc_sid))
 {
- include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
+ include("../shared/language/".$arsc_my["language"].".inc.php");
  
  $arsc_user = $arsc_my["user"];
  $arsc_room = $arsc_my["room"];
@@ -31,7 +31,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
   header("Pragma: no-cache");
   header("Content-Type: text/html");
   echo $arsc_parameters["htmlhead"];
-  echo arsc_filter_posting("System", date("H:i:s"), "<font size=4><b>".$arsc_message."</b></font>", $arsc_room, 0);
+  echo arsc_filter_posting("System", date("H:i:s"), "<font size=\"4\"><b>".$arsc_message."</b></font>", $arsc_room, 0);
   ?>
    </body>
   </html>
@@ -52,7 +52,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
   $arsc_timeid = arsc_microtime();
   $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang["welcome"];
   echo arsc_filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_room, 0);
-  $arsc_result = mysql_query("SELECT * from arsc_room_$arsc_room WHERE timeid > '$arsc_lastid' ORDER BY timeid ASC");
+  $arsc_result = mysql_query("SELECT * FROM arsc_room_$arsc_room WHERE timeid > '$arsc_lastid' ORDER BY timeid ASC");
   while ($arsc_a = mysql_fetch_array($arsc_result))
   {
    echo arsc_filter_posting($arsc_a["user"], $arsc_a["sendtime"], $arsc_a["message"], $arsc_room, $arsc_a["flag_ripped"])."\n";
