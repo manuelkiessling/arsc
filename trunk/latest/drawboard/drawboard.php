@@ -1,6 +1,7 @@
 <?php
 
 include("../config.inc.php");
+include("../functions.inc.php");
 
 $arsc_result = mysql_query("SELECT COUNT(*) AS anzahl FROM arsc_users WHERE sid = '$arsc_sid'");
 $arsc_a = mysql_fetch_array($arsc_result);
