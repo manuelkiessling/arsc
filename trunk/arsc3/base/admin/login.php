@@ -46,7 +46,11 @@ else
      Login
     </font>
    </h2>
-   <font face="Arial" size="2">Use an administrator account in order to log in.</font>
+   <font face="Arial" size="2">
+    Use an administrator account in order to log in.
+    <br>
+    <b>Cookies must be enabled</b> for the login to work.
+   </font>
    <br>
    <br>
    <font face="Arial" size="2">Username:</font>
