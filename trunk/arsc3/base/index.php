@@ -2,58 +2,46 @@
 
 include("inc/config.inc.php");
 include("inc/init.inc.php");
+include("inc/functions.inc.php");
+include("inc/api.inc.php");
+
+$arsc_api = new arsc_api_Class;
+
+include("../languages/english.inc.php");
+$arsc_current["chooseyourlanguage"] = $arsc_lang["chooseyourlanguage"];
+$arsc_current["next"] = $arsc_lang["next"];
+
+// Get browser-accepted languages
+$arsc_accepted_languages = explode(",", getenv("HTTP_ACCEPT_LANGUAGE"));
+$handle = opendir("../languages");
+while ($file = readdir($handle))
+{ 
+ if ($file != "." AND $file != ".." AND substr($file, -8) == ".inc.php")
+ { 
+  include("../languages/".$file);
+  $arsc_language = str_replace(".inc.php", "", $file);
+  $arsc_language_name = $arsc_lang_name[$arsc_language];
+  if (is_array($arsc_lang_regions[$arsc_language]))
+  {
+   $arsc_selected = "";
+   if (in_array($arsc_accepted_languages[0], $arsc_lang_regions[$arsc_language]))
+   {
+    $arsc_selected = " selected";
+    $arsc_current["chooseyourlanguage"] = $arsc_lang["chooseyourlanguage"];
+    $arsc_current["next"] = $arsc_lang["next"];
+   }
+  }
+  $arsc_options .= '<option value="'.$arsc_language.'"'.$arsc_selected.'>'.$arsc_language_name.'</option>';
+ } 
+}
+$arsc_current["languageselection"] = '
+<select name="arsc_language">
+ '.$arsc_options.'
+</select>
+';
+closedir($handle);
+$arsc_current["version"] = ARSC_VERSION;
+
+echo $arsc_api->parseLayoutTemplate("languageselection");
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html>
- <head>
-  <title>
-   <?php echo ARSC_PARAMETER_TITLE; ?>
-  </title>
- </head>
- <body>
-  <br>
-  <br>
-  <form action="home.php" method="GET">
-   <table align="center" cellpadding="6" bgcolor="#EEEEEE">
-    <tr>
-     <td>
-      <font face="Arial, Verdana, sans-serif">
-       <b>
-        Choose your language:
-       </b>
-      </font>
-      <select name="arsc_language">
-       <?php
-       $handle = opendir("../languages");
-       while ($file = readdir($handle))
-       { 
-        if ($file != "." && $file != "..")
-        { 
-         $arsc_language = str_replace(".inc.php", "", $file);
-         ?>
-         <option value="<?php echo $arsc_language; ?>"<?php if ($arsc_language == ARSC_PARAMETER_DEFAULT_LANGUAGE) echo " selected"; ?>><?php echo ucfirst($arsc_language); ?></option>
-         <?php
-        } 
-       }
-       closedir($handle);
-       ?>
-      </select>
-      <input type="submit" value="Go &gt;">
-     </td>
-    </tr>
-   </table>
-  </form>
-  <br>
-  <center>
-   <table align="center" cellpadding="1" cellspacing="0" border="0" bgcolor="#EEEEEE">
-    <tr>
-     <td><a href="http://manuel.kiessling.net/projects/software/arsc/" target="_blank" title="The Homepage of ARSC"><img src="pic/arsc_poweredby102x47.jpg" width="102" height="47" border="0" alt="Powered by ARSC!"></a></td>
-    </tr>
-   </table>
-   <font face="Verdana, Arial, sans-serif" size="1" color="#BBBBBB">
-    [v<?php echo ARSC_VERSION; ?>]
-   </font>
-  </center>
- </body>
-</html>
