@@ -7,8 +7,7 @@ include("../../../base/inc/api.inc.php");
 include("../../../base/inc/inputvalidation.inc.php");
 
 include("../../../base/inc/message_preprocessing.inc.php");
-
-include("../../../base/inc/message_preprocessing.inc.php");
+// FIXME include("../../../base/inc/message_postprocessing.inc.php");
 
 $arsc_api = new arsc_api_Class;
 
