@@ -263,11 +263,10 @@ if ($this->checkCommandAllowed($arsc_my["level"], "color"))
 <table width="100%" border="0" cellspacing="3" cellpadding="0" bgcolor="'.$arsc_layout["default_foreground_color"].'">
  <tr>
   <td width="15" bgcolor="#'.$arsc_my["color"].'"><img src="../../../base/pic/x.gif" border="2" width="15" height="20" alt="aktuelle Farbe"></td>';
- $arsc_chatcolors = array("000000", "696969", "808080", "708090", "0000cd", "2a58fa", "6421f6", "1e90ff", "6A5Acd", "9370db", "a503d3", "9400d3", "8b008b", "c71585", "556b2f", "008000", "228b22", "2e8b57", "46aa20", "32cd32", "9acd32", "daa520", "6b8e23", "8b4513", "a52a2a", "a0522d", "bc8f8f", "c71585", "ff0099", "003366", "191970", "000080", "00008b", "0000cd", "2f4f4f", "4b0082", "800000", "8b0000", "dc143c", "ff0000", "ff4500", "b22222");
- for ($arsc_chatcolor_i = 0; $arsc_chatcolor_i < count($arsc_chatcolors); $arsc_chatcolor_i++)
+ for ($arsc_chatcolor_i = 0; $arsc_chatcolor_i < count(ARSC_PARAMETER_CHATCOLORS); $arsc_chatcolor_i++)
  {
-  $arsc_layout["colorselection_table"] .='<td bgcolor="#'.$arsc_chatcolors[$arsc_chatcolor_i].'"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color='.$arsc_chatcolors[$arsc_chatcolor_i].'"><img src="../../../base/pic/x.gif" border="0" width="5" height="20" alt="#'.$arsc_chatcolors[$arsc_chatcolor_i].'"></a></td>';
-  if ($arsc_chatcolor_i == (round(count($arsc_chatcolors)/2)-1)) $arsc_layout["colorselection_table"] .= '</tr><tr><td>&nbsp;</td>';
+  $arsc_layout["colorselection_table"] .='<td bgcolor="#'.ARSC_PARAMETER_CHATCOLORS[$arsc_chatcolor_i].'"><a href="changecolor.php?arsc_sid='.$arsc_my["sid"].'&arsc_color='.ARSC_PARAMETER_CHATCOLORS[$arsc_chatcolor_i].'"><img src="../../../base/pic/x.gif" border="0" width="5" height="20" alt="#'.ARSC_PARAMETER_CHATCOLORS[$arsc_chatcolor_i].'"></a></td>';
+  if ($arsc_chatcolor_i == (round(count(ARSC_PARAMETER_CHATCOLORS)/2)-1)) $arsc_layout["colorselection_table"] .= '</tr><tr><td>&nbsp;</td>';
  }
  $arsc_layout["colorselection_table"] .='</tr></table>';
 } else $arsc_layout["colorselection_table"] = '';
