@@ -2,6 +2,8 @@
 
 // Hack around here only if you know what you are doing
 
+set_magic_quotes_runtime(0);
+
 // Connecting the db
 mysql_connect($arsc_parameters["db_host"], $arsc_parameters["db_user"], $arsc_parameters["db_passwd"]);
 mysql_select_db($arsc_parameters["db_db"]);
