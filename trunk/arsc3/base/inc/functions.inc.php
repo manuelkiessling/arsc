@@ -7,7 +7,7 @@ function arsc_error_log($level, $text, $file, $line)
  $date = date("Y-m-d H:i:s"); 
  if ($level > ARSC_PARAMETER_LOGERRORSABOVE)
  {
-  $fp = fopen("/tmp/arsc_error.log", "a");
+  $fp = fopen("/tmp/arsc_error.".ARSC_INSTALLATIONID.".log", "a");
   fputs($fp, $date." ".$arsc_errorlevels[$level]." ".$text." (File ".$file.", Line ".$line.")\n");
   fclose($fp);
  }

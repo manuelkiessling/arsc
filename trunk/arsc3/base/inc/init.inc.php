@@ -85,4 +85,6 @@ if ($arsc_query = mysql_query("SELECT id, value FROM arsc_smilies", ARSC_PARAMET
  }
 }
 
+define("ARSC_INSTALLATIONID", md5(ARSC_PARAMETER_BASEURL.ARSC_VERSION)); // Used for logfiles etc.
+
 ?>

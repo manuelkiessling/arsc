@@ -8,7 +8,7 @@ function arsc_message_postprocessing($user, $room, $message)
  */
  
  // Example 1: Write messages to a log file
- $fp = fopen("/tmp/arsc_chatmessages.log", "a");
+ $fp = fopen("/tmp/arsc_chatmessages.".ARSC_INSTALLATIONID.".log", "a");
  fputs($fp, date("Y-m-d H:i:s")." (".$room.") [".$user."]: ".$message."\n");
  fclose($fp);
  
