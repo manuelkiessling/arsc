@@ -211,12 +211,12 @@ INSERT INTO arsc_smilies (id, value) VALUES (17, '/roll/');
 CREATE TABLE arsc_registered_users (
   id int(11) NOT NULL auto_increment,
   user varchar(64) NOT NULL default '',
-  password varchar(64) NOT NULL default '',
+  password char(40) NOT NULL default '',
   language varchar(32) NOT NULL default '',
   level tinyint(4) NOT NULL default '0',
   color varchar(6) NOT NULL default '000000',
   template int(11) NOT NULL default '0',
-  email text NOT NULL,
+  email varchar(128) NOT NULL,
   sex tinyint(4) NOT NULL default '0',
   location varchar(255) NOT NULL default '',
   hobbies text NOT NULL,
@@ -366,14 +366,16 @@ CREATE TABLE arsc_users (
   color varchar(6) NOT NULL default '000000',
   level tinyint(11) NOT NULL default '0',
   flag_ripped tinyint(4) NOT NULL default '0',
-  sid varchar(32) NOT NULL default '',
+  sid varchar(40) NOT NULL default '',
   lastmessageping bigint(20) NOT NULL default '0',
   flood_count tinyint(4) NOT NULL default '0',
   flood_lastmessage text NOT NULL,
   PRIMARY KEY  (id),
+  UNIQUE KEY sid (sid),
   KEY lastping (lastping),
   KEY user (user)
 ) TYPE=MyISAM;
+
 
 #
 # Daten für Tabelle `arsc_users`
