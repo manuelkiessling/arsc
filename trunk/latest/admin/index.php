@@ -76,7 +76,7 @@ if (($arsc_admin_password == "password") AND ($arsc_goto <> "yes"))
       <tr>
        <td bgcolor="#EEEEEE">
         <font face="Arial" size="2">
-        <?php echo stripslashes($arsc_a["description"]); ?>
+        <?php if ($arsc_a["name"] == "selfop_password") echo "<a name=\"changepassword\">"; echo stripslashes($arsc_a["description"]); ?>
        </font>
       </td>
      </tr>
