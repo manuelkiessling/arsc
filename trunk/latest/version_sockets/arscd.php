@@ -12,8 +12,8 @@ include("../filter.inc.php");
 
 if ($argv[1] == "--help" OR $argv[1] == "-h" OR $argv[1] == "/?")
 {
- echo "Starts the ARSC socket server on port {$arsc_parameters["socketserver_port"]} ";
- echo "(as defined in ../config.inc.php).\n\n";
+ echo "Starts the ARSC socket server on port {$arsc_parameters["socketserver_port"]}.";
+ echo "\n\n";
  echo "Usage: arscd.php [-v|-l|--help]\n\n";
  echo "Example:\n";
  echo "  arscd.php -l=/var/log/arsc\n\n";
