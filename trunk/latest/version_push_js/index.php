@@ -14,10 +14,10 @@
  //-->
  </script>
  <frameset cols="*,120" border="0" framespacing="no" frameborder="0" marginwidth="2" marginheight="1">
-  <frameset rows="*,40,1" border="1" framespacing="no" frameborder="0" marginwidth="2" marginheight="1">
+  <frameset rows="1,*,40" border="1" framespacing="no" frameborder="0" marginwidth="2" marginheight="1">
+   <frame src="../shared/empty.html" NAME="empty" scrolling="no" noresize marginwidth="0" marginheight="0">
    <frame src="chatmsg.php?arsc_sid=<?php echo $arsc_sid; ?>" NAME="msg" scrolling="auto" noresize marginwidth="2" marginheight="1">
    <frame src="chatinput.php?arsc_sid=<?php echo $arsc_sid; ?>" name="input"  scrolling="no" noresize marginwidth="2" marginheight="1">
-   <frame src="../shared/empty.html" NAME="empty" scrolling="no" noresize marginwidth="0" marginheight="0">
   </frameset>
   <frame src="../shared/chatusers.php?arsc_sid=<?php echo $arsc_sid; ?>&arsc_enter=true" name="users" scrolling="auto" noresize marginwidth="5" marginheight="5">
  </frameset>
