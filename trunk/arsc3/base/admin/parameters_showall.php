@@ -15,7 +15,10 @@ set_magic_quotes_runtime(1);
 $arsc_parameters = get_defined_constants();
 while (list($key, $val) = each($arsc_parameters))
 {
- echo "<tr bgcolor=\"#EEEEEE\"><td><font face=\"Arial\" size=\"2\"><b> $key: </b></font></td><td><font face=\"Arial\" size=\"2\">".@htmlspecialchars($val)."</font></td><tr>\n";
+ if(ereg("ARSC", $key))
+ {
+  echo "<tr bgcolor=\"#EEEEEE\"><td valign=\"top\"><font face=\"Arial\" size=\"2\"><b> $key: </b></font></td><td><font face=\"Arial\" size=\"2\">".@htmlspecialchars($val)."</font></td><tr>\n";
+ }
 }
 ?>
 </table>
