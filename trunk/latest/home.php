@@ -63,6 +63,7 @@ $arsc_result = mysql_query("SELECT user from arsc_users");
       <font face="Arial" size="2">
        <center>
         <a href="register.php?arsc_language=<?php echo $arsc_language; ?>"><?php echo $arsc_lang["clicktoregister"]; ?></a>
+        <a href="changepassword.php?arsc_language=<?php echo $arsc_language; ?>"><?php echo $arsc_lang["changepassword"]; ?></a>
        </center>
        <br>
        <br>
