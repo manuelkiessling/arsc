@@ -1,5 +1,14 @@
 ARSC Changelog
 
+- Version 2.1
+  2002-11-05
+  
+  - Added '/rip *' and '/unrip *' (Feature request #630693)
+  - Optimized admin page and parameter storage format
+  - Added update script for switching from 2.0 to 2.1
+  - Added version number on front page
+
+
 - Version 2.0
   2002-11-01
   
