@@ -33,7 +33,7 @@ set_magic_quotes_runtime(1);
   echo '<font face="Arial" size="2">';
   echo '<b>'.$arsc_result["name"].'</b>';
   echo '<br>';
-  echo $arsc_result["description"];
+  echo '<i>'.stripslashes($arsc_result["description"]).'</i>';
   echo '</font>';
   echo '<br>';
   echo '<input type="text" size="100" name="arsc_save_parameters['.$arsc_result["name"].']" value="'.$arsc_result["value"].'">';
