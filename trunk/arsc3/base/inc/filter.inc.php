@@ -68,7 +68,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
  else
  {
   // Do we have a command or a normal posting?
-  if (substr($arsc_message, 0, 1) == "/")
+  if (preg_match("/^\/([a-z]+|\?)(\z| )/", $arsc_message))
   {
    // We have a command.
    if (substr($arsc_message, 0, 4) == "/me ")
