@@ -5,7 +5,10 @@ include("../inc/config.inc.php");
 include("../inc/init.inc.php");
 include("cookie.inc.php");
 include("../inc/functions.inc.php");
+include("../inc/api.inc.php");
 include("header.inc.php");
+
+$arsc_api = new arsc_api_Class;
 
 set_magic_quotes_runtime(1);
 
@@ -79,6 +82,11 @@ $arsc_rgle = 25;
   </td>
   <td>
    <font face="Arial" size="2">
+    Layout
+   </font>
+  </td>
+  <td>
+   <font face="Arial" size="2">
     eMail adress
    </font>
   </td>
@@ -119,11 +127,11 @@ $arsc_rgle = 25;
  if ($arsc_rgls == "") $arsc_rgls = 0;
  if ($arsc_search <> "")
  {
-  $arsc_result = mysql_query("SELECT user, level, language, color, template, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users WHERE user LIKE '$arsc_search'", ARSC_PARAMETER_DB_LINK);
+  $arsc_result = mysql_query("SELECT user, level, language, color, template, layout, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users WHERE user LIKE '$arsc_search'", ARSC_PARAMETER_DB_LINK);
  }
  else
  {
-  $arsc_result = mysql_query("SELECT user, level, language, color, template, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users ORDER BY level DESC, user ASC LIMIT $arsc_rgls, $arsc_rgle", ARSC_PARAMETER_DB_LINK);
+  $arsc_result = mysql_query("SELECT user, level, language, color, template, layout, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users ORDER BY level DESC, user ASC LIMIT $arsc_rgls, $arsc_rgle", ARSC_PARAMETER_DB_LINK);
  }
  while ($arsc_a = mysql_fetch_array($arsc_result))
  {
@@ -153,6 +161,11 @@ $arsc_rgle = 25;
    {
     if($arsc_val == 0) $arsc_val = "no";
     if($arsc_val == 1) $arsc_val = "yes";
+   }
+   if($arsc_key == "layout")
+   {
+    $arsc_layoutvalues = $arsc_api->getLayoutValues($arsc_val);
+    $arsc_val = $arsc_layoutvalues["name"];
    }
    echo "<td valign=\"top\"><font face=\"Verdana, Arial\" size=\"1\">".$arsc_val."</font></td>\n";
   }
