@@ -58,7 +58,7 @@ if ($arsc_my = arsc_getdatafromsid($arsc_sid))
     <META HTTP-EQUIV="Last-Modified" CONTENT="<?php echo gmdate("D, d M Y H:i:s"); ?> GMT">
     <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
     <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-    <META HTTP-EQUIV="Refresh" CONTENT="4; URL=<?php echo "chatmsg.php?arsc_sid=".$arsc_sid."&arsc_lastid=".$arsc_lastid."#end"; ?>">
+    <META HTTP-EQUIV="Refresh" CONTENT="4; URL=<?php echo "chatmsg.php?arsc_sid=".$arsc_sid."&arsc_lastid=".$arsc_lastid."&dummy=".time()."#end"; ?>">
    </head>
    <body bgcolor="#FFFFFF">
     <font face="Arial" size="2">
