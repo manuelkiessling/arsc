@@ -20,8 +20,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
 USA.
 
 =======================================================================
-Due to the fact that our mother language is not english, it is possible
-or better very probably that there are several mistakes - we hope they
+Due to the fact that my mother language is not english, it is possible
+or better very probably that there are several mistakes - I hope they
 are at least funny... if you find one, then please send us an eMail to
 arsc-developers@lists.sourceforge.net. Thank you very much!
 =======================================================================
@@ -54,17 +54,18 @@ The homepage of MySQL is:
 http://www.mysql.com
 
 You need a running MySQL server where you may add tables.
+
 Chatting is only really comfortable if the client (the browser)
 supports frames and JavaScript, but with ARSC, chatting is possible
 with _every_ browser on the surface of this planet, even text based
 ones like Lynx.
 
-I tested ARSC successfully with the following browsers:
+I've tested ARSC successfully with the following browsers:
 
 Socket server version:
 
-- Netscape 3.x - 6.x (Win/Linux)
-- Mozilla 0.9.x
+- Netscape 3.x - 7.x (Win/Linux)
+- Mozilla 0.9.x - 1.x
 - Internet Explorer 4.x - 6.x
 - Internet Explorer 5.x for Macintosh
 - Opera 5.x for Linux
@@ -98,7 +99,7 @@ Zuum WebTV box:
 
 Text version
 
-- all of the above (of course)
+- all of the above
 - Lynx
 - w3b
 - virtually everything else around
@@ -127,23 +128,23 @@ Abstract:
 
 Detail:
 
-First, you must make some decisions. Life is full of them, isn't it?
+First, you must make a decision. Life is full of them, isn't it?
 
 You can run ARSC really fine on those widely available LAMP
 (Linux, Apache, MySQL, PHP) servers, where PHP is compiled into
 Apache as a shared module. For those who don't know what this stuff
-is: You can run ARSC on nowadays standard web servers without any
-special requirements.
+is: You can run ARSC on nowadays standard Linux web servers without
+any special requirements.
 
 Windows systems are not tested and not officially supported. If you
 get it running, you are a lucky guy.
 
-If, AND ONLY IF, you are one of those lucky guys who run their
-own server, or have at least shell (telnet/ssh) access to a server,
-and are allowed to start so called 'socket servers' (those are programs
-which listen to a specific port on the server, e.g. FTP listens to
-port 21, Apache to port 80 etc.), then ARSC has something really useful
-for you: its own socket server.
+If, AND ONLY IF, you run your own server, or have at least shell
+(telnet/ssh) access to a server, and are allowed to start so called
+'socket servers' or 'daemons' (those are programs which listen to a
+specific port on the server, e.g. FTP listens to port 21, Apache to
+port 80 etc.), then ARSC has something really useful for you:
+its own socket server.
 
 Let me say it this way: if you _can_ use the socket server, then _do_
 it! It offers by far the best performance in terms of CPU/RAM usage.
@@ -165,7 +166,7 @@ reading this.
 
 Now you must edit a file. The name of this file is 'config.inc.php',
 and you find it in the root directory of the extracted archive.
-Open it with you favorite editor.
+Open it with your favorite editor.
 
 You must tell ARSC how it can connect the MySQL database.
 Therefore, you must give the hostname, the username, and the
@@ -187,16 +188,17 @@ extracted files there.
 If everything is transfered, open your browser and point it to
 http://www.yourserver.com/arsc/install.php.
 
-If it says 'ARSC is installed', then everything is fine and
-you can start to chat. But before you do so, please read the
-chapter 'Configuration' and change the admin password!
+If it says 'ARSC is installed', then everything is fine and you could
+already start to chat. But before you do so, please read the chapter
+'Configuration' below and change the admin password!
 
-If not, most likely there's something wrong with the MySQL connection or
-the required database. Start searching for errors there.
+If it doesn't say 'ARSC is installed', most likely there's something wrong
+with the MySQL connection or the required database. Start searching for
+errors there.
 
-If you want to support us, then please take the moment to get
-your installation counted, it is explained right after you started
-the install script.
+If you want to support us, then please take the moment to get your
+installation counted, it is explained right after you started the
+install script.
 
 You should delete the file 'install.php' from your webserver if the
 installation was successful!
@@ -204,7 +206,7 @@ installation was successful!
 Attention:
 Verify if the configuration file of PHP (php.ini) doesn't have
 the output_buffering or output_compression turned 'On', if so the
-the sockets and push_js versions don't work.
+sockets and push_js versions won't work.
 Also, ARSC will most likely not work if 'register_globals' is 'Off'.
 
 
@@ -220,7 +222,7 @@ You will be presented a simple password form, use 'password' to log in.
 The admin page you then see will directly jump to the section where you
 can change the admin password of ARSC. PLEASE DO SO! The dummy password
 'password' is the same on every fresh ARSC installation, and everyone
-who reads this README will know this password. So please change the
+who reads this README will know this password! So please change the
 password to something secure, and hit "return". You will then see the
 login page again, log in with the new password.
 
@@ -235,7 +237,7 @@ Of course you already made this decision, so answer "yes" or "no"
 here according to your decision.
 
 The next 3 points are only important if you use the socket server.
-If not, then ignore them and go on.
+If not, you can safely ignore them and go on.
 
 If you use it, then first we need the IP adress of the machine where
 you will start the socket server. Hostname is also possible, but the
@@ -254,8 +256,8 @@ Next is the admin password. If you still did not change it, please do
 so now!
 
 The next four parameters again require a decision. Do you want to use
-the Open Source tool 'Drawboard' to your ARSC installation? You find
-everything you need to know about drawboard here:
+the Open Source tool 'DrawBoard' in your your ARSC installation? You find
+everything you need to know about DrawBoard here:
 http://drawboard.sourceforge.net/
 
 Again, if all this sounds weird to you, just skip those parameters.
