@@ -257,3 +257,4 @@ CREATE TABLE arsc_users (
   KEY lastping (lastping),
   KEY user (user)
 ) TYPE=MyISAM;
+
