@@ -5,6 +5,7 @@ ARSC - ARSC Really Simple Chat - Changelog
 
   - Fixed bug #1100688 (string returned by the sha1() wrapper
     function for pre-4.3.0 PHP installations is too long)
+  - Fixed wrong function call in add_user admin script
   - Added turkish language file
 
 
