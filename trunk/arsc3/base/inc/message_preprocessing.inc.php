@@ -13,7 +13,7 @@ function arsc_message_preprocessing($message, $roomname = "", $roomtype = 1)
  if($roomtype <> ARSC_ROOMTYPE_MODERATED)
  {
   $message = preg_replace("#(^|[^\"=]{1})(http://|https://|ftp://|mailto:|news:)([^\s<>]+)([\s\n<>]|$)#sm",
-                          "\\1<a href=\"\\2\\3\" target=\"_blank\">\\2\\3</a>\\4",
+                          "\\1<a href=\"".ARSC_PARAMETER_BASEURL."base/dereferer.php?arsc_link=\\2\\3\" target=\"_blank\">\\2\\3</a>\\4",
                           $message);
  }
  

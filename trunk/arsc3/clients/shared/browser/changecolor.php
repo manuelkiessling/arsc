@@ -13,11 +13,11 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
 {
  if ($arsc_api->userIsValid($arsc_my["user"]) AND $arsc_api->checkCommandAllowed($arsc_my["level"], "color"))
  {
-  $arsc_color = arsc_validateinput($_GET["arsc_color"], NULL, "/[^A-F0-9]/", 6, 6, __FILE__, __LINE__);
+  $arsc_color = arsc_validateinput($_GET["arsc_color"], NULL, "/[^A-Fa-f0-9]/", 6, 6, __FILE__, __LINE__);
   mysql_query("UPDATE arsc_users SET color = '".mysql_escape_string($arsc_color)."' WHERE sid = '".mysql_escape_string($arsc_my["sid"])."'", ARSC_PARAMETER_DB_LINK);
   mysql_query("UPDATE arsc_registered_users SET color = '".mysql_escape_string($arsc_color)."' WHERE user = '".mysql_escape_string($arsc_my["user"])."'", ARSC_PARAMETER_DB_LINK);
  }
- header("Location: ".getenv("HTTP_REFERER"));
+ header("Location: roomlist.php?arsc_sid=".$arsc_my["sid"]);
  die();
 }
 ?>

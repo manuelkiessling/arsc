@@ -8,6 +8,7 @@ include("../inc/functions.inc.php");
 
 set_magic_quotes_runtime(1);
 
+$arsc_save_roomname_nice = htmlentities($arsc_save_roomname_nice);
 if (mysql_query("UPDATE arsc_rooms SET
                  roomname_nice = '$arsc_save_roomname_nice',
                  description = '$arsc_save_description',
