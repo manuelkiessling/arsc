@@ -71,6 +71,7 @@ $arsc_lang["smilielist"]                = "List of all smilies";
 $arsc_lang["scroll_active"]             = "Autoscroll";
 $arsc_lang["select_color"]              = "Select your color";
 $arsc_lang["moderatorqueue_title"]      = "Unanswered questions";
+$arsc_lang["moderatorqueue_delete"]     = "Delete";
 $arsc_lang["moderatorqueue_youranswer"] = "Your answer";
 $arsc_lang["moderatorqueue_cancel"]     = "Cancel";
 $arsc_lang["drawboard"]                 = "Drawboard";
