@@ -42,7 +42,7 @@ function arsc_getmessages($arsc_sid)
   if (!$arsc_api->userIsValid($arsc_my["user"]))
   {
    $arsc_api->deleteUser($arsc_my["user"]);
-   return arsc_filter_posting("System", date("H:i:s"), $arsc_lang["youwerekicked"], $arsc_my["room"], 0, $arsc_template_xml);
+   return arsc_filter_posting("System", date("H:i:s"), $arsc_lang["youwerekicked"], $arsc_my["room"], 0, 1, $arsc_template_xml);
   }
   else
   {
@@ -92,8 +92,8 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
   }
   echo ARSC_PARAMETER_HTMLHEAD_JS;
   $arsc_template_varname = "arsc_template_".$arsc_my["template"];
-  echo arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".str_replace("{title}", ARSC_PARAMETER_TITLE, $arsc_lang["welcome"]), $arsc_my["room"], 0, $$arsc_template_varname);
-  echo arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".ARSC_PARAMETER_WELCOME_MESSAGE, $arsc_my["room"], 0, $$arsc_template_varname);
+  echo arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".str_replace("{title}", ARSC_PARAMETER_TITLE, $arsc_lang["welcome"]), $arsc_my["room"], 0, 0, $$arsc_template_varname);
+  echo arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".ARSC_PARAMETER_WELCOME_MESSAGE, $arsc_my["room"], 0, 0, $$arsc_template_varname);
   flush();
   while (!connection_aborted())
   {
