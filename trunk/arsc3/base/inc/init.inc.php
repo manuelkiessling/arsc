@@ -12,11 +12,6 @@ define("ARSC_PARAMETER_HTMLHEAD_OUT", "<html><head><title></title></head><body b
 define("ARSC_PARAMETER_USERINPUTMAXLENGTH", 500);
 define("ARSC_PARAMETER_DEFAULT_TEMPLATE_NAME", "html");
 
-// Available languages
-$arsc_available_languages = array("english",
-                                  "german"
-                                 );
-
 // Errorlevels
 define("ARSC_ERRORLEVEL_DEBUG", 0);
 define("ARSC_ERRORLEVEL_INFO",  1);
@@ -41,7 +36,6 @@ $arsc_roomtypes = array(ARSC_ROOMTYPE_STANDARD  => "Standard",
                         ARSC_ROOMTYPE_USER      => "Userroom",
                         ARSC_ROOMTYPE_MODERATED => "Moderated"
                        );
-
 
 // Connect the database
 define("ARSC_PARAMETER_DB_LINK", mysql_connect(ARSC_PARAMETER_DB_HOST, ARSC_PARAMETER_DB_USER, ARSC_PARAMETER_DB_PASSWORD));
