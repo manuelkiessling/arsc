@@ -17,6 +17,12 @@ if($arsc_result = @mysql_query("SELECT name, value FROM arsc_parameters"))
  }
 }
 
+// Check wether the chat is locked.
+if($arsc_parameters["locked"] == "yes")
+{
+ die("<font face=\"Arial, Verdana, sans-serif\">The chat system is currently down.</font>");
+}
+
 // Get smilies from db
 if($arsc_result = @mysql_query("SELECT id, value FROM arsc_parameters_smilies"))
 {
@@ -29,7 +35,7 @@ if($arsc_result = @mysql_query("SELECT id, value FROM arsc_parameters_smilies"))
 }
 
 // The standard language
-if (!isset($arsc_language))
+if (!isset($arsc_language) OR !file_exists("shared/language/".$arsc_language.".inc.php"))
 {
  $arsc_language = $arsc_parameters["standard_language"];
 }
@@ -67,18 +73,9 @@ function arsc_microtime()
 // This function returns an array with all important values attached to a sessionid
 function arsc_getdatafromsid($arsc_sid)
 {
- $result = mysql_query("SELECT user, lastping, ip, room, language, version, level, flag_ripped, sid, lastmessageping from arsc_users WHERE sid = '$arsc_sid'");
+ $result = mysql_query("SELECT user, lastping, ip, room, language, version, level, color, flag_ripped, sid, lastmessageping from arsc_users WHERE sid = '$arsc_sid'");
  return mysql_fetch_array($result);
 }
-
-// This function returns the language the given user has choosen
-function arsc_find_language($arsc_user)
-{
- $result = mysql_query("SELECT language from arsc_users WHERE user = '$arsc_user'");
- $a = mysql_fetch_array($result);
- return $a["language"];
-}
-
 
 // This function returns a human readable translation of the room name
 function arsc_nice_room($arsc_room)
@@ -99,11 +96,11 @@ function arsc_denice_room($arsc_room)
 }
 
 // Replace smilies with image tag
-function arsc_smilies_replace($text, $smilies, $smilies_pfad)
+function arsc_smilies_replace($text, $smilies, $smilies_path)
 {
  while(list($key, $val) = each($smilies))
  {
-  $text = str_replace($val, "<img src=\"".$smilies_pfad.$key.".gif\" border=\"0\" alt=\"".$val."\">", $text);
+  $text = str_replace($val, "<img src=\"".$smilies_path.$key.".gif\" border=\"0\" alt=\"".$val."\">", $text);
  }
  return $text;
 }
