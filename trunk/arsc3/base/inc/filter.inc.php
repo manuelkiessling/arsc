@@ -379,10 +379,6 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     mysql_query("DELETE FROM arsc_room_$arsc_room WHERE message = '".$arsc_orig_message."' AND user = '".$arsc_user."'", ARSC_PARAMETER_DB_LINK);
     mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
    }
-   if (substr($arsc_message, 0, 3) == "/j ")
-   {
-    $arsc_message = str_replace("/j ", "/room ", $arsc_message);
-   }
    if (substr($arsc_message, 0, 6) == "/room ")
    {
     mysql_query("DELETE FROM arsc_room_".$arsc_room." WHERE message = '$arsc_message' AND user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
@@ -403,23 +399,9 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
      }
      $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '$arsc_new_room'", ARSC_PARAMETER_DB_LINK);
      $a = mysql_fetch_array($result);
-     if ($a["roomname"] == $arsc_new_room AND $a["password"] == $arsc_password)
+     if ($a["roomname"] == $arsc_new_room AND $arsc_new_room <> "" AND $a["password"] == $arsc_password)
      {
-      /* FIXME: I don't think we need this, empty user rooms are removed via the homepage
-      $arsc_result = mysql_query("SELECT owner FROM arsc_rooms WHERE roomname = '$arsc_room'", ARSC_PARAMETER_DB_LINK);
-      $arsc_a = mysql_fetch_array($arsc_result);
-      if ($arsc_a["owner"] == $arsc_user)
-      {
-       $arsc_result = mysql_query("SELECT COUNT(user) AS cnt FROM arsc_users WHERE room = '$arsc_room'", ARSC_PARAMETER_DB_LINK);
-       $arsc_a = mysql_fetch_array($arsc_result);
-       if ($arsc_a["cnt"] == 0)
-       {
-        mysql_query("DROP TABLE arsc_room_".$arsc_room, ARSC_PARAMETER_DB_LINK);
-        mysql_query("DELETE FROM arsc_rooms WHERE roomname = '$arsc_room'", ARSC_PARAMETER_DB_LINK);
-       }
-      }
-      */
-      $newtemplate = "html";
+      $newtemplate = ARSC_PARAMETER_DEFAULT_TEMPLATE_NAME;
       if($a["type"] == ARSC_ROOMTYPE_MODERATED)
       {
        $newtemplate = "html_moderated";
