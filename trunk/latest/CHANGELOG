@@ -1,5 +1,13 @@
 ARSC Changelog
 
+- Version 2.3
+  2003-02-28
+  
+  - fixed bug that stopped the server from respondig
+    if connected by a client that sends no data.
+    Kudos to Markus Fischer!
+
+
 - Version 2.2
   2003-02-24
   
