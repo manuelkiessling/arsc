@@ -8,11 +8,11 @@ include("../../../../base/inc/inputvalidation.inc.php");
 include("functions.inc.php");
 
 $arsc_api = new arsc_api_Class;
-$arsc_message = arsc_validateinput(htmlentities($_POST["arsc_message"], ENT_NOQUOTES), NULL, "/[^a-zA-Z0-9_\/\&\.;,\- ]/", 0, ARSC_PARAMETER_INPUT_MAXSIZE);
+$arsc_message = arsc_validateinput(htmlentities($_POST["arsc_message"], ENT_NOQUOTES), NULL, "/[^a-zA-Z0-9_\/\&\.;,\- ]/", 0, ARSC_PARAMETER_INPUT_MAXSIZE, __FILE__, __LINE__);
 
-if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40)))
+if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__)))
 {
- $arsc_user = arsc_validateinput($_GET["arsc_user"], $arsc_api->getSimpleUserlist($arsc_my["room"]), NULL, 1, 64);
+ $arsc_user = arsc_validateinput($_GET["arsc_user"], $arsc_api->getSimpleUserlist($arsc_my["room"]), NULL, 1, 64, __FILE__, __LINE__);
  $arsc_api->userIsValid($arsc_my["user"]);
  include("../../../../languages/".$arsc_my["language"].".inc.php");
  $arsc_layout = $arsc_api->getBasicLayoutValues();

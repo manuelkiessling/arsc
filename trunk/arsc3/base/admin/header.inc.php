@@ -33,6 +33,7 @@
        <a href="templates.php"><font color="#EEEEEE">Templates</font></a>
        <a href="layouts.php"><font color="#EEEEEE">Layouts</font></a>
        <a href="users.php"><font color="#EEEEEE">Users</font></a>
+       <a href="rooms.php"><font color="#EEEEEE">Rooms</font></a>
        <a href="levels.php"><font color="#EEEEEE">Level Right Management</font></a>
        <?php
       }

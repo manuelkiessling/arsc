@@ -8,7 +8,7 @@ include("../../../base/inc/api.inc.php");
 
 $arsc_api = new arsc_api_Class;
 
-if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40)))
+if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__)))
 {
  include("../../../languages/".$arsc_my["language"].".inc.php");
 

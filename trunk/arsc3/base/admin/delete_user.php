@@ -3,6 +3,7 @@
 include("init.inc.php");
 include("../inc/config.inc.php");
 include("../inc/init.inc.php");
+include("cookie.inc.php");
 
 $arsc_result = mysql_query("SELECT id FROM arsc_registered_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
 $arsc_a = mysql_fetch_array($arsc_result);

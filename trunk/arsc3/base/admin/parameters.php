@@ -3,6 +3,7 @@
 include("init.inc.php");
 include("../inc/config.inc.php");
 include("../inc/init.inc.php");
+include("cookie.inc.php");
 include("../inc/functions.inc.php");
 include("header.inc.php");
 
@@ -110,7 +111,7 @@ set_magic_quotes_runtime(1);
   If no language is choosen, which language should be standard?
  </font>
  <br>
- <input type="text" name="arsc_save_parameters[standard_language]" value="<?php echo ARSC_PARAMETER_STANDARD_LANGUAGE; ?>">
+ <input type="text" name="arsc_save_parameters[standard_language]" value="<?php echo ARSC_PARAMETER_DEFAULT_LANGUAGE; ?>">
  <br>
  <br>
 
@@ -120,112 +121,15 @@ set_magic_quotes_runtime(1);
   </font>
  </h2>
 
- <font face="Arial" size="2">
-  What is the name of your logo file? The easiest way would be to
-  save the image as pic/logo.gif (or .jpg or .png) and then enter
-  'logo.gif' (or .jpg or .png) here
- </font>
- <br>
- <input type="text" name="arsc_save_parameters[logo_path]" value="<?php echo ARSC_PARAMETER_LOGO_PATH; ?>">
- <br>
- <br>
- 
- <font face="Arial" size="2">
-  What is the filename of your userlist background image? The easiest way would be to
-  save the image as pic/userlist_background.gif (or .jpg or .png) and then enter
-  'userlist_background.gif' (or .jpg or .png) here
- </font>
- <br>
- <input type="text" name="arsc_save_parameters[userlist_background_path]" value="<?php echo ARSC_PARAMETER_USERLIST_BACKGROUND_PATH; ?>">
- <br>
- <br>
-
- <font face="Arial" size="2">
-  <b>
-   Colors - choose your flavor
-  </b>
-  <br>
-  <br>
-  Standard window background
- </font>
- <input type="text" name="arsc_save_parameters[color_standard_window_background]" value="<?php echo ARSC_PARAMETER_COLOR_STANDARD_WINDOW_BACKGROUND; ?>">
- <br>
- <br>
- <font face="Arial" size="2">
-  Message window background
- </font>
- <input type="text" name="arsc_save_parameters[color_msg_window_background]" value="<?php echo ARSC_PARAMETER_COLOR_MSG_WINDOW_BACKGROUND; ?>">
- <br>
- <br>
- <font face="Arial" size="2">
-  Userlist window background
- </font>
- <input type="text" name="arsc_save_parameters[color_userlist_window_background]" value="<?php echo ARSC_PARAMETER_COLOR_USERLIST_WINDOW_BACKGROUND; ?>">
- <br>
- <br>
- <font face="Arial" size="2">
-  Userlist window text
- </font>
- <input type="text" name="arsc_save_parameters[color_userlist_window_text]" value="<?php echo ARSC_PARAMETER_COLOR_USERLIST_WINDOW_TEXT; ?>">
- <br>
- <br>
- <font face="Arial" size="2">
-  Userlist window link
- </font>
- <input type="text" name="arsc_save_parameters[color_userlist_window_link]" value="<?php echo ARSC_PARAMETER_COLOR_USERLIST_WINDOW_LINK; ?>">
- <br>
- <br>
- <font face="Arial" size="2">
-  Userlist window level 0 users
- </font>
- <input type="text" name="arsc_save_parameters[color_userlist_window_level0]" value="<?php echo ARSC_PARAMETER_COLOR_USERLIST_WINDOW_LEVEL0; ?>">
- <br>
- <br>
- <font face="Arial" size="2">
-  Userlist window level 1 users
- </font>
- <input type="text" name="arsc_save_parameters[color_userlist_window_level1]" value="<?php echo ARSC_PARAMETER_COLOR_USERLIST_WINDOW_LEVEL1; ?>">
- <br>
- <br>
- <font face="Arial" size="2">
-  Userlist window level 2 users
- </font>
- <input type="text" name="arsc_save_parameters[color_userlist_window_level2]" value="<?php echo ARSC_PARAMETER_COLOR_USERLIST_WINDOW_LEVEL2; ?>">
- <br>
- <br>
- <font face="Arial" size="2">
-  Message input window background
- </font>
- <input type="text" name="arsc_save_parameters[color_msginput_window_background]" value="<?php echo ARSC_PARAMETER_COLOR_MSGINPUT_WINDOW_BACKGROUND; ?>">
- <br>
- <br>
- <font face="Arial" size="2">
-  Message input window link
- </font>
- <input type="text" name="arsc_save_parameters[color_msginput_window_link]" value="<?php echo ARSC_PARAMETER_COLOR_MSGINPUT_WINDOW_LINK; ?>">
- <br>
- <br>
- <font face="Arial" size="2">
-  Roomlist window background
- </font>
- <input type="text" name="arsc_save_parameters[color_roomlist_window_background]" value="<?php echo ARSC_PARAMETER_COLOR_ROOMLIST_WINDOW_BACKGROUND; ?>">
- <br>
- <br>
- <font face="Arial" size="2">
-  Roomlist window foreground
- </font>
- <input type="text" name="arsc_save_parameters[color_roomlist_window_foreground]" value="<?php echo ARSC_PARAMETER_COLOR_ROOMLIST_WINDOW_FOREGROUND; ?>">
  <br>
  <br>
  <br>
  <font face="Arial" size="2">
-  This value tells the socket server how many milliseconds to wait
+  This value tells the chat how many milliseconds to wait
   until he fetches new messages. 300000 is a good value to start with,
   if you find your server's load is too high then try to set this
   higher (400000), if you find that messages are not showing up
   'fluid', try 200000 - 100000 (but this will result in higher load).
-  (This parameter will also be used for the refresh cycle of the
-  push version)
  </font>
  <br>
  <input type="text" name="arsc_save_parameters[socketserver_refresh]" value="<?php echo ARSC_PARAMETER_SOCKETSERVER_REFRESH; ?>">

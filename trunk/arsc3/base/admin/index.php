@@ -3,6 +3,7 @@
 include("init.inc.php");
 include("../inc/config.inc.php");
 include("../inc/init.inc.php");
+include("cookie.inc.php");
 include("../inc/functions.inc.php");
 include("header.inc.php");
 
@@ -25,6 +26,9 @@ set_magic_quotes_runtime(1);
     </li>
     <li>
      <a href="users.php">Users</a>
+    </li>
+    <li>
+     <a href="rooms.php">Rooms</a>
     </li>
     <li>
      <a href="levels.php">Level Right Management</a>

@@ -85,6 +85,39 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   }
  }
 
+ function createRoom($roomname_nice, $description, $owner, $password, $type, $layout_id)
+ {
+  $roomname = $this->makeInternalRoomname($roomname_nice);
+  if ($roomname <> "")
+  {
+   $query = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_rooms WHERE roomname = '".$roomname."'", ARSC_PARAMETER_DB_LINK);
+   $result = mysql_fetch_array($query);
+   if($result["cnt"] == 0)
+   {
+    mysql_query("INSERT INTO arsc_rooms (roomname, roomname_nice, description, owner, password, type, layout_id) VALUES ('".$roomname."', '".$roomname_nice."', '".$description."', '".$owner."', '".$password."', '".$type."', '".$layout_id."')", ARSC_PARAMETER_DB_LINK);
+    mysql_query("CREATE TABLE arsc_room_$roomname (id int(11) NOT NULL auto_increment,
+                                                        message text NOT NULL,
+                                                        user varchar(64) NOT NULL default '',
+                                                        flag_ripped tinyint(4) NOT NULL default '0',
+                                                        sendtime time NOT NULL default '00:00:00',
+                                                        timeid bigint(20) NOT NULL default '0',
+                                                        PRIMARY KEY (id),
+                                                        KEY timeid (timeid),
+                                                        KEY flag_ripped (flag_ripped)
+                                                       )", ARSC_PARAMETER_DB_LINK);
+    return(true);
+   }
+   else
+   {
+    return(false);
+   }
+  }
+  else
+  {
+   return(false);
+  }
+ }
+ 
  function getReadableRoomname($room)
  {
   $result = mysql_query("SELECT roomname_nice FROM arsc_rooms WHERE roomname = '$room'", ARSC_PARAMETER_DB_LINK);
@@ -94,9 +127,19 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
 
  function getInternalRoomname($room)
  {
-  $result = mysql_query("SELECT roomname FROM arsc_rooms WHERE roomname_nice = '$room'", ARSC_PARAMETER_DB_LINK);
-  $a = mysql_fetch_array($result);
-  return $a["roomname"];
+  $query = mysql_query("SELECT roomname FROM arsc_rooms WHERE roomname_nice = '".mysql_escape_string($room)."'", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_fetch_array($query);
+  return $result["roomname"];
+ }
+
+ function makeInternalRoomname($room)
+ {
+  $room = trim(strtolower(str_replace(" ", "_", $room)));
+  $disallowed = "/[^a-zA-Z0-9_]/";
+  $replacement = "";
+  $room = preg_replace($disallowed, $replacement, $room);
+  if($room == "") $room = "";
+  return($room);
  }
 
  function getReadableRoomlist()
@@ -124,6 +167,13 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   }
   reset($return);
   return($return);
+ }
+ 
+ function getRoomType($roomname)
+ {
+  $query = mysql_query("SELECT type FROM arsc_rooms WHERE roomname = '".mysql_escape_string($roomname)."'", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_fetch_array($query);
+  return($result["type"]);
  }
 
  function getSimpleUserlist($room)
@@ -155,6 +205,32 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   }
   reset($return);
   return($return);
+ }
+
+ function createLayout($name)
+ {
+  if(mysql_query("INSERT INTO arsc_layouts (name) VALUES ('".mysql_escape_string($name)."')", ARSC_PARAMETER_DB_LINK))
+  {
+   $query1 = mysql_query("SELECT id FROM arsc_layouts WHERE name = '".mysql_escape_string($name)."'", ARSC_PARAMETER_DB_LINK);
+   $result1 = mysql_fetch_array($query1);
+   $query2 = mysql_query("SELECT * FROM arsc_layouts WHERE id = '".mysql_escape_string(ARSC_PARAMETER_DEFAULT_LAYOUT)."'", ARSC_PARAMETER_DB_LINK);
+   $result2 = mysql_fetch_array($query2);
+   while (list($arsc_key, $arsc_val) = each($result2))
+   {
+    if ($arsc_key <> "id" && $arsc_key <> "name" && !is_numeric($arsc_key))
+    {
+     if (ereg("template_browser_", $arsc_key)) $arsc_val = "";
+     $query .= $arsc_key." = '".$arsc_val."', ";
+    }
+   }
+   $query = substr($query, 0, -2);
+   mysql_query("UPDATE arsc_layouts SET ".$query." WHERE id = '".mysql_escape_string($result1["id"])."'", ARSC_PARAMETER_DB_LINK);
+   return($result1["id"]);
+  }
+  else
+  {
+   return(false);
+  }
  }
 
  function getLayoutlist()
@@ -297,6 +373,18 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   mysql_query("UPDATE arsc_traffic SET $direction = $direction + ".strlen($bytes), ARSC_PARAMETER_DB_LINK);
  }
 
+ function getLevellist()
+ {
+  $query = mysql_query("SELECT * FROM arsc_levels LIMIT 1", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_fetch_array($query);
+  ksort($result);
+  while(list($key, $val) = each($result))
+  {
+   if(ereg("level", $key)) $return[] = str_replace("level", "", $key);
+  }
+  return $return;
+ }
+ 
  function checkCommandAllowed($level, $command)
  {
   if ($level == "") $level = 0;

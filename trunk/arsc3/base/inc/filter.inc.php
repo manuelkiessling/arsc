@@ -360,24 +360,6 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
      }
     }
    }
-   /* Vorerst sollte Hilfe über einen Link ein Popup öffnen o.ä.
-   if (substr($arsc_message, 0, 5) == "/help" OR substr($arsc_message, 0, 2) == "/?")
-   {
-    $result = mysql_query("SELECT level, language FROM arsc_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
-    $a = mysql_fetch_array($result);
-    if ($arsc_my["language"] == $a["language"])
-    {
-     $arsc_message = "/msg ".$arsc_user." ".$arsc_lang["help"];
-     if ($a["level"] > 0)
-     {
-      $arsc_message .= $arsc_lang["helpop"];
-     }
-     $arsc_timeid = arsc_microtime();
-     mysql_query("DELETE FROM arsc_room_$arsc_room WHERE message LIKE '/help%' OR message LIKE '/?%' AND user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
-     mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
-    }
-   }
-   */
    if (substr($arsc_message, 0, 8) == "/smilies")
    {
     $result = mysql_query("SELECT level FROM arsc_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
@@ -389,38 +371,23 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
      {
       $smilielist .= "\n".$val." ".substr($val, 0, 1)."#arsc_dummy_space#".substr($val, 1);
      }
+     $arsc_orig_message = $arsc_message;
      $arsc_message = "/msg ".$arsc_user." ".$smilielist;
      $arsc_timeid = arsc_microtime();
     }
-    mysql_query("DELETE FROM arsc_room_$arsc_room WHERE message = '/smilies' AND user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+    mysql_query("DELETE FROM arsc_room_$arsc_room WHERE message = '".$arsc_orig_message."' AND user = '".$arsc_user."'", ARSC_PARAMETER_DB_LINK);
     mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
    }
    if (substr($arsc_message, 0, 3) == "/j ")
    {
-    $arsc_new_room = $arsc_api->getInternalRoomname(str_replace("/j ", "", $arsc_message));
-    $result = mysql_query("SHOW tables LIKE 'arsc_room_%'", ARSC_PARAMETER_DB_LINK);
-    while ($a = mysql_fetch_array($result))
-    {
-     if (substr($a[0], 10) == $arsc_new_room)
-     {
-      mysql_query("DELETE FROM arsc_room_$arsc_room WHERE message = '$arsc_message' AND user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
-      mysql_query("UPDATE arsc_users SET room = '$arsc_new_room' WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
-      $arsc_sendtime = date("H:i:s");
-      $arsc_timeid = arsc_microtime();
-      $arsc_message = "arsc_user_quit~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_room);
-      mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
-      $arsc_message = "arsc_user_enter~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_new_room);
-      mysql_query("INSERT into arsc_room_$arsc_new_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
-      $arsc_message = "arsc_user_roomchange~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_room)."~~".$arsc_api->getReadableRoomname($arsc_new_room);
-      mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
-     }
-    }
+    $arsc_message = str_replace("/j ", "/room ", $arsc_message);
    }
    if (substr($arsc_message, 0, 6) == "/room ")
    {
     mysql_query("DELETE FROM arsc_room_$arsc_room WHERE message = '$arsc_message' AND user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
     $result = mysql_query("SELECT level FROM arsc_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
     $a = mysql_fetch_array($result);
+    $arsc_user_level = $a["level"];
     if ($arsc_api->checkCommandAllowed($a["level"], "room"))
     {
      if (eregi("#", $arsc_message))
@@ -435,9 +402,9 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
      }
      $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '$arsc_new_room'", ARSC_PARAMETER_DB_LINK);
      $a = mysql_fetch_array($result);
-     if ($a["roomname"] == $arsc_new_room AND $a["password"] == $arsc_password AND $a["type"] <> "")
+     if ($a["roomname"] == $arsc_new_room AND $a["password"] == $arsc_password)
      {
-      mysql_query("UPDATE arsc_users SET room = '$arsc_new_room' WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+      /* FIXME: I don't think we need this, empty user rooms are removed via the homepage
       $arsc_result = mysql_query("SELECT owner FROM arsc_rooms WHERE roomname = '$arsc_room'", ARSC_PARAMETER_DB_LINK);
       $arsc_a = mysql_fetch_array($arsc_result);
       if ($arsc_a["owner"] == $arsc_user)
@@ -450,6 +417,13 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
         mysql_query("DELETE FROM arsc_rooms WHERE roomname = '$arsc_room'", ARSC_PARAMETER_DB_LINK);
        }
       }
+      */
+      $newtemplate = "html";
+      if($arsc_user_level >= 30 AND $a["type"] == ARSC_ROOMTYPE_MODERATED)
+      {
+       $newtemplate = "html_moderate";
+      }
+      mysql_query("UPDATE arsc_users SET room = '$arsc_new_room', template = '".mysql_escape_string($newtemplate)."' WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
       $arsc_sendtime = date("H:i:s");
       $arsc_timeid = arsc_microtime();
       $arsc_message = "arsc_user_quit~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_room);
@@ -489,7 +463,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     $b = mysql_fetch_array($result);
     if ($arsc_api->checkCommandAllowed($b["level"], "move") AND $a["level"] <= $b["level"])
     {
-     $result = mysql_query("SHOW tables LIKE 'arsc_room_%'", ARSC_PARAMETER_DB_LINK);
+     $result = mysql_query("SHOW tables LIKE 'arsc_room_%'", ARSC_PARAMETER_DB_LINK); // FIXME: query arsc_rooms table!
      while ($c = mysql_fetch_array($result))
      {
       if (substr($c[0], 10) == $arsc_new_room)
@@ -515,33 +489,33 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     $a = mysql_fetch_array($result);
     if ($arsc_api->checkCommandAllowed($a["level"], "croom"))
     {
-     $arsc_new_room = $arsc_api->getInternalRoomname(str_replace("/croom ", "", $arsc_message));
-     $arsc_result = mysql_query("SELECT roomname FROM arsc_rooms WHERE roomname = '$arsc_new_room'", ARSC_PARAMETER_DB_LINK);
+     $arsc_new_room = $arsc_api->makeInternalRoomname(str_replace("/croom ", "", $arsc_message));
+     $arsc_result = mysql_query("SELECT COUNT(roomname) AS cnt FROM arsc_rooms WHERE roomname = '$arsc_new_room'", ARSC_PARAMETER_DB_LINK);
      $arsc_a = mysql_fetch_array($arsc_result);
-     if ($arsc_a["roomname"] <> $arsc_new_room)
+     if ($arsc_a["cnt"] == 0)
      {
       srand ((double)microtime()*1000000);
       $arsc_password = substr(md5(rand()), 0, 4);
-      mysql_query("INSERT INTO arsc_rooms (roomname, owner, password) VALUES ('$arsc_new_room', '$arsc_user', '#".$arsc_password."')", ARSC_PARAMETER_DB_LINK);
-      mysql_query("CREATE TABLE arsc_room_$arsc_new_room (id int(11) NOT NULL auto_increment,
-                                                          message text NOT NULL,
-                                                          user varchar(64) NOT NULL default '',
-                                                          flag_ripped tinyint(4) NOT NULL default '0',
-                                                          sendtime time NOT NULL default '00:00:00',
-                                                          timeid bigint(20) NOT NULL default '0',
-                                                          PRIMARY KEY (id),
-                                                          KEY timeid (timeid)
-                                                         )", ARSC_PARAMETER_DB_LINK);
-      mysql_query("UPDATE arsc_users SET room = '$arsc_new_room' WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+      if($arsc_api->createRoom($arsc_new_room, "This is a User-created room", "$arsc_user", "#".$arsc_password, 1, ARSC_PARAMETER_DEFAULT_LAYOUT))
+      {
+       mysql_query("UPDATE arsc_users SET room = '$arsc_new_room' WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+       $arsc_sendtime = date("H:i:s");
+       $arsc_timeid = arsc_microtime();
+       $arsc_message = "arsc_user_croom~~".$arsc_user."~~".$arsc_new_room;
+       mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+       $arsc_message = "arsc_user_roomchange~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_room)."~~".$arsc_api->getReadableRoomname($arsc_new_room);
+       mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+       $arsc_timeid = arsc_microtime();
+       $arsc_message = "/msg ".$arsc_user." ".str_replace("{room}", $arsc_api->getReadableRoomname($arsc_new_room), $arsc_lang["room_created"]);
+       mysql_query("INSERT into arsc_room_$arsc_new_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+      }
+      else
+      {
       $arsc_sendtime = date("H:i:s");
       $arsc_timeid = arsc_microtime();
-      $arsc_message = "arsc_user_croom~~".$arsc_user."~~".$arsc_new_room;
+      $arsc_message = "/msg ".$arsc_user." ".str_replace("{room}", $arsc_api->getReadableRoomname($arsc_new_room), $arsc_lang["room_badname"]);
       mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
-      $arsc_message = "arsc_user_roomchange~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_room)."~~".$arsc_api->getReadableRoomname($arsc_new_room);
-      mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
-      $arsc_timeid = arsc_microtime();
-      $arsc_message = "/msg ".$arsc_user." ".str_replace("{room}", $arsc_api->getReadableRoomname($arsc_new_room), $arsc_lang["room_created"]);
-      mysql_query("INSERT into arsc_room_$arsc_new_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+      }
      }
      else
      {

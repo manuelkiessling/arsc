@@ -3,6 +3,7 @@
 include("init.inc.php");
 include("../inc/config.inc.php");
 include("../inc/init.inc.php");
+include("cookie.inc.php");
 include("../inc/api.inc.php");
 include("../inc/functions.inc.php");
 
@@ -14,7 +15,7 @@ while (list($arsc_key, $arsc_val) = each($arsc_save))
 {
  if ($arsc_key <> "id")
  {
-  mysql_query("UPDATE arsc_layouts SET ".$arsc_key." = '".stripslashes($arsc_val)."' WHERE id = $arsc_layout_id", ARSC_PARAMETER_DB_LINK);
+  mysql_query("UPDATE arsc_layouts SET ".$arsc_key." = '".mysql_escape_string(stripslashes($arsc_val))."' WHERE id = $arsc_layout_id", ARSC_PARAMETER_DB_LINK);
  }
 }
 

@@ -3,6 +3,7 @@
 include("init.inc.php");
 include("../inc/config.inc.php");
 include("../inc/init.inc.php");
+include("cookie.inc.php");
 include("../inc/functions.inc.php");
 include("header.inc.php");
 
@@ -47,7 +48,7 @@ $arsc_rgle = 25;
   <td>
    <font face="Arial" size="2">
     <b>
-     Change
+     Edit
     </b>
    </font>
   </td>
@@ -59,11 +60,6 @@ $arsc_rgle = 25;
   <td>
    <font face="Arial" size="2">
     Level
-   </font>
-  </td>
-  <td>
-   <font face="Arial" size="2">
-    Password
    </font>
   </td>
   <td>
@@ -83,7 +79,7 @@ $arsc_rgle = 25;
   </td>
   <td>
    <font face="Arial" size="2">
-    Sex
+    Gender
    </font>
   </td>
   <td>
@@ -118,11 +114,11 @@ $arsc_rgle = 25;
  if ($arsc_rgls == "") $arsc_rgls = 0;
  if ($arsc_search <> "")
  {
-  $arsc_result = mysql_query("SELECT user, level, password, language, color, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users WHERE user LIKE '$arsc_search'", ARSC_PARAMETER_DB_LINK);
+  $arsc_result = mysql_query("SELECT user, level, language, color, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users WHERE user LIKE '$arsc_search'", ARSC_PARAMETER_DB_LINK);
  }
  else
  {
-  $arsc_result = mysql_query("SELECT user, level, password, language, color, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users ORDER BY level DESC, user ASC LIMIT $arsc_rgls, $arsc_rgle", ARSC_PARAMETER_DB_LINK);
+  $arsc_result = mysql_query("SELECT user, level, language, color, email, sex, location, hobbies, flag_guestbook, flag_locked FROM arsc_registered_users ORDER BY level DESC, user ASC LIMIT $arsc_rgls, $arsc_rgle", ARSC_PARAMETER_DB_LINK);
  }
  while ($arsc_a = mysql_fetch_array($arsc_result))
  {
@@ -131,13 +127,28 @@ $arsc_rgle = 25;
   ?>
   <td bgcolor="#DDDDDD">
    <font face="Verdana, Arial" size="1">
-    <a href="change_user.php?arsc_user=<?php echo $arsc_a["user"]; ?>">Change</a>
+    <a href="edit_user.php?arsc_user=<?php echo $arsc_a["user"]; ?>">Edit</a>
    </font>
   </td>
   <?php
   while (list($arsc_key, $arsc_val) = each($arsc_a))
   {
    list($arsc_key, $arsc_val) = each($arsc_a);
+   if($arsc_key == "sex")
+   {
+    if($arsc_val == 0) $arsc_val = "female";
+    if($arsc_val == 1) $arsc_val = "male";
+   }
+   if($arsc_key == "flag_guestbook")
+   {
+    if($arsc_val == 0) $arsc_val = "no";
+    if($arsc_val == 1) $arsc_val = "yes";
+   }
+   if($arsc_key == "flag_locked")
+   {
+    if($arsc_val == 0) $arsc_val = "no";
+    if($arsc_val == 1) $arsc_val = "yes";
+   }
    echo "<td valign=\"top\"><font face=\"Verdana, Arial\" size=\"1\">".$arsc_val."</font></td>\n";
   }
   ?>

@@ -15,35 +15,35 @@
 */
 
 
-//  PARAMETERS ////////////////////////////////////////////////
+// PARAMETERS ////////////////////////////////////////////////
 
-//  What is the DNS or IP address of your MySQL server?
+// What is the DNS or IP address of your MySQL server?
 
-    define("ARSC_PARAMETER_DB_HOST", "localhost");
+   define("ARSC_PARAMETER_DB_HOST", "localhost");
 
-//  IMPORTANT: If you don't know what MySQL is or wether you have a
-//  MySQL server or not, then you have a problem - contact you server
-//  administrator.
-
-
-//  What is the name of the user who has access to the ARSC database?
-
-    define("ARSC_PARAMETER_DB_USER", "arsc3-alpha2");
+// IMPORTANT: If you don't know what MySQL is or wether you have a
+// MySQL server or not, then you have a problem - contact you server
+// administrator.
 
 
-//  And what is his password?
+// What is the name of the user who has access to the ARSC database?
 
-    define("ARSC_PARAMETER_DB_PASSWORD", "arsc3-alpha2");
-
-
-//  Finally, in which database will you store the ARSC tables?
-//  This database MUST exist before you use the 'install.php' script,
-//  and it MUST be accessible by the user you just supplied.
-
-    define("ARSC_PARAMETER_DB_DATABASE", "arsc3-alpha2");
+   define("ARSC_PARAMETER_DB_USER", "arsc3-beta1");
 
 
-//  END OF CONFIGURATION
+// And what is his password?
+
+   define("ARSC_PARAMETER_DB_PASSWORD", "arsc3-beta1");
+
+
+// Finally, in which database will you store the ARSC tables?
+// This database MUST exist before you use the 'install.php' script,
+// and it MUST be accessible by the user you just supplied.
+
+   define("ARSC_PARAMETER_DB_DATABASE", "arsc3-beta1");
+
+
+// END OF CONFIGURATION
 //////////////////////////////////////////////
 
 

@@ -21,9 +21,9 @@ while (list($arsc_key, $arsc_val) = each($arsc_roomlist))
  {
   while (list($arsc_keyu, $arsc_valu) = each($arsc_userlist))
   {
-   $arsc_line .= "<tr>\n<td width=\"50%\">\n<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"#".$arsc_layout["default_font_color"]."\">\n";
+   $arsc_line .= "<tr>\n<td width=\"50%\" valign=\"top\">\n<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"".$arsc_layout["default_font_color"]."\">\n";
    $arsc_line .= $arsc_keyu;
-   $arsc_line .= "</font>\n</td>\n<td width=\"50%\">\n<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"#".$arsc_layout["default_font_color"]."\">\n";
+   $arsc_line .= "</font>\n</td>\n<td width=\"50%\" valign=\"top\">\n<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"".$arsc_layout["default_font_color"]."\">\n";
    $arsc_line .= $this->getReadableRoomname($arsc_val);
    $arsc_line .= "</font>\n</td>\n</tr>\n";
   }
@@ -37,7 +37,7 @@ if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_p
  $arsc_layout["scrolling_form"] = '
 <form name="scrollform">
  <input type="checkbox" name="scrollcheck" value="true" OnClick="scrolling()" checked>
- <font face="'.$arsc_layout["default_font_face"].'" size="'.$arsc_layout["default_font_size"].'" color="#'.$arsc_layout["default_font_color"].'">
+ <font face="'.$arsc_layout["default_font_face"].'" size="'.$arsc_layout["default_font_size"].'" color="'.$arsc_layout["default_font_color"].'">
   '.$arsc_lang["scroll_active"].'
  </font>
 </form>
@@ -94,7 +94,7 @@ else
 }
 
 
-// FIXME
+// FIXME(?)
 $arsc_layout["drawboard_script"] = '';
 $arsc_layout["drawboard_link"] = '';
 
@@ -127,7 +127,7 @@ if ($arsc_current["user_got_kicked"] == 1)
  $arsc_layout["kickuser_script"] = '
 <script language="JavaScript">
 <!--
- top.location.href = "'.ARSC_PARAMETER_BASEURL.'base/why.php?arsc_language='.arsc_validateinput($_GET["arsc_language"], $arsc_available_languages).'";
+ top.location.href = "'.ARSC_PARAMETER_BASEURL.'base/why.php?arsc_language='.arsc_validateinput($_GET["arsc_language"], $arsc_available_languages, NULL, 0, 64, __FILE__, __LINE__).'";
 //-->
 </script>
 ';
@@ -160,14 +160,14 @@ if ($this->checkCommandAllowed($arsc_my["level"], "userlist"))
   reset($arsc_userlist);
   while (list($arsc_key, $arsc_val) = each($arsc_userlist))
   {
-   $arsc_layout["userlist"] .= '<tr> <td bgcolor="#'.$arsc_layout["default_foreground_color"].'"> ';
+   $arsc_layout["userlist"] .= '<tr> <td bgcolor="'.$arsc_layout["default_foreground_color"].'"> ';
    $arsc_opstring = "";
    // ID Card
    $arsc_result = mysql_query("SELECT COUNT(user) AS cnt FROM arsc_registered_users WHERE user = '$arsc_key'", ARSC_PARAMETER_DB_LINK);
    $arsc_a = mysql_fetch_array($arsc_result);
    if ($arsc_a["cnt"] == 1)
    {
-    $arsc_layout["userlist"] .= '<font face="'.$arsc_layout["small_font_face"].'" size="'.$arsc_layout["small_font_size"].'" color="#'.$arsc_layout["small_font_color"].'">';
+    $arsc_layout["userlist"] .= '<font face="'.$arsc_layout["small_font_face"].'" size="'.$arsc_layout["small_font_size"].'" color="'.$arsc_layout["small_font_color"].'">';
     if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_push" OR $arsc_my["version"] == "browser_header_js")
     {
      $arsc_layout["userlist"] .= '<a href="javascript:idcard(\''.$arsc_key.'\');" title="'.$arsc_lang["cmd_idcard"].'">ID</a> ';
@@ -180,15 +180,15 @@ if ($this->checkCommandAllowed($arsc_my["level"], "userlist"))
    }
    if ($arsc_val == 1)
    {
-    $arsc_opstring = "<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"#".$arsc_layout["default_font_color"]."\">@";
+    $arsc_opstring = "<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"".$arsc_layout["default_font_color"]."\">@";
    }
    elseif ($arsc_val == 2)
    {
-    $arsc_opstring = "<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"#".$arsc_layout["default_font_color"]."\"><b>@</b>";
+    $arsc_opstring = "<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"".$arsc_layout["default_font_color"]."\"><b>@</b>";
    }
    else
    {
-    $arsc_opstring = "<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"#".$arsc_layout["default_font_color"]."\">";
+    $arsc_opstring = "<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"".$arsc_layout["default_font_color"]."\">";
    }
    if ($arsc_key == $arsc_my["user"])
    {
@@ -198,13 +198,13 @@ if ($this->checkCommandAllowed($arsc_my["level"], "userlist"))
    {
     if ($arsc_my["level"] >= 1)
     {
-     $arsc_layout["userlist"] .= '<font face="'.$arsc_layout["small_font_face"].'" size="'.$arsc_layout["small_font_size"].'" color="#'.$arsc_layout["small_font_color"].'">';
+     $arsc_layout["userlist"] .= '<font face="'.$arsc_layout["small_font_face"].'" size="'.$arsc_layout["small_font_size"].'" color="'.$arsc_layout["small_font_color"].'">';
      // whois
      if ($this->checkCommandAllowed($arsc_my["level"], "whois")) $arsc_layout["userlist"] .= "<a href=\"chatins.php?arsc_sid=".$arsc_my["sid"]."&arsc_message=".urlencode("/whois ".$arsc_key."")."&arsc_chatversion=".$arsc_my["version"]."\" target=\"empty\" title=\"".$arsc_lang["opcmd_w"]."\">W</a> ";
      // kick
      if ($this->checkCommandAllowed($arsc_my["level"], "kick")) $arsc_layout["userlist"] .= "<a href=\"chatins.php?arsc_sid=".$arsc_my["sid"]."&arsc_message=".urlencode("/kick ".$arsc_key."")."&arsc_chatversion=".$arsc_my["version"]."\" target=\"empty\" title=\"".$arsc_lang["opcmd_k"]."\">K</a> ";
      // bann
-     if ($this->checkCommandAllowed($arsc_my["level"], "bann")) $arsc_layout["userlist"] .= "<a href=\"../../".$arsc_my["version"]."/chatinput.php?arsc_sid=".$arsc_my["sid"]."&arsc_pretext=".urlencode("/bann ".$arsc_key." 120")."\" target=\"input\" title=\"".$arsc_lang["opcmd_b"]."\">B</a> ";
+     if ($this->checkCommandAllowed($arsc_my["level"], "bann")) $arsc_layout["userlist"] .= "<a href=\"input.php?arsc_sid=".$arsc_my["sid"]."&arsc_pretext=".urlencode("/bann ".$arsc_key." 120")."\" target=\"input\" title=\"".$arsc_lang["opcmd_b"]."\">B</a> ";
      // Lock (if registered)
      if ($this->checkCommandAllowed($arsc_my["level"], "lock")) $arsc_layout["userlist"] .= "<a href=\"chatins.php?arsc_sid=".$arsc_my["sid"]."&arsc_message=".urlencode("/lock ".$arsc_key."")."&arsc_chatversion=".$arsc_my["version"]."\" target=\"empty\" title=\"".$arsc_lang["opcmd_l"]."\">L</a> ";
      // R.I.P.
@@ -216,8 +216,7 @@ if ($this->checkCommandAllowed($arsc_my["level"], "userlist"))
      // DeOP
      if ($this->checkCommandAllowed($arsc_my["level"], "deop")) $arsc_layout["userlist"] .= "<a href=\"chatins.php?arsc_sid=".$arsc_my["sid"]."&arsc_message=".urlencode("/deop ".$arsc_key."")."&arsc_chatversion=".$arsc_my["version"]."\" target=\"empty\" title=\"".$arsc_lang["opcmd_d"]."\">D</a> ";
      // Move
-     // FIXME: This doesn't work - results in 404.
-     if ($this->checkCommandAllowed($arsc_my["level"], "move")) $arsc_layout["userlist"] .= "<a href=\"../../".$arsc_my["version"]."/chatinput.php?arsc_sid=".$arsc_my["sid"]."&arsc_pretext=".urlencode("/move ".$arsc_key."")." room\" target=\"input\" title=\"".$arsc_lang["opcmd_m"]."\">M</a>";
+     if ($this->checkCommandAllowed($arsc_my["level"], "move")) $arsc_layout["userlist"] .= "<a href=\"input.php?arsc_sid=".$arsc_my["sid"]."&arsc_pretext=".urlencode("/move ".$arsc_key."")." room\" target=\"input\" title=\"".$arsc_lang["opcmd_m"]."\">M</a>";
      $arsc_layout["userlist"] .= "</font> ";
     }
     // Send a message
@@ -234,7 +233,6 @@ else
  $arsc_layout["userlist"] .= '';
 }
 
-
 if ($this->checkCommandAllowed($arsc_my["level"], "color"))
 {
  $arsc_layout["colorselection_title"] = $arsc_lang["select_color"];
@@ -243,7 +241,7 @@ if ($this->checkCommandAllowed($arsc_my["level"], "color"))
 if ($this->checkCommandAllowed($arsc_my["level"], "color"))
 {
  $arsc_layout["colorselection_table"] = '
-<table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#'.$arsc_my["color"].'">
+<table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="'.$arsc_my["color"].'">
  <tr>
   <td width="17%">
    <table border="0" cellspacing="0" cellpadding="0" align="center" width="100%">
@@ -605,7 +603,7 @@ if ($this->checkCommandAllowed($arsc_my["level"], "roomlist"))
 
  $arsc_layout["roomlist_form"] = '
  <form action="chatins.php" target="empty">
-  <font face="'.$arsc_layout["default_font_face"].'" size="'.$arsc_layout["default_font_size"].'" color="#'.$arsc_layout["default_font_color"].'">
+  <font face="'.$arsc_layout["default_font_face"].'" size="'.$arsc_layout["default_font_size"].'" color="'.$arsc_layout["default_font_color"].'">
    <b>
     '.$arsc_lang["roomlist"].':
    </b>
