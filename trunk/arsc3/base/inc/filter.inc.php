@@ -1,8 +1,8 @@
 <?php
 
-// This function returns the correct posting depending on wether it is a system message, a command is used etc.
+// This function returns the correct posting depending on whether it is a system message, a command is used etc.
 
-function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room, $arsc_flag_ripped, $arsc_flag_moderated, $arsc_template)
+function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_room, $arsc_flag_ripped, $arsc_flag_gotmsg, $arsc_flag_moderated, $arsc_template)
 {
  GLOBAL $arsc_smilies,
         $arsc_lang,
@@ -123,7 +123,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
    }
    if (substr($arsc_message, 0, 6) == "/lock ")
    {
-    // BTW: unlocking must be done via the admin interface...
+    // FIXME: unlocking must be done via the admin interface...
     $userpassive = str_replace("/lock ", "", $arsc_message);
     $result = mysql_query("SELECT room, level FROM arsc_users WHERE user = '$userpassive'", ARSC_PARAMETER_DB_LINK);
     $a = mysql_fetch_array($result);
@@ -306,17 +306,18 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     $b = mysql_fetch_array($result);
     if ($userpassive == $arsc_my["user"] AND (($arsc_my["level"] == 20 XOR $arsc_user <> "System") OR $arsc_my["level"] <> 20) AND $arsc_api->checkCommandAllowed($b["level"], "msg"))
     {
-     mysql_query("DELETE FROM arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'", ARSC_PARAMETER_DB_LINK);
-     $arsc_message = str_replace("/msg ".$userpassive." ", "", $arsc_message);
-     $arsc_posting = $arsc_template["msg"];
-     $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
-     $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
-     $arsc_posting = str_replace("{whispers}", $arsc_lang["whispers"], $arsc_posting);
-     $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
-     $arsc_sendtime = date("H:i:s");
-     $arsc_timeid = arsc_microtime();
-     $arsc_message = "/msg ".$arsc_user." ".str_replace("{message}", $arsc_message, str_replace("{user}", $userpassive, $arsc_lang["gotmsg"]));
-     mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+     if ($arsc_flag_gotmsg == 0) mysql_query("UPDATE arsc_room_$arsc_room SET flag_gotmsg = 1 WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'", ARSC_PARAMETER_DB_LINK);
+     if ($arsc_flag_gotmsg == 0 OR $arsc_my["version"] == "browser_text")
+     {
+      $arsc_message = str_replace("/msg ".$userpassive." ", "", $arsc_message);
+      $arsc_posting = $arsc_template["msg"];
+      $arsc_posting = str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), $arsc_posting);
+      $arsc_posting = str_replace("{user}", $arsc_user, $arsc_posting);
+      $arsc_posting = str_replace("{whispers}", $arsc_lang["whispers"], $arsc_posting);
+      $arsc_posting = str_replace("{message}", $arsc_message, $arsc_posting);
+      $arsc_message = "/msg ".$arsc_user." ".str_replace("{message}", $arsc_message, str_replace("{user}", $userpassive, $arsc_lang["gotmsg"]));
+      if ($arsc_flag_gotmsg == 0) mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '".date("H:i:s")."', '".arsc_microtime()."')", ARSC_PARAMETER_DB_LINK);
+     }
     }
    }
    if (substr($arsc_message, 0, 8) == "/msgops " AND $arsc_flag_ripped <> 1)
@@ -384,7 +385,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
    }
    if (substr($arsc_message, 0, 6) == "/room ")
    {
-    mysql_query("DELETE FROM arsc_room_$arsc_room WHERE message = '$arsc_message' AND user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+    mysql_query("DELETE FROM arsc_room_".$arsc_room." WHERE message = '$arsc_message' AND user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
     $result = mysql_query("SELECT level FROM arsc_users WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
     $a = mysql_fetch_array($result);
     $arsc_user_level = $a["level"];
@@ -427,7 +428,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
       {
        $newtemplate = "html_moderator";
       }
-      mysql_query("UPDATE arsc_users SET room = '$arsc_new_room', template = '".mysql_escape_string($newtemplate)."' WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+      mysql_query("UPDATE arsc_users SET room = '$arsc_new_room', template = '".mysql_escape_string($newtemplate)."', showsince = '".arsc_microtime()."' WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
       $arsc_sendtime = date("H:i:s");
       $arsc_timeid = arsc_microtime();
       $arsc_message = "arsc_user_quit~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_room);
