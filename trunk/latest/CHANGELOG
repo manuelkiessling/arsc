@@ -1,5 +1,46 @@
 ARSC Changelog
 
+- Version 1.0
+  2001-12-07
+  
+  - many changes, I hope I get them together...
+  - rewrote the socket server, now it's non-forking
+    (thanks to Markus Fischer <mfischer@php.net>) and
+    rock stable
+  - added a new frame that holds some links, a list
+    of available rooms, and a logo
+  - the autoscroll of the messagewindow can now be switched
+    off in versions that work with JavaScript (it does not
+    work really perfect with all browsers, though)
+  - userlist and roomlist can be refreshed manually
+  - the homepage is a bit nicer
+  - colors of several elements can be defined
+  - what was the config file is now split up into several
+    files to ease updating to new versions
+  - added smilies :-) (but they can be turned off)
+  - added optional or required nickname registration
+  - added flood protection
+  - added RIP mode: Ops can disable an users postings
+  - added banning based on the IP adress
+  - added locking, i.e. registered users can be locked out
+    permanently
+  - operators can move users from one room into another
+  - operators are informed where a user goes if he leaves
+    the room
+  - operators have a more comfortable userlist with links
+    to functions like /kick, /bann etc.
+  - new commands:
+    - /userlist (show a list of all users in the room)
+    - /roomlist (show a list of all rooms)
+    - /smilies show available smilies and how to create them
+  - new operator commands:
+    - /whois (shows info about another user, only for ops)
+    - /bann
+    - /lock
+    - /rip
+    - /unrip
+    - /move
+
 - Version 1.0beta2
   2001-10-01
 
@@ -7,7 +48,7 @@ ARSC Changelog
   - added roomchange
   - refined timing issues
   - added whispering to ops only
-  - added a first vrsion for the Zuum
+  - added a first version for the Zuum
     WebTV box
   - increased compatibility
   - increased speed
