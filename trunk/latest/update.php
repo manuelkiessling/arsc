@@ -9,7 +9,7 @@ if (mysql_query("DROP TABLE arsc_parameters")
                  (
                   name varchar(255) NOT NULL default '',
                   value text NOT NULL,
-                  choices varchar(255) NOT NULL default 'free',
+                  choices varchar(255) NOT NULL default '',
                   description text NOT NULL,
                   UNIQUE KEY name (name),
                   KEY name_2 (name)
@@ -61,9 +61,10 @@ if (mysql_query("DROP TABLE arsc_parameters")
     && mysql_query("INSERT INTO arsc_parameters VALUES ('color_roomlist_window_foreground','#FDF0C6','','[COLOR] Roomlist window foreground')")
    )
 {
+ reset($arsc_parameters);
  while(list($arsc_key, $arsc_value) = each($arsc_parameters))
  {
-  mysql_query("UPDATE arsc_parameters SET value = '$arsc_value' WHERE name = '$arsc_name'");
+  if (!mysql_query("UPDATE arsc_parameters SET value = '$arsc_value' WHERE name = '$arsc_key'")) echo("Could not update parameter '$arsc_key', please check.<br>");
  }
  ?>
  <font face="Arial" size="2">
