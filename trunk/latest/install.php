@@ -159,11 +159,14 @@ if (mysql_query("CREATE TABLE arsc_bannlist
  If you want to, then please <a href="counter.php"><b>click here</b></a>, your installation will then be counted and
  listed on our <a href="http://manuel.kiessling.net/projects/software/arsc/refererlist.php">Where is ARSC used?</a> page.
  Only your URL will be submitted.
+ <br>
+ <br>
+ To proceed installation, go to the <a href="admin/">Admin page</a>.
  <?php
 }
 else
 {
- echo "Something went wrong. Please check if MySQL is running and if the database '{$arsc_parameters["db_db"]}' exists!<br>You can mail me, maybe I can help you: <a href=\"mailto:manuel@kiessling.net\">manuel@kiessling.net</a>.";
+ echo "Something went wrong. Please check if MySQL is running and if the database '{$arsc_parameters["db_db"]}' exists!<br>To get help, <a href=\"http://sourceforge.net/forum/forum.php?forum_id=102858\">visit our forum</a>.";
 }
 
 ?>
