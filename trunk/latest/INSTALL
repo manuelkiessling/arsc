@@ -140,6 +140,10 @@ favourite editor and change the MySQL settings to the same settings
 you are using for your current ARSC installation (i.e., your new
 config.inc.php and your old one must be the same).
 
+If you use the socket server, open arsc/version_sockets/arscd.php
+in your favourite editor and change the first line to fit your PHP
+installation layout.
+
 Copy all files onto your webserver, OVERWRITING your existing ARSC 2.0
 files. Then open your webserver and point it to:
 http://www.yourserver.com/arsc/update.php
