@@ -62,7 +62,7 @@ Viel Spass!
 $arsc_lang["usersinroom"]     = "User in Raum";
 $arsc_lang["sendmessage"]     = "Senden";
 $arsc_lang["refreshmessages"] = "Nachrichten aktualisieren";
-$arsc_lang["leave"]           = "Chat Verlassen";
+$arsc_lang["leave"]           = "Chat verlassen";
 $arsc_lang["roomlist"]        = "Raumliste";
 $arsc_lang["go_room"]         = "Betreten";
 $arsc_lang["refresh"]         = "Aktualisieren";
