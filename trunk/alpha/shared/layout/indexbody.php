@@ -1,8 +1,8 @@
-<body	bgcolor="<?php echo $arsc_params['defaultBGcolor']; ?>"
-	text="<?php echo $arsc_params['defaultTEXTcolor']; ?>"
-	link="<?php echo $arsc_params['defaultLINKcolor']; ?>"
-	alink="<?php echo $arsc_params['defaultALINKcolor']; ?>"
-	vlink="<?php echo $arsc_params['defaultVLINKcolor']; ?>"
+<body bgcolor="<?php echo $arsc_params['defaultBGcolor']; ?>"
+      text="<?php echo $arsc_params['defaultTEXTcolor']; ?>"
+      link="<?php echo $arsc_params['defaultLINKcolor']; ?>"
+      alink="<?php echo $arsc_params['defaultALINKcolor']; ?>"
+      vlink="<?php echo $arsc_params['defaultVLINKcolor']; ?>"
 >
 <center>
 <div align=center>
@@ -17,15 +17,15 @@
 <?php
 if ($arsc_handle = opendir ('../lang') )
 {
-	while (false !== ($arsc_file = readdir ($arsc_handle) ) )
-	{
-		if (substr ($arsc_file, 0, 1) != '.')
-		{
-			$arsc_lang = substr ($arsc_file, -4);
-			echo '<option' . ( ($arsc_lang == $arsc_params['defaultLang']) ? ' selected' : '') . '>' . ucfirst ($arsc_lang) . '</option>\n';
-		}
-        } 
-	closedir ($arsc_handle); 
+    while (false !== ($arsc_file = readdir ($arsc_handle) ) )
+    {
+        if (substr ($arsc_file, 0, 1) != '.')
+        {
+            $arsc_lang = substr ($arsc_file, -4);
+            echo '<option' . ( ($arsc_lang == $arsc_params['defaultLang']) ? ' selected' : '') . '>' . ucfirst ($arsc_lang) . '</option>\n';
+        }
+    } 
+    closedir ($arsc_handle); 
 }
 ?>
 </select>
