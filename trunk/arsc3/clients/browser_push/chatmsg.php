@@ -25,8 +25,8 @@ function arsc_shutdown()
   $arsc_nice_room = arsc_nice_room($arsc_room);
   $arsc_timeid = arsc_microtime();
   $arsc_sendtime = date("H:i:s");
-  mysql_query("DELETE FROM arsc_users WHERE sid = '".mysql_escape_string($arsc_sid)."'");
-  mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('".mysql_escape_string("arsc_user_quit~~".$arsc_user."~~".$arsc_nice_room)."', 'System', '".mysql_escape_string($arsc_sendtime)."', '".mysql_escape_string($arsc_timeid)."')");
+  mysql_query("DELETE FROM arsc_users WHERE sid = '".mysql_escape_string($arsc_sid)."'", ARSC_PARAMETER_DB_LINK);
+  mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('".mysql_escape_string("arsc_user_quit~~".$arsc_user."~~".$arsc_nice_room)."', 'System', '".mysql_escape_string($arsc_sendtime)."', '".mysql_escape_string($arsc_timeid)."')", ARSC_PARAMETER_DB_LINK);
  }
 }
 
