@@ -7,12 +7,151 @@ include("../config.inc.php");
 include("../functions.inc.php");
 include("../filter.inc.php");
 
+
+// Checking parameters
+
+if ($argv[1] == "--help" OR $argv[1] == "-h" OR $argv[1] == "/?")
+{
+ echo "Starts the ARSC socket server on port {$arsc_parameters["socketserver_port"]} ";
+ echo "(as defined in ../config.inc.php).\n\n";
+ echo "Usage: arscd.php [-v|-l|--help]\n\n";
+ echo "Example:\n";
+ echo "  arscd.php -l=/var/log/arsc\n\n";
+ echo "Options:\n";
+ echo "  -v           Verbose mode, print every message every user receives to STDOUT\n";
+ echo "  -l=DIR       Write message logfiles for every room into DIR\n";
+ echo "  -h, --help   Show this help\n";
+ echo "\n";
+ echo "Send bugs to <manuel@kiessling.net>.\n";
+ die();
+}
+$arsc_logdir = false;
+if (ereg("-l=", $argv[1]))
+{
+ if (is_dir(str_replace("-l=", "", $argv[1])))
+ {
+  $arsc_logdir = str_replace("-l=", "", $argv[1]);
+  echo "Logging into '".$arsc_logdir."'\n";
+ }
+ else
+ {
+  die ("Cannot log into '".str_replace("-l=", "", $argv[1])."'. Aborting.\n");
+ }
+}
+
+
+// Creating socket
+
+if(false === ($arsc_listen_socket = socket_create_listen((string)$arsc_parameters["socketserver_port"], $arsc_parameters["socketserver_maximumusers"])))
+ die("Couldn't create listening socket on port {$arsc_parameters["socketserver_port"]}.\n");
+if(false === socket_setopt($arsc_listen_socket, SOL_SOCKET, SO_REUSEADDR, 1))
+ die("Couldn't set socket option\n");
+
+socket_set_nonblock($arsc_listen_socket);
+
+$arsc_connected_clients = 0;
+$arsc_connections = array();
+$arsc_connection_info = array();
+$arsc_sid = array();
+
+echo date("[Y-m-d H:i:s]")." {SOCK} Started ARSC server listening on port ".$arsc_parameters["socketserver_port"].".\n";
+
+while(1) // Handling connections in a neverending loop
+{
+ $arsc_socket_set = array_merge($arsc_listen_socket, $arsc_connections);
+ if(socket_select($arsc_socket_set, $a = NULL, $b = NULL, 0, 0))
+ { 
+  foreach($arsc_connections as $arsc_connection)
+  {
+   if(!($arsc_connection == $arsc_listen_socket))
+   { 
+    foreach($arsc_connection_info as $arsc_num => $arsc_info)
+    {
+     if($arsc_connection == $arsc_info['handle'])
+     { 
+      if ($arsc_sid[$arsc_num] == "")
+      {
+       $received_data = socket_read($arsc_connection, 100);
+       ereg("arsc_sid=(.*) HTTP", $received_data, $a);
+       $arsc_sid[$arsc_num] = $a[1];
+       if ($arsc_sid[$arsc_num] <> "")
+       {
+        $arsc_my = arsc_getdatafromsid($arsc_sid[$arsc_num]);
+        echo date("[Y-m-d H:i:s]")." {ARSC} #$arsc_num | Connection is an ARSC client (SID $arsc_sid[$arsc_num], nickname {$arsc_my["user"]}, room {$arsc_my["room"]})\n";
+        socket_write($arsc_connection, $arsc_parameters["htmlhead_js"], strlen($arsc_parameters["htmlhead_js"]));
+        $arsc_sendtime = date("H:i:s");
+        $arsc_timeid = arsc_microtime();
+        @include("../shared/language/".$arsc_my["language"].".inc.php");
+        $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang["welcome"];
+        $arsc_message = arsc_filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_my["room"], 0);
+        socket_write($arsc_connection, $arsc_message, strlen($arsc_message));
+       }
+      }
+      else
+      {
+       $arsc_newmessages = arsc_getmessages($arsc_sid[$arsc_num]);
+       if ($arsc_newmessages <> "")
+       {
+        if (!@socket_write($arsc_connection, $arsc_newmessages, strlen($arsc_newmessages)))
+        {
+         $arsc_user = $arsc_my["user"];
+         $arsc_room = $arsc_my["room"];
+         $arsc_nice_room = arsc_nice_room($arsc_room);
+         $arsc_timeid = arsc_microtime();
+         $arsc_sendtime = date("H:i:s");
+         mysql_query("DELETE from arsc_users WHERE sid = '{$arsc_sid[$arsc_num]}'");
+         mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('arsc_user_quit~~$arsc_user~~$arsc_nice_room', 'System', '$arsc_sendtime', '$arsc_timeid')");
+         echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_num | Client #$arsc_num {$arsc_connection_info[$arsc_num]['address']}:{$arsc_connection_info[$arsc_num]['port']} disconnected\n";
+         echo date("[Y-m-d H:i:s]")." {ARSC} #$arsc_num | Cannot reach user (SID $arsc_sid[$arsc_num], nickname {$arsc_my["user"]}, room {$arsc_my["room"]})\n";
+         unset($arsc_connections[$index]);
+         unset($arsc_connection_info[$arsc_num]);
+         flush();
+        }
+       }
+       else
+       {
+        $arsc_user = $arsc_my["user"];
+        $arsc_room = $arsc_my["room"];
+        $arsc_nice_room = arsc_nice_room($arsc_room);
+        $arsc_timeid = arsc_microtime();
+        $arsc_sendtime = date("H:i:s");
+        mysql_query("DELETE from arsc_users WHERE sid = '{$arsc_sid[$arsc_num]}'");
+        mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('arsc_user_quit~~$arsc_user~~$arsc_nice_room', 'System', '$arsc_sendtime', '$arsc_timeid')");
+        echo date("[Y-m-d H:i:s]")." {ARSC} #$arsc_num | User no longer known to ARSC (SID was $arsc_sid[$arsc_num])\n";
+        echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_num | Client {$arsc_connection_info[$arsc_num]['address']}:{$arsc_connection_info[$arsc_num]['port']} disconnected\n";
+        unset($arsc_connections[$index]);
+        unset($arsc_connection_info[$arsc_num]);
+        flush();
+       }
+      }
+     }
+    }
+   }
+  } 
+  // A new client connected
+  if($arsc_connection_info[$arsc_connected_clients]['handle'] = @socket_accept($arsc_listen_socket))
+  {
+   $arsc_connections[] = $arsc_connection_info[$arsc_connected_clients]['handle'];
+   socket_getpeername($arsc_connection_info[$arsc_connected_clients]['handle'], &$arsc_connection_info[$arsc_connected_clients]['address'], &$arsc_connection_info[$arsc_connected_clients]['port']);
+   echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_connected_clients | Connection from {$arsc_connection_info[$arsc_connected_clients]['address']} on port {$arsc_connection_info[$arsc_connected_clients]['port']}\n";
+   flush();
+   $arsc_connected_clients++;
+  }
+ }
+ usleep($arsc_parameters["socketserver_refresh"]); 
+}
+
+
+// Message handling
+
 function arsc_getmessages($arsc_sid)
 {
  GLOBAL $arsc_my,
         $arsc_parameters,
         $arsc_lang,
         $argv,
+        $arsc_logdir,
+        $arsc_lastlogmessage,
         $arsc_num;
  
  $arsc_sid = str_replace("/", "", $arsc_sid);
@@ -53,6 +192,31 @@ function arsc_getmessages($arsc_sid)
      {
       echo date("[Y-m-d H:i:s]")." {MESG} #$arsc_num | Room: $arsc_room | User: {$arsc_a["user"]} | Sendtime: {$arsc_a["sendtime"]} | Message: {$arsc_a["message"]}\n";
      }
+     elseif($arsc_logdir)
+     {
+      $arsc_logmessage = "[".date("Y-m-d")."] [{$arsc_a["sendtime"]}] {$arsc_a["user"]}: {$arsc_a["message"]}\n";
+      if ($arsc_lastlogmessage != $arsc_logmessage)
+      {
+       $arsc_lastlogmessage = $arsc_logmessage;
+       $arsc_logresource = "fp_".$arsc_room;
+       if(is_resource($$arsc_logresource))
+       {
+        fputs($$arsc_logresource, $arsc_logmessage);
+       }
+       else
+       {
+        if ($$arsc_logresource = fopen($arsc_logdir."/".$arsc_room.".log", "a"))
+        {
+         fputs($$arsc_logresource, $arsc_logmessage);
+        }
+        else
+        {
+         echo "Error: cannot open logfile '".$arsc_logdir."/".$arsc_room.".log', disable logging.\n";
+         $arsc_logdir = false;
+        }
+       }
+      }
+     }
     }
     $arsc_ping = time();
     mysql_query("UPDATE arsc_users SET lastping = '$arsc_ping', lastmessageping = '$arsc_lastmessageping' WHERE sid = '$arsc_sid'");
@@ -60,112 +224,6 @@ function arsc_getmessages($arsc_sid)
    return $arsc_posting;
   }
  }
-}
-
-if ($argv[1] == "--help" OR $argv[1] == "-h" OR $argv[1] == "/?")
-{
- echo "Starts the ARSC socket server on port {$arsc_parameters["socketserver_port"]}\n";
- echo "(as defined in ../config.inc.php).\n\n";
- echo "If you give the option -v ARSC will be verbose, i.e. it will\n";
- echo "print all messages an user receives. This will be quite much!\n\n";
- echo "<manuel@kiessling.net>\n\n";
- die();
-}
-
-if( false === ( $arsc_listen_socket = socket_create_listen( (string)$arsc_parameters["socketserver_port"], $arsc_parameters["socketserver_maximumusers"])))
- die( "Couldn't create listening socket on port {$arsc_parameters["socketserver_port"]}.\n");
-if( false === socket_setopt( $arsc_listen_socket, SOL_SOCKET, SO_REUSEADDR, 1))
- die( "Couldn't set socket option\n");
-
-socket_set_nonblock($arsc_listen_socket);
-$arsc_socket_set = socket_fd_alloc();
-$arsc_connected_clients = 0;
-$arsc_connections = array();
-$arsc_connection_info = array();
-$arsc_sid = array();
-
-echo date("[Y-m-d H:i:s]")." {SOCK} Started ARSC server listening on port ".$arsc_parameters["socketserver_port"].".\n";
-
-while(1) // A Neverending Story
-{
- socket_fd_zero( $arsc_socket_set);
- socket_fd_set( $arsc_socket_set, array_merge( array( $arsc_listen_socket), $arsc_connections));
- if( socket_select( $arsc_socket_set, NULL, NULL, 0, 0))
- { 
-  foreach( $arsc_connections as $connection) 
-  if( socket_fd_isset( $arsc_socket_set, $connection))
-  { 
-   foreach( $arsc_connection_info as $arsc_num => $info)
-   if( $connection == $info[ 'handle'])
-   { 
-    if ($arsc_sid[$arsc_num] == "")
-    {
-     $received_data = socket_read( $connection, 100);
-     ereg("arsc_sid=(.*) HTTP", $received_data, $a);
-     $arsc_sid[$arsc_num] = $a[1];
-     if ($arsc_sid[$arsc_num] <> "")
-     {
-      $arsc_my = arsc_getdatafromsid($arsc_sid[$arsc_num]);
-      echo date("[Y-m-d H:i:s]")." {ARSC} #$arsc_num | Connection is an ARSC client (SID $arsc_sid[$arsc_num], nickname {$arsc_my["user"]}, room {$arsc_my["room"]})\n";
-      socket_write($connection, $arsc_parameters["htmlhead_js"], strlen($arsc_parameters["htmlhead_js"]));
-      $arsc_sendtime = date("H:i:s");
-      $arsc_timeid = arsc_microtime();
-      @include("../shared/language/".$arsc_my["language"].".inc.php");
-      $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang["welcome"];
-      $arsc_message = arsc_filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_my["room"], 0);
-      socket_write($connection, $arsc_message, strlen($arsc_message));
-     }
-    }
-    else
-    {
-     $arsc_newmessages = arsc_getmessages($arsc_sid[$arsc_num]);
-     if ($arsc_newmessages <> "")
-     {
-      if (!@socket_write($connection, $arsc_newmessages, strlen($arsc_newmessages)))
-      {
-       $arsc_user = $arsc_my["user"];
-       $arsc_room = $arsc_my["room"];
-       $arsc_nice_room = arsc_nice_room($arsc_room);
-       $arsc_timeid = arsc_microtime();
-       $arsc_sendtime = date("H:i:s");
-       mysql_query("DELETE from arsc_users WHERE sid = '{$arsc_sid[$arsc_num]}'");
-       mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('arsc_user_quit~~$arsc_user~~$arsc_nice_room', 'System', '$arsc_sendtime', '$arsc_timeid')");
-       echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_num | Client #$arsc_num {$arsc_connection_info[$arsc_num]['address']}:{$arsc_connection_info[ $arsc_num][ 'port']} disconnected\n";
-       echo date("[Y-m-d H:i:s]")." {ARSC} #$arsc_num | Cannot reach user (SID $arsc_sid[$arsc_num], nickname {$arsc_my["user"]}, room {$arsc_my["room"]})\n";
-       unset($arsc_connections[$index]);
-       unset($arsc_connection_info[$arsc_num]);
-       flush();
-      }
-     }
-     else
-     {
-      $arsc_user = $arsc_my["user"];
-      $arsc_room = $arsc_my["room"];
-      $arsc_nice_room = arsc_nice_room($arsc_room);
-      $arsc_timeid = arsc_microtime();
-      $arsc_sendtime = date("H:i:s");
-      mysql_query("DELETE from arsc_users WHERE sid = '{$arsc_sid[$arsc_num]}'");
-      mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('arsc_user_quit~~$arsc_user~~$arsc_nice_room', 'System', '$arsc_sendtime', '$arsc_timeid')");
-      echo date("[Y-m-d H:i:s]")." {ARSC} #$arsc_num | User no longer known to ARSC (SID was $arsc_sid[$arsc_num])\n";
-      echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_num | Client {$arsc_connection_info[$arsc_num]['address']}:{$arsc_connection_info[ $arsc_num][ 'port']} disconnected\n";
-      unset($arsc_connections[$index]);
-      unset($arsc_connection_info[$arsc_num]);
-      flush();
-     }
-    }
-   }
-  } 
-  if( socket_fd_isset( $arsc_socket_set, $arsc_listen_socket))
-  {
-   $arsc_connection_info[ $arsc_connected_clients][ 'handle'] = socket_accept( $arsc_listen_socket);
-   $arsc_connections[] = $arsc_connection_info[ $arsc_connected_clients][ 'handle'];
-   socket_getpeername( $arsc_connection_info[ $arsc_connected_clients][ 'handle'], &$arsc_connection_info[ $arsc_connected_clients]['address'], &$arsc_connection_info[ $arsc_connected_clients][ 'port']);
-   echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_connected_clients | Connection from {$arsc_connection_info[ $arsc_connected_clients]['address']} on port {$arsc_connection_info[ $arsc_connected_clients][ 'port']}\n";
-   flush();
-   $arsc_connected_clients++;
-  } 
- } 
- usleep($arsc_parameters["socketserver_refresh"]); 
 }
 
 ?>
