@@ -6,7 +6,7 @@ include("inc/functions.inc.php");
 include("inc/api.inc.php");
 include("inc/inputvalidation.inc.php");
 
-$arsc_language = arsc_validateinput($_GET["arsc_language"], $arsc_available_languages, NULL, 0, 64, __FILE__, __LINE__);
+$arsc_language = arsc_validateinput($_GET["arsc_language"], NULL, "/[^a-z\-]/", 0, 64, __FILE__, __LINE__);
 if ($arsc_language == "") $arsc_language = ARSC_PARAMETER_DEFAULT_LANGUAGE;
 if (!is_file("../languages/".$arsc_language.".inc.php")) arsc_error_log(ARSC_ERRORLEVEL_FATAL, "Could not open language file. Something is really messed up!", __FILE__, __LINE__);
 include("../languages/".$arsc_language.".inc.php");
@@ -17,11 +17,7 @@ $arsc_error = arsc_validateinput($_GET["arsc_error"], NULL, "/[^a-zA-Z0-9_]/", 0
 $arsc_api = new arsc_api_Class;
 
 // Delete idle users
-$arsc_timebuffer = time() - ARSC_PARAMETER_PING;
-mysql_query("DELETE FROM arsc_users WHERE lastping < '$arsc_timebuffer' AND version <> 'text'", ARSC_PARAMETER_DB_LINK);
-$arsc_timebuffer = time() - ARSC_PARAMETER_PING_TEXT;
-mysql_query("DELETE FROM arsc_users WHERE lastping < '$arsc_timebuffer' AND version = 'text'", ARSC_PARAMETER_DB_LINK);
-$arsc_result = mysql_query("SELECT user from arsc_users", ARSC_PARAMETER_DB_LINK);
+$arsc_api->deleteIdleUsers();
 
 // Delete empty private rooms
 $arsc_query1 = mysql_query("SELECT roomname FROM arsc_rooms WHERE type = 1", ARSC_PARAMETER_DB_LINK);
