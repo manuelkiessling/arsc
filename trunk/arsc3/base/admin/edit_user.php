@@ -72,7 +72,7 @@ set_magic_quotes_runtime(1);
       </font>
      </td>
      <td valign="top">
-      <input type="text" size="30" maxlength="64" name="arsc_save_password" value="">
+      <input type="password" size="30" maxlength="64" name="arsc_save_password" value="">
       <font face="Verdana, Arial" size="1">
        (Let input field empty to keep the current password)
       </font>
