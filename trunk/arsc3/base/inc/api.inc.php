@@ -114,12 +114,12 @@ class arsc_api_Class
 
  function getInternalRoomlist()
  {
-  $result = mysql_query("SHOW tables LIKE 'arsc_room_%'", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_query("SHOW tables LIKE 'arsc\_room\_%'", ARSC_PARAMETER_DB_LINK);
   while ($a = mysql_fetch_array($result))
   {
    if ($a[0] <> "")
    {
-    $return[] = $this->getInternalRoomname(substr($a[0], 10));
+    $return[] = substr($a[0], 10);
    }
   }
   reset($return);
@@ -127,6 +127,16 @@ class arsc_api_Class
  }
 
  function getSimpleUserlist($room)
+ {
+  $result = mysql_query("SELECT user FROM arsc_users WHERE room = '$room' ORDER BY level DESC, user ASC", ARSC_PARAMETER_DB_LINK);
+  while ($a = mysql_fetch_array($result))
+  {
+   $return[] = $a["user"];
+  }
+  return($return);
+ }
+
+ function getSimpleUserlistWithRights($room)
  {
   $result = mysql_query("SELECT user, level FROM arsc_users WHERE room = '$room' ORDER BY level DESC, user ASC", ARSC_PARAMETER_DB_LINK);
   while ($a = mysql_fetch_array($result))
@@ -167,9 +177,8 @@ class arsc_api_Class
 
  function createUser($user, $password, $room, $language, $template, $version, $ip)
  {
-  mt_srand((double)microtime()*1000000);
+  mt_srand((double)microtime() * 1000000);
   $sid = md5(mt_rand(0, mt_getrandmax()));
-  if ($user == "flash") $sid = 12345;
   mysql_query("INSERT INTO arsc_users
                (user, lastping, ip, room, language, version, template, sid)
                VALUES
