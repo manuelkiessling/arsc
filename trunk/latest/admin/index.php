@@ -10,6 +10,17 @@ if (!($arsc_admin_password == $arsc_parameters["selfop_password"]))
  ?>
   <form method="POST">
    <font face="Arial" size="2">
+    <?php
+    if ($arsc_admin_password <> "")
+    {
+     ?>
+     <font color="#FF0000">
+      Your password is invalid!
+      <br>
+     </font>
+     <?php
+    }
+    ?>
     Admin password:
    </font>
    <input type="password" name="arsc_admin_password">
