@@ -50,8 +50,8 @@ Then open up a FTP or SCP program, and copy all files you extracted
 from the zipped archive onto your server.
 
 Now start your favourite browser, and point it at the 'install'
-directory. It is located in the directory 'inc', which is a
-subdirectory of 'base' in the root directory of the extracted archive.
+directory. It is a subdirectory of 'base' in the root directory
+of the extracted archive.
 If for example your domain name is 'www.example.com', and you copied
 all your files into a directory named 'chat', you would have to open
 this url:
