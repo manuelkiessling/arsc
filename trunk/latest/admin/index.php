@@ -5,6 +5,23 @@ include("../functions.inc.php");
 
 set_magic_quotes_runtime(1);
 
+if (!($arsc_admin_password == $arsc_parameters["selfop_password"])) 
+{
+ ?>
+  <form method="POST">
+   Admin password:
+   <input type="password" name="arsc_admin_password">
+   <input type="submit" value="Login">
+  </form>
+ <?php
+ die();
+}
+if (($arsc_admin_password == "password") AND ($arsc_goto <> "yes")) 
+{
+ header("Location: index.php?arsc_admin_password=password&arsc_goto=yes#changepassword");
+ die();
+}
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html>
@@ -20,6 +37,15 @@ set_magic_quotes_runtime(1);
    </b>
   </font>
   <form action="save.php" method="POST">
+   <div align="right">
+    <font face="Arial" size="2">
+     <b>
+      Any questions?
+     </b>
+     <a href="http://sourceforge.net/forum/forum.php?forum_id=102858">Visit our forum</a>.
+    </font>
+   </div>
+   <input type="hidden" name="arsc_admin_password" value="<?php echo $arsc_admin_password; ?>">
    <h2>
     <font face="Arial">
      Required parameters
@@ -70,6 +96,7 @@ set_magic_quotes_runtime(1);
    <br>
    <br>
   
+   <a name="changepassword">
    <font face="Arial" size="2">
     This is the password that you need if you want to give yourself
     operator status. This means that when you enter the chat and post
@@ -81,7 +108,7 @@ set_magic_quotes_runtime(1);
     Not your dogs name, not your girlfriends name, not your birthdate, ok?
    </font>
    <br>
-   <input type="text" size="50" name="arsc_save_parameters[selfop_password]" value="<?php echo $arsc_parameters["selfop_password"]; ?>">
+   <input type="password" size="50" name="arsc_save_parameters[selfop_password]" value="<?php echo $arsc_parameters["selfop_password"]; ?>">
    <br>
    <br>
   
@@ -154,7 +181,7 @@ set_magic_quotes_runtime(1);
   
    <font face="Arial" size="2">
     What is the name of your logo file? The easiest way would be to
-    save the image as pic/logo.gif (or .jpg or .png) and then enter
+    save the image as ..pic/logo.gif (or .jpg or .png) and then enter
     'logo.gif' (or .jpg or .png) here
    </font>
    <br>
