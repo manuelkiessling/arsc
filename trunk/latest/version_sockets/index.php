@@ -1,4 +1,7 @@
-<?php include("../config.inc.php"); ?>
+<?php
+include("../config.inc.php");
+include("../functions.inc.php");
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
 <html>
  <head>
@@ -6,14 +9,6 @@
    <?php echo $arsc_parameters["title"]; ?>
   </title>
  </head>
- <script language="JavaScript">
- <!--
-  if(top.frames.length > 0)
-  {
-   top.location.href=self.location;
-  }
- //-->
- </script>
  <frameset cols="193,*" border="0" framespacing="no" frameborder="0" marginwidth="2" marginheight="1">
   <frame src="../shared/roomlist.php?arsc_sid=<?php echo $arsc_sid; ?>" name="roomlist" scrolling="auto" noresize marginwidth="0" marginheight="0">
   <frameset cols="*,120" border="0" framespacing="no" frameborder="0" marginwidth="2" marginheight="1">
