@@ -8,7 +8,7 @@ include("../inc/api.inc.php");
 
 if($arsc_sent == 1)
 {
- $arsc_query = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_registered_users WHERE user = '".mysql_escape_string($arsc_user)."' AND password = '".mysql_escape_string(sha1($arsc_password))."'", ARSC_PARAMETER_DB_LINK);
+ $arsc_query = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_registered_users WHERE level = '99' AND user = '".mysql_escape_string($arsc_user)."' AND password = '".mysql_escape_string(sha1($arsc_password))."'", ARSC_PARAMETER_DB_LINK);
  $arsc_result = mysql_fetch_array($arsc_query);
  if($arsc_result["cnt"] <> 1)
  {
