@@ -24,6 +24,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
    <title>
     <?php echo $arsc_lang["idcard_title"]." ".$arsc_user; ?>
    </title>
+   <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $arsc_lang["charset"]; ?>">
    <script language="JavaScript">
    <!--
     function idcard(arsc_user)
