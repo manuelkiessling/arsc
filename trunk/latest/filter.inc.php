@@ -330,16 +330,19 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
    }
    if (substr($arsc_message, 0, 5) == "/help" OR substr($arsc_message, 0, 2) == "/?")
    {
-    $arsc_message = "/msg ".$arsc_user." ".$arsc_lang["help"];
-    $result = mysql_query("SELECT level from arsc_users WHERE user = '$arsc_user'");
+    $result = mysql_query("SELECT level, language from arsc_users WHERE user = '$arsc_user'");
     $a = mysql_fetch_array($result);
-    if ($a["level"] > 0)
+    if($arsc_my["language"] == $a["language"])
     {
-     $arsc_message .= $arsc_lang["helpop"];
+     $arsc_message = "/msg ".$arsc_user." ".$arsc_lang["help"];
+     if ($a["level"] > 0)
+     {
+      $arsc_message .= $arsc_lang["helpop"];
+     }
+     $arsc_timeid = arsc_microtime();
+     mysql_query("DELETE from arsc_room_$arsc_room WHERE message LIKE '/help%' OR message LIKE '/?%' AND user = '$arsc_user'");
+     mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
     }
-    $arsc_timeid = arsc_microtime();
-    mysql_query("DELETE from arsc_room_$arsc_room WHERE message LIKE '/help%' OR message LIKE '/?%' AND user = '$arsc_user'");
-    mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
    }
    if (substr($arsc_message, 0, 8) == "/smilies")
    {
