@@ -92,7 +92,7 @@ while(1) // Handling connections in a neverending loop
         echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_num | Connection is invalid\n";
         $arsc_text = "You don't seem to be a valid ARSC client. Connection closed.";
         socket_write($arsc_connection, $arsc_text, strlen($arsc_text));
-        unset($arsc_connections[$index]);
+        unset($arsc_connections[$arsc_num]);
         unset($arsc_connection_info[$arsc_num]);
         flush();
        }
@@ -113,7 +113,7 @@ while(1) // Handling connections in a neverending loop
          mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('arsc_user_quit~~$arsc_user~~$arsc_nice_room', 'System', '$arsc_sendtime', '$arsc_timeid')");
          echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_num | Client #$arsc_num {$arsc_connection_info[$arsc_num]['address']}:{$arsc_connection_info[$arsc_num]['port']} disconnected\n";
          echo date("[Y-m-d H:i:s]")." {ARSC} #$arsc_num | Cannot reach user (SID $arsc_sid[$arsc_num], nickname {$arsc_my["user"]}, room {$arsc_my["room"]})\n";
-         unset($arsc_connections[$index]);
+         unset($arsc_connections[$arsc_num]);
          unset($arsc_connection_info[$arsc_num]);
          flush();
         }
@@ -129,7 +129,7 @@ while(1) // Handling connections in a neverending loop
         mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('arsc_user_quit~~$arsc_user~~$arsc_nice_room', 'System', '$arsc_sendtime', '$arsc_timeid')");
         echo date("[Y-m-d H:i:s]")." {ARSC} #$arsc_num | User no longer known to ARSC (SID was $arsc_sid[$arsc_num])\n";
         echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_num | Client {$arsc_connection_info[$arsc_num]['address']}:{$arsc_connection_info[$arsc_num]['port']} disconnected\n";
-        unset($arsc_connections[$index]);
+        unset($arsc_connections[$arsc_num]);
         unset($arsc_connection_info[$arsc_num]);
         flush();
        }
