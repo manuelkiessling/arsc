@@ -18,7 +18,7 @@ if($arsc_result = @mysql_query("SELECT name, value FROM arsc_parameters"))
 }
 
 // Check wether the chat is locked.
-if($arsc_parameters["locked"] == "yes")
+if($arsc_parameters["locked"] == "yes" && !eregi("admin", $PHP_SELF))
 {
  die("<font face=\"Arial, Verdana, sans-serif\">The chat system is currently down.</font>");
 }
