@@ -67,8 +67,8 @@ Wir wünschen Ihnen viel Spass!
 // Password Change Page
 
 $arsc_lang["changepassword"]                 = "Passwort &auml;ndern";
-$arsc_lang["changepassword_intro"]           = "Um Ihr Passwort zu &auml;ndern, geben Sie bitte Ihren Nicknamen, Ihr momentanes Passwort, und Ihr neues Passwort ein.";
-$arsc_lang["changepassword_entername"]       = "Nickname:";
+$arsc_lang["changepassword_intro"]           = "Um Ihr Passwort zu &auml;ndern, geben Sie bitte Ihren Chatnamen, Ihr momentanes Passwort, und Ihr neues Passwort ein.";
+$arsc_lang["changepassword_entername"]       = "Chatname:";
 $arsc_lang["changepassword_entercurrent"]    = "Momentanes Passwort:";
 $arsc_lang["changepassword_enternew"]        = "Neues Passwort:";
 $arsc_lang["error_password_changed"]         = "Ihr Passwort wurde ge&auml;dert!";
