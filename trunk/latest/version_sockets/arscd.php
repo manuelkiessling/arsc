@@ -61,41 +61,46 @@ while(1) // Handling connections in a neverending loop
 {
  $arsc_socket_set = array_merge($arsc_listen_socket, $arsc_connections);
  if(socket_select($arsc_socket_set, $a = NULL, $b = NULL, 0, 0))
- { 
+ {
   foreach($arsc_connections as $arsc_connection)
   {
    if(!($arsc_connection == $arsc_listen_socket))
-   { 
+   {
     foreach($arsc_connection_info as $arsc_num => $arsc_info)
     {
      if($arsc_connection == $arsc_info['handle'])
-     { 
+     {
       if ($arsc_sid[$arsc_num] == "")
       {
-       $received_data = socket_read($arsc_connection, 100);
-       ereg("arsc_sid=(.*) HTTP", $received_data, $a);
-       $arsc_sid[$arsc_num] = $a[1];
-       if ($arsc_sid[$arsc_num] <> "")
+       $arsc_read_socket = array($arsc_connection);
+       $arsc_socket_changed = socket_select($arsc_read_socket, $write = NULL, $except = NULL, 0, 0);
+       if ($arsc_socket_changed > 0)
        {
-        $arsc_my = arsc_getdatafromsid($arsc_sid[$arsc_num]);
-        echo date("[Y-m-d H:i:s]")." {ARSC} #$arsc_num | Connection is an ARSC client (SID $arsc_sid[$arsc_num], nickname {$arsc_my["user"]}, room {$arsc_my["room"]})\n";
-        socket_write($arsc_connection, $arsc_parameters["htmlhead_js"], strlen($arsc_parameters["htmlhead_js"]));
-        $arsc_sendtime = date("H:i:s");
-        $arsc_timeid = arsc_microtime();
-        @include("../shared/language/".$arsc_my["language"].".inc.php");
-        $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang["welcome"];
-        $arsc_message = arsc_filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_my["room"], 0);
-        socket_write($arsc_connection, $arsc_message, strlen($arsc_message));
-       }
-       else
-       {
-        $arsc_sid[$arsc_num] = "-1";
-        echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_num | Connection is invalid\n";
-        $arsc_text = "You don't seem to be a valid ARSC client. Connection closed.";
-        socket_write($arsc_connection, $arsc_text, strlen($arsc_text));
-        unset($arsc_connections[$arsc_num]);
-        unset($arsc_connection_info[$arsc_num]);
-        flush();
+        $received_data = socket_read($arsc_connection, 100);
+        ereg("arsc_sid=(.*) HTTP", $received_data, $a);
+        $arsc_sid[$arsc_num] = $a[1];
+        if ($arsc_sid[$arsc_num] <> "")
+        {
+         $arsc_my = arsc_getdatafromsid($arsc_sid[$arsc_num]);
+         echo date("[Y-m-d H:i:s]")." {ARSC} #$arsc_num | Connection is an ARSC client (SID $arsc_sid[$arsc_num], nickname {$arsc_my["user"]}, room {$arsc_my["room"]})\n";
+         arsc_socket_write($arsc_connection, $arsc_parameters["htmlhead_js"]);
+         $arsc_sendtime = date("H:i:s");
+         $arsc_timeid = arsc_microtime();
+         @include("../shared/language/".$arsc_my["language"].".inc.php");
+         $arsc_message = "/msg ".$arsc_my["user"]." ".$arsc_lang["welcome"];
+         $arsc_message = arsc_filter_posting("System", $arsc_sendtime, $arsc_message, $arsc_my["room"], 0);
+         arsc_socket_write($arsc_connection, $arsc_message);
+        }
+        else
+        {
+         $arsc_sid[$arsc_num] = "-1";
+         echo date("[Y-m-d H:i:s]")." {SOCK} #$arsc_num | Connection is invalid\n";
+         $arsc_text = "You don't seem to be a valid ARSC client. Connection closed.";
+         arsc_socket_write($arsc_connection, $arsc_text);
+         unset($arsc_connections[$arsc_num]);
+         unset($arsc_connection_info[$arsc_num]);
+         flush();
+        }
        }
       }
       else
@@ -103,7 +108,7 @@ while(1) // Handling connections in a neverending loop
        $arsc_newmessages = arsc_getmessages($arsc_sid[$arsc_num]);
        if ($arsc_newmessages <> "")
        {
-        if (!@socket_write($arsc_connection, $arsc_newmessages, strlen($arsc_newmessages)))
+        if (!arsc_socket_write($arsc_connection, $arsc_newmessages))
         {
          $arsc_user = $arsc_my["user"];
          $arsc_room = $arsc_my["room"];
@@ -235,6 +240,25 @@ function arsc_getmessages($arsc_sid)
    return $arsc_posting;
   }
  }
+}
+
+
+// Helpers
+function arsc_socket_write(&$connection, $text)
+{
+ $return = false;
+ $check_socket = array($connection);
+ $socket_changed = socket_select($read = NULL, $check_socket, $except = NULL, 0, 0);
+ if ($socket_changed > 0)
+ {
+  $return = true;
+  @socket_write($connection, $text, strlen($text));
+ }
+ else
+ {
+  echo date("[Y-m-d H:i:s]")." {SOCK} Socket not ready for write, closing connection.\n";
+ }
+ return $return;
 }
 
 ?>
