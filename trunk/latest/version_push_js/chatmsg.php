@@ -69,6 +69,7 @@ if ($arsc_my = getdatafromsid($arsc_sid))
  set_magic_quotes_runtime(0);
  set_time_limit(0);
  $i = 0;
+ $arsc_keepalivecounter = 0;
  while(!connection_aborted())
  {
   $arsc_result = mysql_query("SELECT * from arsc_room_$arsc_room ORDER BY timeid DESC");
@@ -101,7 +102,12 @@ if ($arsc_my = getdatafromsid($arsc_sid))
   $arsc_ping = my_microtime();
   //$arsc_ip = getenv("REMOTE_ADDR");
   mysql_query("UPDATE arsc_users SET lastping = '$arsc_ping', ip = '$arsc_ip' WHERE sid = '$arsc_sid'");
-  echo " ";
+  $arsc_keepalivecounter++;
+  if ($arsc_keepalivecounter == 5)
+  {
+   echo " ";
+   $arsc_keepalivecounter = 0;
+  }
   flush();
   usleep(500000);
   flush();
