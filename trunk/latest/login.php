@@ -58,7 +58,7 @@ else
   $arsc_level = 0;
  }
  srand((double)microtime()*1000000);
- $arsc_sid = md5(rand(0,9999999));
+ $arsc_sid = md5(rand(0, 32768));
  $arsc_ping = time();
  // Some chars must be stripped out or replaced
  $arsc_user = ereg_replace("\\\\\'", "", $arsc_user);
