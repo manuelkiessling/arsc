@@ -132,35 +132,56 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
    if (substr($arsc_message, 0, 5) == "/rip ")
    {
     $userpassive = str_replace("/rip ", "", $arsc_message);
-    $result = mysql_query("SELECT room, level, flag_ripped from arsc_users WHERE user = '$userpassive'");
-    $a = mysql_fetch_array($result);
-    $result = mysql_query("SELECT room, level from arsc_users WHERE user = '$arsc_user'");
-    $b = mysql_fetch_array($result);
-    if ($a["room"] == $b["room"] AND $b["level"] > 0 AND $a["flag_ripped"] == 0 AND $a["level"] <= $b["level"])
+    if ($userpassive == "*")
     {
-     mysql_query("UPDATE arsc_users SET flag_ripped = 1 WHERE user = '$userpassive'");
-     mysql_query("DELETE from arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'");
-     $arsc_message = "arsc_user_rip~~".$arsc_user."~~".$userpassive;
-     $arsc_sendtime = date("H:i:s");
-     $arsc_timeid = arsc_microtime();
-     mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
+     $result = mysql_query("SELECT level, room FROM arsc_users WHERE user = '$arsc_user'");
+     $a = mysql_fetch_array($result);
+     mysql_query("UPDATE arsc_users SET flag_ripped = 1 WHERE level = 0 AND level < ".$a["level"]." AND room = '".$a["room"]."'");
+     mysql_query("DELETE FROM arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'");
+    }
+    else
+    {
+     $result = mysql_query("SELECT room, level, flag_ripped from arsc_users WHERE user = '$userpassive'");
+     $a = mysql_fetch_array($result);
+     $result = mysql_query("SELECT room, level from arsc_users WHERE user = '$arsc_user'");
+     $b = mysql_fetch_array($result);
+     if ($a["room"] == $b["room"] AND $b["level"] > 0 AND $a["flag_ripped"] == 0 AND $a["level"] <= $b["level"])
+     {
+      mysql_query("UPDATE arsc_users SET flag_ripped = 1 WHERE user = '$userpassive'");
+      mysql_query("DELETE from arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'");
+      $arsc_message = "arsc_user_rip~~".$arsc_user."~~".$userpassive;
+      $arsc_sendtime = date("H:i:s");
+      $arsc_timeid = arsc_microtime();
+      mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
+     }
     }
    }
    if (substr($arsc_message, 0, 7) == "/unrip ")
    {
     $userpassive = str_replace("/unrip ", "", $arsc_message);
-    $result = mysql_query("SELECT room, level, flag_ripped from arsc_users WHERE user = '$userpassive'");
-    $a = mysql_fetch_array($result);
-    $result = mysql_query("SELECT room, level from arsc_users WHERE user = '$arsc_user'");
-    $b = mysql_fetch_array($result);
-    if ($a["room"] == $b["room"] AND $b["level"] > 0 AND $a["flag_ripped"] == 1 AND $a["level"] <= $b["level"])
+    echo "\n".$userpassive."\n";
+    if ($userpassive == "*")
     {
-     mysql_query("UPDATE arsc_users SET flag_ripped = 0 WHERE user = '$userpassive'");
-     mysql_query("DELETE from arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'");
-     $arsc_message = "arsc_user_unrip~~".$arsc_user."~~".$userpassive;
-     $arsc_sendtime = date("H:i:s");
-     $arsc_timeid = arsc_microtime();
-     mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
+     $result = mysql_query("SELECT level, room FROM arsc_users WHERE user = '$arsc_user'");
+     $a = mysql_fetch_array($result);
+     mysql_query("UPDATE arsc_users SET flag_ripped = 0 WHERE level = 0 AND level < ".$a["level"]." AND room = '".$a["room"]."'");
+     mysql_query("DELETE FROM arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'");
+    }
+    else
+    {
+     $result = mysql_query("SELECT room, level, flag_ripped from arsc_users WHERE user = '$userpassive'");
+     $a = mysql_fetch_array($result);
+     $result = mysql_query("SELECT room, level from arsc_users WHERE user = '$arsc_user'");
+     $b = mysql_fetch_array($result);
+     if ($a["room"] == $b["room"] AND $b["level"] > 0 AND $a["flag_ripped"] == 1 AND $a["level"] <= $b["level"])
+     {
+      mysql_query("UPDATE arsc_users SET flag_ripped = 0 WHERE user = '$userpassive'");
+      mysql_query("DELETE from arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'");
+      $arsc_message = "arsc_user_unrip~~".$arsc_user."~~".$userpassive;
+      $arsc_sendtime = date("H:i:s");
+      $arsc_timeid = arsc_microtime();
+      mysql_query("INSERT into arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')");
+     }
     }
    }
    if (substr($arsc_message, 0, 4) == "/op ")
