@@ -1,7 +1,7 @@
 ARSC - ARSC Really Simple Chat
 =======================================================================
-Version 1.0.1 - 2001-12-30 - Thank you for using ARSC!
-Copyright (C) 2001 Manuel Kiessling
+Version 1.0.2 - 2001-12-30 - Thank you for using ARSC!
+Copyright (C) 2001, 2002 Manuel Kiessling and Marco Morais
 =======================================================================
 
 This program is free software; you can redistribute it and/or modify
@@ -20,10 +20,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
 USA.
 
 =======================================================================
-Due to the fact that my mother language is not english, it is possible
-or better very probably that there are several mistakes - I hope they
-are at least funny... if you find one, then please send me an eMail to
-manuel@kiessling.net. Thank you very much!
+Due to the fact that our mother language is not english, it is possible
+or better very probably that there are several mistakes - we hope they
+are at least funny... if you find one, then please send us an eMail to
+arsc-developers@lists.sourceforge.net. Thank you very much!
 =======================================================================
 
 
@@ -221,14 +221,16 @@ the required database. Start searching for errors there.
 You should delete the file 'install.php' from your webserver if
 installation was successful.
 
-
-
 Ok, now if you do not use the socket server, just point your browser
 to http://www.myserver.com/arsc/ and have fun chatting.
 
-Verify if the configuration file of PHP (php.ini) don't have
-the output_buffering or output_compression turned On, if so the
-the sockets and push_js don't work.
+
+Attention:
+Verify if the configuration file of PHP (php.ini) doesn't have
+the output_buffering or output_compression turned 'On', if so the
+the sockets and push_js versions don't work.
+
+
 
 Adding rooms
 ------------
@@ -331,9 +333,15 @@ http://manuel.kiessling.net/projects/software/arsc/
 Development takes place on SourceForge:
 http://www.sourceforge.net/projects/arsc/
 
-Please send me an eMail with your opinion about ARSC.
-Send me an eMail if you have questions.
-If you are a PHP programmer then give me feedback about the code.
+Send an eMail to arsc-help@lists.sourceforge.net if you
+have any questions.
+
+If you are a PHP programmer then give us feedback about the code
+by sending eMail to arsc-developers@lists.sourceforge.net.
+
 
 Manuel Kiessling
 manuel@kiessling.net
+
+Marco Morais
+marcomorais@netcabo.pt
