@@ -17,7 +17,7 @@ function arsc_getmessages($arsc_sid)
  
  $arsc_sid = str_replace("/", "", $arsc_sid);
  
- if ($arsc_my = arsc_getdatafromsid($arsc_sid) <> FALSE)
+ if (($arsc_my = arsc_getdatafromsid($arsc_sid)) <> FALSE)
  {
   $arsc_room = $arsc_my["room"];
   if ($arsc_my["level"] < 0)
@@ -25,13 +25,12 @@ function arsc_getmessages($arsc_sid)
    include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
    switch($arsc_my["level"])
    {
-    case "-1": return arsc_filter_posting("System", date("H:i:s"), "<font size=\"4\"><b>".$arsc_lang["youwerekicked"]."</b></font>", $arsc_room, 0);
-               mysql_query("DELETE from arsc_users WHERE sid = '$arsc_sid'");
+    case "-1": mysql_query("DELETE from arsc_users WHERE sid = '$arsc_sid'");
+               return arsc_filter_posting("System", date("H:i:s"), "<font size=\"4\"><b>".$arsc_lang["youwerekicked"]."</b></font>", $arsc_room, 0);
+               
    }
   }
-  $arsc_my = arsc_getdatafromsid($arsc_sid);
-  $arsc_room = $arsc_my["room"];
-  if ($arsc_my["level"] > -1)
+  else
   {
    $arsc_posting = " \n ";
    include("../shared/language/".arsc_find_language($arsc_my["user"]).".inc.php");
