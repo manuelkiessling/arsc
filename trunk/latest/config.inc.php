@@ -4,14 +4,14 @@
 
 $arsc_dbhost   = "localhost";
 $arsc_dbuser   = "root";
-$arsc_dbpasswd = "adm322su";
-$arsc_dbdb     = "ch"; //must already exist!
+$arsc_dbpasswd = "password";
+$arsc_dbdb     = "arsc"; //must already exist!
 
 // This is the password that you need if you want give yourself operator status.
 // Choose something VERY secure here!
 // In the chat, you use it like this: /selfop password
 
-$selfoppassword = "prodigy";
+$selfoppassword = "password";
 
 //////////////////////////////////////////////
 
