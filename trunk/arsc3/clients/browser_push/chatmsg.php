@@ -39,8 +39,8 @@ function arsc_getmessages($arsc_sid)
    $arsc_lastmessageping = $arsc_api->getUserValueByName("lastmessageping", $arsc_my["user"]);
    if ($arsc_lastmessageping == 0)
    {
-    $arsc_api->setUserValueByName("lastmessageping", arsc_microtime(), $arsc_my["user"]);
-    $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
+    // fixme: time() des aktuellen nachricht ermitteln
+    $arsc_api->setUserValueByName("lastmessageping", 1, $arsc_my["user"]);
    }
    else
    {
@@ -49,8 +49,7 @@ function arsc_getmessages($arsc_sid)
     {
      $arsc_posting .= $arsc_messages[0];
     }
-    if ($arsc_messages[1] <> "") $arsc_api->setUserValueByName("lastmessageping", $arsc_messages[1], $arsc_my["user"]);
-    $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
+    if ($arsc_messages[1] <> "") $arsc_api->setUserValueByName("lastmessageping", $arsc_messages[2], $arsc_my["user"]);
    }
    $arsc_posting = str_replace("#ret#", "\n", $arsc_posting);
    if ($arsc_posting <> "\n")
@@ -83,6 +82,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
   flush();
   while (!connection_aborted())
   {
+   $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
    $arsc_messages = arsc_getmessages($arsc_my["sid"]).$arsc_compatibility_hack;
    if (trim($arsc_messages) == "")
    {

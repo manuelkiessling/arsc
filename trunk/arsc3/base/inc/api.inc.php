@@ -333,11 +333,12 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  {
   $template_varname = "arsc_template_".$template;
   GLOBAL $$template_varname, $arsc_my;
-  $result = mysql_query("SELECT message, user, flag_ripped, flag_gotmsg, flag_moderated, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." WHERE timeid > '$since' ORDER BY timeid ".mysql_escape_string($sort).", id ".mysql_escape_string($sort), ARSC_PARAMETER_DB_LINK);
+  $result = mysql_query("SELECT id, message, user, flag_ripped, flag_gotmsg, flag_moderated, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." WHERE id > '$since' ORDER BY timeid ".mysql_escape_string($sort).", id ".mysql_escape_string($sort), ARSC_PARAMETER_DB_LINK);
   while ($a = mysql_fetch_array($result))
   {
    $message .= arsc_filter_posting($a["user"], $a["sendtime"], str_replace("\n", "#ret#", $a["message"]), $room, $a["flag_ripped"], $a["flag_gotmsg"], $a["flag_moderated"], $$template_varname);
    $return[1] = $a["timeid"];
+   $return[2] = $a["id"];
   }
   $return[0] = $message;
   return($return);

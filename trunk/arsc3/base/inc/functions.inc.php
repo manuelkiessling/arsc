@@ -24,9 +24,12 @@ function arsc_error_log($level, $text, $file, $line)
 // return an usable microtime
 function arsc_microtime()
 {
+ /*
  $mt = microtime();
  $mta = explode(" ", $mt);
  return str_replace("0.", "", $mta[1].$mta[0]);
+ */
+ return time();
 }
 
 // Use own sha1() function if it is not available - You wouldn't believe how old some PHP installations are...
