@@ -90,9 +90,9 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   }
  }
  
- function userIsValid($name)
+ function userIsValid($user)
  {
-  if ($result = mysql_query("SELECT level FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK))
+  if($result = mysql_query("SELECT level FROM arsc_users WHERE user = '".mysql_escape_string($name)."'", ARSC_PARAMETER_DB_LINK))
   {
    $a = mysql_fetch_array($result);
    if ($a["level"] >= 0)
@@ -107,6 +107,16 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   else
   {
    return FALSE;
+  }
+ }
+ 
+ function setLastMessagePing($user, $room = FALSE)
+ {
+  if($this->getUserValueByName("lastmessageping", $user) == 0)
+  {
+   $query = mysql_query("SELECT id FROM arsc_room_".mysql_escape_string($this->getUserValueByName("room", $user))." ORDER BY id DESC LIMIT 1", ARSC_PARAMETER_DB_LINK);
+   $result = mysql_fetch_array($query);
+   $this->setUserValueByName("lastmessageping", $result["id"], $user);
   }
  }
 
