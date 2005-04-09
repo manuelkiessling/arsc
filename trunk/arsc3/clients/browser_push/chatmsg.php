@@ -36,15 +36,13 @@ function arsc_getmessages($arsc_sid)
   else
   {
    $arsc_posting = "\n";
-   $arsc_lastmessageping = $arsc_api->getUserValueByName("lastmessageping", $arsc_my["user"]);
-   if ($arsc_lastmessageping == 0)
+   if($arsc_my["lastmessageping"] == 0)
    {
-    // fixme: time() des aktuellen nachricht ermitteln
-    $arsc_api->setUserValueByName("lastmessageping", 1, $arsc_my["user"]);
+    $arsc_api->setLastMessagePing($arsc_my["user"]);
    }
    else
    {
-    $arsc_messages = $arsc_api->getMessages($arsc_lastmessageping, $arsc_my["room"], $arsc_my["template"]);
+    $arsc_messages = $arsc_api->getMessages($arsc_api->getUserValueByName("lastmessageping", $arsc_my["user"]), $arsc_my["room"], $arsc_my["template"]);
     if ($arsc_messages[0] <> "")
     {
      $arsc_posting .= $arsc_messages[0];
