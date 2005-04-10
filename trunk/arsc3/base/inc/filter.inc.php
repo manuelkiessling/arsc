@@ -410,7 +410,7 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
       {
        $newtemplate = "html_moderator";
       }
-      mysql_query("UPDATE arsc_users SET room = '$arsc_new_room', template = '".mysql_escape_string($newtemplate)."', showsince = '".arsc_microtime()."' WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
+      mysql_query("UPDATE arsc_users SET room = '$arsc_new_room', template = '".mysql_escape_string($newtemplate)."', lastmessageping = 0, showsince = '".arsc_microtime()."' WHERE user = '$arsc_user'", ARSC_PARAMETER_DB_LINK);
       $arsc_sendtime = date("H:i:s");
       $arsc_timeid = arsc_microtime();
       $arsc_message = "arsc_user_quit~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_room);
