@@ -18,6 +18,8 @@ function arsc_shutdown()
 {
  GLOBAL $arsc_api, $arsc_my;
  $arsc_api->removeUserFromRoom($arsc_my);
+ mysql_close();
+ exit(0);
 }
 
 function arsc_getmessages($arsc_sid)
@@ -25,7 +27,8 @@ function arsc_getmessages($arsc_sid)
  GLOBAL $arsc_api,
         $arsc_smilies,
         $arsc_lang,
-        $arsc_my;
+        $arsc_my,
+        $arsc_current_room;
 
  if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
  {
@@ -35,20 +38,13 @@ function arsc_getmessages($arsc_sid)
   }
   else
   {
-   $arsc_posting = "\n";
-   if($arsc_my["lastmessageping"] == 0)
+   $arsc_api->setLastMessagePing($arsc_my);
+   $arsc_messages = $arsc_api->getMessages($arsc_api->getUserValueByName("lastmessageping", $arsc_my["user"]), $arsc_my["room"], $arsc_my["template"]);
+   if ($arsc_messages[0] <> "")
    {
-    $arsc_api->setLastMessagePing($arsc_my["user"]);
+    $arsc_posting .= $arsc_messages[0];
    }
-   else
-   {
-    $arsc_messages = $arsc_api->getMessages($arsc_api->getUserValueByName("lastmessageping", $arsc_my["user"]), $arsc_my["room"], $arsc_my["template"]);
-    if ($arsc_messages[0] <> "")
-    {
-     $arsc_posting .= $arsc_messages[0];
-    }
-    if ($arsc_messages[1] <> "") $arsc_api->setUserValueByName("lastmessageping", $arsc_messages[2], $arsc_my["user"]);
-   }
+   if ($arsc_messages[1] <> "") $arsc_api->setUserValueByName("lastmessageping", $arsc_messages[2], $arsc_my["user"]);
    $arsc_posting = str_replace("#ret#", "\n", $arsc_posting);
    if ($arsc_posting <> "\n")
    {
@@ -66,10 +62,10 @@ function arsc_getmessages($arsc_sid)
 if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__)))
 {
  include("../../languages/".$arsc_my["language"].".inc.php");
- if ($arsc_api->userIsValid($arsc_my["user"]))
+ if($arsc_api->userIsValid($arsc_my["user"]))
  {
   $arsc_compatibility_hack = "";
-  if(eregi("Safari", getenv("HTTP_USER_AGENT")))
+  if(eregi("Safari", $_SERVER["HTTP_USER_AGENT"]))
   {
    $arsc_compatibility_hack = str_repeat(" ", 1000);
   }
@@ -78,8 +74,9 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
   echo arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".str_replace("{title}", ARSC_PARAMETER_TITLE, $arsc_lang["welcome"]), $arsc_my["room"], 0, 0, 0, $$arsc_template_varname);
   if(ARSC_PARAMETER_WELCOME_MESSAGE <> "") echo arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".ARSC_PARAMETER_WELCOME_MESSAGE, $arsc_my["room"], 0, 0, 0, $$arsc_template_varname);
   flush();
-  while (!connection_aborted())
+  while(TRUE)
   {
+   if(!$arsc_api->userExists($arsc_my["user"])) die();
    $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
    $arsc_messages = arsc_getmessages($arsc_my["sid"]).$arsc_compatibility_hack;
    if (trim($arsc_messages) == "")
