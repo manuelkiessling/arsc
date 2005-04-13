@@ -12,15 +12,6 @@ include("../../base/inc/api.inc.php");
 include("../../base/inc/filter.inc.php");
 
 $arsc_api = new arsc_api_Class;
-register_shutdown_function("arsc_shutdown");
-
-function arsc_shutdown()
-{
- GLOBAL $arsc_api, $arsc_my;
- $arsc_api->removeUserFromRoom($arsc_my);
- mysql_close();
- exit(0);
-}
 
 function arsc_getmessages($arsc_sid)
 {
@@ -77,7 +68,6 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
   while(TRUE)
   {
    if(!$arsc_api->userExists($arsc_my["user"])) die();
-   $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
    $arsc_messages = arsc_getmessages($arsc_my["sid"]).$arsc_compatibility_hack;
    if (trim($arsc_messages) == "")
    {
