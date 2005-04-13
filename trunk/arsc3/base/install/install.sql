@@ -202,8 +202,7 @@ CREATE TABLE `arsc_room_vip_lounge` (
   `timeid` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   KEY `timeid` (`timeid`),
-  KEY `flag_ripped` (`flag_ripped`),
-  KEY `flag_ripped_2` (`flag_ripped`)
+  KEY `flag_ripped` (`flag_ripped`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `arsc_rooms` (
@@ -217,8 +216,7 @@ CREATE TABLE `arsc_rooms` (
   `layout_id` int(11) NOT NULL default '1',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `roomname_nice` (`roomname_nice`),
-  UNIQUE KEY `roomname` (`roomname`),
-  KEY `roomname_2` (`roomname`,`owner`)
+  UNIQUE KEY `roomname` (`roomname`)
 ) TYPE=MyISAM;
 
 INSERT INTO `arsc_rooms` VALUES (1, 'free_for_all', 'Free For All', 'The lounge is the entry room for all your needs. Get in touch here and explore the other rooms.', '-1', '', 0, 1);
