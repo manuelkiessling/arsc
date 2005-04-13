@@ -477,6 +477,18 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  function deleteIdleUsers()
  {
   $timebuffer = time() - ARSC_PARAMETER_PING;
+  if(ARSC_DEBUG)
+  {
+   $query = mysql_query("SELECT * FROM arsc_users WHERE (lastping < '$timebuffer' AND version <> 'browser_text')", ARSC_PARAMETER_DB_LINK);
+   while($result = mysql_fetch_array($query))
+   {
+    while(list($key, $val) = each($result))
+    {
+     if(!is_numeric($key)) $values .= $key." = ".$val." ";
+    }
+    arsc_error_log(ARSC_ERRORLEVEL_DEBUG, "User ".$result["user"]." timed out. [".$values."]", __FILE__, __LINE__);
+   }
+  }
   mysql_query("DELETE FROM arsc_users WHERE (lastping < '$timebuffer' AND version <> 'browser_text')", ARSC_PARAMETER_DB_LINK);
   $timebuffer = time() - ARSC_PARAMETER_PING_TEXT;
   mysql_query("DELETE FROM arsc_users WHERE lastping < '$timebuffer' AND version = 'browser_text'", ARSC_PARAMETER_DB_LINK);
