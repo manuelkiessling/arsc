@@ -28,9 +28,8 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
   header("Pragma: no-cache");
   header("Content-Type: text/html");
   header("Refresh: ".ARSC_PARAMETER_USERLIST_REFRESH."; URL=userlist.php?arsc_sid=".$arsc_my["sid"]."&arsc_current_room=".$arsc_my["room"]."&arsc_language=".$arsc_my["language"]);
-
+  $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
   if ($arsc_current_room <> "" AND $arsc_current_room <> $arsc_my["room"]) $arsc_current["reloadallframes"] = 1; else $arsc_current["reloadallframes"] = 0;
-
   echo $arsc_api->parseLayoutTemplate("userlist");
  }
  else
