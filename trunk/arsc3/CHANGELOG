@@ -1,5 +1,16 @@
 ARSC - ARSC Really Simple Chat - Changelog
 
+- Version 3.0.2-rc1
+  2005-04-13
+
+  - Dropped auto-logout functionality from browser_push version
+    in order to improve stability
+  - Fixed a bug that prevented httpd processes from correctly
+    terminating
+  - Switched from microtime (bigint) values to primary key
+    for message index
+
+
 - Version 3.0.1
   2005-02-21
 
