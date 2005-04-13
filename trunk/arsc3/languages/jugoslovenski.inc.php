@@ -15,7 +15,7 @@ include("english.inc.php");
 
 // Define some settings for this language
 $arsc_lang_regions["Jugoslovenski"] = array("de", "de-de", "de-at");
-$arsc_lang_name["Jugoslovenski"] = "Jugoslovenski";
+$arsc_lang_name["jugoslovenski"] = "Jugoslovenski";
 $arsc_lang["charset"] = "iso-8859-1";
 
 
