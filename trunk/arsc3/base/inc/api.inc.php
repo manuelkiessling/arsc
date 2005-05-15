@@ -7,6 +7,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  {
   $user = str_replace(" ", "_", $user);
   $user = str_replace("ß", "ss", $user);
+  $user = str_replace("\'", "", $user);
   $user = preg_replace("/['´`^|°\.:;<>=\!\"\?§²³#\*+~\/\%&\{\[\]\}]/", "", $user);
   $user = preg_replace("/[äÄáÁàÀâÂ]/", "a", $user);
   $user = preg_replace("/[éÉèÈêÊ]/", "e", $user);
@@ -365,7 +366,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  {
   $template_varname = "arsc_template_".$template;
   GLOBAL $$template_varname, $arsc_my;
-  $result = mysql_query("SELECT id, message, user, flag_ripped, flag_gotmsg, flag_moderated, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." FORCE INDEX(PRIMARY) WHERE id > '".mysql_escape_string($since)."' ORDER BY id ".mysql_escape_string($sort), ARSC_PARAMETER_DB_LINK);
+  $result = mysql_query("SELECT id, message, user, flag_ripped, flag_gotmsg, flag_moderated, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." USE INDEX(PRIMARY) WHERE id > '".mysql_escape_string($since)."' ORDER BY id ".mysql_escape_string($sort), ARSC_PARAMETER_DB_LINK);
   while ($a = mysql_fetch_array($result))
   {
    $message .= arsc_filter_posting($a["user"], $a["sendtime"], str_replace("\n", "#ret#", $a["message"]), $room, $a["flag_ripped"], $a["flag_gotmsg"], $a["flag_moderated"], $$template_varname);

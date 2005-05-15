@@ -3,7 +3,7 @@
 set_magic_quotes_runtime(0);
 
 // More parameters
-define("ARSC_VERSION", "3.0.2-rc1");
+define("ARSC_VERSION", "3.0.2-rc2");
 define("ARSC_PARAMETER_HOSTNAME", $_SERVER["HTTP_HOST"]);
 define("ARSC_PARAMETER_CURRENTDIR", dirname($_SERVER["PHP_SELF"]));
 define("ARSC_PARAMETER_HTMLHEAD", "<html><head></head>\n<body bgcolor=\"#FFFFFF\">\n\n\n".str_repeat("<!-- This is dummy content to get some browsers running... -->\n", 100));
@@ -40,8 +40,13 @@ $arsc_roomtypes = array(ARSC_ROOMTYPE_STANDARD  => "Standard",
                        );
 
 // Connect the database
-define("ARSC_PARAMETER_DB_LINK", mysql_connect(ARSC_PARAMETER_DB_HOST, ARSC_PARAMETER_DB_USER, ARSC_PARAMETER_DB_PASSWORD));
-mysql_select_db(ARSC_PARAMETER_DB_DATABASE, ARSC_PARAMETER_DB_LINK);
+$arsc_db_link = @mysql_connect(ARSC_PARAMETER_DB_HOST, ARSC_PARAMETER_DB_USER, ARSC_PARAMETER_DB_PASSWORD);
+if($arsc_db_link === FALSE) die("<strong>[".$arsc_errorlevels[ARSC_ERRORLEVEL_FATAL]."]</strong> Could not connect to MySQL server on '".ARSC_PARAMETER_DB_HOST."' with user '".ARSC_PARAMETER_DB_USER."'.");
+define("ARSC_PARAMETER_DB_LINK", $arsc_db_link);
+if(!@mysql_select_db(ARSC_PARAMETER_DB_DATABASE, ARSC_PARAMETER_DB_LINK))
+{
+ die("<strong>[".$arsc_errorlevels[ARSC_ERRORLEVEL_FATAL]."]</strong> Could not select MySQL database '".ARSC_PARAMETER_DB_DATABASE."'. The MySQL server said: ".mysql_error(ARSC_PARAMETER_DB_LINK).".");
+}
 
 // Get parameters from database
 if ($arsc_query = mysql_query("SELECT name, value FROM arsc_parameters", ARSC_PARAMETER_DB_LINK))

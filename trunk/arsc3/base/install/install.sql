@@ -128,7 +128,7 @@ INSERT INTO `arsc_parameters` VALUES ('ping', '20', 'This value defines after ho
 INSERT INTO `arsc_parameters` VALUES ('userlist_refresh', '8', 'This value defines after how many seconds the user list frame will be refreshed. Please make sure that this value is never higher as the value defined by "ping".');
 INSERT INTO `arsc_parameters` VALUES ('ping_text', '600', 'This value defines after how many seonds a text-browser user will be logged out if he does not refresh his chat page. Set reasonably high!');
 INSERT INTO `arsc_parameters` VALUES ('roomlist_refresh', '240', 'This value defines after how many seconds the room list frame will be refreshed.');
-INSERT INTO `arsc_parameters` VALUES ('rowlimit', '10', 'This value defines how many entries will be hold in the database table of each room at the most. This is used to avoid an unlimited grow of the database tables, which would slow things down. Set this higher if you have really many users chatting at the same time.');
+INSERT INTO `arsc_parameters` VALUES ('rowlimit', '100', 'This value defines how many entries will be hold in the database table of each room at the most. This is used to avoid an unlimited grow of the database tables, which would slow things down. Set this higher if you have really many users chatting at the same time.');
 INSERT INTO `arsc_parameters` VALUES ('baseurl', '', 'This is the URL of your installation. Do not change unless you know what you are doing!');
 INSERT INTO `arsc_parameters` VALUES ('default_layout_id', '1', 'The ID of the layout which will be used as the default.');
 INSERT INTO `arsc_parameters` VALUES ('virtualservers_name', 'srv%.', 'The subdomain prefix for virtual servers.');

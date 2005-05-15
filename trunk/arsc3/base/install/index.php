@@ -109,13 +109,6 @@ function arsc_mysql_query($query)
    </b>
    <br>
    <br>
-   <font color="#FF0000">
-    <b>
-     Please completely delete the folder <i>install</i> from your ARSC installation NOW!
-    </b>
-   </font>
-   <br>
-   <br>
    If something went wrong, you might want to <a href="http://sourceforge.net/forum/forum.php?forum_id=102858" target="_blank">visit the ARSC help forum by clicking here</a>.
    <br>
    <br>
@@ -125,7 +118,7 @@ function arsc_mysql_query($query)
     <a href="../../">Go to the chat homepage</a>
    </li>
    <li>
-    <a href="../admin/">Go to the chat admin interface</a> (log in with the <i>Administrator</i> Account listed above).
+    <a href="../admin/">Go to the chat admin interface</a> (log in with the <i>Administrator</i> account listed above).
    </li>
   </font>
   <br>
