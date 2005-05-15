@@ -49,6 +49,8 @@ else
    <font face="Arial" size="2">
     Use an administrator account in order to log in.
     <br>
+    An account named 'Administrator' was created upon install.
+    <p>
     <b>Cookies must be enabled</b> for the login to work.
    </font>
    <br>
