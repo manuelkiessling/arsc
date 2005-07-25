@@ -33,6 +33,7 @@
       <a href="levels.php"><font color="#EEEEEE">Level Right Management</font></a>
       &nbsp;&nbsp;&nbsp;
       <b>
+       <a href="../../Documentation/" target="_blank"><font color="#EEEEEE">Documentation</font></a>
        <a href="http://sourceforge.net/forum/forum.php?forum_id=102858" target="_blank"><font color="#EEEEEE">ARSC help forum</font></a>
       </b>
      </font>
