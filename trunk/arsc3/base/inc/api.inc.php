@@ -19,9 +19,11 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
 
  function getUserValuesBySID($sid)
  {
-  if ($result = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, layout, level, flag_ripped, sid, lastmessageping, showsince FROM arsc_users WHERE sid = '".mysql_escape_string($sid)."'", ARSC_PARAMETER_DB_LINK))
+  $query = mysql_query("SELECT user, lastping, ip, room, language, color, version, template, layout, level, flag_ripped, sid, lastmessageping, showsince FROM arsc_users WHERE sid = '".mysql_escape_string($sid)."'", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_fetch_array($query);
+  if($result["sid"] != "")
   {
-   return mysql_fetch_array($result);
+   return $result;
   }
   else
   {
@@ -93,17 +95,11 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  
  function userIsValid($user)
  {
-  if($result = mysql_query("SELECT level FROM arsc_users WHERE user = '".mysql_escape_string($name)."'", ARSC_PARAMETER_DB_LINK))
+  $result = mysql_query("SELECT COUNT(id) AS cnt FROM arsc_users WHERE user = '".mysql_escape_string($user)."' AND level >= '0'", ARSC_PARAMETER_DB_LINK);
+  $a = mysql_fetch_array($result);
+  if ($a["cnt"] == 1)
   {
-   $a = mysql_fetch_array($result);
-   if ($a["level"] >= 0)
-   {
-    return TRUE;
-   }
-   else
-   {
-    return FALSE;
-   }
+   return TRUE;
   }
   else
   {
@@ -133,13 +129,19 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
 
  function setLastMessagePing($my)
  {
-  GLOBAL $arsc_current_room;
-  if($arsc_current_room <> $my["room"])
+  $query = mysql_query("SELECT room, lastmessageping FROM arsc_users WHERE user = '".mysql_escape_string($my["user"])."'", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_fetch_array($query);
+  if($result["lastmessageping"] != -1)
   {
-   $query = mysql_query("SELECT id FROM arsc_room_".mysql_escape_string($my["room"])." ORDER BY id DESC LIMIT 1", ARSC_PARAMETER_DB_LINK);
+   $query = mysql_query("SELECT id FROM arsc_room_".mysql_escape_string($result["room"])." ORDER BY id DESC LIMIT 1", ARSC_PARAMETER_DB_LINK);
    $result = mysql_fetch_array($query);
    $this->setUserValueByName("lastmessageping", $result["id"], $my["user"]);
-   $arsc_current_room = $my["room"];
+   return($result["id"]);
+  }
+  else
+  {
+   $this->setUserValueByName("lastmessageping", -2, $my["user"]);
+   return(0);
   }
  }
 
@@ -339,6 +341,9 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  
  function deleteUser($name)
  {
+  $query = mysql_query("SELECT lastping FROM arsc_users WHERE user = '".mysql_escape_string($name)."'", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_fetch_array($query);
+  mysql_query("INSERT INTO arsc_logouts (lastping, logout) VALUES ('".mysql_escape_string($result["lastping"])."', '".time()."')");
   mysql_query("DELETE FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK);
   return TRUE;
  }
@@ -347,6 +352,9 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  {
   if ($my["user"] <> "")
   {
+   $query = mysql_query("SELECT lastping FROM arsc_users WHERE sid = '".mysql_escape_string($my["sid"])."'", ARSC_PARAMETER_DB_LINK);
+   $result = mysql_fetch_array($query);
+   mysql_query("INSERT INTO arsc_logouts (lastping, logout) VALUES ('".mysql_escape_string($result["lastping"])."', '".time()."')");
    mysql_query("DELETE FROM arsc_users WHERE sid = '".mysql_escape_string($my["sid"])."'", ARSC_PARAMETER_DB_LINK);
    mysql_query("INSERT INTO arsc_room_".mysql_escape_string($my["room"])." (message, user, sendtime, timeid) VALUES ('".mysql_escape_string("arsc_user_quit~~".$my["user"]."~~".$this->getReadableRoomname($my["room"]))."', 'System', '".mysql_escape_string(date("H:i:s"))."', '".mysql_escape_string(arsc_microtime())."')", ARSC_PARAMETER_DB_LINK);
   }
@@ -366,6 +374,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  {
   $template_varname = "arsc_template_".$template;
   GLOBAL $$template_varname, $arsc_my;
+  //echo "SELECT id, message, user, flag_ripped, flag_gotmsg, flag_moderated, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." USE INDEX(PRIMARY) WHERE id > '".mysql_escape_string($since)."' ORDER BY id ".mysql_escape_string($sort)."<br />";
   $result = mysql_query("SELECT id, message, user, flag_ripped, flag_gotmsg, flag_moderated, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." USE INDEX(PRIMARY) WHERE id > '".mysql_escape_string($since)."' ORDER BY id ".mysql_escape_string($sort), ARSC_PARAMETER_DB_LINK);
   while ($a = mysql_fetch_array($result))
   {
@@ -374,6 +383,25 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
    $return[2] = $a["id"];
   }
   $return[0] = $message;
+  return($return);
+ }
+
+ function getRawMessages($since, $room, $template, $sort = "ASC")
+ {
+  $result = mysql_query("SELECT id, message, user, flag_ripped, flag_gotmsg, flag_moderated, sendtime, timeid FROM arsc_room_".mysql_escape_string($room)." USE INDEX(PRIMARY) WHERE timeid > '".mysql_escape_string($since)."' ORDER BY id ".mysql_escape_string($sort), ARSC_PARAMETER_DB_LINK);
+  while ($a = mysql_fetch_array($result))
+  {
+   $message[] = $a["timeid"];
+   $message[] = $a["user"];
+   $message[] = $a["sendtime"];
+   $message[] = $a["message"];
+   $message[] = $room;
+   $message[] = $a["flag_ripped"];
+   $message[] = $a["flag_gotmsg"];
+   $message[] = $a["flag_moderated"];
+   $return[] = $message;
+   $message = array();
+  }
   return($return);
  }
 
@@ -489,6 +517,11 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
     }
     arsc_error_log(ARSC_ERRORLEVEL_DEBUG, "User ".$result["user"]." timed out. [".$values."]", __FILE__, __LINE__);
    }
+  }
+  $query = mysql_query("SELECT lastping FROM arsc_users WHERE (lastping < '$timebuffer' AND version <> 'browser_text')", ARSC_PARAMETER_DB_LINK);
+  while($result = mysql_fetch_array($query))
+  {
+   mysql_query("INSERT INTO arsc_logouts (lastping, logout) VALUES ('".mysql_escape_string($result["lastping"])."', '".time()."')");
   }
   mysql_query("DELETE FROM arsc_users WHERE (lastping < '$timebuffer' AND version <> 'browser_text')", ARSC_PARAMETER_DB_LINK);
   $timebuffer = time() - ARSC_PARAMETER_PING_TEXT;
