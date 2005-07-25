@@ -15,7 +15,7 @@ $arsc_api = new arsc_api_Class;
 $arsc_user = arsc_validateinput($arsc_api->makeCleanUsername($_POST["arsc_user"]), NULL, "/[^a-zA-Z0-9_\-]/", 1, 64, __FILE__, __LINE__);
 $arsc_password = arsc_validateinput($_POST["arsc_password"], NULL, "/[^a-zA-Z0-9]/", 0, 64, __FILE__, __LINE__);
 $arsc_room = arsc_validateinput($_POST["arsc_room"], NULL, "/[^a-z0-9_]/", 0, 32, __FILE__, __LINE__);
-$arsc_chatversion = arsc_validateinput($_POST["arsc_chatversion"], array("browser_push", "browser_socket", "browser_refresh", "browser_text"), 0, 64, __FILE__, __LINE__);
+$arsc_chatversion = arsc_validateinput($_POST["arsc_chatversion"], array("browser_push", "browser_socket", "browser_xmlhttprequest", "browser_refresh", "browser_text"), 0, 64, __FILE__, __LINE__);
 $arsc_template = arsc_validateinput($_POST["arsc_template"], array("html", "html_moderator", "xml"), 0, 64, __FILE__, __LINE__); // FIXME: get available templates
 
 $arsc_ip = getenv("REMOTE_ADDR");
