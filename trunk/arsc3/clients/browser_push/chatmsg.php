@@ -18,39 +18,36 @@ function arsc_getmessages($arsc_sid)
  GLOBAL $arsc_api,
         $arsc_smilies,
         $arsc_lang,
-        $arsc_my,
-        $arsc_current_room;
+        $arsc_my;
 
- if ($arsc_my = $arsc_api->getUserValuesBySID($arsc_sid))
+ if($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__)))
  {
-  if (!$arsc_api->userIsValid($arsc_my["user"]))
+  if($arsc_my["lastmessageping"] == 0)
   {
-   $arsc_api->removeUserFromRoom($arsc_my);
+   $arsc_my["lastmessageping"] = $arsc_api->setLastMessagePing($arsc_my);
   }
-  else
+  $arsc_messages = $arsc_api->getMessages($arsc_my["lastmessageping"], $arsc_my["room"], $arsc_my["template"]);
+  $arsc_my["lastmessageping"] = $arsc_api->setLastMessagePing($arsc_my);
+  if ($arsc_messages[0] != "")
   {
-   $arsc_api->setLastMessagePing($arsc_my);
-   $arsc_messages = $arsc_api->getMessages($arsc_api->getUserValueByName("lastmessageping", $arsc_my["user"]), $arsc_my["room"], $arsc_my["template"]);
-   if ($arsc_messages[0] <> "")
-   {
-    $arsc_posting .= $arsc_messages[0];
-   }
-   if ($arsc_messages[1] <> "") $arsc_api->setUserValueByName("lastmessageping", $arsc_messages[2], $arsc_my["user"]);
-   $arsc_posting = str_replace("#ret#", "\n", $arsc_posting);
-   if ($arsc_posting <> "\n")
-   {
-    if (ARSC_PARAMETER_SMILIES == "yes" AND $arsc_api->checkCommandAllowed($arsc_my["level"], "smilies"))
-    {
-     reset($arsc_smilies);
-     $arsc_posting = arsc_smilies_replace($arsc_posting, $arsc_smilies, ARSC_PARAMETER_SMILIES_PATH);
-    }
-   }
-   return str_replace("#arsc_dummy_space#", "", $arsc_posting);
+   $arsc_posting .= $arsc_messages[0];
   }
+  //if ($arsc_messages[1] <> "") $arsc_api->setUserValueByName("lastmessageping", $arsc_messages[2], $arsc_my["user"]);
+  $arsc_posting = str_replace("#ret#", "\n", $arsc_posting);
+  if ($arsc_posting <> "\n" AND trim($arsc_posting) <> "" AND strlen($arsc_posting) > 1)
+  {
+   if (ARSC_PARAMETER_SMILIES == "yes" AND $arsc_api->checkCommandAllowed($arsc_my["level"], "smilies"))
+   {
+    reset($arsc_smilies);
+    $arsc_posting = arsc_smilies_replace($arsc_posting, $arsc_smilies, ARSC_PARAMETER_SMILIES_PATH);
+   }
+  }
+  return str_replace("#arsc_dummy_space#", "", $arsc_posting);
  }
 }
 
-if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__)))
+
+if($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__)))
 {
  include("../../languages/".$arsc_my["language"].".inc.php");
  if($arsc_api->userIsValid($arsc_my["user"]))
@@ -71,10 +68,9 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
    $arsc_messages = arsc_getmessages($arsc_my["sid"]).$arsc_compatibility_hack;
    if (trim($arsc_messages) == "")
    {
-    srand((double)microtime()*1000000);
     if(rand(0, 10) == 0)
     {
-     echo $arsc_messages;
+     echo "<!-- this is just a keepalive -->";
      flush();
     }
    }
