@@ -15,7 +15,7 @@ if ($arsc_api->userIsValid($arsc_my["user"]))
  define("ARSC_PARAMETER_VIRTUALSERVERS_CURRENT", arsc_getVirtualServer($arsc_my["ip"]));
  $arsc_current["queueframeheight"] = "0";
  if ($arsc_my["level"] >= "20") $arsc_current["queueframeheight"] = "50%";
- echo $arsc_api->parseLayoutTemplate("browser_push_index", FALSE);
+ echo $arsc_api->parseLayoutTemplate("browser_default_index", FALSE);
 }
 
 ?>
