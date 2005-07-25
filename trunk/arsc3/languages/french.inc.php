@@ -14,8 +14,8 @@
 include("english.inc.php");
 
 // Define some settings for this language
-$arsc_lang_regions["francais"] = array("fr", "fr-fr", "fr-ca");
-$arsc_lang_name["francais"] = "Francais";
+$arsc_lang_regions["french"] = array("fr", "fr-fr", "fr-ca");
+$arsc_lang_name["french"] = "Francais";
 $arsc_lang["charset"] = "iso-8859-1";
 
 
