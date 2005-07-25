@@ -51,6 +51,6 @@
 
   Refer to the INSTALL file to see what to do next.
 
-*/
+*/ 
 
 ?>
