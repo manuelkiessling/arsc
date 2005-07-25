@@ -1,6 +1,6 @@
 ARSC - ARSC Really Simple Chat - General Information
 =======================================================================
-Version 3.0.2 RC 1 - 2005-04-13 - Thank you for using ARSC!
+Version 3.0.2 RC 2 - 2005-07-25 - Thank you for using ARSC!
 Copyright (C) 2001, 2002, 2003, 2004, 2005 Manuel Kiessling
 =======================================================================
 
@@ -26,7 +26,14 @@ If you find one, then please send me an eMail to manuel@kiessling.net.
 Thank you very much!
 =======================================================================
 
-For installation instructions, please see the INSTALL file.
+For installation instructions, please see the INSTALL file or the file
+installation.html in the Documentation directory.
+
+For Frequently Asked Questions, see the the file faq.html in the
+Documentation directory.
+
+For general information, see the the file userguide.html in the
+Documentation directory.
 
 If you find a bug, please report it using the bugtracker on SourceForge:
 http://sourceforge.net/tracker/?func=add&group_id=32699&atid=406296
