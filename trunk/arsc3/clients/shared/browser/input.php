@@ -14,7 +14,14 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
  
  if ($arsc_api->userIsValid($arsc_my["user"]))
  {
-  echo $arsc_api->parseLayoutTemplate("input");
+  if($arsc_my["version"] == "browser_refresh")
+  {
+   echo $arsc_api->parseLayoutTemplate("input_nojavascript");
+  }
+  else
+  {
+   echo $arsc_api->parseLayoutTemplate("input");
+  }
  }
 }
 ?>
