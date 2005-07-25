@@ -46,9 +46,6 @@ $arsc_lang["clicktoregister"]           = "Registruj svoj Nik!";
 
 // Why kicked? Page
 
-$arsc_lang["why_kicked"] = "Vi ste Izbaceni sa chata od Strane Systema ili Operatora Chata. To se verovatno dogodilo zbog nepostovanja pravila ovoga chata !!! Ili je vase vreme isteklo !!!
-.";
-
 
 // Register page and eMail
 

@@ -27,26 +27,29 @@ $arsc_lang["next"] = "Weiter";
 
 // Login Page
 
-$arsc_lang["entername"]                 = "Ihr Nickname:";
-$arsc_lang["enterpassword"]             = "Ihr Passwort:";
-$arsc_lang["selectchatversion"]         = "W&auml;hlen Sie eine Chatversion:";
-$arsc_lang["version_browser_socket"]    = "Optimiert";
-$arsc_lang["version_browser_push"]      = "Optimiert (Firewallkompatibel)";
-$arsc_lang["version_browser_text"]      = "F&uuml;r Textbrowser";
-$arsc_lang["yes"]                       = "Ja";
-$arsc_lang["no"]                        = "Nein";
-$arsc_lang["selectroom"]                = "W&auml;hlen Sie einen Raum:";
-$arsc_lang["createdby"]                 = "angelegt von";
-$arsc_lang["startbutton"]               = "Den Chat betreten";
-$arsc_lang["usersinchat"]               = "Diese User sind zur Zeit online:";
-$arsc_lang["usersinchat_room"]          = "Raum";
-$arsc_lang["usersinchat_name"]          = "User";
-$arsc_lang["clicktoregister"]           = "Registrieren Sie Ihren Nickname!";
+$arsc_lang["entername"]                      = "Ihr Nickname:";
+$arsc_lang["enterpassword"]                  = "Ihr Passwort:";
+$arsc_lang["selectchatversion"]              = "W&auml;hlen Sie eine Chatversion:";
+$arsc_lang["version_browser_socket"]         = "Streaming";
+$arsc_lang["version_browser_push"]           = "Streaming, Firewall kompatibel";
+$arsc_lang["version_browser_xmlhttprequest"] = "Kein Streaming, Firewall kompatibel";
+$arsc_lang["version_browser_refresh"]        = "Kein Streaming, Firewall kompatibel, kein Javascript";
+$arsc_lang["version_browser_text"]           = "F&uuml;r Textbrowser";
+$arsc_lang["yes"]                            = "Ja";
+$arsc_lang["no"]                             = "Nein";
+$arsc_lang["selectroom"]                     = "W&auml;hlen Sie einen Raum:";
+$arsc_lang["createdby"]                      = "angelegt von";
+$arsc_lang["startbutton"]                    = "Den Chat betreten";
+$arsc_lang["usersinchat"]                    = "Diese User sind zur Zeit online:";
+$arsc_lang["usersinchat_room"]               = "Raum";
+$arsc_lang["usersinchat_name"]               = "User";
+$arsc_lang["clicktoregister"]                = "Registrieren Sie Ihren Nickname!";
 
 
 // Why kicked? Page
 
-$arsc_lang["why_kicked"] = "Sie wurden des Chats verwiesen. Dies ist sehr wahrscheinlich passiert, weil Sie die Nutzungsrichtlinien des Chats in irgendeiner Form verletzt haben, oder weil Ihre Sitzung abgelaufen ist.";
+$arsc_lang["why_kicked"] = "Ihre Sitzung wurde beendet, m&ouml;glicherweise durch einen Timeout, oder durch nicht regelkonformes Verhalten.";
+$arsc_lang["returntologinpage"] = "Zur&uuml;ck zur Loginseite";
 
 
 // Register page and eMail

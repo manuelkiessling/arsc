@@ -33,7 +33,6 @@ $arsc_lang["usersinchat_name"]  = "Utilisateur";
 $arsc_lang["clicktoregister"]   = "Enregistrer votre pseudo!";
 
 // Why kicked page
-$arsc_lang["why_kicked"] = "Vous avez été viré du chat par un opérateur, probablement à cause d'un comportement inapproprié selon les règles du chat.";
 $arsc_lang["returntologinpage"] = "Retournez à la page d'identification";
 
 // Register page and eMail

@@ -43,7 +43,6 @@ $arsc_lang["clicktoregister"]           = "Registre su nick!";
 
 // Why kicked page
 
-$arsc_lang["why_kicked"] = "Usted has sido expulsado del chat por un operador, problablemente porque su comportamiento no fue acorde a las reglas del club, o porque su sesion ha expirado";
 $arsc_lang["returntologinpage"] = "Volver a la pagina de login";
 
 

@@ -30,12 +30,6 @@ $arsc_lang["next"] = "Weiter";
 $arsc_lang["entername"]                 = "Por favor digite seu nick:";
 $arsc_lang["enterpassword"]             = "Por favor digite sua senha:";
 $arsc_lang["whichversion"]              = "Qual vcersão você quer usar?";
-$arsc_lang["version_dontknow"]          = "Escolha essa versão se você não sabe qual navegador usar.";
-$arsc_lang["version_browser_socket"]    = "Versão recomendada para navegadores modernos. Usa javascript e frames.";
-$arsc_lang["version_browser_push"]      = "Versão alternativa. Use esta se você teve problemas com a versão recomendada.";
-$arsc_lang["version_browser_header_js"] = "Versão alternativa para navegadores modernos se alguma acima não funcionou. Usa javascript e frames.";
-$arsc_lang["version_browser_header"]    = "Uma versão que só usa frame, mas não JavaScript.";
-$arsc_lang["version_browser_box"]       = "Uma versão para Zuum WebTV box.";
 $arsc_lang["version_browser_text"]      = "Versão simples para navegadores baseados em texto.";
 $arsc_lang["version_applet"]            = "Java Applet.";
 $arsc_lang["yes"]                       = "Sim";
@@ -49,7 +43,8 @@ $arsc_lang["usersinchat_name"]          = "Usuário";
 $arsc_lang["clicktoregister"]           = "Registre seu nick!";
 
 // Why kicked page
-$arsc_lang["why_kicked"] = "Você foi chutado pra fora do chat por um operador, provavelmente por causa de seu coportamento que não foi de acordo com as regras desse chat.";
+
+
 
 // Register page and eMail
 

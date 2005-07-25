@@ -46,7 +46,6 @@ $arsc_lang["clicktoregister"]           = "registrujte novog korisnika!";
 
 // Why kicked? Page
 
-$arsc_lang["why_kicked"] = "Vi ste izbaèeni iz chat-a. To je se najvjerovatnije desilo, zato ¹to ste pravila kori¹tenja chat-a na bilo koji naèin povrijedili, ili ¹to vam je isteklo vrijeme.";
 
 
 // Register page and eMail

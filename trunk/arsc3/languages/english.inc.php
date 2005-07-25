@@ -24,26 +24,28 @@ $arsc_lang["next"] = "Next";
 
 // Login Page
 
-$arsc_lang["entername"]                 = "Please enter your nickname:";
-$arsc_lang["enterpassword"]             = "Please enter your password:";
-$arsc_lang["selectchatversion"]         = "Choose a version:";
-$arsc_lang["version_browser_socket"]    = "Optimized";
-$arsc_lang["version_browser_push"]      = "Optimized (firewall compatible)";
-$arsc_lang["version_browser_text"]      = "For text browsers";
-$arsc_lang["yes"]                       = "Yes";
-$arsc_lang["no"]                        = "No";
-$arsc_lang["selectroom"]                = "Choose a room:";
-$arsc_lang["createdby"]                 = "Created by";
-$arsc_lang["startbutton"]               = "Start the chat!";
-$arsc_lang["usersinchat"]               = "These users are currently logged in:";
-$arsc_lang["usersinchat_room"]          = "Room";
-$arsc_lang["usersinchat_name"]          = "User";
-$arsc_lang["clicktoregister"]           = "Register your nickname!";
+$arsc_lang["entername"]                      = "Please enter your nickname:";
+$arsc_lang["enterpassword"]                  = "Please enter your password:";
+$arsc_lang["selectchatversion"]              = "Choose a version:";
+$arsc_lang["version_browser_socket"]         = "Streaming";
+$arsc_lang["version_browser_push"]           = "Streaming, firewall compatible";
+$arsc_lang["version_browser_xmlhttprequest"] = "Non-streaming, firewall compatible";
+$arsc_lang["version_browser_refresh"]        = "Non-streaming, firewall compatible, no javascript";
+$arsc_lang["version_browser_text"]           = "For text browsers";
+$arsc_lang["yes"]                            = "Yes";
+$arsc_lang["no"]                             = "No";
+$arsc_lang["selectroom"]                     = "Choose a room:";
+$arsc_lang["createdby"]                      = "Created by";
+$arsc_lang["startbutton"]                    = "Start the chat!";
+$arsc_lang["usersinchat"]                    = "These users are currently logged in:";
+$arsc_lang["usersinchat_room"]               = "Room";
+$arsc_lang["usersinchat_name"]               = "User";
+$arsc_lang["clicktoregister"]                = "Register your nickname!";
 
 
 // Why kicked page
 
-$arsc_lang["why_kicked"] = "You were kicked out of the chat by an operator, probably due to behaviour that was not according with the rules of this chat, or because your session has timed out.";
+$arsc_lang["why_kicked"] = "Your session has ended, probably because of a timeout, or due to behaviour that was not according with the rules of this chat.";
 $arsc_lang["returntologinpage"] = "Return to the login page";
 
 
@@ -162,7 +164,7 @@ $arsc_lang["gotmsg"]              = "You whispered to {user}: {message}";
 $arsc_lang["croom"]               = "User {user} decides to withdraw in his private room {room}.";
 $arsc_lang["room_exists"]         = "Sorry, but the room {room} already exists.";
 $arsc_lang["room_badname"]        = "Sorry, this roomname is not acceptable.";
-$arsc_lang["room_created"]        = "Your private room {room} was successfully created! Now you can invite someone using the /invite command.";
+$arsc_lang["room_created"]        = "Your private room '{room}' was successfully created! Now you can invite someone using the /invite command.";
 $arsc_lang["invite"]              = "User {user} has invited you to his room {room}. Type \"/room {room} {password}\" to enter this room.";
 $arsc_lang["invite_notexist"]     = "Sorry, the user {user} does not exist.";
 $arsc_lang["invite_notownroom"]   = "Sorry, you must be in your own private room to invite other users.";

@@ -36,7 +36,6 @@ $arsc_lang["clicktoregister"]           = "Registrieren Sie Ihren Nickname!";
 
 // Why kicked? Page
 
-$arsc_lang["why_kicked"] = "Sie wurden des Chats verwiesen. Dies ist sehr wahrscheinlich passiert, weil Sie die Nutzungsrichtlinien des Chats in irgendeiner Form verletzt haben, oder weil Ihre Sitzung abgelaufen ist.";
 
 
 // Register page and eMail

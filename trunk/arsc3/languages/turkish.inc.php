@@ -46,7 +46,6 @@ $arsc_lang["clicktoregister"]           = "Rumuz için basvurun!";
 
 // Why kicked page
 
-$arsc_lang["why_kicked"] = "Muhtemelen oturum süreniz doldugu için yada chat kurallarina uymadiginiz için, operatör tarafindan disari atildiniz.";
 $arsc_lang["returntologinpage"] = "Girise dön";
 
 
