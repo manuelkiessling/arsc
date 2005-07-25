@@ -23,11 +23,16 @@ if (ARSC_PARAMETER_SOCKETSERVER_USE == "yes")
 }
 $arsc_selected = "";
 if(eregi("Lynx|w3m|links", $_SERVER["HTTP_USER_AGENT"])) $arsc_textselected = " selected";
-if(eregi("Safari|Konquerer|OmniWeb", $_SERVER["HTTP_USER_AGENT"])) $arsc_pushselected = " selected";
+if (ARSC_PARAMETER_DISABLE_BROWSER_PUSH != "yes")
+{
+ $arsc_layout["chatversion_selection"] .= '
+ <option value="browser_push"'.$arsc_pushselected.'>'.$arsc_lang["version_browser_push"].'</option>
+';
+}
 $arsc_layout["chatversion_selection"] .= '
- <option value="browser_push"'.$arsc_selected.'>'.$arsc_lang["version_browser_push"].'</option>
- <option value="browser_refresh"'.$arsc_selected.'>'.$arsc_lang["version_browser_refresh"].'</option>
- <option value="browser_text"'.$arsc_selected.'>'.$arsc_lang["version_browser_text"].'</option>
+ <option value="browser_xmlhttprequest">'.$arsc_lang["version_browser_xmlhttprequest"].'</option>
+ <option value="browser_refresh">'.$arsc_lang["version_browser_refresh"].'</option>
+ <option value="browser_text"'.$arsc_textselected.'>'.$arsc_lang["version_browser_text"].'</option>
 </select>
 ';
 $arsc_selected = "";
@@ -52,7 +57,7 @@ while (list($arsc_key, $arsc_val) = each($arsc_roomlist))
 $arsc_layout["usersinchat_table"] = "<table width=\"100%\">".$arsc_line."</table>";
 
 
-if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_push" OR $arsc_my["version"] == "browser_header_js")
+if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_push" OR $arsc_my["version"] == "browser_xmlhttprequest")
 {
  $arsc_layout["scrolling_form"] = '
 <form name="scrollform">
@@ -66,7 +71,7 @@ if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_p
 else $arsc_layout["scrolling_form"] = '';
 
 
-if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_push" OR $arsc_my["version"] == "browser_header_js")
+if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_push" OR $arsc_my["version"] == "browser_xmlhttprequest")
 {
  $arsc_layout["scrolling_script"] = '
 <script language="JavaScript">
@@ -89,7 +94,7 @@ if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_p
 else $arsc_layout["scrolling_script"] = '';
 
 
-if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_push" OR $arsc_my["version"] == "browser_header_js")
+if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_push" OR $arsc_my["version"] == "browser_xmlhttprequest")
 {
  $arsc_layout["help_script"] = '
 <script language="JavaScript">
@@ -142,12 +147,12 @@ if ($arsc_current["reloadallframes"] == 1)
 else $arsc_layout["reloadallframes_script"] = '';
 
 
-if ($arsc_current["user_got_kicked"] == 1)
+if ($arsc_current["user_got_kicked"] > 0)
 {
  $arsc_layout["kickuser_script"] = '
 <script language="JavaScript">
 <!--
- top.location.href = "'.ARSC_PARAMETER_BASEURL.'base/why.php?arsc_language='.arsc_validateinput($_GET["arsc_language"], NULL, "/[^a-z\-]/", 0, 64, __FILE__, __LINE__).'";
+ top.location.href = "'.ARSC_PARAMETER_BASEURL.'base/why.php?arsc_code='.$arsc_current["user_got_kicked"].'&arsc_language='.arsc_validateinput($_GET["arsc_language"], NULL, "/[^a-z\-]/", 0, 64, __FILE__, __LINE__).'";
 //-->
 </script>
 ';
@@ -155,7 +160,7 @@ if ($arsc_current["user_got_kicked"] == 1)
 else $arsc_layout["kickuser_script"] = '';
 
 
-if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_push" OR $arsc_my["version"] == "browser_header_js")
+if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_push" OR $arsc_my["version"] == "browser_xmlhttprequest")
 {
  $arsc_layout["idcard_script"] = '
 <script language="JavaScript">
@@ -188,7 +193,7 @@ if ($this->checkCommandAllowed($arsc_my["level"], "userlist"))
    if ($arsc_a["cnt"] == 1)
    {
     $arsc_layout["userlist"] .= '<font face="'.$arsc_layout["small_font_face"].'" size="'.$arsc_layout["small_font_size"].'" color="'.$arsc_layout["small_font_color"].'">';
-    if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_push" OR $arsc_my["version"] == "browser_header_js")
+    if ($arsc_my["version"] == "browser_socket" OR $arsc_my["version"] == "browser_push" OR $arsc_my["version"] == "browser_xmlhttprequest")
     {
      $arsc_layout["userlist"] .= '<a href="javascript:idcard(\''.$arsc_key.'\');" title="'.$arsc_lang["cmd_idcard"].'">ID</a> ';
     }
@@ -198,11 +203,11 @@ if ($this->checkCommandAllowed($arsc_my["level"], "userlist"))
     }
     $arsc_layout["userlist"] .= '</font>';
    }
-   if ($arsc_val == 1)
+   if ($arsc_val > 10)
    {
     $arsc_opstring = "<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"".$arsc_layout["default_font_color"]."\">@";
    }
-   elseif ($arsc_val == 2)
+   elseif ($arsc_val == 99)
    {
     $arsc_opstring = "<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"".$arsc_layout["default_font_color"]."\"><b>@</b>";
    }
@@ -310,6 +315,7 @@ if (ARSC_PARAMETER_KEEP_SENDED_MESSAGE == "yes")
   function empty_field_and_submit()
   {
    document.fdummy.arsc_message.value=document.f.arsc_message.value;
+   document.fdummy.arsc_random.value=Math.random();
    document.fdummy.submit();
    document.f.arsc_message.focus();
    document.f.arsc_message.select();
@@ -330,6 +336,7 @@ else
   function empty_field_and_submit()
   {
    document.fdummy.arsc_message.value=document.f.arsc_message.value;
+   document.fdummy.arsc_random.value=Math.random();
    document.fdummy.submit();
    document.f.arsc_message.value=\'\';
    document.f.arsc_message.focus();
