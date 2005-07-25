@@ -1,5 +1,17 @@
 ARSC - ARSC Really Simple Chat - Changelog
 
+- Version 3.0.2-rc2
+  2005-07-24
+
+  - Fixed bug #1217695 (problematic usage of FORCE INDEX statement)
+  - Fixed bug #1158237 (@ sign in front of operators not visible)
+  - Fixed some problematic timing issues which caused false kicks
+  - Added version browser_xmlhttprequest as an alternative
+    to browser_push
+  - Added version_refresh, for users that don't like JavaScript
+  - Started documentation: User Guide and FAQ
+
+
 - Version 3.0.2-rc1
   2005-04-13
 
