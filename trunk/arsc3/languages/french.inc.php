@@ -1,5 +1,15 @@
 <?php
 
+/*
+ This is an ARSC language file. If you translate it, please send me
+ a copy to <manuel@kiessling.net>, I will add it to ARSC then.
+ Thanks.
+
+ This file is for versions 3.0-beta1, 3.0-beta2, 3.0-rc1, 3.0, 3.0.1, 3.0.2, 3.0.2-rc1, 3.0.2-rc2
+  
+ 
+*/
+
 // Include the english file, in order to provide english text if the current file has some sentences missing.
 include("english.inc.php");
 
