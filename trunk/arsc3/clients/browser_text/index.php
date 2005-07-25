@@ -32,6 +32,10 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
  }
  else
  {
+  if($arsc_my["lastmessageping"] == 0)
+  {
+   $arsc_my["lastmessageping"] = $arsc_api->setLastMessagePing($arsc_my);
+  }
   $arsc_enter = arsc_validateinput($_GET["arsc_enter"], array("", "true"), NULL, 0, 4, __FILE__, __LINE__);
   if ($arsc_enter == "true")
   {
