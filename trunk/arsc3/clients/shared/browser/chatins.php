@@ -12,8 +12,9 @@ include("../../../base/inc/message_preprocessing.inc.php");
 $arsc_api = new arsc_api_Class;
 
 $arsc_api->addTraffic("incoming", strlen($arsc_message));
-if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__)))
+if($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__)))
 {
+ $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
  /*
   Now this one is difficult: How can we filter user messages without being too restrictive?
   A whitelist filter is not possible - just think of all the Umlauts in all those languages in the world,
@@ -28,7 +29,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
  // User Preprocessing
  $arsc_message = arsc_message_preprocessing($arsc_message, $arsc_my["room"], $arsc_api->getRoomType($arsc_my["room"]));
  // Message queueing
- $arsc_toqueue = arsc_validateinput($_GET["arsc_toqueue"], array("0", "1"), NULL, 1, 1, __FILE__, __LINE__);
+ if($_GET["arsc_toqueue"] != "") $arsc_toqueue = arsc_validateinput($_GET["arsc_toqueue"], array("0", "1"), NULL, 1, 1, __FILE__, __LINE__);
  if($arsc_toqueue == 1 AND $arsc_my["level"] >= 30)
  {
   $arsc_api->addToQueue($arsc_api->getRoomId($arsc_my["room"]), $_GET["arsc_moderate_user"], stripslashes($_GET["arsc_message"]));
@@ -38,7 +39,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
   // Check for moderated message acknowledged by VIP or Moderator FIXME: Do we still need this?
   $arsc_message_sid = $arsc_my["sid"];
   $arsc_flag_moderated = 0;
-  $arsc_moderate_sid = arsc_validateinput($_GET["arsc_moderate_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__);
+  if($_GET["arsc_moderate_sid"] != "") $arsc_moderate_sid = arsc_validateinput($_GET["arsc_moderate_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__);
   if($arsc_moderate_sid <> "")
   {
    if($arsc_my["level"] >= 20)
@@ -49,10 +50,10 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
   }
   if ($arsc_api->handleReceivedMessage($arsc_message_sid, $arsc_message, "../../../", $arsc_flag_moderated))
   {
-   $arsc_chatversion = arsc_validateinput($_GET["arsc_chatversion"], array("browser_push", "browser_socket", "browser_header_js", "browser_header", "browser_box", "browser_text"), NULL, NULL, NULL, __FILE__, __LINE__);
-   if ($arsc_chatversion == "browser_header" OR $arsc_chatversion == "browser_box")
+   $arsc_chatversion = arsc_validateinput($_GET["arsc_chatversion"], array("browser_push", "browser_xmlhttprequest", "browser_socket", "browser_refresh", "browser_text"), NULL, NULL, NULL, __FILE__, __LINE__);
+   if ($arsc_chatversion == "browser_refresh")
    {
-    header("Location: ../../".$arsc_chatversion."/chatinput.php?arsc_sid=".$arsc_my["sid"]);
+    header("Location: input.php?arsc_sid=".$arsc_my["sid"]);
     die();
    }
    elseif ($arsc_chatversion == "browser_text")
