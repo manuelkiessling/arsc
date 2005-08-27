@@ -16,9 +16,6 @@ $arsc_error = arsc_validateinput($_GET["arsc_error"], NULL, "/[^a-zA-Z0-9_]/", 0
 
 $arsc_api = new arsc_api_Class;
 
-// Delete idle users
-$arsc_api->deleteIdleUsers();
-
 // Delete empty private rooms
 $arsc_query1 = mysql_query("SELECT roomname FROM arsc_rooms WHERE type = 1", ARSC_PARAMETER_DB_LINK);
 while ($arsc_result1 = mysql_fetch_array($arsc_query1))
