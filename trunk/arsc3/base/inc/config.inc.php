@@ -4,7 +4,7 @@
 
   This is the main configuration file of ARSC. To get ARSC running
   and customize it to your needs, you will have to change some
-  parameters here. Every parameter is explained with a comment,
+  parameters here. Every parameter is explained with a comment, 
   and you must ONLY change the values between the two " in every line!
 
   Here are stored the parameters you definitely have to change to
