@@ -45,8 +45,14 @@ function arscGetNewMessages()
    //document.forms[0].elements['a'].value = xmlhttp.responseText + document.forms[0].elements['a'].value
    if (xmlhttp.responseText != '')
    {
-    allcontent = allcontent + xmlhttp.responseText
+    /*allcontent = allcontent + xmlhttp.responseText
     element.innerHTML = allcontent
+    */
+
+    newdiv = document.createElement('div');
+    newdiv.innerHTML = xmlhttp.responseText;
+    element.appendChild(newdiv);
+
    }
   }
  }
@@ -70,7 +76,6 @@ function arscGetNewMessages()
 </div>
 <script>
 var element = document.getElementById('chatOutput');
-var allcontent = '';
 var aktiv = window.setInterval("arscGetNewMessages()", 1500);
 
 </script>
