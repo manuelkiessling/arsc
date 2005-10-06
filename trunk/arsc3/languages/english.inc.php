@@ -43,6 +43,7 @@ $arsc_lang["startbutton"]                    = "Start the chat!";
 $arsc_lang["usersinchat"]                    = "These users are currently logged in:";
 $arsc_lang["usersinchat_room"]               = "Room";
 $arsc_lang["usersinchat_name"]               = "User";
+$arsc_lang["usersinchat_idlenote"]           = "A * denotes idle users.";
 $arsc_lang["clicktoregister"]                = "Register your nickname!";
 
 
