@@ -13,24 +13,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
 {
  include("../../languages/".$arsc_my["language"].".inc.php");
  
- if (!$arsc_api->userIsValid($arsc_my["user"]))
- {
-  $arsc_api->removeUserFromRoom($arsc_my);
-  header("Expires: Sun, 28 Dec 1997 09:32:45 GMT");
-  header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
-  header("Cache-Control: no-cache, must-revalidate");
-  header("Pragma: no-cache");
-  header("Content-Type: text/html");
-  ?>
-  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-  <html>
-   <body>
-    <?php echo arsc_filter_posting("System", date("H:i:s"), $arsc_lang["youwerekicked"], $arsc_my["room"], 0, 0, 0, "arsc_template_html"); ?>
-   </body>
-  </html>
-  <?php
- }
- else
+ if ($arsc_api->userIsValid($arsc_my["user"]))
  {
   if($arsc_my["lastmessageping"] == 0)
   {
