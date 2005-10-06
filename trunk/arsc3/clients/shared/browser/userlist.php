@@ -28,6 +28,7 @@ if($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"]
   $arsc_current["random"] = time();
   header("Refresh: ".ARSC_PARAMETER_USERLIST_REFRESH."; URL=userlist.php?arsc_sid=".$arsc_my["sid"]."&arsc_current_room=".$arsc_my["room"]."&arsc_language=".$arsc_my["language"]."&arsc_random=".$arsc_current["random"]);
   $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
+  $arsc_api->setUserValueByName("flag_idle", 0, $arsc_my["user"]);
   $arsc_api->deleteIdleUsers();
   if ($arsc_current_room <> "" AND $arsc_current_room <> $arsc_my["room"]) $arsc_current["reloadallframes"] = 1; else $arsc_current["reloadallframes"] = 0;
   

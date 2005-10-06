@@ -93,6 +93,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
      echo arsc_filter_posting("System", date("H:i:s"), "/msg ".$arsc_my["user"]." ".str_replace("{title}", ARSC_PARAMETER_TITLE, $arsc_lang["welcome"]), $arsc_my["room"], 0, 0, 0, $$arsc_template_varname);
     }
     $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
+    $arsc_api->setUserValueByName("flag_idle", 0, $arsc_my["user"]);
     $arsc_api->setUserValueByName("ip", getenv("REMOTE_ADDR"), $arsc_my["user"]);
     ?>
    </body>

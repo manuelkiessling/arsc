@@ -41,13 +41,14 @@ $arsc_selected = "";
 $arsc_roomlist = $this->getInternalRoomlist();
 while (list($arsc_key, $arsc_val) = each($arsc_roomlist))
 {
- $arsc_userlist = $this->getSimpleUserlistWithRights($arsc_val);
+ $arsc_userlist = $this->getUserlist($arsc_val);
  if (is_array($arsc_userlist))
  {
   while (list($arsc_keyu, $arsc_valu) = each($arsc_userlist))
   {
    $arsc_line .= "<tr>\n<td width=\"50%\" valign=\"top\">\n<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"".$arsc_layout["default_font_color"]."\">\n";
    $arsc_line .= $arsc_keyu;
+   if($arsc_valu["flag_idle"] == 1) $arsc_line .= "*";
    $arsc_line .= "</font>\n</td>\n<td width=\"50%\" valign=\"top\">\n<font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"".$arsc_layout["default_font_color"]."\">\n";
    $arsc_line .= $this->getReadableRoomname($arsc_val);
    $arsc_line .= "</font>\n</td>\n</tr>\n";

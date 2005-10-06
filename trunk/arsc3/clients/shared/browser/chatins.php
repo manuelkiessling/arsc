@@ -15,6 +15,7 @@ $arsc_api->addTraffic("incoming", strlen($arsc_message));
 if($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"], NULL, "/[^a-z0-9]/", 40, 40, __FILE__, __LINE__)))
 {
  $arsc_api->setUserValueByName("lastping", time(), $arsc_my["user"]);
+ $arsc_api->setUserValueByName("flag_idle", 0, $arsc_my["user"]);
  /*
   Now this one is difficult: How can we filter user messages without being too restrictive?
   A whitelist filter is not possible - just think of all the Umlauts in all those languages in the world,

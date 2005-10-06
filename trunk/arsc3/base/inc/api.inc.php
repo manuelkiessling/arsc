@@ -159,7 +159,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
                                                         message text NOT NULL,
                                                         user varchar(64) NOT NULL default '',
                                                         flag_ripped tinyint(4) NOT NULL default '0',
-							flag_gotmsg tinyint(4) NOT NULL default '0',
+						                                                 	flag_gotmsg tinyint(4) NOT NULL default '0',
                                                         flag_moderated tinyint(4) NOT NULL default '0',
                                                         sendtime time NOT NULL default '00:00:00',
                                                         timeid bigint(20) NOT NULL default '0',
@@ -254,9 +254,19 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
   return($result["type"]);
  }
 
+ function getUserlist($room)
+ {
+  $query = mysql_query("SELECT * FROM arsc_users WHERE room = '".mysql_escape_string($room)."' ORDER BY level DESC, user ASC", ARSC_PARAMETER_DB_LINK);
+  while ($result = mysql_fetch_array($query))
+  {
+   $return[$result["user"]] = $result;
+  }
+  return($return);
+ }
+
  function getSimpleUserlist($room)
  {
-  $result = mysql_query("SELECT user FROM arsc_users WHERE room = '$room' ORDER BY level DESC, user ASC", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_query("SELECT user FROM arsc_users WHERE room = '".mysql_escape_string($room)."' ORDER BY level DESC, user ASC", ARSC_PARAMETER_DB_LINK);
   while ($a = mysql_fetch_array($result))
   {
    $return[] = $a["user"];
@@ -266,7 +276,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
 
  function getSimpleUserlistWithRights($room)
  {
-  $result = mysql_query("SELECT user, level FROM arsc_users WHERE room = '$room' ORDER BY level DESC, user ASC", ARSC_PARAMETER_DB_LINK);
+  $result = mysql_query("SELECT user, level FROM arsc_users WHERE room = '".mysql_escape_string($room)."' ORDER BY level DESC, user ASC", ARSC_PARAMETER_DB_LINK);
   while ($a = mysql_fetch_array($result))
   {
    $return["{$a["user"]}"] = $a["level"];
@@ -341,9 +351,6 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  
  function deleteUser($name)
  {
-  $query = mysql_query("SELECT lastping FROM arsc_users WHERE user = '".mysql_escape_string($name)."'", ARSC_PARAMETER_DB_LINK);
-  $result = mysql_fetch_array($query);
-  mysql_query("INSERT INTO arsc_logouts (lastping, logout) VALUES ('".mysql_escape_string($result["lastping"])."', '".time()."')");
   mysql_query("DELETE FROM arsc_users WHERE user = '$name'", ARSC_PARAMETER_DB_LINK);
   return TRUE;
  }
@@ -352,10 +359,7 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  {
   if ($my["user"] <> "")
   {
-   $query = mysql_query("SELECT lastping FROM arsc_users WHERE sid = '".mysql_escape_string($my["sid"])."'", ARSC_PARAMETER_DB_LINK);
-   $result = mysql_fetch_array($query);
-   mysql_query("INSERT INTO arsc_logouts (lastping, logout) VALUES ('".mysql_escape_string($result["lastping"])."', '".time()."')");
-   mysql_query("DELETE FROM arsc_users WHERE sid = '".mysql_escape_string($my["sid"])."'", ARSC_PARAMETER_DB_LINK);
+   //mysql_query("DELETE FROM arsc_users WHERE sid = '".mysql_escape_string($my["sid"])."'", ARSC_PARAMETER_DB_LINK);
    mysql_query("INSERT INTO arsc_room_".mysql_escape_string($my["room"])." (message, user, sendtime, timeid) VALUES ('".mysql_escape_string("arsc_user_quit~~".$my["user"]."~~".$this->getReadableRoomname($my["room"]))."', 'System', '".mysql_escape_string(date("H:i:s"))."', '".mysql_escape_string(arsc_microtime())."')", ARSC_PARAMETER_DB_LINK);
   }
  }
@@ -506,26 +510,13 @@ class arsc_api_Class // FIXME: All SQL queries must come here one day.
  function deleteIdleUsers()
  {
   $timebuffer = time() - ARSC_PARAMETER_PING;
-  if(ARSC_DEBUG)
-  {
-   $query = mysql_query("SELECT * FROM arsc_users WHERE (lastping < '$timebuffer' AND version <> 'browser_text')", ARSC_PARAMETER_DB_LINK);
-   while($result = mysql_fetch_array($query))
-   {
-    while(list($key, $val) = each($result))
-    {
-     if(!is_numeric($key)) $values .= $key." = ".$val." ";
-    }
-    arsc_error_log(ARSC_ERRORLEVEL_DEBUG, "User ".$result["user"]." timed out. [".$values."]", __FILE__, __LINE__);
-   }
-  }
-  $query = mysql_query("SELECT lastping FROM arsc_users WHERE (lastping < '$timebuffer' AND version <> 'browser_text')", ARSC_PARAMETER_DB_LINK);
-  while($result = mysql_fetch_array($query))
-  {
-   mysql_query("INSERT INTO arsc_logouts (lastping, logout) VALUES ('".mysql_escape_string($result["lastping"])."', '".time()."')");
-  }
-  mysql_query("DELETE FROM arsc_users WHERE (lastping < '$timebuffer' AND version <> 'browser_text')", ARSC_PARAMETER_DB_LINK);
+  //mysql_query("DELETE FROM arsc_users WHERE (lastping < '$timebuffer' AND version <> 'browser_text')", ARSC_PARAMETER_DB_LINK);
+  mysql_query("UPDATE arsc_users SET flag_idle = '1' WHERE (lastping < '$timebuffer' AND version <> 'browser_text')", ARSC_PARAMETER_DB_LINK);
   $timebuffer = time() - ARSC_PARAMETER_PING_TEXT;
-  mysql_query("DELETE FROM arsc_users WHERE lastping < '$timebuffer' AND version = 'browser_text'", ARSC_PARAMETER_DB_LINK);
+  //mysql_query("DELETE FROM arsc_users WHERE lastping < '$timebuffer' AND version = 'browser_text'", ARSC_PARAMETER_DB_LINK);
+  mysql_query("UPDATE arsc_users SET flag_idle = '1' WHERE lastping < '$timebuffer' AND version = 'browser_text'", ARSC_PARAMETER_DB_LINK);
+  $timebuffer = time() - ARSC_PARAMETER_PING_IDLE;
+  mysql_query("DELETE FROM arsc_users WHERE lastping < '$timebuffer'", ARSC_PARAMETER_DB_LINK);
  }
  
  function addTraffic($direction, $bytes)
