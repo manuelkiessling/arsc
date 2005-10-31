@@ -108,7 +108,7 @@ CREATE TABLE `arsc_parameters` (
   UNIQUE KEY `name` (`name`)
 ) TYPE=MyISAM;
 
-INSERT INTO `arsc_parameters` VALUES ('socketserver_use', 'no', 'Do you want to use the socket server? Say <b>yes</b> or <b>no</b>. Please note that the socket server must be running, or your visitors will not be able to log in.');
+INSERT INTO `arsc_parameters` VALUES ('socketserver_use', 'no', 'THE ARSC SOCKET SERVER IS NOT STABLE AND NOT RECOMMENDED FOR PRODUCTION USE! YOU HAVE BEEN WARNED! Do you want to use the socket server? Say <b>yes</b> or <b>no</b>. Please note that the socket server must be running, or your visitors will not be able to log in.');
 INSERT INTO `arsc_parameters` VALUES ('socketserver_adress', 'manuel.kiessling.net', 'What is the public IP adress or DNS name of the socket server?');
 INSERT INTO `arsc_parameters` VALUES ('socketserver_port', '8080', 'At which port do you want the socket server to listen?');
 INSERT INTO `arsc_parameters` VALUES ('socketserver_maximumusers', '200', 'How many user do you want to allow to connect to the socket server at the most?');
