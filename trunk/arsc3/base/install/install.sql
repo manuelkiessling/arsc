@@ -304,7 +304,7 @@ CREATE TABLE `arsc_users` (
   `ip` varchar(15) NOT NULL default '',
   `room` varchar(32) NOT NULL default '',
   `language` varchar(32) NOT NULL default '',
-  `version` varchar(16) NOT NULL default '',
+  `version` varchar(32) NOT NULL default '',
   `template` varchar(32) NOT NULL default '0',
   `layout` int(11) NOT NULL default '0',
   `color` varchar(6) NOT NULL default '000000',
