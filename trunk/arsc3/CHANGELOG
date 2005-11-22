@@ -9,6 +9,7 @@ ARSC - ARSC Really Simple Chat - Changelog
     to log in as the idle user if they have the same IP or, if it is a
     registered user, know the user's password. The user is de-flagged if
     he sends in a ping again.
+  - Removed the socket server. It will be reintroduced once it is stable.
 
 
 - Version 3.0.2-rc2
