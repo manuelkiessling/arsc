@@ -1,5 +1,16 @@
 ARSC - ARSC Really Simple Chat - Changelog
 
+- Version 3.1-rc1
+  2005-11-22
+
+  - Added dedicated ping frame, removed ping functionality from userlist
+  - Added 'flag as idle' functionality, which flags users that would have
+    been kicked in former versions as idle, allowing for other users
+    to log in as the idle user if they have the same IP or, if it is a
+    registered user, know the user's password. The user is de-flagged if
+    he sends in a ping again.
+
+
 - Version 3.0.2-rc2
   2005-07-25
 
