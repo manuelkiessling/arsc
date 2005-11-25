@@ -1,5 +1,11 @@
 ARSC - ARSC Really Simple Chat - Changelog
 
+- Version 3.1-rc1-p1
+  2005-11-25
+
+  - Fixed syntax error in installation SQL code which broke installation
+
+
 - Version 3.1-rc1
   2005-11-22
 
