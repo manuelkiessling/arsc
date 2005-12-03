@@ -74,24 +74,6 @@ INSERT INTO `arsc_levels` VALUES ('smilies', 1, 1, 1, 1, 1);
 INSERT INTO `arsc_levels` VALUES ('roomlist', 1, 1, 1, 1, 1);
 INSERT INTO `arsc_levels` VALUES ('userlist', 1, 1, 1, 1, 1);
 INSERT INTO `arsc_levels` VALUES ('croom', 1, 1, 0, 0, 1);
-INSERT INTO `arsc_levels` VALUES ('whois', 0, 1, 0, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('kick', 0, 1, 0, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('bann', 0, 0, 0, 0, 1);
-INSERT INTO `arsc_levels` VALUES ('rip', 0, 1, 0, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('unrip', 0, 1, 0, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('op', 0, 0, 0, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('deop', 0, 0, 0, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('move', 0, 1, 0, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('color', 1, 1, 1, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('msg', 1, 1, 0, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('msgops', 0, 1, 1, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('opcall', 1, 1, 1, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('room', 1, 1, 1, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('invite', 1, 1, 0, 0, 1);
-INSERT INTO `arsc_levels` VALUES ('smilies', 1, 1, 1, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('roomlist', 1, 1, 1, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('userlist', 1, 1, 1, 1, 1);
-INSERT INTO `arsc_levels` VALUES ('croom', 1, 1, 0, 0, 1);
 
 CREATE TABLE `arsc_moderation_queue` (
   `id` int(11) NOT NULL auto_increment,
