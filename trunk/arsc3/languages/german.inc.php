@@ -16,7 +16,7 @@ include("english.inc.php");
 // Define some settings for this language
 $arsc_lang_regions["german"] = array("de", "de-de", "de-at");
 $arsc_lang_name["german"] = "Deutsch";
-$arsc_lang["charset"] = "iso-8859-1";
+$arsc_lang["charset"] = "utf-8";
 
 
 // Language selection
@@ -67,12 +67,12 @@ Hallo,
 
 Sie haben sich beim {title} registriert.
 
-Sie wählten den Nicknamen '{username}'.
-Dieser ist nun mit folgendem Passwort geschützt:
+Sie wÃ¤hlten den Nicknamen '{username}'.
+Dieser ist nun mit folgendem Passwort geschÃ¼tzt:
 
             '{password}'
 
-Sie können sich nun in den Chat einloggen:
+Sie kÃ¶nnen sich nun in den Chat einloggen:
 {homepage}
 
 Viel Spass!
@@ -180,7 +180,7 @@ $arsc_lang["helplink"]      = "Hilfe";
 $arsc_lang["help"]          = "
 <b><i>Allgemeine Hilfe:</i></b>
 Das Chatfenster teilt sich auf in die Bereiche Funktionen (links), Chatausgabe (Mitte), Chateingabe (unten) und Anwesenheitsliste (rechts).
-Um eine Nachricht an alle im Raum befindlichen User zu schreiben, tippen Sie Ihre Nachricht einfach in das Textfeld im unteren Bereich, und drücken Sie die Eingabetaste.
+Um eine Nachricht an alle im Raum befindlichen User zu schreiben, tippen Sie Ihre Nachricht einfach in das Textfeld im unteren Bereich, und drÃ¼cken Sie die Eingabetaste.
 
 (Wenn Sie sich in einem moderierten Raum befinden, erscheint Ihre Nachricht zun&auml;chst nicht f&uuml;r alle Anwesenden sichtbar, sondern wird an den Moderator des Raumes &uuml;bermittelt, und nach Freigabe ggf. f&uuml;r alle sichtbar in den Raum geschrieben.)
 
@@ -190,7 +190,7 @@ Beachten Sie bitte, dass in den Browsern <i>Mozilla</i>, <i>Firefox</i> und <i>N
 
 Im rechten Bereich, der Anwesenheitsliste, sehen Sie die Namen aller User, die sich mit Ihnen im selben Raum befinden. User, vor deren Namen sich das Zeichen @ befindet, sind sogenannte Operatoren - diese haben erweiterte Rechte im Chat, z.B. das Verweisen anderer User, und sorgen f&uuml;r Ordnung im Chat. An diese sollten Sie sich wenden, wenn Sie Fragen oder Probleme haben. Der Befehl '/opcall' (einfach in die Texteingabe eingeben) informiert alle anwesenden Operatoren, dass Sie Hilfe ben&ouml;tigen.
 
-Jeder Name in der Anwesenheitsliste (ausser Ihrem eigenen) ist gleichzeitig ein Link - wenn Sie auf diesen klicken, wird die Texteingabe mit dem Befehl '/msg NameDesUsers' gef&uuml;llt. Sie m&uuml;ssen dann nur noch Ihre Nachricht an das Ende dieses Befehls anfügen, und wenn Sie diese dann absenden, erh&auml;hlt der entsprechende User eine private Nachricht von Ihnen. Das bedeutet, dass nur er diese Nachricht sieht. Diese Funktion wird auch <i>Fl&uuml;stern</i> genannt.
+Jeder Name in der Anwesenheitsliste (ausser Ihrem eigenen) ist gleichzeitig ein Link - wenn Sie auf diesen klicken, wird die Texteingabe mit dem Befehl '/msg NameDesUsers' gef&uuml;llt. Sie m&uuml;ssen dann nur noch Ihre Nachricht an das Ende dieses Befehls anfÃ¼gen, und wenn Sie diese dann absenden, erh&auml;hlt der entsprechende User eine private Nachricht von Ihnen. Das bedeutet, dass nur er diese Nachricht sieht. Diese Funktion wird auch <i>Fl&uuml;stern</i> genannt.
 
 
 <b><i>Befehls&uuml;bersicht:</i></b>

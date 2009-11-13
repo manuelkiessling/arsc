@@ -15,13 +15,13 @@ include("english.inc.php");
 
 // Define some settings for this language
 $arsc_lang_regions["turkish"] = array("tr", "tr-TR");
-$arsc_lang_name["turkish"] = "Türkçe";
-$arsc_lang["charset"] = "iso-8859-9";
+$arsc_lang_name["turkish"] = "TÃ¼rkÃ§e";
+$arsc_lang["charset"] = "utf-8";
 
 
 // Language selection
 
-$arsc_lang["chooseyourlanguage"] = "Dilinizi seçin:";
+$arsc_lang["chooseyourlanguage"] = "Dilinizi seÃ§in:";
 $arsc_lang["next"] = "Devam";
 
 
@@ -29,42 +29,42 @@ $arsc_lang["next"] = "Devam";
 
 $arsc_lang["entername"]                 = "Rumuzunuzu girin:";
 $arsc_lang["enterpassword"]             = "Sifrenizi girin:";
-$arsc_lang["selectchatversion"]         = "Program tipini seçin:";
+$arsc_lang["selectchatversion"]         = "Program tipini seÃ§in:";
 $arsc_lang["version_browser_socket"]    = "Optimize";
 $arsc_lang["version_browser_push"]      = "Optimize (firewall uyumlu)";
 $arsc_lang["version_browser_text"]      = "Basit Web Tarayicilarina uygun";
 $arsc_lang["yes"]                       = "Evet";
 $arsc_lang["no"]                        = "Hayir";
-$arsc_lang["selectroom"]                = "Oda seçin:";
+$arsc_lang["selectroom"]                = "Oda seÃ§in:";
 $arsc_lang["createdby"]                 = "Yapimci";
 $arsc_lang["startbutton"]               = "Chat'e gir!";
 $arsc_lang["usersinchat"]               = "Chatteki kullanicilar:";
 $arsc_lang["usersinchat_room"]          = "Oda";
 $arsc_lang["usersinchat_name"]          = "Kullanici";
-$arsc_lang["clicktoregister"]           = "Rumuz için basvurun!";
+$arsc_lang["clicktoregister"]           = "Rumuz iÃ§in basvurun!";
 
 
 // Why kicked page
 
-$arsc_lang["returntologinpage"] = "Girise dön";
+$arsc_lang["returntologinpage"] = "Girise dÃ¶n";
 
 
 // Register page and eMail
 
-$arsc_lang["register_intro"]                 = "Rumuz basvurusu için asagidaki formu doldurun.";
-$arsc_lang["register_intro_force"]           = "Sifreniz, verdiginiz eMail adresine gönderilecek.";
+$arsc_lang["register_intro"]                 = "Rumuz basvurusu iÃ§in asagidaki formu doldurun.";
+$arsc_lang["register_intro_force"]           = "Sifreniz, verdiginiz eMail adresine gÃ¶nderilecek.";
 $arsc_lang["register_entername"]             = "Rumuz:";
 $arsc_lang["register_enteremail"]            = "eMail adresi:";
 $arsc_lang["register_enterpassword"]         = "Sifre:";
-$arsc_lang["register_send"]                  = "Basvuruyu gönder";
-$arsc_lang["register_yougetmail"]            = "Tesekkürler, sifreniz eMail adresinize gönderildi.";
-$arsc_lang["register_emailtemplate_subject"] = "{title} için yapilan basvuru";
+$arsc_lang["register_send"]                  = "Basvuruyu gÃ¶nder";
+$arsc_lang["register_yougetmail"]            = "TesekkÃ¼rler, sifreniz eMail adresinize gÃ¶nderildi.";
+$arsc_lang["register_emailtemplate_subject"] = "{title} iÃ§in yapilan basvuru";
 $arsc_lang["register_emailtemplate_body"]    = "
 Merhaba,
 
 {title}  adina basvuruda bulundunuz.
 
-Seçtiginiz rumuz '{username}'.
+SeÃ§tiginiz rumuz '{username}'.
 Asagidaki sifre ile rezerve edildi:
 
             '{password}'
@@ -82,44 +82,44 @@ Iyi eglenceler!
 
 // Chat interface
 
-$arsc_lang["usersinroom"]               = "Odadaki üyeler";
-$arsc_lang["sendmessage"]               = "Gönder";
+$arsc_lang["usersinroom"]               = "Odadaki Ã¼yeler";
+$arsc_lang["sendmessage"]               = "GÃ¶nder";
 $arsc_lang["refreshmessages"]           = "Mesajlari yenile";
-$arsc_lang["leave"]                     = "Çik";
+$arsc_lang["leave"]                     = "Ã‡ik";
 $arsc_lang["roomlist"]                  = "Oda Listesi";
 $arsc_lang["go_room"]                   = "Gir";
 $arsc_lang["refresh"]                   = "Yenile";
 $arsc_lang["otherfunctions"]            = "Ek fonksiyonlar";
 $arsc_lang["smilielist"]                = "Smilies(Mimikler) listesi";
 $arsc_lang["scroll_active"]             = "Otomatik kaydirma";
-$arsc_lang["select_color"]              = "Renginizi seçin";
+$arsc_lang["select_color"]              = "Renginizi seÃ§in";
 $arsc_lang["moderatorqueue_title"]      = "Yanitlanmayan sorular";
 $arsc_lang["moderatorqueue_delete"]     = "Sil";
 $arsc_lang["moderatorqueue_youranswer"] = "Yanitiniz";
 $arsc_lang["moderatorqueue_cancel"]     = "Iptal";
 $arsc_lang["drawboard"]                 = "Kara tahta";
 
-$arsc_lang["cmd_m"]           = "Bu kullaniciya mesaj çekmek için tiklayin";
-$arsc_lang["opcmd_w"]         = "Bu kullanici hakkindaki ek bilgileri göster";
+$arsc_lang["cmd_m"]           = "Bu kullaniciya mesaj Ã§ekmek iÃ§in tiklayin";
+$arsc_lang["opcmd_w"]         = "Bu kullanici hakkindaki ek bilgileri gÃ¶ster";
 $arsc_lang["opcmd_k"]         = "Bu kullaniciyi odadan at!";
-$arsc_lang["opcmd_b"]         = "Bu kullanicinin IP adresini bir süre için bloke et";
+$arsc_lang["opcmd_b"]         = "Bu kullanicinin IP adresini bir sÃ¼re iÃ§in bloke et";
 $arsc_lang["opcmd_l"]         = "Bu kullaniciyi daimi olarak bloke et(kayitli ise)";
-$arsc_lang["opcmd_r"]         = "Bu kullanicinin gitlagina çök (konusamasin)";
+$arsc_lang["opcmd_r"]         = "Bu kullanicinin gitlagina Ã§Ã¶k (konusamasin)";
 $arsc_lang["opcmd_u"]         = "Bu kullanicinin gitlagini birak(konusabilsin)";
-$arsc_lang["opcmd_o"]         = "Bu kullaniciyi operatör yap";
-$arsc_lang["opcmd_d"]         = "Bu kullanicinin operatör haklarini geri al";
-$arsc_lang["opcmd_m"]         = "Bu kullaniciyi bu odadan baska odaya gönder";
-$arsc_lang["opcmd_id"]        = "Bu kullanicinin kimligini göster";
+$arsc_lang["opcmd_o"]         = "Bu kullaniciyi operatÃ¶r yap";
+$arsc_lang["opcmd_d"]         = "Bu kullanicinin operatÃ¶r haklarini geri al";
+$arsc_lang["opcmd_m"]         = "Bu kullaniciyi bu odadan baska odaya gÃ¶nder";
+$arsc_lang["opcmd_id"]        = "Bu kullanicinin kimligini gÃ¶ster";
 
 
 // Errors
 
-$arsc_lang["error_register_double_user"] = "Bu rumuz baskai tarafindan kullaniliyor. Lütfen baskasini seçin.";
+$arsc_lang["error_register_double_user"] = "Bu rumuz baskai tarafindan kullaniliyor. LÃ¼tfen baskasini seÃ§in.";
 $arsc_lang["error_double_user"]          = "Bu rumuzlu kullanici su an chatte!";
 $arsc_lang["error_no_name"]              = "Bir kullanici adi girmeniz gerekiyor!";
 $arsc_lang["error_bad_name"]             = "Bu kullanici adini kullanmayiniz!";
 $arsc_lang["error_wrong_credentials"]    = "Giris basarili olamadi!<br>Girdiginiz bilgilerin dogrulugunu kontrol edin.";
-$arsc_lang["error_banned"]               = "Giris bir süre için iptal edilmis durumda.";
+$arsc_lang["error_banned"]               = "Giris bir sÃ¼re iÃ§in iptal edilmis durumda.";
 
 
 // IDCard
@@ -135,7 +135,7 @@ $arsc_lang["idcard_save"]                = "Kaydet";
 $arsc_lang["idcard_save_ok"]             = "Degisiklikler kaydedildi";
 $arsc_lang["idcard_save_no"]             = "Degisiklikler kaydedilemedi";
 $arsc_lang["idcard_guestbook"]           = "Konuk defteri:";
-$arsc_lang["idcard_guestbook_active"]    = "Konuk defteri gösterime açik mi?";
+$arsc_lang["idcard_guestbook_active"]    = "Konuk defteri gÃ¶sterime aÃ§ik mi?";
 $arsc_lang["idcard_guestbook_delete"]    = "Sil";
 $arsc_lang["idcard_guestbook_delete_ok"] = "Girilen not silindi";
 $arsc_lang["idcard_guestbook_delete_no"] = "Girilen not silinemedi!";
@@ -143,7 +143,7 @@ $arsc_lang["idcard_guestbook_add"]       = "Not ekle";
 $arsc_lang["idcard_guestbook_add_ok"]    = "Notunuz deftere eklendi";
 $arsc_lang["idcard_guestbook_add_no"]    = "Notunuz deftere eklenemedi!";
 $arsc_lang["idcard_guestbook_next"]      = "Yeni notlar";
-$arsc_lang["idcard_guestbook_prev"]      = "Önceki notlar";
+$arsc_lang["idcard_guestbook_prev"]      = "Ã–nceki notlar";
 $arsc_lang["idcard_close"]               = "Kapat";
 
 
@@ -151,53 +151,53 @@ $arsc_lang["idcard_close"]               = "Kapat";
 
 $arsc_lang["enter"]               = "{user} {room} odasina giriyor.";
 $arsc_lang["welcome"]             = "{title} Hosgeldiniz!";
-$arsc_lang["quit"]                = "{user} {room} odasindan çikiyor.";
-$arsc_lang["roomchange"]          = "{user} {room1} odasindan çikiyor ve {room2} odasina giriyor.";
+$arsc_lang["quit"]                = "{user} {room} odasindan Ã§ikiyor.";
+$arsc_lang["roomchange"]          = "{user} {room1} odasindan Ã§ikiyor ve {room2} odasina giriyor.";
 $arsc_lang["kicked"]              = "{userpassive} {useractive} tarafinda chat'ten atildi.";
 $arsc_lang["youwerekicked"]       = "Chat'ten atildiniz!";
 $arsc_lang["floodwarn"]           = "Ortaligi sele bogmayi birak yoksa atilirsin!";
-$arsc_lang["op"]                  = "{userpassive} {useractive} tarafindan operatör yapildi.";
-$arsc_lang["deop"]                = "{useractive} {userpassive}'nin operatör statüsünü geri aldi.";
+$arsc_lang["op"]                  = "{userpassive} {useractive} tarafindan operatÃ¶r yapildi.";
+$arsc_lang["deop"]                = "{useractive} {userpassive}'nin operatÃ¶r statÃ¼sÃ¼nÃ¼ geri aldi.";
 $arsc_lang["whispers"]            = "fisliyor";
-$arsc_lang["whispersops"]         = "tüm operatörlere fisliyor";
+$arsc_lang["whispersops"]         = "tÃ¼m operatÃ¶rlere fisliyor";
 $arsc_lang["gotmsg"]              = "{user}'a fisliyorsun: {message}";
-$arsc_lang["croom"]               = "{user} {room} özel odasini kapatiyor.";
+$arsc_lang["croom"]               = "{user} {room} Ã¶zel odasini kapatiyor.";
 $arsc_lang["room_exists"]         = "Pardon {room} odasi kullaniliyor.";
-$arsc_lang["room_badname"]        = "Pardon, bu geçerli bir oda ad&#305; de&#287;il.";
-$arsc_lang["room_created"]        = "{room} özel odaniz açildi! Artik /invite komutunu kullanarak dostlarinizi davet edebilirsiniz.";
-$arsc_lang["invite"]              = "{user} seni {room} özel odasina davet etti. \"/room {room} {password}\" yazarak girebilirsin.";
+$arsc_lang["room_badname"]        = "Pardon, bu geÃ§erli bir oda ad&#305; de&#287;il.";
+$arsc_lang["room_created"]        = "{room} Ã¶zel odaniz aÃ§ildi! Artik /invite komutunu kullanarak dostlarinizi davet edebilirsiniz.";
+$arsc_lang["invite"]              = "{user} seni {room} Ã¶zel odasina davet etti. \"/room {room} {password}\" yazarak girebilirsin.";
 $arsc_lang["invite_notexist"]     = "Pardon, {user} diye bir kullanici yok.";
-$arsc_lang["invite_notownroom"]   = "Pardon, dostlarini davet edebilmek için, kendi özel odanda bulunman gerekiyor.";
+$arsc_lang["invite_notownroom"]   = "Pardon, dostlarini davet edebilmek iÃ§in, kendi Ã¶zel odanda bulunman gerekiyor.";
 $arsc_lang["room_not_exist"]      = "Pardon, {room} diye bir oda yok";
-$arsc_lang["room_wrong_password"] = "Pardon, {room} odasina girebilmek için dogru sifreyi girmen gerekiyor";
-$arsc_lang["moderate_message"]    = "Mesajin `{message}` chat sorumlusuna gönderildi ve en kisa sürede isleme konulacak.";
+$arsc_lang["room_wrong_password"] = "Pardon, {room} odasina girebilmek iÃ§in dogru sifreyi girmen gerekiyor";
+$arsc_lang["moderate_message"]    = "Mesajin `{message}` chat sorumlusuna gÃ¶nderildi ve en kisa sÃ¼rede isleme konulacak.";
 $arsc_lang["opcall"]              = "[OPCALL] Yardima ihtiyacim var!";
 
 $arsc_lang["helplink"]      = "Yardim";
 $arsc_lang["help"]          = "
 Genel Yardim:
-Sol sütunda, odada bulunanlari görüyorsunuz.
+Sol sÃ¼tunda, odada bulunanlari gÃ¶rÃ¼yorsunuz.
 
-Adlarinin önünde @ olan kullanicilar operatördür
-ve diger kullanicilara operatör statüsü verebilir 
-statülerini geri alabilir ve chatt'en atabilirier.
+Adlarinin Ã¶nÃ¼nde @ olan kullanicilar operatÃ¶rdÃ¼r
+ve diger kullanicilara operatÃ¶r statÃ¼sÃ¼ verebilir 
+statÃ¼lerini geri alabilir ve chatt'en atabilirier.
 
 Sag taraftaki kullanici adlarina tiklayarak
 onlara gizli mesaj yollayabilirbilirsiniz.
 Tikladiktan sonra sadece mesajinizi yazmaniz yeterli.
 
 General Commands:
-/me mesaj -- Bir hareketi sembolize eder, örnek: /me kendini iyi hissediyor * Kullan&#305;c&#305; kendini iyi hissediyor yazd&#305;r&#305;r
-/msg kullanici mesaj -- 'kullanici' ya gizli mesaj çeker
-/j odaadi -- Bulunulan odadan 'odaadi' adli odaya geçer
+/me mesaj -- Bir hareketi sembolize eder, Ã¶rnek: /me kendini iyi hissediyor * Kullan&#305;c&#305; kendini iyi hissediyor yazd&#305;r&#305;r
+/msg kullanici mesaj -- 'kullanici' ya gizli mesaj Ã§eker
+/j odaadi -- Bulunulan odadan 'odaadi' adli odaya geÃ§er
 /room room --  /j odaadi komutunun aynisi";
 
 $arsc_lang["helpop"]        = "
-Operatör Komutlari:
-/msgops mesaj -- Tüm operatörlere gizli mesaj gönderir
+OperatÃ¶r Komutlari:
+/msgops mesaj -- TÃ¼m operatÃ¶rlere gizli mesaj gÃ¶nderir
 /whois kullaniciadi -- 'kullaniciadi' hakkinda bilgi verir
-/op kullaniciadi -- 'kullaniciadi' na operatör haklari verir
-/deop kullaniciadi -- 'kullaniciadi' ndan operatör haklarini geri alir
+/op kullaniciadi -- 'kullaniciadi' na operatÃ¶r haklari verir
+/deop kullaniciadi -- 'kullaniciadi' ndan operatÃ¶r haklarini geri alir
 /kick kullaniciadi -- 'kullaniciadi' ni chat'ten atar
 /bann kullaniciadi X -- 'kullaniciadi' nin IP adresini X saniye bloke eder
 /lock kullaniciadi -- 'kullaniciadi' ni, kayitli ise, daimi olarak bloke eder

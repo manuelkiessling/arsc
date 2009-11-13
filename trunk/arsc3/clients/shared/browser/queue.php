@@ -35,7 +35,7 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
     $arsc_api->handleReceivedMessage($arsc_user_sid, arsc_validateinput($arsc_answerqueueentry["message"], NULL, NULL, 0, ARSC_PARAMETER_INPUT_MAXSIZE, __FILE__, __LINE__), "../../../", 1);
     $arsc_api->deleteFromQueue($arsc_answerqueueid);
    }
-   $arsc_answer = arsc_validateinput(htmlentities($_GET["arsc_answer"], ENT_NOQUOTES), NULL, NULL, 0, ARSC_PARAMETER_INPUT_MAXSIZE, __FILE__, __LINE__);
+   $arsc_answer = arsc_validateinput(htmlspecialchars($_GET["arsc_answer"], ENT_NOQUOTES), NULL, NULL, 0, ARSC_PARAMETER_INPUT_MAXSIZE, __FILE__, __LINE__);
    if (get_magic_quotes_gpc() == 1 OR get_magic_quotes_runtime() == 1)
    {
     $arsc_answer = stripslashes($arsc_answer);

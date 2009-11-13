@@ -16,7 +16,7 @@
 // Define some settings for this language
 $arsc_lang_regions["english"] = array("en", "en-en", "en-us");
 $arsc_lang_name["english"] = "English";
-$arsc_lang["charset"] = "iso-8859-1";
+$arsc_lang["charset"] = "utf-8";
 
 
 // Language selection

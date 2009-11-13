@@ -16,7 +16,7 @@ include("english.inc.php");
 // Define some settings for this language
 $arsc_lang_regions["bosnian"] = array("ba", "ba-ba", "ba-cro");
 $arsc_lang_name["bosnian"] = "Bosanski";
-$arsc_lang["charset"] = "iso-8859-2";
+$arsc_lang["charset"] = "utf-8";
 
 
 // Language selection
@@ -37,7 +37,7 @@ $arsc_lang["yes"]                       = "Da";
 $arsc_lang["no"]                        = "Ne";
 $arsc_lang["selectroom"]                = "izaberite sobu:";
 $arsc_lang["createdby"]                 = "napravljena od";
-$arsc_lang["startbutton"]               = "ui u chat";
+$arsc_lang["startbutton"]               = "uƒëi u chat";
 $arsc_lang["usersinchat"]               = "ovi korisnici su momentalno online:";
 $arsc_lang["usersinchat_room"]          = "soba";
 $arsc_lang["usersinchat_name"]          = "korisnik";
@@ -50,25 +50,25 @@ $arsc_lang["clicktoregister"]           = "registrujte novog korisnika!";
 
 // Register page and eMail
 
-$arsc_lang["register_intro"]                 = "Da bi registrovali novog korisnika, molimo vas ispunite sledea polja.";
-$arsc_lang["register_intro_force"]           = "Onda Êe vam lozinka bit poslana na email.";
+$arsc_lang["register_intro"]                 = "Da bi registrovali novog korisnika, molimo vas ispunite sledeƒëa polja.";
+$arsc_lang["register_intro_force"]           = "Onda ƒáe vam lozinka bit poslana na email.";
 $arsc_lang["register_entername"]             = "korisnik:";
 $arsc_lang["register_enteremail"]            = "eMail-adresa:";
 $arsc_lang["register_enterpassword"]         = "lozinka:";
-$arsc_lang["register_send"]                  = "poπalji";
-$arsc_lang["register_yougetmail"]            = "Hvala, sada Êe te dobit mail sa vasom lozinkom.";
-$arsc_lang["register_emailtemplate_subject"] = "Vaπa {title} registracija.";
+$arsc_lang["register_send"]                  = "po≈°alji";
+$arsc_lang["register_yougetmail"]            = "Hvala, sada ƒáe te dobit mail sa vasom lozinkom.";
+$arsc_lang["register_emailtemplate_subject"] = "Va≈°a {title} registracija.";
 $arsc_lang["register_emailtemplate_body"]    = "
 Hallo,
 
-Dobrodoπli kod {title}.
+Dobrodo≈°li kod {title}.
 
 Vi ste registrovali korisnika '{username}'.
-sa sledeÊom lozinkom:
+sa sledeƒáom lozinkom:
 
             '{password}'
 
-Ovdje se moæete logirat u chat:
+Ovdje se mo≈æete logirat u chat:
 {homepage}
 
 
@@ -81,130 +81,130 @@ Ovdje se moæete logirat u chat:
 // Chat interface
 
 $arsc_lang["usersinroom"]               = "korisnika u sobi";
-$arsc_lang["sendmessage"]               = "poπalji";
+$arsc_lang["sendmessage"]               = "po≈°alji";
 $arsc_lang["refreshmessages"]           = "aktualiziraj poruke";
 $arsc_lang["leave"]                     = "napusti chat";
 $arsc_lang["roomlist"]                  = "lista soba";
-$arsc_lang["go_room"]                   = "ui";
+$arsc_lang["go_room"]                   = "uƒëi";
 $arsc_lang["refresh"]                   = "aktualiziraj";
 $arsc_lang["otherfunctions"]            = "ostale funkcije";
 $arsc_lang["smilielist"]                = "lista Smile-ova";
 $arsc_lang["scroll_active"]             = "automatski scroll";
-$arsc_lang["select_color"]              = "izaberite vaπu boju teksta";
+$arsc_lang["select_color"]              = "izaberite va≈°u boju teksta";
 $arsc_lang["moderatorqueue_title"]      = "neodgovorena pitanja";
-$arsc_lang["moderatorqueue_delete"]     = "briπi";
-$arsc_lang["moderatorqueue_youranswer"] = "vaπ odgovor";
+$arsc_lang["moderatorqueue_delete"]     = "bri≈°i";
+$arsc_lang["moderatorqueue_youranswer"] = "va≈° odgovor";
 $arsc_lang["moderatorqueue_cancel"]     = "prekini";
 $arsc_lang["drawboard"]                 = "Drawboard";
 
-$arsc_lang["cmd_m"]           = "ovdje klikni i poπalji korisniku poruku";
-$arsc_lang["opcmd_w"]         = "pokaæi viπe informacija o ovom korisniku";
+$arsc_lang["cmd_m"]           = "ovdje klikni i po≈°alji korisniku poruku";
+$arsc_lang["opcmd_w"]         = "poka≈æi vi≈°e informacija o ovom korisniku";
 $arsc_lang["opcmd_k"]         = "izbaci ovog korisnika iz sobe.";
-$arsc_lang["opcmd_b"]         = "IP-adresu ovog korisnika za jedno izvjesno vrijeme izkljuËit";
-$arsc_lang["opcmd_l"]         = "ovog korisnika za uvijek izkljuËit (samo sa registrovanim korisnicima moguÊe)";
+$arsc_lang["opcmd_b"]         = "IP-adresu ovog korisnika za jedno izvjesno vrijeme izkljuƒçit";
+$arsc_lang["opcmd_l"]         = "ovog korisnika za uvijek izkljuƒçit (samo sa registrovanim korisnicima moguƒáe)";
 $arsc_lang["opcmd_r"]         = "zanijemi korisnika";
-$arsc_lang["opcmd_u"]         = "odkljuËaj korisnika";
+$arsc_lang["opcmd_u"]         = "odkljuƒçaj korisnika";
 $arsc_lang["opcmd_o"]         = "dadni korisniku Operatorstatus";
 $arsc_lang["opcmd_d"]         = "uzmi korisniku Operatorstatus";
 $arsc_lang["opcmd_m"]         = "premjesti korisnika u drugu sobu";
-$arsc_lang["opcmd_id"]        = "pokaæi ID-Card ovog korisnika";
+$arsc_lang["opcmd_id"]        = "poka≈æi ID-Card ovog korisnika";
 
 
 // Errors
 
-$arsc_lang["error_register_double_user"] = "korisnik se veÊ koristi, molimo vas izaberite nekog drugog.";
-$arsc_lang["error_double_user"]          = "korisnik se veÊ koristi, molimo vas izaberite nekog drugog.";
+$arsc_lang["error_register_double_user"] = "korisnik se veƒá koristi, molimo vas izaberite nekog drugog.";
+$arsc_lang["error_double_user"]          = "korisnik se veƒá koristi, molimo vas izaberite nekog drugog.";
 $arsc_lang["error_no_name"]              = "morate jednog korisnika navest!";
 $arsc_lang["error_bad_name"]             = "Taj korisnik nije dozvoljen!";
-$arsc_lang["error_wrong_credentials"]    = "ulaz zabranjen - jesu vaπi podatci taËni?";
-$arsc_lang["error_banned"]               = "vaπ ulaz je za neko vrijeme zabranjen.";
+$arsc_lang["error_wrong_credentials"]    = "ulaz zabranjen - jesu va≈°i podatci taƒçni?";
+$arsc_lang["error_banned"]               = "va≈° ulaz je za neko vrijeme zabranjen.";
 
 
 // IDCard
 
 $arsc_lang["idcard_title"]               = "ID-Card od";
 $arsc_lang["idcard_sex"]                 = "pol:";
-$arsc_lang["idcard_male"]                = "muπki";
-$arsc_lang["idcard_female"]              = "æenski";
+$arsc_lang["idcard_male"]                = "mu≈°ki";
+$arsc_lang["idcard_female"]              = "≈æenski";
 $arsc_lang["idcard_location"]            = "mjesto:";
 $arsc_lang["idcard_color"]               = "standard-boja:";
 $arsc_lang["idcard_hobbies"]             = "zanimanje:";
 $arsc_lang["idcard_save"]                = "zapamti";
-$arsc_lang["idcard_save_ok"]             = "promjene su zapamÊene";
+$arsc_lang["idcard_save_ok"]             = "promjene su zapamƒáene";
 $arsc_lang["idcard_save_no"]             = "promjene se nisu mogle zapamtit!";
 $arsc_lang["idcard_guestbook"]           = "knjiga gostiju:";
-$arsc_lang["idcard_guestbook_active"]    = "pokaæi knjigu gostiju?";
-$arsc_lang["idcard_guestbook_delete"]    = "briπi";
+$arsc_lang["idcard_guestbook_active"]    = "poka≈æi knjigu gostiju?";
+$arsc_lang["idcard_guestbook_delete"]    = "bri≈°i";
 $arsc_lang["idcard_guestbook_delete_ok"] = "upis je izbrisan";
 $arsc_lang["idcard_guestbook_delete_no"] = "upis se nije mogo izbrisat!";
 $arsc_lang["idcard_guestbook_add"]       = "dodaj upis";
-$arsc_lang["idcard_guestbook_add_ok"]    = "vaπ upis je dodan";
-$arsc_lang["idcard_guestbook_add_no"]    = "vaπ upis se nije mogo dodat!";
+$arsc_lang["idcard_guestbook_add_ok"]    = "va≈° upis je dodan";
+$arsc_lang["idcard_guestbook_add_no"]    = "va≈° upis se nije mogo dodat!";
 $arsc_lang["idcard_guestbook_next"]      = "ostali upisi";
-$arsc_lang["idcard_guestbook_prev"]      = "proπli upisi";
+$arsc_lang["idcard_guestbook_prev"]      = "pro≈°li upisi";
 $arsc_lang["idcard_close"]               = "zatvori";
 
 
 // Chat System Messages
 
 $arsc_lang["enter"]               = "korisnik {user} ulazi u sobu {room}.";
-$arsc_lang["welcome"]             = "Dobrodoπo u {title}!";
-$arsc_lang["quit"]                = "korisnik {user} napuπta sobu {room}.";
-$arsc_lang["roomchange"]          = "korisnik {user} napuπta sobu {room1} i ulazi u sobu {room2}.";
-$arsc_lang["kicked"]              = "korisnik {userpassive} je od {useractive} izbaËen iz chat-a.";
-$arsc_lang["youwerekicked"]       = "Vi ste izbaËeni iz chat-a!";
-$arsc_lang["floodwarn"]           = "Ako nastavite uvijek isto pisat, bit Êe te izbaËeni iz chat-a!";
+$arsc_lang["welcome"]             = "Dobrodo≈°o u {title}!";
+$arsc_lang["quit"]                = "korisnik {user} napu≈°ta sobu {room}.";
+$arsc_lang["roomchange"]          = "korisnik {user} napu≈°ta sobu {room1} i ulazi u sobu {room2}.";
+$arsc_lang["kicked"]              = "korisnik {userpassive} je od {useractive} izbaƒçen iz chat-a.";
+$arsc_lang["youwerekicked"]       = "Vi ste izbaƒçeni iz chat-a!";
+$arsc_lang["floodwarn"]           = "Ako nastavite uvijek isto pisat, bit ƒáe te izbaƒçeni iz chat-a!";
 $arsc_lang["op"]                  = "korisnik {userpassive} dobio je od {useractive} Operatorstatus.";
 $arsc_lang["deop"]                = "korisnik {useractive} je korisniku {userpassive} Operatorstatus oduzo.";
-$arsc_lang["whispers"]            = "πapÊe";
-$arsc_lang["whispersops"]         = "πapÊe operatorima";
-$arsc_lang["gotmsg"]              = "vi πapÊete sa {user}: {message}";
-$arsc_lang["croom"]               = "korisnik {user} povlaËi se u svoju privatnu sobu {room}.";
-$arsc_lang["room_exists"]         = "soba {room} veÊ postoji!";
+$arsc_lang["whispers"]            = "≈°apƒáe";
+$arsc_lang["whispersops"]         = "≈°apƒáe operatorima";
+$arsc_lang["gotmsg"]              = "vi ≈°apƒáete sa {user}: {message}";
+$arsc_lang["croom"]               = "korisnik {user} povlaƒçi se u svoju privatnu sobu {room}.";
+$arsc_lang["room_exists"]         = "soba {room} veƒá postoji!";
 $arsc_lang["room_badname"]        = "to ime sobe nije dozvoljeno.";
-$arsc_lang["room_created"]        = "vaπa privatna soba {room} je uspjeπno napravljena! Vi moæete samo pomoÊu /invite naredbe druge korisnike u vaπu sobu pozvat.";
-$arsc_lang["invite"]              = "korisnik {user} vas je pozvo u njegovu privatnu sobu {room}. Upiπi te \"/room {room} {password}\" dabi u njegovu sobu uπli.";
+$arsc_lang["room_created"]        = "va≈°a privatna soba {room} je uspje≈°no napravljena! Vi mo≈æete samo pomoƒáu /invite naredbe druge korisnike u va≈°u sobu pozvat.";
+$arsc_lang["invite"]              = "korisnik {user} vas je pozvo u njegovu privatnu sobu {room}. Upi≈°i te \"/room {room} {password}\" dabi u njegovu sobu u≈°li.";
 $arsc_lang["invite_notexist"]     = "korisnik {user} nepostoji!";
 $arsc_lang["invite_notownroom"]   = "Vi morate bit u svojoj privatnoj sobi da bi mogli pozvat druge korisnike!";
 $arsc_lang["room_not_exist"]      = "soba {room} nepostoji!";
-$arsc_lang["room_wrong_password"] = "Vi morate taËnu lozinku navest da bi u sobu {room} uπli.";
-$arsc_lang["moderate_message"]    = "vaπa poruka `{message}` je poslana do moderatora i bit Êe prekontrolisana.";
-$arsc_lang["opcall"]              = "[OPCALL] Meni treba pomoÊ!";
+$arsc_lang["room_wrong_password"] = "Vi morate taƒçnu lozinku navest da bi u sobu {room} u≈°li.";
+$arsc_lang["moderate_message"]    = "va≈°a poruka `{message}` je poslana do moderatora i bit ƒáe prekontrolisana.";
+$arsc_lang["opcall"]              = "[OPCALL] Meni treba pomoƒá!";
 
-$arsc_lang["helplink"]      = "pomoÊ";
+$arsc_lang["helplink"]      = "pomoƒá";
 $arsc_lang["help"]          = "
-<b><i>opÊa pomoÊ:</i></b>
+<b><i>opƒáa pomoƒá:</i></b>
 Chat-prozor se dijeli u funkcije (lijevo), Chat (sredina), Chat-upis (dole) i lista online korisnika (desno).
-Da bi jednu poruku na sve osobe koje se nalaze u sobi poslali, utipkajte jednostavno æeljnu poruku u Chat-upis (dole) i pritisnite 'Enter'.
+Da bi jednu poruku na sve osobe koje se nalaze u sobi poslali, utipkajte jednostavno ≈æeljnu poruku u Chat-upis (dole) i pritisnite 'Enter'.
 
-(Ako se u sobi sa moderatorom nalazite, vaπa Êe poruka bit prvo moderatoru poslana, pa ako on dadne OK, onda Êe tek bit za sve korisnike vidljiva.)
+(Ako se u sobi sa moderatorom nalazite, va≈°a ƒáe poruka bit prvo moderatoru poslana, pa ako on dadne OK, onda ƒáe tek bit za sve korisnike vidljiva.)
 
-U lijevom dijelu imate dosta funkcija. Ispod logo ima lista svih soba u koje se moæete premjestit.
-Ispod tog formulara nalazi se jedan πalter, sa kojim moæete naπtimat da se Chat uvijek automatski scroll-uje. Ako æelite da Ëitate poruke, koje se viπe u chat-u nevide, onda morate samo ovu kvaku izkjluËit i moæete onda ko normalno na gore scroll-ovat.
-Pazite da, u browserima <i>Mozilla</i>, <i>Firefox</i> i <i>Netscape 7</i> πalter se nemora extra deaktivirat, dovoljno je, jednom u Chat kliknut i pomoÊu scroll-balkena se na gore micat. Ako opet æelite automatski scroll, odna je dovoljno jedan klik u Chat-upis uËinit.
+U lijevom dijelu imate dosta funkcija. Ispod logo ima lista svih soba u koje se mo≈æete premjestit.
+Ispod tog formulara nalazi se jedan ≈°alter, sa kojim mo≈æete na≈°timat da se Chat uvijek automatski scroll-uje. Ako ≈æelite da ƒçitate poruke, koje se vi≈°e u chat-u nevide, onda morate samo ovu kvaku izkjluƒçit i mo≈æete onda ko normalno na gore scroll-ovat.
+Pazite da, u browserima <i>Mozilla</i>, <i>Firefox</i> i <i>Netscape 7</i> ≈°alter se nemora extra deaktivirat, dovoljno je, jednom u Chat kliknut i pomoƒáu scroll-balkena se na gore micat. Ako opet ≈æelite automatski scroll, odna je dovoljno jedan klik u Chat-upis uƒçinit.
 
-U desnom prostoru, u listi online korisnika, vidite imena svih korisnika, koji se sa vama u istoj sobi nalaze. Korisnici, ispred kojih se simbol @ nalazi, su takozvani operatori - oni imaju viπe prava u chat-u, naprimer izbacivanje korisnika, i zaduæni su za red u sobi. Njima trebate pisat ako imate problema ili pitanja. Naredba '/opcall' (jednostavno dole upisat) informise online operatore, da vi pomoÊ trebate.
+U desnom prostoru, u listi online korisnika, vidite imena svih korisnika, koji se sa vama u istoj sobi nalaze. Korisnici, ispred kojih se simbol @ nalazi, su takozvani operatori - oni imaju vi≈°e prava u chat-u, naprimer izbacivanje korisnika, i zadu≈æni su za red u sobi. Njima trebate pisat ako imate problema ili pitanja. Naredba '/opcall' (jednostavno dole upisat) informise online operatore, da vi pomoƒá trebate.
 
-Svako ime u listi korisnika (osim vaπeg) je istovremeno i jedan link - ako na njega kliknete, automatski se dole upiπe '/msg imeKorisnika'. Onda morate samo vaπu poruku dodat, i kad je poπaljete, dobiva izabrani korisnik jednu privatnu poruku od vas. To znaËi, da samo on tu poruku moæe vidit. Ta funkcija se isto <i>πaptat</i> zove.
+Svako ime u listi korisnika (osim va≈°eg) je istovremeno i jedan link - ako na njega kliknete, automatski se dole upi≈°e '/msg imeKorisnika'. Onda morate samo va≈°u poruku dodat, i kad je po≈°aljete, dobiva izabrani korisnik jednu privatnu poruku od vas. To znaƒçi, da samo on tu poruku mo≈æe vidit. Ta funkcija se isto <i>≈°aptat</i> zove.
 
 
 <b><i>pregled naredbi:</i></b>
-<b>/me poruka</b> -- symboliπe jednu radnju, naprimer <i>/me otvara jednu vreÊicu Ëipsa</i> piπe u chat-u: <i>* otvara jednu vreÊicu Ëipsa</i>
-<b>/msg imeKorisnika poruka</b> -- πalje jednu privatnu poruku na <i>imeKorisnika</i>
-<b>/opcall</b> -- zove operatore u pomoÊ
+<b>/me poruka</b> -- symboli≈°e jednu radnju, naprimer <i>/me otvara jednu vreƒáicu ƒçipsa</i> pi≈°e u chat-u: <i>* otvara jednu vreƒáicu ƒçipsa</i>
+<b>/msg imeKorisnika poruka</b> -- ≈°alje jednu privatnu poruku na <i>imeKorisnika</i>
+<b>/opcall</b> -- zove operatore u pomoƒá
 <b>/croom imeSobe</b> -- pravi jednu novu privatnu sobu sa imenom <i>imeSobe</i> 
 <b>/invite imeKorisnika</b> -- poziva <i>imeKorisnika</i> u privatnu sobu
-<b>/j imeSobe</b> -- premjeπta te u <i>imeSobe</i>";
+<b>/j imeSobe</b> -- premje≈°ta te u <i>imeSobe</i>";
 
 $arsc_lang["helpop"]        = "
 <b><i>operator naredbe:</i></b>
-<b>/msgops poruka</b> -- πapÊat sa svim drugim operatorima
+<b>/msgops poruka</b> -- ≈°apƒáat sa svim drugim operatorima
 <b>/whois imeKorisnika</b> -- pokazuje informacije o korisniku <i>imeKorisnika</i>
 <b>/op imeKorisnika</b> -- korisniku <i>imeKorisnika</i> operatorstatus dat
 <b>/deop imeKorisnika</b> -- korisniku <i>imeKorisnika</i> operatorstatus uzet
 <b>/kick imeKorisnika</b> -- korisnika <i>imeKorisnika</i> iz chat-a izbacit
-<b>/bann imeKorisnika XYZ</b> -- IP korisnika <i>imeKorisnika</i> za <i>XYZ</i> sekundi zakljuËat
-<b>/lock imeKorisnika</b> -- registriranog korisnika <i>imeKorisnika</i> non stop zakljuËat
+<b>/bann imeKorisnika XYZ</b> -- IP korisnika <i>imeKorisnika</i> za <i>XYZ</i> sekundi zakljuƒçat
+<b>/lock imeKorisnika</b> -- registriranog korisnika <i>imeKorisnika</i> non stop zakljuƒçat
 <b>/rip imeKorisnika</b> -- zanijemi korisnika <i>imeKorisnika</i>
 <b>/unrip imeKorisnika</b> -- korisniku <i>imeKorisnika</i> opet glas dat
 <b>/move imeKorisnika imeSobe</b> -- korisnika <i>imeKorisnika</i> u <i>imeSobe</i> premjestit";

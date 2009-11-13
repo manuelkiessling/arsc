@@ -16,7 +16,7 @@ include("english.inc.php");
 // Define some settings for this language
 $arsc_lang_regions["french"] = array("fr", "fr-fr", "fr-ca");
 $arsc_lang_name["french"] = "Francais";
-$arsc_lang["charset"] = "iso-8859-1";
+$arsc_lang["charset"] = "utf-8";
 
 
 // Language selection
@@ -29,21 +29,21 @@ $arsc_lang["next"] = "Suivant";
 $arsc_lang["entername"]         = "Veuillez entrer votre pseudo:";
 $arsc_lang["enterpassword"]     = "Veuillez entre votre mot de passe:";
 $arsc_lang["selectchatversion"]      = "Quelle version voulez-vous utilisez?";
-$arsc_lang["version_browser_socket"]    = "Optimisée";
-$arsc_lang["version_browser_push"]      = "Optimisée (compatible avec les pares-feu)";
+$arsc_lang["version_browser_socket"]    = "OptimisÃ©e";
+$arsc_lang["version_browser_push"]      = "OptimisÃ©e (compatible avec les pares-feu)";
 $arsc_lang["version_browser_text"]      = "Version pour les navigateurs texte";
 $arsc_lang["yes"]                       = "Oui";
 $arsc_lang["no"]                        = "Non";
 $arsc_lang["selectroom"]        = "Choisissez un salon de discussion:";
-$arsc_lang["createdby"]                 = "Créé par";
-$arsc_lang["startbutton"]       = "Démarrez le chat!";
-$arsc_lang["usersinchat"]       = "Ces utilisateurs sont actuellement connectés:";
+$arsc_lang["createdby"]                 = "CrÃ©Ã© par";
+$arsc_lang["startbutton"]       = "DÃ©marrez le chat!";
+$arsc_lang["usersinchat"]       = "Ces utilisateurs sont actuellement connectÃ©s:";
 $arsc_lang["usersinchat_room"]  = "Salon de discussion";
 $arsc_lang["usersinchat_name"]  = "Utilisateur";
 $arsc_lang["clicktoregister"]   = "Enregistrer votre pseudo!";
 
 // Why kicked page
-$arsc_lang["returntologinpage"] = "Retournez à la page d'identification";
+$arsc_lang["returntologinpage"] = "Retournez Ã  la page d'identification";
 
 // Register page and eMail
 
@@ -52,7 +52,7 @@ $arsc_lang["register_intro_force"]           = "Un mot de passe vous sera ensuit
 $arsc_lang["register_entername"]             = "Pseudo:";
 $arsc_lang["register_enteremail"]            = "Adresse Email:";
 $arsc_lang["register_enterpassword"]         = "Mot de passe:";
-$arsc_lang["register_send"]                  = "Valider l´enregistrement";
+$arsc_lang["register_send"]                  = "Valider lÂ´enregistrement";
 $arsc_lang["register_yougetmail"]            = "Merci, vous allez recevoir un Email avec votre mot de passe.";
 $arsc_lang["register_emailtemplate_subject"] = "Votre enregistrement ARSC.";
 
@@ -61,10 +61,10 @@ Bonjour,
 
 Vous avez fait un enregistrement pour le chat ARSC.
 
-Vous avez choisi le pseudo ´{username}´.
-il est maintenant protégé par le mot de passe:
+Vous avez choisi le pseudo Â´{username}Â´.
+il est maintenant protÃ©gÃ© par le mot de passe:
 
-            ´{password}´
+            Â´{password}Â´
 
 Vous pouvez maintenant vous connecter sur le chat en cliquant ici:
 {homepage}
@@ -86,18 +86,18 @@ $arsc_lang["leave"]           = "Quitter";
 $arsc_lang["roomlist"]        = "Listes des salons";
 $arsc_lang["go_room"]         = "Entrer";
 $arsc_lang["refresh"]         = "Rafraichir";
-$arsc_lang["otherfunctions"]  = "Fonctions supplémentaires";
+$arsc_lang["otherfunctions"]  = "Fonctions supplÃ©mentaires";
 $arsc_lang["smilielist"]      = "Listes des smileys";
 $arsc_lang["scroll_active"]   = "Ascenseur Automatique";
-$arsc_lang["drawboard"]       = "Planche à Dessin";
+$arsc_lang["drawboard"]       = "Planche Ã  Dessin";
 $arsc_lang["select_color"]    = "Selectionnez votre couleur";
-$arsc_lang["moderatorqueue_title"]      = "Question non-répondue";
+$arsc_lang["moderatorqueue_title"]      = "Question non-rÃ©pondue";
 $arsc_lang["moderatorqueue_delete"]     = "Effacer";
-$arsc_lang["moderatorqueue_youranswer"] = "Votre réponse";
+$arsc_lang["moderatorqueue_youranswer"] = "Votre rÃ©ponse";
 $arsc_lang["moderatorqueue_cancel"]     = "Annuler";
 
-$arsc_lang["cmd_m"]           = "Cliquez pour envoyer un message à cet usager";
-$arsc_lang["opcmd_w"]         = "Montrer des informations détaillées à propos de cet usager";
+$arsc_lang["cmd_m"]           = "Cliquez pour envoyer un message Ã  cet usager";
+$arsc_lang["opcmd_w"]         = "Montrer des informations dÃ©taillÃ©es Ã  propos de cet usager";
 $arsc_lang["opcmd_k"]         = "Virer cet usager hors de ce salon";
 $arsc_lang["opcmd_b"]         = "Ban this users IP adress for some time";
 $arsc_lang["opcmd_l"]         = "Lock this user permanently (if he is registered)";
@@ -110,85 +110,85 @@ $arsc_lang["opcmd_id"]        = "Show the ID card of this user";
 
 // Errors
 
-$arsc_lang["error_register_double_user"] = "Ce pseudo est déjà utilisé. Merci d´en choisir un autre.";
-$arsc_lang["error_double_user"]          = "Ce pseudo est déja utilisé!";
+$arsc_lang["error_register_double_user"] = "Ce pseudo est dÃ©jÃ  utilisÃ©. Merci dÂ´en choisir un autre.";
+$arsc_lang["error_double_user"]          = "Ce pseudo est dÃ©ja utilisÃ©!";
 $arsc_lang["error_no_name"]              = "Vous devez donner votre pseudo!";
-$arsc_lang["error_bad_name"]             = "Ce pseudo n´est pas autorisé!";
-$arsc_lang["error_wrong_credentials"]    = "Accés non autorisé!<br>Vos inforamtions sont elles correctes?";
-$arsc_lang["error_banned"]               = "L´accés est temporairement interdit.";
+$arsc_lang["error_bad_name"]             = "Ce pseudo nÂ´est pas autorisÃ©!";
+$arsc_lang["error_wrong_credentials"]    = "AccÃ©s non autorisÃ©!<br>Vos inforamtions sont elles correctes?";
+$arsc_lang["error_banned"]               = "LÂ´accÃ©s est temporairement interdit.";
 
 // IDCard
 
-$arsc_lang["idcard_title"]               = "Carte d'identité de";
+$arsc_lang["idcard_title"]               = "Carte d'identitÃ© de";
 $arsc_lang["idcard_sex"]                 = "Sexe:";
 $arsc_lang["idcard_male"]                = "homme";
 $arsc_lang["idcard_female"]              = "femme";
-$arsc_lang["idcard_location"]            = "Localité/Pays:";
-$arsc_lang["idcard_color"]               = "Couleur par défaut:";
+$arsc_lang["idcard_location"]            = "LocalitÃ©/Pays:";
+$arsc_lang["idcard_color"]               = "Couleur par dÃ©faut:";
 $arsc_lang["idcard_hobbies"]             = "Passe-temps:";
 $arsc_lang["idcard_save"]                = "Enregistrer";
-$arsc_lang["idcard_save_ok"]             = "Les modifications sont enregistrées";
-$arsc_lang["idcard_save_no"]             = "Les modifications n'ont pu être enregistrées";
+$arsc_lang["idcard_save_ok"]             = "Les modifications sont enregistrÃ©es";
+$arsc_lang["idcard_save_no"]             = "Les modifications n'ont pu Ãªtre enregistrÃ©es";
 $arsc_lang["idcard_guestbook"]           = "Livre d'or:";
 $arsc_lang["idcard_guestbook_active"]    = "Montrer le livre d'or?";
 $arsc_lang["idcard_guestbook_delete"]    = "Effacer";
-$arsc_lang["idcard_guestbook_delete_ok"] = "Le message a été effacé";
-$arsc_lang["idcard_guestbook_delete_no"] = "Le message n'a pu être effacé!";
+$arsc_lang["idcard_guestbook_delete_ok"] = "Le message a Ã©tÃ© effacÃ©";
+$arsc_lang["idcard_guestbook_delete_no"] = "Le message n'a pu Ãªtre effacÃ©!";
 $arsc_lang["idcard_guestbook_add"]       = "Rajouter un message";
-$arsc_lang["idcard_guestbook_add_ok"]    = "Votre message a été ajouté";
-$arsc_lang["idcard_guestbook_add_no"]    = "Votre message n'a pu être ajouté!";
+$arsc_lang["idcard_guestbook_add_ok"]    = "Votre message a Ã©tÃ© ajoutÃ©";
+$arsc_lang["idcard_guestbook_add_no"]    = "Votre message n'a pu Ãªtre ajoutÃ©!";
 $arsc_lang["idcard_guestbook_next"]      = "Messages suivants";
-$arsc_lang["idcard_guestbook_prev"]      = "Messages précédents";
+$arsc_lang["idcard_guestbook_prev"]      = "Messages prÃ©cÃ©dents";
 $arsc_lang["idcard_close"]               = "Fermer";
 
 
 // Chat System Messages
 
-$arsc_lang["enter"]         = "L´utilisateur {user} vient d´entrer dans le salon {room}.";
+$arsc_lang["enter"]         = "LÂ´utilisateur {user} vient dÂ´entrer dans le salon {room}.";
 $arsc_lang["welcome"]       = "Bienvenue ! Tapez /? dans le champ texte pour voir les commands disponible.";
-$arsc_lang["quit"]          = "L´utilisateur {user} quitte le salon {room}.";
-$arsc_lang["roomchange"]    = "L´utilisateur {user} qui le salon {room1} et entre dans le salon {room2}.";
-$arsc_lang["kicked"]        = "L´utilisateur {userpassive} a été viré du chat par {useractive}.";
-$arsc_lang["youwerekicked"] = "vous avez été viré du chat!";
+$arsc_lang["quit"]          = "LÂ´utilisateur {user} quitte le salon {room}.";
+$arsc_lang["roomchange"]    = "LÂ´utilisateur {user} qui le salon {room1} et entre dans le salon {room2}.";
+$arsc_lang["kicked"]        = "LÂ´utilisateur {userpassive} a Ã©tÃ© virÃ© du chat par {useractive}.";
+$arsc_lang["youwerekicked"] = "vous avez Ã©tÃ© virÃ© du chat!";
 $arsc_lang["floodwarn"]           = "ARRETER DE FLOODER MAINTENANT ou vous devrez quitter!";
-$arsc_lang["op"]            = "L´utilisateur {userpassive} est maintenant opérateur grace à {useractive}.";
-$arsc_lang["deop"]          = "L´utilisateur {useractive} a supprimé le status opérateur de {userpassive}.";
+$arsc_lang["op"]            = "LÂ´utilisateur {userpassive} est maintenant opÃ©rateur grace Ã  {useractive}.";
+$arsc_lang["deop"]          = "LÂ´utilisateur {useractive} a supprimÃ© le status opÃ©rateur de {userpassive}.";
 $arsc_lang["whispers"]      = "chuchotement";
-$arsc_lang["whispersops"]   = "chuchotement à tous les opérateurs";
-$arsc_lang["gotmsg"]        = "Vous chuchotez à </i>{user}<i>: {message}";
-$arsc_lang["croom"]               = "L´utilisateur {user} a décidé de quitter dans son salon privé {room}.";
-$arsc_lang["room_exists"]         = "Désolé, le nom de ce salon {room} existe encore.";
-$arsc_lang["room_badname"]        = "Désolé, ce nom de salon n'est pas possible.";
-$arsc_lang["room_created"]        = "Votre salon privé {room} a été créé!! Vous pouvez maintenant inviter quelqu'un en utilisant la commande /invite.";
-$arsc_lang["invite"]              = "Vous avez été invité par l´utilisateur {user} dans son salon privé {room}. Taper \"/room {room} {password}\" pour entrer dans son salon.";
-$arsc_lang["invite_notexist"]     = "Désolé, l'utilisateur {user} n'existe pas.";
-$arsc_lang["invite_notownroom"]   = "Désolé, Svous devez être dans votre propre salon pour inviter d'autres usagers.";
-$arsc_lang["room_not_exist"]      = "Désolé, le salon {room} n'existe pas";
-$arsc_lang["room_wrong_password"] = "Désolé, vous devez entrer le bon mot de passe pour entrer dans le salon {room}";
-$arsc_lang["moderate_message"]    = "Votre message `{message}` a été correctement envoyé au modérateur.";
+$arsc_lang["whispersops"]   = "chuchotement Ã  tous les opÃ©rateurs";
+$arsc_lang["gotmsg"]        = "Vous chuchotez Ã  </i>{user}<i>: {message}";
+$arsc_lang["croom"]               = "LÂ´utilisateur {user} a dÃ©cidÃ© de quitter dans son salon privÃ© {room}.";
+$arsc_lang["room_exists"]         = "DÃ©solÃ©, le nom de ce salon {room} existe encore.";
+$arsc_lang["room_badname"]        = "DÃ©solÃ©, ce nom de salon n'est pas possible.";
+$arsc_lang["room_created"]        = "Votre salon privÃ© {room} a Ã©tÃ© crÃ©Ã©!! Vous pouvez maintenant inviter quelqu'un en utilisant la commande /invite.";
+$arsc_lang["invite"]              = "Vous avez Ã©tÃ© invitÃ© par lÂ´utilisateur {user} dans son salon privÃ© {room}. Taper \"/room {room} {password}\" pour entrer dans son salon.";
+$arsc_lang["invite_notexist"]     = "DÃ©solÃ©, l'utilisateur {user} n'existe pas.";
+$arsc_lang["invite_notownroom"]   = "DÃ©solÃ©, Svous devez Ãªtre dans votre propre salon pour inviter d'autres usagers.";
+$arsc_lang["room_not_exist"]      = "DÃ©solÃ©, le salon {room} n'existe pas";
+$arsc_lang["room_wrong_password"] = "DÃ©solÃ©, vous devez entrer le bon mot de passe pour entrer dans le salon {room}";
+$arsc_lang["moderate_message"]    = "Votre message `{message}` a Ã©tÃ© correctement envoyÃ© au modÃ©rateur.";
 $arsc_lang["opcall"]              = "[OPCALL] J'ai besoin d'aide!";
 
 $arsc_lang["helplink"]      = "Aide";
 $arsc_lang["help"]          = "
-Aide générale:
+Aide gÃ©nÃ©rale:
 Dans la partie de droite vous voyez tous les utilisateurs
 qui sont actuellement dans le salon.
 
 Les utilisateurs avec un @ devant leur nom
-sont des opérateurs et ils peuvent virer les utilisateurs
-du salon, donner le status d´opérateur aux utilisateurs
-et annuler leur status d´opérateur.
+sont des opÃ©rateurs et ils peuvent virer les utilisateurs
+du salon, donner le status dÂ´opÃ©rateur aux utilisateurs
+et annuler leur status dÂ´opÃ©rateur.
 
 Si vous cliquez sur un nom dans la partie de droite,
-le champ d´envoi de message sera rempli avec les commandes
-nécessaire pour envoyer une message privé à cette utilisateur.
-Il vous suffira de compléter le champ avec votre message.
+le champ dÂ´envoi de message sera rempli avec les commandes
+nÃ©cessaire pour envoyer une message privÃ© Ã  cette utilisateur.
+Il vous suffira de complÃ©ter le champ avec votre message.
 
-Commandes générales:
+Commandes gÃ©nÃ©rales:
 /me message -- Symbolise une action, e.g. /me est content donne * User est content
-/msg user message -- Envoie un message privé à un user
+/msg user message -- Envoie un message privÃ© Ã  un user
 /j Autresalon -- Quitte le salon courant et entre dans Autresalon
-/room room -- Un équivalent à /j";
+/room room -- Un Ã©quivalent Ã  /j";
 
 $arsc_lang["helpop"]        = "
 Operator Commands:

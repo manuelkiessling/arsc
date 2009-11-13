@@ -16,7 +16,7 @@ include("english.inc.php");
 // Define some settings for this language
 $arsc_lang_regions["dutch"] = array("nl");
 $arsc_lang_name["dutch"] = "Nederlands";
-$arsc_lang["charset"] = "iso-8859-1";
+$arsc_lang["charset"] = "utf-8";
 
 
 // Language selection

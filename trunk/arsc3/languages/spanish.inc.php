@@ -15,8 +15,8 @@ include("english.inc.php");
 
 // Define some settings for this language
 $arsc_lang_regions["spanish"] = array("es", "es", "es");
-$arsc_lang_name["spanish"] = "EspaÒol";
-$arsc_lang["charset"] = "iso-8859-1";
+$arsc_lang_name["spanish"] = "Espa√±ol";
+$arsc_lang["charset"] = "utf-8";
 
 
 // Language selection
@@ -52,7 +52,7 @@ $arsc_lang["returntologinpage"] = "Volver a la pagina de login";
 // Register page and eMail
 
 $arsc_lang["register_intro"]                 = "Para registrar su nick, complete los campos de abajo";
-$arsc_lang["register_intro_force"]           = "Un password le ser· enviado al email que ingresÛ";
+$arsc_lang["register_intro_force"]           = "Un password le ser√° enviado al email que ingres√≥";
 $arsc_lang["register_entername"]             = "Nickname:";
 $arsc_lang["register_enteremail"]            = "EMail:";
 $arsc_lang["register_enterpassword"]         = "Password:";
@@ -65,11 +65,11 @@ Hola,
 Ud se registro para {title}.
 
 Y el nickname '{username}'.
-esta ahora protegido por la contraseÒa
+esta ahora protegido por la contrase√±a
 
             '{password}'
 
-Ahora puede ingresar al chat desde esta p·gina:
+Ahora puede ingresar al chat desde esta p√°gina:
 {homepage}
 
 Diviertase!
@@ -114,10 +114,10 @@ $arsc_lang["opcmd_id"]        = "Mostrar el ID de este usuario";
 
 // Errors
 
-$arsc_lang["error_register_double_user"] = "Este nick est· en uso. Por favor elija otro.";
-$arsc_lang["error_double_user"]          = "Un usuario con este nick est· actualmente logueado!";
+$arsc_lang["error_register_double_user"] = "Este nick est√° en uso. Por favor elija otro.";
+$arsc_lang["error_double_user"]          = "Un usuario con este nick est√° actualmente logueado!";
 $arsc_lang["error_no_name"]              = "Debe ingresar un nick!";
-$arsc_lang["error_bad_name"]             = "Este nombre no est· permitido!";
+$arsc_lang["error_bad_name"]             = "Este nombre no est√° permitido!";
 $arsc_lang["error_wrong_credentials"]    = "Acceso denegado!<br>Tus credenciales estan correctas?";
 $arsc_lang["error_banned"]               = "Acceso temporalmente denegado";
 
@@ -155,7 +155,7 @@ $arsc_lang["quit"]                = "{user} ha abandonado la sala {room}.";
 $arsc_lang["roomchange"]          = "{user} ha abandonado la sala {room1} y ha ongresado a {room2}.";
 $arsc_lang["kicked"]              = "{userpassive} fue expulsado de la sala por {useractive}.";
 $arsc_lang["youwerekicked"]       = "Has sido expulsado del chat!";
-$arsc_lang["floodwarn"]           = "Deja de molestar o ser·s expulsado de la sala!";
+$arsc_lang["floodwarn"]           = "Deja de molestar o ser√°s expulsado de la sala!";
 $arsc_lang["op"]                  = "{userpassive} ha recibido nivel de operador de {useractive}.";
 $arsc_lang["deop"]                = "{useractive} ha quitado nivel de operador a {userpassive}.";
 $arsc_lang["whispers"]            = "Susurrar";
@@ -170,7 +170,7 @@ $arsc_lang["invite_notexist"]     = "Lo siento, el usuario {user} no existe.";
 $arsc_lang["invite_notownroom"]   = "Lo siento, usted debe estar en su sala privada para invitar a otros usuarios.";
 $arsc_lang["room_not_exist"]      = "Lo siento, pero la sala {room} no existe";
 $arsc_lang["room_wrong_password"] = "Lo siento, ustede debe ingresar el password correcto para ingresar a la sala {room}";
-$arsc_lang["moderate_message"]    = "Su mensaje `{message}` fue entregado al moderador y ser· revisado.";
+$arsc_lang["moderate_message"]    = "Su mensaje `{message}` fue entregado al moderador y ser√° revisado.";
 $arsc_lang["opcall"]              = "[OPCALL] Necesito ayuda!";
 
 $arsc_lang["helplink"]      = "Ayuda";
@@ -186,7 +186,7 @@ dar nivel de operador y quitarselo a otros OPs.
 Si cliqueas en un nombre de la derecha, el cuadro de 
 mensajes sera completado con el comando necesario para 
 enviar un mensaje privado a ese usuario. 
-Ud sÛlo debe aÒadir su mensaje al final de esta linea.
+Ud s√≥lo debe a√±adir su mensaje al final de esta linea.
 
 
 Comandos generale:

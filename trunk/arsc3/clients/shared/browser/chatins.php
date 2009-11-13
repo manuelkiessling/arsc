@@ -20,9 +20,9 @@ if($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"]
   Now this one is difficult: How can we filter user messages without being too restrictive?
   A whitelist filter is not possible - just think of all the Umlauts in all those languages in the world,
   or what if people chat about MySQL commands etc.?
-  Thus, we will hope that mysql_escape_string() and htmlentities() do their jobs.
+  Thus, we will hope that mysql_escape_string() and htmlspecialchars() do their jobs.
  */
- $arsc_message = arsc_validateinput(htmlentities($_GET["arsc_message"], ENT_NOQUOTES), NULL, NULL, 0, ARSC_PARAMETER_INPUT_MAXSIZE, __FILE__, __LINE__);
+ $arsc_message = arsc_validateinput(htmlspecialchars($_GET["arsc_message"], ENT_NOQUOTES), NULL, NULL, 0, ARSC_PARAMETER_INPUT_MAXSIZE, __FILE__, __LINE__);
  if (get_magic_quotes_gpc() == 1 OR get_magic_quotes_runtime() == 1)
  {
   $arsc_message = stripslashes($arsc_message);

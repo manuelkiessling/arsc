@@ -1,5 +1,10 @@
 ARSC - ARSC Really Simple Chat - Changelog
 
+- Version 3.2-rc1
+  2008-01-06
+
+  - Globally changed all charsets to UTF-8
+
 - Version 3.1-rc1-p1
   2005-11-25
 
