@@ -1,5 +1,20 @@
 ARSC - ARSC Really Simple Chat - Changelog
 
+- Version 3.3-rc1
+  2009-12-27
+
+  - Support Google Chrome's uppercase "en-US" language name.
+  - Sort list of languages by name of language.
+  - Administrator can configure site to not show status messages in
+    moderated rooms, to reduce flooding.
+  - Reduce possible flooding problem.
+  - Better character set support per bug report "Poor internationalization
+    support in chatrooms - ID: 1870119"
+  - Update link to online Documentation.
+  - Fix bug in smilies help display.
+  - Replaced damaged smilies and poweredby icon.
+  - Fixed Help list of smilies so it shows the icons.
+
 - Version 3.2-rc1
   2008-01-06
 

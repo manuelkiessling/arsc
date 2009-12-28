@@ -103,7 +103,7 @@ $arsc_lang["moderatorqueue_youranswer"] = "Your answer";
 $arsc_lang["moderatorqueue_cancel"]     = "Cancel";
 $arsc_lang["drawboard"]                 = "Drawboard";
 
-$arsc_lang["cmd_m"]           = "Klick to send a message to this user";
+$arsc_lang["cmd_m"]           = "Click to send a message to this user";
 $arsc_lang["opcmd_w"]         = "Show extended information about this user";
 $arsc_lang["opcmd_k"]         = "Kick this user out of the room";
 $arsc_lang["opcmd_b"]         = "Ban this users IP adress for some time";
@@ -190,7 +190,7 @@ users, and take away their operator status.
 
 If you click on a name on the right, the input
 field will be filled with the command that is
-neccessary to send a private message to this user.
+necessary to send a private message to this user.
 You only have to append your message to the end
 of the command line.
 

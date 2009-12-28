@@ -13,55 +13,71 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
  if ($arsc_user == "System" AND strstr($arsc_message, "~~"))
  {
   // We have a system message
-  $arsc_sysmsg = explode("~~", $arsc_message);
-  switch($arsc_sysmsg[0])
+  if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE != "yes" AND $arsc_flag_moderated != 1)
   {
-   case "arsc_user_enter":
-                          $arsc_posting = $arsc_lang["enter"];
-                          $arsc_posting = str_replace("{user}", $arsc_sysmsg[1], $arsc_posting);
-                          $arsc_posting = str_replace("{room}", $arsc_sysmsg[2], $arsc_posting);
-                          $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
-                          break;
-   case "arsc_user_quit":
-                          $arsc_posting = $arsc_lang["quit"];
-                          $arsc_posting = str_replace("{user}", $arsc_sysmsg[1], $arsc_posting);
-                          $arsc_posting = str_replace("{room}", $arsc_sysmsg[2], $arsc_posting);
-                          $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
-                          break;
-   case "arsc_user_kicked":
-                          $arsc_posting = $arsc_lang["kicked"];
-                          $arsc_posting = str_replace("{useractive}", $arsc_sysmsg[1], $arsc_posting);
-                          $arsc_posting = str_replace("{userpassive}", $arsc_sysmsg[2], $arsc_posting);
-                          $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
-                          break;
-   case "arsc_user_op":
-                          $arsc_posting = $arsc_lang["op"];
-                          $arsc_posting = str_replace("{useractive}", $arsc_sysmsg[1], $arsc_posting);
-                          $arsc_posting = str_replace("{userpassive}", $arsc_sysmsg[2], $arsc_posting);
-                          $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
-                          break;
-   case "arsc_user_deop":
-                          $arsc_posting = $arsc_lang["deop"];
-                          $arsc_posting = str_replace("{useractive}", $arsc_sysmsg[1], $arsc_posting);
-                          $arsc_posting = str_replace("{userpassive}", $arsc_sysmsg[2], $arsc_posting);
-                          $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
-                          break;
-   case "arsc_user_roomchange":
-                          if ($arsc_my["level"] > 0)
-                          {
-                           $arsc_posting = $arsc_lang["roomchange"];
+   // if status messages should not be visible in moderated rooms and this message has not been marked as moderated
+   $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '". $arsc_room . "'", ARSC_PARAMETER_DB_LINK);
+   $c = mysql_fetch_array($result);
+   if ($c["roomname"] == $arsc_room)
+   {
+    if ($c["type"] == ARSC_ROOMTYPE_MODERATED)
+    {
+     $arsc_posting = "";	// No posting due to messages not being visible in a moderated room.
+    }
+   }
+  }
+  else
+  {
+   $arsc_sysmsg = explode("~~", $arsc_message);
+   switch($arsc_sysmsg[0])
+   {
+    case "arsc_user_enter":
+                           $arsc_posting = $arsc_lang["enter"];
                            $arsc_posting = str_replace("{user}", $arsc_sysmsg[1], $arsc_posting);
-                           $arsc_posting = str_replace("{room1}", $arsc_sysmsg[2], $arsc_posting);
-                           $arsc_posting = str_replace("{room2}", $arsc_sysmsg[3], $arsc_posting);
+                           $arsc_posting = str_replace("{room}", $arsc_sysmsg[2], $arsc_posting);
                            $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
-                          }
-                          break;
-   case "arsc_user_croom":
-                          $arsc_posting = $arsc_lang["croom"];
-                          $arsc_posting = str_replace("{user}", $arsc_sysmsg[1], $arsc_posting);
-                          $arsc_posting = str_replace("{room}", $arsc_sysmsg[2], $arsc_posting);
-                          $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
-                          break;
+                           break;
+    case "arsc_user_quit":
+                           $arsc_posting = $arsc_lang["quit"];
+                           $arsc_posting = str_replace("{user}", $arsc_sysmsg[1], $arsc_posting);
+                           $arsc_posting = str_replace("{room}", $arsc_sysmsg[2], $arsc_posting);
+                           $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
+                           break;
+    case "arsc_user_kicked":
+                           $arsc_posting = $arsc_lang["kicked"];
+                           $arsc_posting = str_replace("{useractive}", $arsc_sysmsg[1], $arsc_posting);
+                           $arsc_posting = str_replace("{userpassive}", $arsc_sysmsg[2], $arsc_posting);
+                           $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
+                           break;
+    case "arsc_user_op":
+                           $arsc_posting = $arsc_lang["op"];
+                           $arsc_posting = str_replace("{useractive}", $arsc_sysmsg[1], $arsc_posting);
+                           $arsc_posting = str_replace("{userpassive}", $arsc_sysmsg[2], $arsc_posting);
+                           $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
+                           break;
+    case "arsc_user_deop":
+                           $arsc_posting = $arsc_lang["deop"];
+                           $arsc_posting = str_replace("{useractive}", $arsc_sysmsg[1], $arsc_posting);
+                           $arsc_posting = str_replace("{userpassive}", $arsc_sysmsg[2], $arsc_posting);
+                           $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
+                           break;
+    case "arsc_user_roomchange":
+                           if ($arsc_my["level"] > 0)
+                           {
+                            $arsc_posting = $arsc_lang["roomchange"];
+                            $arsc_posting = str_replace("{user}", $arsc_sysmsg[1], $arsc_posting);
+                            $arsc_posting = str_replace("{room1}", $arsc_sysmsg[2], $arsc_posting);
+                            $arsc_posting = str_replace("{room2}", $arsc_sysmsg[3], $arsc_posting);
+                            $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
+                           }
+                           break;
+    case "arsc_user_croom":
+                           $arsc_posting = $arsc_lang["croom"];
+                           $arsc_posting = str_replace("{user}", $arsc_sysmsg[1], $arsc_posting);
+                           $arsc_posting = str_replace("{room}", $arsc_sysmsg[2], $arsc_posting);
+                           $arsc_posting = str_replace("{user}", $arsc_user, str_replace("{sendtime}", substr($arsc_sendtime, 0, 5), str_replace("{message}", $arsc_posting, $arsc_template["system"])));
+                           break;
+   }
   }
  }
  else
@@ -94,10 +110,19 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     {
      mysql_query("UPDATE arsc_users SET level = -1 WHERE user = '$userpassive'", ARSC_PARAMETER_DB_LINK);
      mysql_query("DELETE FROM arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'", ARSC_PARAMETER_DB_LINK);
-     $arsc_message = "arsc_user_kicked~~".$arsc_user."~~".$userpassive;
-     $arsc_sendtime = date("H:i:s");
-     $arsc_timeid = arsc_microtime();
-     mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+
+     $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '". $b["room"] . "'", ARSC_PARAMETER_DB_LINK);
+     $c = mysql_fetch_array($result);
+     if ($c["roomname"] == $b["room"])
+     {
+      if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $c["type"] != ARSC_ROOMTYPE_MODERATED)
+      {
+       $arsc_message = "arsc_user_kicked~~".$arsc_user."~~".$userpassive;
+       $arsc_sendtime = date("H:i:s");
+       $arsc_timeid = arsc_microtime();
+       mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+      }
+     }
     }
    }
    if (substr($arsc_message, 0, 6) == "/bann ")
@@ -115,10 +140,19 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
      mysql_query("INSERT INTO arsc_bannlist (ip, until) VALUES ('".$a["ip"]."', '$until')", ARSC_PARAMETER_DB_LINK);
      mysql_query("UPDATE arsc_users SET level = -1 WHERE user = '$userpassive'", ARSC_PARAMETER_DB_LINK);
      mysql_query("DELETE FROM arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'", ARSC_PARAMETER_DB_LINK);
-     $arsc_message = "arsc_user_kicked~~".$arsc_user."~~".$userpassive;
-     $arsc_sendtime = date("H:i:s");
-     $arsc_timeid = arsc_microtime();
-     mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+
+     $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '". $b["room"] . "'", ARSC_PARAMETER_DB_LINK);
+     $c = mysql_fetch_array($result);
+     if ($c["roomname"] == $b["room"])
+     {
+      if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $c["type"] != ARSC_ROOMTYPE_MODERATED)
+      {
+       $arsc_message = "arsc_user_kicked~~".$arsc_user."~~".$userpassive;
+       $arsc_sendtime = date("H:i:s");
+       $arsc_timeid = arsc_microtime();
+       mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+      }
+     }
     }
    }
    if (substr($arsc_message, 0, 6) == "/lock ")
@@ -133,11 +167,20 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     {
      mysql_query("UPDATE arsc_users SET level = -1 WHERE user = '$userpassive'", ARSC_PARAMETER_DB_LINK);
      mysql_query("UPDATE arsc_registered_users SET flag_locked = 1 WHERE user = '$userpassive'", ARSC_PARAMETER_DB_LINK);
+
      mysql_query("DELETE FROM arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'", ARSC_PARAMETER_DB_LINK);
-     $arsc_message = "arsc_user_kicked~~".$arsc_user."~~".$userpassive;
-     $arsc_sendtime = date("H:i:s");
-     $arsc_timeid = arsc_microtime();
-     mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+     $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '". $b["room"] . "'", ARSC_PARAMETER_DB_LINK);
+     $c = mysql_fetch_array($result);
+     if ($c["roomname"] == $b["room"])
+     {
+      if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $c["type"] != ARSC_ROOMTYPE_MODERATED)
+      {
+       $arsc_message = "arsc_user_kicked~~".$arsc_user."~~".$userpassive;
+       $arsc_sendtime = date("H:i:s");
+       $arsc_timeid = arsc_microtime();
+       mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+      }
+     }
     }
    }
    if (substr($arsc_message, 0, 5) == "/rip ")
@@ -151,10 +194,19 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     {
      mysql_query("UPDATE arsc_users SET flag_ripped = 1 WHERE user = '$userpassive'", ARSC_PARAMETER_DB_LINK);
      mysql_query("DELETE FROM arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'", ARSC_PARAMETER_DB_LINK);
-     $arsc_message = "arsc_user_rip~~".$arsc_user."~~".$userpassive;
-     $arsc_sendtime = date("H:i:s");
-     $arsc_timeid = arsc_microtime();
-     mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+
+     $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '". $b["room"] . "'", ARSC_PARAMETER_DB_LINK);
+     $c = mysql_fetch_array($result);
+     if ($c["roomname"] == $b["room"])
+     {
+      if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $c["type"] != ARSC_ROOMTYPE_MODERATED)
+      {
+       $arsc_message = "arsc_user_rip~~".$arsc_user."~~".$userpassive;
+       $arsc_sendtime = date("H:i:s");
+       $arsc_timeid = arsc_microtime();
+       mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+      }
+     }
     }
    }
    if (substr($arsc_message, 0, 7) == "/unrip ")
@@ -168,10 +220,19 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     {
      mysql_query("UPDATE arsc_users SET flag_ripped = 0 WHERE user = '$userpassive'", ARSC_PARAMETER_DB_LINK);
      mysql_query("DELETE FROM arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'", ARSC_PARAMETER_DB_LINK);
-     $arsc_message = "arsc_user_unrip~~".$arsc_user."~~".$userpassive;
-     $arsc_sendtime = date("H:i:s");
-     $arsc_timeid = arsc_microtime();
-     mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+
+     $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '". $b["room"] . "'", ARSC_PARAMETER_DB_LINK);
+     $c = mysql_fetch_array($result);
+     if ($c["roomname"] == $b["room"])
+     {
+      if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $c["type"] != ARSC_ROOMTYPE_MODERATED)
+      {
+       $arsc_message = "arsc_user_unrip~~".$arsc_user."~~".$userpassive;
+       $arsc_sendtime = date("H:i:s");
+       $arsc_timeid = arsc_microtime();
+       mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+      }
+     }
     }
    }
    if (substr($arsc_message, 0, 4) == "/op ")
@@ -185,10 +246,19 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     {
      mysql_query("UPDATE arsc_users SET level = 10 WHERE user = '$userpassive'", ARSC_PARAMETER_DB_LINK); //FIXME: Read level value from some constant
      mysql_query("DELETE FROM arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'", ARSC_PARAMETER_DB_LINK);
-     $arsc_message = "arsc_user_op~~".$arsc_user."~~".$userpassive;
-     $arsc_sendtime = date("H:i:s");
-     $arsc_timeid = arsc_microtime();
-     mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+
+     $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '". $b["room"] . "'", ARSC_PARAMETER_DB_LINK);
+     $c = mysql_fetch_array($result);
+     if ($c["roomname"] == $b["room"])
+     {
+      if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $c["type"] != ARSC_ROOMTYPE_MODERATED)
+      {
+       $arsc_message = "arsc_user_op~~".$arsc_user."~~".$userpassive;
+       $arsc_sendtime = date("H:i:s");
+       $arsc_timeid = arsc_microtime();
+       mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+      }
+     }
     }
    }
    if (substr($arsc_message, 0, 6) == "/deop ")
@@ -202,10 +272,19 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
     {
      mysql_query("UPDATE arsc_users SET level = 0 WHERE user = '$userpassive'", ARSC_PARAMETER_DB_LINK); //FIXME: Read level value from some constant
      mysql_query("DELETE FROM arsc_room_$arsc_room WHERE user = '$arsc_user' AND sendtime = '$arsc_sendtime' AND message = '$arsc_message'", ARSC_PARAMETER_DB_LINK);
-     $arsc_message = "arsc_user_deop~~".$arsc_user."~~".$userpassive;
-     $arsc_sendtime = date("H:i:s");
-     $arsc_timeid = arsc_microtime();
-     mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+
+     $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '". $b["room"] . "'", ARSC_PARAMETER_DB_LINK);
+     $c = mysql_fetch_array($result);
+     if ($c["roomname"] == $b["room"])
+     {
+      if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $c["type"] != ARSC_ROOMTYPE_MODERATED)
+      {
+       $arsc_message = "arsc_user_deop~~".$arsc_user."~~".$userpassive;
+       $arsc_sendtime = date("H:i:s");
+       $arsc_timeid = arsc_microtime();
+       mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+      }
+     }
     }
    }
    if (substr($arsc_message, 0, 7) == "/whois ")
@@ -414,12 +493,24 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
       $arsc_my["lastmessageping"] = 0;
       $arsc_sendtime = date("H:i:s");
       $arsc_timeid = arsc_microtime();
-      $arsc_message = "arsc_user_quit~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_room);
-      mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
-      $arsc_message = "arsc_user_enter~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_new_room);
-      mysql_query("INSERT INTO arsc_room_$arsc_new_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
-      $arsc_message = "arsc_user_roomchange~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_room)."~~".$arsc_api->getReadableRoomname($arsc_new_room);
-      mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '".date("H:i:s")."', '".arsc_microtime()."')", ARSC_PARAMETER_DB_LINK);
+
+      $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '$arsc_room'", ARSC_PARAMETER_DB_LINK);
+      $c = mysql_fetch_array($result);
+      if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $c["type"] != ARSC_ROOMTYPE_MODERATED)
+      {
+       $arsc_message = "arsc_user_quit~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_room);
+       mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+      }
+      if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $a["type"] != ARSC_ROOMTYPE_MODERATED)
+      {
+       $arsc_message = "arsc_user_enter~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_new_room);
+       mysql_query("INSERT INTO arsc_room_$arsc_new_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+      }
+      if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $c["type"] != ARSC_ROOMTYPE_MODERATED)
+      {
+       $arsc_message = "arsc_user_roomchange~~".$arsc_user."~~".$arsc_api->getReadableRoomname($arsc_room)."~~".$arsc_api->getReadableRoomname($arsc_new_room);
+       mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '".date("H:i:s")."', '".arsc_microtime()."')", ARSC_PARAMETER_DB_LINK);
+      }
      }
      else
      {
@@ -460,12 +551,28 @@ function arsc_filter_posting($arsc_user, $arsc_sendtime, $arsc_message, $arsc_ro
        mysql_query("UPDATE arsc_users SET room = '$arsc_new_room', lastmessageping = '0' WHERE user = '$userpassive'", ARSC_PARAMETER_DB_LINK);
        $arsc_sendtime = date("H:i:s");
        $arsc_timeid = arsc_microtime();
-       $arsc_message = "arsc_user_quit~~".$userpassive."~~".$arsc_api->getReadableRoomname($a["room"]);
-       mysql_query("INSERT INTO arsc_room_{$a["room"]} (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
-       $arsc_message = "arsc_user_enter~~".$userpassive."~~".$arsc_api->getReadableRoomname($arsc_new_room);
-       mysql_query("INSERT INTO arsc_room_$arsc_new_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
-       $arsc_message = "arsc_user_roomchange~~".$userpassive."~~".$arsc_api->getReadableRoomname($a["room"])."~~".$arsc_api->getReadableRoomname($arsc_new_room);
-       mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '".date("H:i:s")."', '".arsc_microtime()."')", ARSC_PARAMETER_DB_LINK);
+
+       $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '" . $a["room"] . "'", ARSC_PARAMETER_DB_LINK);
+       $d = mysql_fetch_array($result);
+       if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $d["type"] != ARSC_ROOMTYPE_MODERATED)
+       {
+        $arsc_message = "arsc_user_quit~~".$userpassive."~~".$arsc_api->getReadableRoomname($a["room"]);
+        mysql_query("INSERT INTO arsc_room_{$a["room"]} (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+       }
+       $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '" . $arsc_new_room . "'", ARSC_PARAMETER_DB_LINK);
+       $d = mysql_fetch_array($result);
+       if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $d["type"] != ARSC_ROOMTYPE_MODERATED)
+       {
+        $arsc_message = "arsc_user_enter~~".$userpassive."~~".$arsc_api->getReadableRoomname($arsc_new_room);
+        mysql_query("INSERT INTO arsc_room_$arsc_new_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '$arsc_sendtime', '$arsc_timeid')", ARSC_PARAMETER_DB_LINK);
+       }
+       $result = mysql_query("SELECT roomname, password, type FROM arsc_rooms WHERE roomname = '" . $arsc_room . "'", ARSC_PARAMETER_DB_LINK);
+       $d = mysql_fetch_array($result);
+       if (ARSC_PARAMETER_MODERATED_LOGIN_VISIBLE == "yes" OR $d["type"] != ARSC_ROOMTYPE_MODERATED)
+       {
+        $arsc_message = "arsc_user_roomchange~~".$userpassive."~~".$arsc_api->getReadableRoomname($a["room"])."~~".$arsc_api->getReadableRoomname($arsc_new_room);
+        mysql_query("INSERT INTO arsc_room_$arsc_room (message, user, sendtime, timeid) VALUES ('$arsc_message', 'System', '".date("H:i:s")."', '".arsc_microtime()."')", ARSC_PARAMETER_DB_LINK);
+       }
       }
      }
     }

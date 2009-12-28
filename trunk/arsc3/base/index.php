@@ -12,12 +12,13 @@ $arsc_current["chooseyourlanguage"] = $arsc_lang["chooseyourlanguage"];
 $arsc_current["next"] = $arsc_lang["next"];
 
 // Get browser-accepted languages
-$arsc_accepted_languages = explode(",", getenv("HTTP_ACCEPT_LANGUAGE"));
+$arsc_options_array = array();
+$arsc_accepted_languages = explode(",", mb_strtolower(getenv("HTTP_ACCEPT_LANGUAGE")));
 $handle = opendir("../languages");
 while ($file = readdir($handle))
 { 
  if ($file != "." AND $file != ".." AND substr($file, -8) == ".inc.php")
- { 
+ {
   include("../languages/".$file);
   $arsc_language = str_replace(".inc.php", "", $file);
   $arsc_language_name = $arsc_lang_name[$arsc_language];
@@ -31,9 +32,16 @@ while ($file = readdir($handle))
     $arsc_current["next"] = $arsc_lang["next"];
    }
   }
-  $arsc_options .= '<option value="'.$arsc_language.'"'.$arsc_selected.'>'.$arsc_language_name.'</option>';
- } 
+  $arsc_options_array[$arsc_language_name] = '<option value="'.$arsc_language.'"'.$arsc_selected.'>'.$arsc_language_name.'</option>';
+ }
 }
+
+ksort($arsc_options_array, SORT_STRING);	// Sort the list of names
+foreach($arsc_options_array as $key => $val)
+{
+  $arsc_options .= $val;
+}
+
 $arsc_current["languageselection"] = '
 <select name="arsc_language">
  '.$arsc_options.'

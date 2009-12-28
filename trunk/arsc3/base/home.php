@@ -11,7 +11,8 @@ if ($arsc_language == "") $arsc_language = ARSC_PARAMETER_DEFAULT_LANGUAGE;
 if (!is_file("../languages/".$arsc_language.".inc.php")) arsc_error_log(ARSC_ERRORLEVEL_FATAL, "Could not open language file. Something is really messed up!", __FILE__, __LINE__);
 include("../languages/".$arsc_language.".inc.php");
 
-$arsc_user = arsc_validateinput($_GET["arsc_user"], NULL, "/[^a-zA-Z0-9_]/", 0, 64, __FILE__, __LINE__);
+// $arsc_user = arsc_validateinput($_GET["arsc_user"], NULL, "/[^a-zA-Z0-9_]/", 0, 64, __FILE__, __LINE__);
+$arsc_user = "";       // Don't accept input parameter, make flooder learn scripting.
 $arsc_error = arsc_validateinput($_GET["arsc_error"], NULL, "/[^a-zA-Z0-9_]/", 0, 30, __FILE__, __LINE__);
 
 $arsc_api = new arsc_api_Class;

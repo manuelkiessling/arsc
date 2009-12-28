@@ -44,11 +44,13 @@ if ($arsc_my = $arsc_api->getUserValuesBySID(arsc_validateinput($_GET["arsc_sid"
     if ($arsc_api->checkCommandAllowed($arsc_my["level"], "smilies"))
     {
      reset($arsc_smilies);
+     $tmp_all_smilies = $arsc_smilies;	// arsc_smilies_replace() needs copy of smilies without the pointer which while() needs.
      while (list($key, $val) = each($arsc_smilies))
      {
-      $arsc_smilielist .= "<tr><td><font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"".$arsc_layout["default_font_color"]."\">".$val."</font></td><td> &nbsp; </td><td>".arsc_smilies_replace($val, $arsc_smilies, ARSC_PARAMETER_SMILIES_PATH)."</td></tr>";
+      $arsc_smilielist .= "<tr><td><font face=\"".$arsc_layout["default_font_face"]."\" size=\"".$arsc_layout["default_font_size"]."\" color=\"".$arsc_layout["default_font_color"]."\">".$val."</font></td><td> &nbsp; </td><td>".arsc_smilies_replace($val, $tmp_all_smilies, ARSC_PARAMETER_SMILIES_PATH)."</td></tr>";
      }
      echo $arsc_smilielist;
+     unset($tmp_all_smilies);
     }
     echo "</table>";
     ?>

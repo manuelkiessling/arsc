@@ -74,6 +74,24 @@ INSERT INTO `arsc_levels` VALUES ('smilies', 1, 1, 1, 1, 1);
 INSERT INTO `arsc_levels` VALUES ('roomlist', 1, 1, 1, 1, 1);
 INSERT INTO `arsc_levels` VALUES ('userlist', 1, 1, 1, 1, 1);
 INSERT INTO `arsc_levels` VALUES ('croom', 1, 1, 0, 0, 1);
+INSERT INTO `arsc_levels` VALUES ('whois', 0, 1, 0, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('kick', 0, 1, 0, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('bann', 0, 0, 0, 0, 1);
+INSERT INTO `arsc_levels` VALUES ('rip', 0, 1, 0, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('unrip', 0, 1, 0, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('op', 0, 0, 0, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('deop', 0, 0, 0, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('move', 0, 1, 0, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('color', 1, 1, 1, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('msg', 1, 1, 0, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('msgops', 0, 1, 1, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('opcall', 1, 1, 1, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('room', 1, 1, 1, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('invite', 1, 1, 0, 0, 1);
+INSERT INTO `arsc_levels` VALUES ('smilies', 1, 1, 1, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('roomlist', 1, 1, 1, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('userlist', 1, 1, 1, 1, 1);
+INSERT INTO `arsc_levels` VALUES ('croom', 1, 1, 0, 0, 1);
 
 CREATE TABLE `arsc_moderation_queue` (
   `id` int(11) NOT NULL auto_increment,
@@ -122,6 +140,7 @@ INSERT INTO `arsc_parameters` VALUES ('welcome_message', '', 'This message is sh
 INSERT INTO `arsc_parameters` VALUES ('queue_refresh', '10', 'This value is the time in seconds after which the Message Queue (in moderated rooms, visible only to Moderators and VIPs) will be refreshed.');
 INSERT INTO `arsc_parameters` VALUES ('queue_listsize', '5', 'The number of entries which are shown in the Message Queue frame at the most.');
 INSERT INTO `arsc_parameters` VALUES ('disable_browser_push', 'no', 'Do you want to disable browser_push? If you can successfully log into the chat with version browser_push, but the message frame remains white, then you can disable this chatversion completely. browser_xmlhttprequest will then be the default chat version. Say <b>yes</b> or <b>no</b>.');
+INSERT INTO `arsc_parameters` VALUES ('moderated_login_visible', 'no', 'Do you want to enable status messages in moderated rooms? This is disabled by default so login messages can not be used to flood or to send messages. Say <b>yes</b> or <b>no</b>.');
 
 CREATE TABLE `arsc_registered_users` (
   `id` int(11) NOT NULL auto_increment,
@@ -223,17 +242,17 @@ INSERT INTO `arsc_smilies` VALUES (3, ':-s');
 INSERT INTO `arsc_smilies` VALUES (4, ':-]');
 INSERT INTO `arsc_smilies` VALUES (5, ':-[');
 INSERT INTO `arsc_smilies` VALUES (6, '/love/');
-INSERT INTO `arsc_smilies` VALUES (7, '/smoke/');
-INSERT INTO `arsc_smilies` VALUES (8, '/greet/');
-INSERT INTO `arsc_smilies` VALUES (9, '/sleep/');
-INSERT INTO `arsc_smilies` VALUES (10, '/shy/');
-INSERT INTO `arsc_smilies` VALUES (11, '/tree/');
-INSERT INTO `arsc_smilies` VALUES (12, '/candle/');
-INSERT INTO `arsc_smilies` VALUES (13, '/rudolph/');
+INSERT INTO `arsc_smilies` VALUES (7, '/thumbsup/');
+INSERT INTO `arsc_smilies` VALUES (8, '/thumbsdown/');
+INSERT INTO `arsc_smilies` VALUES (9, 'B-)');
+INSERT INTO `arsc_smilies` VALUES (10, ':-O');
+INSERT INTO `arsc_smilies` VALUES (11, ':P');
+INSERT INTO `arsc_smilies` VALUES (12, ':-P');
+INSERT INTO `arsc_smilies` VALUES (13, '8-)');
 INSERT INTO `arsc_smilies` VALUES (14, '/santa/');
-INSERT INTO `arsc_smilies` VALUES (15, '/snowman/');
+INSERT INTO `arsc_smilies` VALUES (15, ':-/');
 INSERT INTO `arsc_smilies` VALUES (16, '/gift/');
-INSERT INTO `arsc_smilies` VALUES (17, '/roll/');
+INSERT INTO `arsc_smilies` VALUES (17, ':)');
 INSERT INTO `arsc_smilies` VALUES (18, '/greencard/');
 INSERT INTO `arsc_smilies` VALUES (19, '/redcard/');
 INSERT INTO `arsc_smilies` VALUES (20, '/yellowcard/');
