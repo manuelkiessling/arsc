@@ -37,8 +37,11 @@ if (!function_exists("sha1"))
 }
 
 // Replace smilies with image tag //FIXME: Move into API
+// RN: fixed: reset($smilies); inserted since of copy of smilie 
+//	arrays points beyond $key in help.php
 function arsc_smilies_replace($text, $smilies, $smilies_pfad)
 {
+ reset($smilies);
  while (list($key, $val) = each($smilies))
  {
   $text = str_replace($val, "<img src=\"".$smilies_pfad.$key.".gif\" border=\"0\" alt=\"".$val."\">", $text);
